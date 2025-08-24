@@ -34,14 +34,6 @@ export function Hero() {
           </h1>
         </div>
         <div className="absolute right-20 top-1/4">
-          <Image
-            src="https://placehold.co/400x500"
-            alt="Doctor"
-            width={400}
-            height={500}
-            className="rounded-lg"
-            data-ai-hint="doctor portrait"
-          />
         </div>
 
         <div className="absolute bottom-16 left-4 right-4 lg:left-8 lg:right-8 xl:left-28 xl:right-28">
