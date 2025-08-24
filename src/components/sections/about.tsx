@@ -3,8 +3,15 @@ import { Stethoscope, Globe, Heart, Users } from 'lucide-react';
 
 export function About() {
   return (
-    <section id="about" className="py-24 bg-white">
-      <div className="container mx-auto">
+    <section id="about" className="py-24 bg-white relative">
+      <Image
+        src="https://placehold.co/1425x1302"
+        alt="Abstract background"
+        fill
+        className="object-cover opacity-30"
+        data-ai-hint="abstract texture"
+      />
+      <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
           <div className="lg:col-span-2">
             <Image
