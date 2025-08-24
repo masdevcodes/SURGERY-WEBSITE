@@ -32,55 +32,53 @@ export function Hero() {
             at your service
           </h1>
         </div>
-        <div className="absolute right-20 top-1/4"></div>
+      </div>
+      <div className="absolute bottom-16 left-4 right-4 lg:left-8 lg:right-8 xl:left-28 xl:right-28">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 max-w-7xl mx-auto">
+          <a href="#providers" className="group bg-white/20 p-6 rounded-t-lg md:rounded-tr-none md:rounded-l-lg shadow-lg border-t border-white/30 backdrop-blur-sm relative overflow-hidden z-10">
+            <h3 className="text-2xl font-bold font-body leading-loose">
+              Our Service
+            </h3>
+            <h3 className="text-2xl font-bold font-body leading-loose">
+              Providers
+            </h3>
+            <div className="w-36 h-0.5 bg-white mt-2" />
+            <div className="w-10 h-10 absolute right-4 top-4 bg-white/10 rounded-full flex items-center justify-center">
+              <ArrowRight className="w-5 h-5 text-white" />
+            </div>
+          </a>
 
-        <div className="absolute bottom-16 left-4 right-4 lg:left-8 lg:right-8 xl:left-28 xl:right-28">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 max-w-7xl mx-auto">
-            <a href="#providers" className="group bg-white/20 p-6 rounded-t-lg md:rounded-tr-none md:rounded-l-lg shadow-lg border-t border-white/30 backdrop-blur-sm relative overflow-hidden z-10">
-              <h3 className="text-2xl font-bold font-body leading-loose">
-                Our Service
-              </h3>
-              <h3 className="text-2xl font-bold font-body leading-loose">
-                Providers
-              </h3>
-              <div className="w-36 h-0.5 bg-white mt-2" />
-              <div className="w-10 h-10 absolute right-4 top-4 bg-white/10 rounded-full flex items-center justify-center">
-                <ArrowRight className="w-5 h-5 text-white" />
-              </div>
-            </a>
+          <a href="#appointment" className="group bg-white/20 p-6 shadow-lg border-t border-l md:border-l-0 border-white/30 backdrop-blur-sm relative overflow-hidden z-10">
+            <h3 className="text-2xl font-bold font-body leading-loose">
+              Book an
+            </h3>
+            <h3 className="text-2xl font-bold font-body leading-loose">
+              Appointment
+            </h3>
+            <div className="w-40 h-0.5 bg-white mt-2" />
+            <div className="w-10 h-10 absolute right-4 top-4 bg-white/10 rounded-full flex items-center justify-center">
+              <ArrowRight className="w-5 h-5 text-white" />
+            </div>
+          </a>
 
-            <a href="#appointment" className="group bg-white/20 p-6 shadow-lg border-t border-l md:border-l-0 border-white/30 backdrop-blur-sm relative overflow-hidden z-10">
-              <h3 className="text-2xl font-bold font-body leading-loose">
-                Book an
-              </h3>
-              <h3 className="text-2xl font-bold font-body leading-loose">
-                Appointment
-              </h3>
-              <div className="w-40 h-0.5 bg-white mt-2" />
-              <div className="w-10 h-10 absolute right-4 top-4 bg-white/10 rounded-full flex items-center justify-center">
-                <ArrowRight className="w-5 h-5 text-white" />
+          <a href="#contact" className="group bg-white/20 p-6 rounded-b-lg md:rounded-bl-none md:rounded-r-lg shadow-lg border-t border-l border-white/30 backdrop-blur-sm relative overflow-hidden z-10">
+            <h3 className="text-2xl font-bold font-body leading-loose">
+              Have an Emergency?
+            </h3>
+            <div className="w-60 h-0.5 bg-white mt-2 mb-4" />
+            <div className="flex items-center gap-4">
+              <Phone className="h-8 w-8 text-white" />
+              <div>
+                <p className="text-xs font-bold font-body tracking-wider">
+                  EMERGENCY LINE
+                </p>
+                <p className="text-xl font-bold font-body">1-800-900</p>
               </div>
-            </a>
-
-            <a href="#contact" className="group bg-white/20 p-6 rounded-b-lg md:rounded-bl-none md:rounded-r-lg shadow-lg border-t border-l border-white/30 backdrop-blur-sm relative overflow-hidden z-10">
-              <h3 className="text-2xl font-bold font-body leading-loose">
-                Have an Emergency?
-              </h3>
-              <div className="w-60 h-0.5 bg-white mt-2 mb-4" />
-              <div className="flex items-center gap-4">
-                <Phone className="h-8 w-8 text-white" />
-                <div>
-                  <p className="text-xs font-bold font-body tracking-wider">
-                    EMERGENCY LINE
-                  </p>
-                  <p className="text-xl font-bold font-body">1-800-900</p>
-                </div>
-              </div>
-              <div className="w-10 h-10 absolute right-4 top-4 bg-white/10 rounded-full flex items-center justify-center">
-                <ArrowRight className="w-5 h-5 text-white" />
-              </div>
-            </a>
-          </div>
+            </div>
+            <div className="w-10 h-10 absolute right-4 top-4 bg-white/10 rounded-full flex items-center justify-center">
+              <ArrowRight className="w-5 h-5 text-white" />
+            </div>
+          </a>
         </div>
       </div>
     </section>
