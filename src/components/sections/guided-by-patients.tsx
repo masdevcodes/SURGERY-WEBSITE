@@ -5,7 +5,7 @@ export function GuidedByPatients() {
   return (
     <section id="guided-by-patients" className="relative h-[833px]">
       <Image
-        src="https://placehold.co/1425x818"
+        src="/33.png"
         alt="Patient and doctor"
         fill
         className="object-cover"
