@@ -5,7 +5,7 @@ export function About() {
   return (
     <section id="about" className="py-24 bg-white relative">
       <Image
-        src="/Screenshot%202025-08-24%20at%2010.38.01%20PM.png"
+        src="/111.png"
         alt="Abstract background"
         fill
         className="object-cover opacity-30"
