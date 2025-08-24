@@ -35,7 +35,7 @@ export function Hero() {
       </div>
       <div className="absolute bottom-16 left-4 right-4 lg:left-8 lg:right-8 xl:left-28 xl:right-28">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 max-w-7xl mx-auto">
-          <a href="#providers" className="group bg-white/20 p-6 rounded-t-lg md:rounded-tr-none md:rounded-l-lg shadow-lg border-t border-white/30 backdrop-blur-sm relative overflow-hidden z-10">
+          <a href="#providers" className="group bg-gradient-to-br from-blue-500/30 to-purple-500/30 p-6 rounded-t-lg md:rounded-tr-none md:rounded-l-lg shadow-lg border-t border-white/30 relative overflow-hidden z-10">
             <h3 className="text-2xl font-bold font-body leading-loose">
               Our Service
             </h3>
@@ -48,7 +48,7 @@ export function Hero() {
             </div>
           </a>
 
-          <a href="#appointment" className="group bg-white/20 p-6 shadow-lg border-t border-l md:border-l-0 border-white/30 backdrop-blur-sm relative overflow-hidden z-10">
+          <a href="#appointment" className="group bg-gradient-to-br from-blue-500/30 to-purple-500/30 p-6 shadow-lg border-t border-l md:border-l-0 border-white/30 relative overflow-hidden z-10">
             <h3 className="text-2xl font-bold font-body leading-loose">
               Book an
             </h3>
@@ -61,7 +61,7 @@ export function Hero() {
             </div>
           </a>
 
-          <a href="#contact" className="group bg-white/20 p-6 rounded-b-lg md:rounded-bl-none md:rounded-r-lg shadow-lg border-t border-l border-white/30 backdrop-blur-sm relative overflow-hidden z-10">
+          <a href="#contact" className="group bg-gradient-to-br from-blue-500/30 to-purple-500/30 p-6 rounded-b-lg md:rounded-bl-none md:rounded-r-lg shadow-lg border-t border-l border-white/30 relative overflow-hidden z-10">
             <h3 className="text-2xl font-bold font-body leading-loose">
               Have an Emergency?
             </h3>
