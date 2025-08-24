@@ -1,6 +1,15 @@
+"use client";
+
 import { HeartPulse, Mail, MapPin, Phone } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 
 export function AppFooter() {
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="bg-secondary text-secondary-foreground">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 py-12">
@@ -40,7 +49,7 @@ export function AppFooter() {
       </div>
       <div className="border-t">
         <div className="container mx-auto flex justify-between items-center px-4 py-4 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} GMC Patiala. All Rights Reserved.</p>
+          <p>&copy; {currentYear} GMC Patiala. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
