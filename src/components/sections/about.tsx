@@ -7,7 +7,7 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <Image
-              src="https://placehold.co/512x1102"
+              src="/home_01_image_01.avif"
               alt="Doctor smiling"
               width={512}
               height={1102}
