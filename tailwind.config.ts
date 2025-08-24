@@ -19,6 +19,8 @@ export default {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
         headline: ['Lexend', 'sans-serif'],
+        serif: ['IBM Plex Serif', 'serif'],
+        sans: ['Roboto', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
