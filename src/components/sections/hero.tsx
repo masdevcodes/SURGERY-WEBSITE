@@ -7,10 +7,10 @@ export function Hero() {
       <div className="w-full h-full absolute overflow-hidden">
         <Image
           className="w-full h-full object-cover"
-          src="https://images.unsplash.com/photo-1599481238640-4c1288750d7a?q=80&w=1887&auto=format&fit=crop"
-          alt="Clinic background"
+          src="https://images.unsplash.com/photo-1629425112658-90c75b6a735c?q=80&w=1887&auto=format&fit=crop"
+          alt="Surgeons in an operating room"
           layout="fill"
-          data-ai-hint="salmon leaping waterfall"
+          data-ai-hint="surgeons operating room"
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-l from-white via-white/5 to-black/0" />
