@@ -4,17 +4,16 @@ import { Phone, ArrowRight } from 'lucide-react';
 export function Hero() {
   return (
     <section id="home" className="h-[939px] relative bg-zinc-900 text-white">
-      <div className="w-[1425px] h-[939.40px] left-0 top-0 absolute overflow-hidden">
+      <div className="w-full h-full absolute overflow-hidden">
         <Image
-          className="w-[1425px] h-[939.40px] left-0 top-0 absolute"
-          src="https://placehold.co/1425x939"
+          className="w-full h-full object-cover"
+          src="https://images.unsplash.com/photo-1599481238640-4c1288750d7a?q=80&w=1887&auto=format&fit=crop"
           alt="Clinic background"
-          width={1425}
-          height={939}
-          data-ai-hint="clinic interior"
+          layout="fill"
+          data-ai-hint="salmon leaping waterfall"
         />
       </div>
-      <div className="w-[1425px] h-[939.40px] left-0 top-0 absolute bg-gradient-to-l from-white via-white/5 to-black/0" />
+      <div className="absolute inset-0 bg-gradient-to-l from-white via-white/5 to-black/0" />
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center h-full">
         <div className="max-w-4xl mt-32">
           <div className="w-72 h-16 relative mb-8">
@@ -33,8 +32,7 @@ export function Hero() {
             at your service
           </h1>
         </div>
-        <div className="absolute right-20 top-1/4">
-        </div>
+        <div className="absolute right-20 top-1/4"></div>
 
         <div className="absolute bottom-16 left-4 right-4 lg:left-8 lg:right-8 xl:left-28 xl:right-28">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0 max-w-7xl mx-auto">
