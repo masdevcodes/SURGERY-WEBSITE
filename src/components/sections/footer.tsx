@@ -20,7 +20,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="w-32 h-14 mb-6">
-              <Image src="https://placehold.co/130x60" alt="logo" width={130} height={60} data-ai-hint="logo" />
+              <Image src="/GMClogo.jpg" alt="GMC Patiala Logo" width={130} height={60} data-ai-hint="logo" />
             </div>
             <p className="text-xs leading-tight">We bring the years, global experience, and stamina to guide our clients through new and often disruptive realities.</p>
           </div>

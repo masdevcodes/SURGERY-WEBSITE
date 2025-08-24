@@ -7,8 +7,8 @@ export function Header() {
       <div className="container mx-auto flex items-center justify-between h-full px-5">
         <div className="w-28 h-24">
           <Image
-            src="https://placehold.co/120x90"
-            alt="Logo"
+            src="/GMClogo.jpg"
+            alt="GMC Patiala Logo"
             width={120}
             height={90}
             data-ai-hint="logo"
