@@ -7,7 +7,7 @@ export function Hero() {
       <div className="w-full h-full absolute overflow-hidden">
         <Image
           className="w-full h-full object-cover"
-          src="https://images.unsplash.com/photo-1666214278794-476f86b43f2a?q=80&w=1887&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1887&auto=format&fit=crop"
           alt="Surgeons in an operating room"
           layout="fill"
           data-ai-hint="surgeons operating room"
