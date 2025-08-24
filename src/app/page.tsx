@@ -25,28 +25,34 @@ export default function Home() {
           </div>
           <nav className="hidden lg:flex items-center space-x-12 h-full text-white">
             <a
-              href="#"
+              href="#home"
               className="h-full flex items-center border-b-[3px] border-white text-base font-semibold uppercase"
             >
               Home
             </a>
             <a
-              href="#"
+              href="#about"
               className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
             >
               About
             </a>
             <a
-              href="#"
+              href="#services"
               className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
             >
-              Pages
+              Services
             </a>
             <a
-              href="#"
+              href="#providers"
               className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
             >
-              Elements
+              Providers
+            </a>
+             <a
+              href="#contact"
+              className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
+            >
+              Contact
             </a>
           </nav>
           <div className="flex items-center gap-4">
@@ -90,7 +96,7 @@ export default function Home() {
 
       <main>
         {/* Hero Section */}
-        <section className="h-[939px] relative bg-zinc-900 text-white">
+        <section id="home" className="h-[939px] relative bg-zinc-900 text-white">
           <Image
             src="https://placehold.co/1425x939"
             alt="Clinic background"
@@ -170,7 +176,7 @@ export default function Home() {
         </section>
 
         {/* Working Hours & Info Cards Section */}
-        <section className="py-24 bg-gradient-to-b from-white via-white/0 to-white">
+        <section id="info" className="py-24 bg-gradient-to-b from-white via-white/0 to-white">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Working Hours */}
@@ -275,7 +281,7 @@ export default function Home() {
         </section>
 
         {/* About Us Section */}
-        <section className="py-24 bg-white">
+        <section id="about" className="py-24 bg-white">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -334,7 +340,7 @@ export default function Home() {
         </section>
 
         {/* Guided by patients section */}
-        <section className="relative h-[833px]">
+        <section id="guided-by-patients" className="relative h-[833px]">
              <Image
                 src="https://placehold.co/1425x818"
                 alt="Patient and doctor"
@@ -360,7 +366,7 @@ export default function Home() {
         </section>
         
         {/* Providers Section */}
-        <section className="py-24 bg-white">
+        <section id="providers" className="py-24 bg-white">
             <div className="container mx-auto">
                 <div className="flex justify-between items-center mb-12">
                     <h2 className="text-6xl font-bold text-blue-950 font-body">Our Providers</h2>
@@ -421,7 +427,7 @@ export default function Home() {
                         </div>
                         <div className="p-8 bg-white relative">
                             <div className="w-20 h-20 bg-teal-500 rounded-md flex items-center justify-center -mt-20 mb-6 z-10 relative">
-                               <svg width="44" height="41" viewBox="0 0 44 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.0001 2.86011C27.9601 2.86011 34.2001 7.10011 39.0001 14.3001C39.4801 15.0201 39.1201 16.0201 38.2801 16.3801C37.5601 16.7401 36.5601 16.3801 36.2001 15.6601C31.8801 8.94011 26.1601 5.14011 22.0001 5.14011C17.8401 5.14011 12.1201 8.94011 7.80011 15.6601C7.44011 16.3801 6.44011 16.7401 5.72011 16.3801C4.88011 16.0201 4.52011 15.0201 5.00011 14.3001C9.80011 7.10011 16.0401 2.86011 22.0001 2.86011ZM22.0001 11.2601C25.4001 11.2601 28.0001 13.8601 28.0001 17.2601C28.0001 20.6601 25.4001 23.2601 22.0001 23.2601C18.6001 23.2601 16.0001 20.6601 16.0001 17.2601C16.0001 13.8601 18.6001 11.2601 22.0001 11.2601ZM22.0001 25.6601C28.4001 25.6601 35.2801 28.0601 39.0001 34.3001C39.4801 35.0201 39.1201 36.0201 38.2801 36.3801C37.5601 36.7401 36.5601 36.3801 36.2001 35.6601C32.8401 30.1001 27.5201 27.9401 22.0001 27.9401C16.4801 27.9401 11.1601 30.1001 7.80011 35.6601C7.44011 36.3801 6.44011 36.7401 5.72011 36.3801C4.88011 36.0201 4.52011 35.0201 5.00011 34.3001C8.72011 28.0601 15.6001 25.6601 22.0001 25.6601Z" fill="white"/></svg>
+                               <svg width="44" height="41" viewBox="0 0 44 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.0001 2.86011C27.9601 2.86011 34.2001 7.10011 39.0001 14.3001C39.4801 15.0201 39.1201 16.0201 38.2801 16.3801C37.5601 16.7401 36.5601 16.3801 36.2001 15.6601C31.8801 8.94011 26.1601 5.14011 22.0001 5.14011C17.8401 5.14011 12.1201 8.94011 7.80011 15.6601C7.44011 16.3801 6.44011 16.7401 5.72011 16.3801C4.88011 16.0201 4.52011 15.0201 5.00011 14.3001C9.80011 7.10011 16.0401 2.86011 22.0001 2.86011ZM22.0001 11.2601C25.4001 11.2601 28.0001 13.8601 28.0001 17.2601C28.0001 20.6601 25.4001 23.2601 22.0001 23.2601C18.6001 23.2601 16.0001 20.6601 16.0001 17.2601C16.0001 13.8601 18.6001 11.2601 22.0001 11.2601ZM22.0001 25.6601C28.4001 25.6601 35.2801 28.0601 39.0001 34.3001C39.4801 35.0201 39.1201 36.0201 38.2801 36.3801C37.5601 36.7401 36.5601 36.3801 36.2001 35.6601C32.8401 30.1001 27.5201 27.9401 22.0001 27.9401C16.4801 27.9401 11.1601 30.1001 7.80011 35.6601C7.44011 16.3801 6.44011 16.7401 5.72011 16.3801C4.88011 16.0201 4.52011 15.0201 5.00011 14.3001C8.72011 28.0601 15.6001 25.6601 22.0001 25.6601Z" fill="white"/></svg>
                             </div>
                             <p className="text-teal-500 font-bold text-base">UROLOGY</p>
                             <h3 className="text-3xl text-blue-950 font-body mb-3"><span className="font-normal">Adam</span> <span className="font-bold">Hwang</span></h3>
@@ -441,7 +447,7 @@ export default function Home() {
         </section>
         
         {/* Services Section */}
-        <section className="py-24 bg-white relative">
+        <section id="services" className="py-24 bg-white relative">
              <Image src="https://placehold.co/1425x1302" alt="Medical equipment" fill className="object-cover" data-ai-hint="medical equipment"/>
              <div className="absolute inset-0 bg-white/80" />
             <div className="container mx-auto relative">
@@ -496,7 +502,7 @@ export default function Home() {
         </section>
 
         {/* Testimonial Section */}
-        <section className="relative h-[615px] bg-blue-950">
+        <section id="testimonial" className="relative h-[615px] bg-blue-950">
              <Image src="https://placehold.co/512x1302" alt="Abstract background" fill className="object-cover opacity-10" data-ai-hint="abstract texture"/>
              <div className="container mx-auto h-full flex items-center justify-center text-white text-center">
                 <div>
@@ -513,7 +519,7 @@ export default function Home() {
         </section>
         
         {/* Contact & Map Section */}
-        <section className="relative h-[852px]">
+        <section id="contact" className="relative h-[852px]">
             <div className="absolute inset-0 bg-stone-200">
                 {/* This would be a map component */}
                  <Image src="https://placehold.co/1425x853" alt="Map" fill className="object-cover" data-ai-hint="map city"/>
