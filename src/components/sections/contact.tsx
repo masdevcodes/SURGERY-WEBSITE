@@ -24,6 +24,9 @@ export function Contact() {
             width={376} 
             height={304} 
             className="w-full rounded-t-lg object-cover" 
+            quality={85}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="lazy"
           />
           <div className="p-6">
             <div className="mb-6 pb-6 border-b">

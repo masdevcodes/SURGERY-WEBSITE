@@ -21,6 +21,9 @@ export function About() {
                 width={512}
                 height={1102}
                 className="rounded-lg object-cover w-full h-full transition-transform duration-700 hover:scale-110"
+                quality={85}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                loading="lazy"
                 data-ai-hint="doctors patient consultation"
               />
             </div>

@@ -69,6 +69,9 @@ export function MedicalSpecialties() {
                 alt="Head of Surgery - Dr. Ashwini Kumar"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                quality={85}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                loading="lazy"
                 data-ai-hint="geometric pattern background"
               />
               </div>
