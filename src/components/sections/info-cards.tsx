@@ -3,8 +3,17 @@ import { ArrowRight, Check } from 'lucide-react';
 
 export function InfoCards() {
   return (
-    <section id="info" className="py-24 bg-gradient-to-b from-white via-white/0 to-white">
+    <section id="info" className="py-24 bg-gradient-to-b from-white via-white/0 to-white relative">
+      <div className="absolute inset-0 opacity-30">
+        <Image
+          src="/111.png"
+          alt="Abstract background"
+          fill
+          className="object-cover"
+        />
+      </div>
       <div className="container mx-auto">
+        <div className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* OPD Timings */}
           <div className="bg-teal-500 rounded-lg p-8 text-white">
@@ -96,6 +105,7 @@ export function InfoCards() {
             </div>
           </div>
 
+        </div>
         </div>
       </div>
     </section>
