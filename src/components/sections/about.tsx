@@ -29,7 +29,7 @@ export function About() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="flex flex-col items-center text-center md:text-left md:items-start md:col-span-1">
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg hover:bg-white/15 transition-all duration-300 flex flex-col items-center text-center md:text-left md:items-start md:col-span-1">
                 <Stethoscope className="w-10 h-10 text-teal-500 mb-4" />
                 <h3 className="text-blue-950 font-bold font-body text-xl mb-2">Our Approach</h3>
                 <p className="text-sm text-blue-950/80">
