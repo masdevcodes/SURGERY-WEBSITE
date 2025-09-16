@@ -6,10 +6,10 @@ export function InfoCards() {
     <section id="info" className="py-24 bg-gradient-to-b from-white via-white/0 to-white">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Working Hours */}
+          {/* OPD Timings */}
           <div className="bg-teal-500 rounded-lg p-8 text-white">
             <h3 className="text-3xl font-bold font-body mb-8">
-              Working Hours
+              OPD Timings
             </h3>
             <div className="space-y-4">
               <div className="flex justify-between items-center border-b border-white/50 py-4">

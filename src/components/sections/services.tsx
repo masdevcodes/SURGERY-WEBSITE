@@ -1,26 +1,16 @@
 import Image from 'next/image';
-import { ArrowRight, Heart, Stethoscope, Settings as Lungs, Activity, Eye, Bone, Brain, LucideKey as Kidney, Microscope } from 'lucide-react';
+import { ArrowRight, Heart, Stethoscope, Eye, Bone, Brain, LucideKey as Kidney } from 'lucide-react';
 
 export function Services() {
   const services = [
-    {
-      icon: <Activity className="w-8 h-8" />,
-      title: "COVID-19 Services",
-      description: "Integer vel nisl varius, finibus orci et, congue sapien fusce.",
-      color: "text-teal-500"
-    },
+   
     {
       icon: <Heart className="w-8 h-8" />,
       title: "Cardiology",
       description: "Nam at varius ut dignissim lorem, in condimentum leo. Vestibulum eget.",
       color: "text-teal-500"
     },
-    {
-      icon: <Lungs className="w-8 h-8" />,
-      title: "Pulmonology",
-      description: "Donec risus elit, facilisis at vel vulputate sit amet, hac finibus nec purus.",
-      color: "text-teal-500"
-    },
+    
     {
       icon: <Stethoscope className="w-8 h-8" />,
       title: "Gastroenterology",
@@ -51,12 +41,6 @@ export function Services() {
       description: "Etiam metus, tempor quis, sollicitudin sit amet magna cursus vehicula.",
       color: "text-teal-500"
     },
-    {
-      icon: <Microscope className="w-8 h-8" />,
-      title: "Dermatology",
-      description: "Vivamus feugiat faucibus enim dapibus. In hac est habitasse dictumst.",
-      color: "text-teal-500"
-    }
   ];
 
   return (
