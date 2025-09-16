@@ -34,21 +34,18 @@ export function Testimonial() {
     const fetchYouTubeData = async () => {
       try {
         const response = await fetch('/api/youtube');
-        if (!response.ok) {
-          throw new Error('Failed to fetch YouTube data');
-        }
         
         const data = await response.json();
-        setVideos(data.videos);
-        setChannelStats(data.channelStats);
-      } catch (error) {
-        console.error('Error fetching YouTube data:', error);
         
-        // Log more detailed error information
-        console.error('YouTube API Error Details:', {
-          message: error instanceof Error ? error.message : 'Unknown error',
-          type: error instanceof TypeError ? 'Network/Fetch Error' : 'API Error'
-        });
+        if (response.ok && data.videos && data.channelStats) {
+          setVideos(data.videos);
+          setChannelStats(data.channelStats);
+        } else {
+          // Use fallback data if API response is not successful
+          throw new Error('API response not successful');
+        }
+      } catch (error) {
+        console.warn('Using fallback YouTube data due to API configuration');
         
         // Fallback to mock data if API fails
         setVideos([
