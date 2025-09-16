@@ -59,8 +59,8 @@ export function Services() {
           <div className="relative">
             <div className="relative h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
-                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                alt="Doctor consulting with patient"
+                src="/IMG-20241110-WA0042.jpg"
+                alt="GMC Patiala Hospital - Surgery Department"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
