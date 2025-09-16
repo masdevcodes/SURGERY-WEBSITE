@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 
@@ -18,6 +18,8 @@ export function Events() {
   
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(false);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null); // Track selected event for modal
+  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal state
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -32,6 +34,35 @@ export function Events() {
     setNextBtnDisabled(!emblaApi.canScrollNext());
   }, []);
 
+  // Function to handle event card click
+  const handleEventClick = (event) => {
+    setSelectedEvent(event);
+    setIsModalOpen(true);
+  };
+
+  // Function to close modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedEvent(null);
+  };
+
+  // Close modal on Escape key press
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') closeModal();
+    };
+
+    if (isModalOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpen]);
+
   useEffect(() => {
     if (!emblaApi) return;
 
@@ -41,12 +72,6 @@ export function Events() {
   }, [emblaApi, onSelect]);
 
   const events = [
-    {
-      id: 1,
-      title: "Annual Surgery Conference 2024",
-      date: "March 15, 2024",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    },
     {
       id: 2,
       title: "Medical Workshop on Laparoscopic Surgery",
@@ -92,105 +117,143 @@ export function Events() {
   ];
 
   return (
-    <section id="events" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <Image
-          src="/111.png"
-          alt="Abstract background pattern"
-          fill
-          className="object-cover"
-        />
-      </div>
-      
-      <div className="container mx-auto relative">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="w-16 h-1 bg-teal-500"></div>
-            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
-              Department Activities
-            </span>
-            <div className="w-16 h-1 bg-teal-500"></div>
-          </div>
-          
-          <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight mb-6">
-            Recent Events & Activities
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Showcasing our commitment to medical education, research, and community service through various events and programs.
-          </p>
+    <>
+      <section id="events" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="/111.png"
+            alt="Abstract background pattern"
+            fill
+            className="object-cover"
+          />
         </div>
+        
+        <div className="container mx-auto relative">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="w-16 h-1 bg-teal-500"></div>
+              <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
+                Department Activities
+              </span>
+              <div className="w-16 h-1 bg-teal-500"></div>
+            </div>
+            
+            <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight mb-6">
+              Recent Events & Activities
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Showcasing our commitment to medical education, research, and community service through various events and programs.
+            </p>
+          </div>
 
-        {/* Slider Container */}
-        <div className="relative">
-          {/* Navigation Buttons */}
-          <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
-            onClick={scrollPrev}
-            disabled={prevBtnDisabled}
-          >
-            <ChevronLeft className="w-6 h-6 text-blue-950" />
-          </button>
-          
-          <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
-            onClick={scrollNext}
-            disabled={nextBtnDisabled}
-          >
-            <ChevronRight className="w-6 h-6 text-blue-950" />
-          </button>
+          {/* Slider Container */}
+          <div className="relative px-12"> {/* Added padding to container */}
+            {/* Navigation Buttons */}
+            <button
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={scrollPrev}
+              disabled={prevBtnDisabled}
+            >
+              <ChevronLeft className="w-6 h-6 text-blue-950" />
+            </button>
+            
+            <button
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={scrollNext}
+              disabled={nextBtnDisabled}
+            >
+              <ChevronRight className="w-6 h-6 text-blue-950" />
+            </button>
 
-          {/* Embla Carousel */}
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-6">
-              {events.map((event) => (
-                <div
-                  key={event.id}
-                  className="flex-none w-80 group cursor-pointer"
-                >
-                  <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                    {/* Fixed Size Image */}
-                    <Image
-                      src={event.image}
-                      alt={event.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    
-                    {/* Date Badge */}
-                    <div className="absolute top-4 left-4 bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      {event.date}
-                    </div>
-                    
-                    {/* Transparent Footer with Event Title */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                      <h3 className="text-white font-bold text-lg leading-tight mb-2">
-                        {event.title}
-                      </h3>
-                      <div className="flex items-center text-white/80 text-sm">
-                        <Calendar className="w-4 h-4 mr-2" />
-                        <span>{event.date}</span>
+            {/* Embla Carousel */}
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex"> {/* Removed gap-6 */}
+                {events.map((event) => (
+                  <div
+                    key={event.id}
+                    className="flex-none w-80 group cursor-pointer pl-6" /* Added left padding */
+                    onClick={() => handleEventClick(event)}
+                  >
+                    <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                      {/* Fixed Size Image */}
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                      
+                      {/* Date Badge */}
+                      <div className="absolute top-4 left-4 bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        {event.date}
+                      </div>
+                      
+                      {/* Transparent Footer with Event Title */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                        <h3 className="text-white font-bold text-lg leading-tight mb-2">
+                          {event.title}
+                        </h3>
+                        <div className="flex items-center text-white/80 text-sm">
+                          <Calendar className="w-4 h-4 mr-2" />
+                          <span>{event.date}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* View All Events Button */}
+          <div className="text-center mt-12">
+            
+          </div>
+        </div>
+      </section>
+
+      {/* Modal for Event Image */}
+      {isModalOpen && selectedEvent && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div 
+            className="absolute inset-0" 
+            onClick={closeModal}
+          ></div>
+          
+          <div className="relative z-50 bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-50 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+            >
+              <X className="w-6 h-6 text-gray-800" />
+            </button>
+            
+            <div className="h-[70vh] relative">
+              <Image
+                src={selectedEvent.image}
+                alt={selectedEvent.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+            
+            <div className="p-6 bg-white">
+              <h3 className="text-2xl font-bold text-blue-950 mb-2">
+                {selectedEvent.title}
+              </h3>
+              <div className="flex items-center text-gray-600">
+                <Calendar className="w-5 h-5 mr-2" />
+                <span>{selectedEvent.date}</span>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* View All Events Button */}
-        <div className="text-center mt-12">
-          <button className="inline-flex items-center gap-3 bg-blue-950 hover:bg-blue-900 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-            <Calendar className="w-5 h-5" />
-            View All Events
-          </button>
-        </div>
-      </div>
-    </section>
+      )}
+    </>
   );
 }

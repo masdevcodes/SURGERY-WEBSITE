@@ -42,6 +42,12 @@ export function Header() {
             Providers
           </a>
           <a
+            href="#events"
+            className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
+          >
+            Events
+          </a>
+          <a
             href="#contact"
             className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
           >
