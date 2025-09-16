@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-const CHANNEL_HANDLE = 'Scalpelsnsuture'; // Channel handle without @
+const CHANNEL_ID = 'UCScalpelsnsuture'; // Correct channel ID format
 
 interface YouTubeVideo {
   id: string;

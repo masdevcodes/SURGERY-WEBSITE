@@ -54,7 +54,7 @@ export function InfoCards() {
           {/* Covid-19 Response Card */}
           <div className="rounded-lg shadow-lg overflow-hidden">
             <Image
-              src="/img.inspect-element-1758003645349.jpeg"
+              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               alt="Doctors consulting with patient in hospital"
               width={385}
               height={321}
@@ -80,7 +80,7 @@ export function InfoCards() {
           {/* Vistors & Patients Card */}
           <div className="rounded-lg shadow-lg overflow-hidden">
             <Image
-              src="/img.inspect-element-1758003765986.jpeg"
+              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               alt="Doctors consulting with patient in hospital room"
               width={385}
               height={321}

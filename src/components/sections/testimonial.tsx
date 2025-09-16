@@ -43,7 +43,7 @@ export function Testimonial() {
         setChannelStats(data.channelStats);
       } catch (error) {
         console.error('Error fetching YouTube data:', error);
-        console.log('Using fallback data due to API error');
+        console.log('YouTube API failed, using fallback data');
         // Use fallback data if API fails
         setVideos([
           {
