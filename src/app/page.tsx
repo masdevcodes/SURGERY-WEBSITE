@@ -19,7 +19,6 @@ export default function Home() {
         <InfoCards />
         <About />
         <MedicalSpecialties />
-        <GuidedByPatients />
         <Providers />
         <Services />
         <Testimonial />
