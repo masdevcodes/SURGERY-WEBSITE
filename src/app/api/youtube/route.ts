@@ -26,8 +26,8 @@ interface YouTubeApiResponse {
 
 export async function GET(request: NextRequest) {
   if (!YOUTUBE_API_KEY) {
-    console.log('❌ YouTube API key not configured in environment variables');
-    console.log('Please set YOUTUBE_API_KEY in your .env file');
+    console.error('❌ YouTube API key not configured in environment variables');
+    console.error('Please set YOUTUBE_API_KEY in your .env file');
     return NextResponse.json({
       videos: [],
       channelStats: {
@@ -39,6 +39,7 @@ export async function GET(request: NextRequest) {
   }
 
   console.log('🔑 Testing YouTube API key...');
+  console.log('🎯 Looking for channel: @Scalpelsnsuture');
   
   try {
     const testResponse = await fetch(
@@ -75,7 +76,6 @@ export async function GET(request: NextRequest) {
     
     const testData = await testResponse.json();
     console.log('✅ YouTube API key is working!');
-    console.log('📊 API quota used for test request');
     
   } catch (error) {
     console.error('❌ API Key Test Network Error:', error);
@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  console.log('🔍 Searching for channel: Scalpelsnsuture');
+  console.log('🔍 Step 1: Searching for channel by handle...');
   
   try {
     // First, try to get channel ID using the handle
@@ -97,42 +97,62 @@ export async function GET(request: NextRequest) {
     
     // Try to find channel by handle/username
     const handleResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?part=id,statistics&forHandle=${CHANNEL_HANDLE}&key=${YOUTUBE_API_KEY}`
+      `https://www.googleapis.com/youtube/v3/channels?part=id,statistics&forHandle=@${CHANNEL_HANDLE}&key=${YOUTUBE_API_KEY}`
     );
     
+    console.log('📡 Handle search response status:', handleResponse.status);
     let channelData;
     
     if (handleResponse.ok) {
       channelData = await handleResponse.json();
+      console.log('📊 Handle search results:', channelData.items?.length || 0, 'channels found');
       if (channelData.items && channelData.items.length > 0) {
         channelId = channelData.items[0].id;
+        console.log('✅ Found channel by handle! ID:', channelId);
       }
     }
     
     // If handle search failed, try username search
     if (!channelId) {
+      console.log('🔍 Step 2: Trying username search...');
       const usernameResponse = await fetch(
         `https://www.googleapis.com/youtube/v3/channels?part=id,statistics&forUsername=${CHANNEL_HANDLE}&key=${YOUTUBE_API_KEY}`
       );
       
+      console.log('📡 Username search response status:', usernameResponse.status);
       if (usernameResponse.ok) {
         channelData = await usernameResponse.json();
+        console.log('📊 Username search results:', channelData.items?.length || 0, 'channels found');
         if (channelData.items && channelData.items.length > 0) {
           channelId = channelData.items[0].id;
+          console.log('✅ Found channel by username! ID:', channelId);
         }
       }
     }
     
     // If still no channel found, try search
     if (!channelId) {
+      console.log('🔍 Step 3: Trying general search...');
       const searchResponse = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=Scalpels+n+Suture&type=channel&maxResults=1&key=${YOUTUBE_API_KEY}`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q="Scalpels+and+Sutures"&type=channel&maxResults=5&key=${YOUTUBE_API_KEY}`
       );
       
+      console.log('📡 General search response status:', searchResponse.status);
       if (searchResponse.ok) {
         const searchData = await searchResponse.json();
+        console.log('📊 General search results:', searchData.items?.length || 0, 'channels found');
+        
+        // Log all found channels for debugging
+        if (searchData.items && searchData.items.length > 0) {
+          console.log('🎯 Found channels:');
+          searchData.items.forEach((item: any, index: number) => {
+            console.log(`  ${index + 1}. ${item.snippet.title} (${item.snippet.channelId})`);
+          });
+        }
+        
         if (searchData.items && searchData.items.length > 0) {
           channelId = searchData.items[0].snippet.channelId;
+          console.log('✅ Using first search result! ID:', channelId);
           
           // Now fetch channel statistics
           const channelResponse = await fetch(
@@ -141,13 +161,15 @@ export async function GET(request: NextRequest) {
           
           if (channelResponse.ok) {
             channelData = await channelResponse.json();
+            console.log('📊 Channel stats fetched successfully');
           }
         }
       }
     }
 
     if (!channelId || !channelData || !channelData.items || channelData.items.length === 0) {
-      console.log('Channel not found, returning fallback data');
+      console.warn('❌ Channel not found after all search attempts');
+      console.log('💡 Returning fallback data');
       return NextResponse.json({
         videos: [],
         channelStats: {
@@ -158,13 +180,15 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    console.log('🎬 Fetching latest videos for channel:', channelId);
     // Fetch latest videos from the channel
     const videosResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=4&order=date&type=video&key=${YOUTUBE_API_KEY}`
     );
 
+    console.log('📡 Videos fetch response status:', videosResponse.status);
     if (!videosResponse.ok) {
-      console.log('Failed to fetch videos, returning channel stats only');
+      console.warn('⚠️ Failed to fetch videos, returning channel stats only');
       const channelStats: YouTubeChannelStats = {
         subscriberCount: formatCount(channelData.items[0]?.statistics?.subscriberCount || '0'),
         videoCount: formatCount(channelData.items[0]?.statistics?.videoCount || '0'),
@@ -174,6 +198,7 @@ export async function GET(request: NextRequest) {
     }
 
     const videosData = await videosResponse.json();
+    console.log('📊 Videos found:', videosData.items?.length || 0);
     
     // Check if videos data exists
     if (!videosData.items || videosData.items.length === 0) {
@@ -194,6 +219,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get video details including duration and view count
+    console.log('🔍 Fetching detailed video information...');
     const videoIds = videosData.items.map((item: any) => item.id.videoId).join(',');
     const videoDetailsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoIds}&key=${YOUTUBE_API_KEY}`
@@ -201,6 +227,8 @@ export async function GET(request: NextRequest) {
 
     if (!videoDetailsResponse.ok) {
       console.warn('Failed to fetch video details, using basic video info');
+    } else {
+      console.log('✅ Video details fetched successfully');
     }
 
     const videoDetailsData = await videoDetailsResponse.json();
@@ -230,6 +258,7 @@ export async function GET(request: NextRequest) {
       channelStats,
     };
 
+    console.log('🎉 Successfully returning YouTube data with', videos.length, 'videos');
     return NextResponse.json(response);
   } catch (error) {
     console.error('YouTube API Error:', error);
