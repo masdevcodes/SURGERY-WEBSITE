@@ -22,7 +22,7 @@ To enable live YouTube data fetching:
 
 3. **Update Environment Variables:**
    - Replace `your_youtube_api_key_here` in `.env.local` with your actual API key
-   - Update `CHANNEL_ID` in `src/app/api/youtube/route.ts` with your actual channel ID
+   - Replace `your_youtube_channel_id_here` in `.env.local` with your actual channel ID
 
 4. **Restart Development Server:**
    ```bash

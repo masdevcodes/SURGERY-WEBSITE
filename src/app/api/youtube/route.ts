@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-const CHANNEL_HANDLE = 'Scalpelsnsuture'; // Channel handle without @
+const YOUTUBE_CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
 
 interface YouTubeVideo {
   id: string;
@@ -41,6 +41,22 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  if (!YOUTUBE_CHANNEL_ID) {
+    console.error('YouTube Channel ID not found in environment variables');
+    return NextResponse.json(
+      { error: 'YouTube Channel ID not configured. Please add YOUTUBE_CHANNEL_ID to your .env.local file.' },
+      { status: 500 }
+    );
+  }
+
+  if (YOUTUBE_CHANNEL_ID === 'your_youtube_channel_id_here') {
+    console.error('YouTube Channel ID is still set to placeholder value');
+    return NextResponse.json(
+      { error: 'YouTube Channel ID is not properly configured. Please replace the placeholder value in .env.local with your actual Channel ID.' },
+      { status: 500 }
+    );
+  }
+
   // Test API key first with a simple request
   try {
     const testResponse = await fetch(
@@ -66,67 +82,24 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // First, try to get channel ID using the handle
-    let channelId = '';
-    
-    // Try to find channel by handle/username
-    const handleResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?part=id,statistics&forHandle=${CHANNEL_HANDLE}&key=${YOUTUBE_API_KEY}`
+    // Fetch channel statistics using the direct channel ID
+    const channelResponse = await fetch(
+      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YOUTUBE_CHANNEL_ID}&key=${YOUTUBE_API_KEY}`
     );
-    
-    let channelData;
-    
-    if (handleResponse.ok) {
-      channelData = await handleResponse.json();
-      if (channelData.items && channelData.items.length > 0) {
-        channelId = channelData.items[0].id;
-      }
-    }
-    
-    // If handle search failed, try username search
-    if (!channelId) {
-      const usernameResponse = await fetch(
-        `https://www.googleapis.com/youtube/v3/channels?part=id,statistics&forUsername=${CHANNEL_HANDLE}&key=${YOUTUBE_API_KEY}`
-      );
-      
-      if (usernameResponse.ok) {
-        channelData = await usernameResponse.json();
-        if (channelData.items && channelData.items.length > 0) {
-          channelId = channelData.items[0].id;
-        }
-      }
-    }
-    
-    // If still no channel found, try search
-    if (!channelId) {
-      const searchResponse = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=Scalpels+n+Suture&type=channel&maxResults=1&key=${YOUTUBE_API_KEY}`
-      );
-      
-      if (searchResponse.ok) {
-        const searchData = await searchResponse.json();
-        if (searchData.items && searchData.items.length > 0) {
-          channelId = searchData.items[0].snippet.channelId;
-          
-          // Now fetch channel statistics
-          const channelResponse = await fetch(
-            `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${YOUTUBE_API_KEY}`
-          );
-          
-          if (channelResponse.ok) {
-            channelData = await channelResponse.json();
-          }
-        }
-      }
+
+    if (!channelResponse.ok) {
+      throw new Error(`Failed to fetch channel data: ${channelResponse.status} ${channelResponse.statusText}`);
     }
 
-    if (!channelId || !channelData || !channelData.items || channelData.items.length === 0) {
-      throw new Error('Channel not found. Please verify the channel name "Scalpels n Suture" exists on YouTube.');
+    const channelData = await channelResponse.json();
+    
+    if (!channelData.items || channelData.items.length === 0) {
+      throw new Error('Channel not found. Please verify your YouTube Channel ID is correct.');
     }
 
     // Fetch latest videos from the channel
     const videosResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=4&order=date&type=video&key=${YOUTUBE_API_KEY}`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${YOUTUBE_CHANNEL_ID}&maxResults=4&order=date&type=video&key=${YOUTUBE_API_KEY}`
     );
 
     if (!videosResponse.ok) {
