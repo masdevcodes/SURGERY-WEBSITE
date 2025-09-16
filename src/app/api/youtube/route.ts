@@ -39,10 +39,15 @@ export async function GET(request: NextRequest) {
     );
 
     if (!channelResponse.ok) {
-      throw new Error('Failed to fetch channel data');
+      throw new Error(`Failed to fetch channel data: ${channelResponse.status} ${channelResponse.statusText}`);
     }
 
     const channelData = await channelResponse.json();
+    
+    // Check if channel data exists
+    if (!channelData.items || channelData.items.length === 0) {
+      throw new Error('Channel not found or no data returned');
+    }
     
     // Fetch latest videos from the channel
     const videosResponse = await fetch(
@@ -50,16 +55,38 @@ export async function GET(request: NextRequest) {
     );
 
     if (!videosResponse.ok) {
-      throw new Error('Failed to fetch videos data');
+      throw new Error(`Failed to fetch videos data: ${videosResponse.status} ${videosResponse.statusText}`);
     }
 
     const videosData = await videosResponse.json();
+    
+    // Check if videos data exists
+    if (!videosData.items || videosData.items.length === 0) {
+      console.warn('No videos found for channel');
+      // Return channel stats with empty videos array
+      const channelStats: YouTubeChannelStats = {
+        subscriberCount: formatCount(channelData.items[0]?.statistics?.subscriberCount || '0'),
+        videoCount: formatCount(channelData.items[0]?.statistics?.videoCount || '0'),
+        viewCount: formatCount(channelData.items[0]?.statistics?.viewCount || '0'),
+      };
+
+      const response: YouTubeApiResponse = {
+        videos: [],
+        channelStats,
+      };
+
+      return NextResponse.json(response);
+    }
 
     // Get video details including duration and view count
     const videoIds = videosData.items.map((item: any) => item.id.videoId).join(',');
     const videoDetailsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoIds}&key=${YOUTUBE_API_KEY}`
     );
+
+    if (!videoDetailsResponse.ok) {
+      console.warn('Failed to fetch video details, using basic video info');
+    }
 
     const videoDetailsData = await videoDetailsResponse.json();
 
@@ -71,7 +98,7 @@ export async function GET(request: NextRequest) {
     };
 
     const videos: YouTubeVideo[] = videosData.items.map((item: any, index: number) => {
-      const details = videoDetailsData.items[index];
+      const details = videoDetailsData.items?.[index];
       return {
         id: item.id.videoId,
         title: item.snippet.title,
@@ -92,7 +119,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('YouTube API Error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch YouTube data' },
+      { error: `Failed to fetch YouTube data: ${error instanceof Error ? error.message : 'Unknown error'}` },
       { status: 500 }
     );
   }
