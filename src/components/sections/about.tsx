@@ -15,7 +15,7 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
           <div className="lg:col-span-2">
             <Image
-              src="/home_01_image_01.avif"
+              src="/home/project/public/anout.png"
               alt="Doctor and nurse walking down stairs"
               width={512}
               height={1102}
