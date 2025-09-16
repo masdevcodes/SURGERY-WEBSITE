@@ -16,15 +16,6 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-l from-white via-white/5 to-black/0" />
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center h-full">
         <div className="max-w-4xl mt-32">
-          <div className="w-72 h-16 relative mb-8">
-            <Image
-              src="https://placehold.co/280x65"
-              alt="Cliniq Logo"
-              width={280}
-              height={65}
-              data-ai-hint="logo"
-            />
-          </div>
           <h1 className="text-8xl font-bold font-headline leading-tight">
             Our expertise
           </h1>
