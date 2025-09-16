@@ -1,47 +1,71 @@
+'use client';
+
 import Image from 'next/image';
 import { ArrowRight, Heart, Stethoscope, Eye, Bone, Brain, LucideKey as Kidney } from 'lucide-react';
+import { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { X } from 'lucide-react';
 
 export function Services() {
+  const [selectedService, setSelectedService] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const services = [
    
     {
       icon: <Heart className="w-8 h-8" />,
       title: "Cardiology",
       description: "Nam at varius ut dignissim lorem, in condimentum leo. Vestibulum eget.",
-      color: "text-teal-500"
+      color: "text-teal-500",
+      fullDescription: "Our Cardiology department provides comprehensive cardiovascular care with state-of-the-art diagnostic and treatment facilities. We specialize in preventive cardiology, interventional procedures, and cardiac rehabilitation. Our team of experienced cardiologists uses advanced techniques including cardiac catheterization, angioplasty, and minimally invasive cardiac surgery to ensure the best outcomes for our patients."
     },
     
     {
       icon: <Stethoscope className="w-8 h-8" />,
       title: "Gastroenterology",
       description: "Suspendisse magna nisl, varius ut risus in, porta aliquet nunc.",
-      color: "text-teal-500"
+      color: "text-teal-500",
+      fullDescription: "Our Gastroenterology department offers comprehensive digestive health services including endoscopic procedures, liver disease management, and inflammatory bowel disease treatment. We provide advanced diagnostic capabilities with state-of-the-art endoscopy suites and specialized care for complex gastrointestinal conditions."
     },
     {
       icon: <Eye className="w-8 h-8" />,
       title: "Ophthalmology",
       description: "Sed vel odio sapien. Vivamus feugiat faucibus enim dapibus.",
-      color: "text-teal-500"
+      color: "text-teal-500",
+      fullDescription: "Our Ophthalmology department provides comprehensive eye care services including cataract surgery, retinal treatments, glaucoma management, and refractive surgery. We utilize the latest technology in eye care to ensure optimal vision outcomes for our patients of all ages."
     },
     {
       icon: <Bone className="w-8 h-8" />,
       title: "Rheumatology",
       description: "Fusce ac nulla diam. Nulla facilisi. Donec accumsan est nec laoreet.",
-      color: "text-teal-500"
+      color: "text-teal-500",
+      fullDescription: "Our Rheumatology department specializes in the diagnosis and treatment of autoimmune and inflammatory conditions affecting joints, muscles, and connective tissues. We provide comprehensive care for conditions such as rheumatoid arthritis, lupus, and osteoarthritis with both medical and therapeutic interventions."
     },
     {
       icon: <Brain className="w-8 h-8" />,
       title: "Neurology",
       description: "Etiam augue leo, ultrices. Suspendisse magna nisl, varius ut aliquet nunc.",
-      color: "text-teal-500"
+      color: "text-teal-500",
+      fullDescription: "Our Neurology department offers specialized care for disorders of the nervous system including stroke, epilepsy, multiple sclerosis, and movement disorders. We provide advanced diagnostic services including EEG, EMG, and neuroimaging, along with comprehensive treatment plans tailored to each patient's needs."
     },
     {
       icon: <Kidney className="w-8 h-8" />,
       title: "Urology",
       description: "Etiam metus, tempor quis, sollicitudin sit amet magna cursus vehicula.",
-      color: "text-teal-500"
+      color: "text-teal-500",
+      fullDescription: "Our Urology department provides comprehensive care for conditions affecting the urinary tract and male reproductive system. We offer minimally invasive procedures, robotic surgery, and advanced treatments for kidney stones, prostate conditions, and urological cancers."
     },
   ];
+
+  const openModal = (service: any) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedService(null);
+  };
 
   return (
     <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
@@ -124,13 +148,13 @@ export function Services() {
                   </p>
                   
                   {/* Read More Link */}
-                  <a 
-                    href="#" 
+                  <button 
+                    onClick={() => openModal(service)}
                     className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
                   >
                     READ MORE 
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </a>
+                  </button>
                 </div>
               ))}
             </div>
@@ -138,6 +162,86 @@ export function Services() {
           </div>
         </div>
 
+        {/* Modal */}
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+          <DialogContent className="max-w-2xl bg-white rounded-2xl shadow-2xl border-0 p-0 overflow-hidden">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-teal-500 to-teal-600 p-8 text-white relative">
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-200"
+              >
+                <X className="w-4 h-4" />
+              </button>
+              
+              {selectedService && (
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center">
+                    <div className="text-white">
+                      {selectedService.icon}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-bold font-headline">{selectedService.title}</h3>
+                    <p className="text-teal-100 font-medium">Department Overview</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Content */}
+            <div className="p-8">
+              {selectedService && (
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-xl font-bold text-blue-950 mb-3">About Our {selectedService.title} Department</h4>
+                    <p className="text-gray-700 leading-relaxed text-base">
+                      {selectedService.fullDescription}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-gray-200">
+                    <div className="space-y-4">
+                      <h5 className="font-bold text-blue-950">Key Services</h5>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        <li className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
+                          Diagnostic Services
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
+                          Treatment Planning
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
+                          Follow-up Care
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
+                          Emergency Services
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <h5 className="font-bold text-blue-950">Contact Information</h5>
+                      <div className="space-y-2 text-sm text-gray-600">
+                        <p>Department: {selectedService.title}</p>
+                        <p>Phone: +91-175-2302000</p>
+                        <p>Email: {selectedService.title.toLowerCase()}@gmcpatiala.edu</p>
+                        <p>Location: GMC Patiala</p>
+                      </div>
+                    </div>
+                  <div className="flex justify-center pt-6">
+                    <button className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-teal-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                      Book Appointment
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
