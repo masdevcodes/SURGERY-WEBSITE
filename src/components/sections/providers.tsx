@@ -3,8 +3,18 @@ import { ArrowRight, MapPin, Phone, Mail } from 'lucide-react';
 
 export function Providers() {
   return (
-    <section id="providers" className="py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section id="providers" className="py-24 bg-gradient-to-br from-gray-50 to-white relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 opacity-10">
+        <Image
+          src="/111 copy copy.png"
+          alt="Geometric background pattern"
+          fill
+          className="object-cover"
+        />
+      </div>
       <div className="container mx-auto">
+        <div className="relative z-10">
         <div className="flex justify-between items-center mb-16">
           <div>
             <h2 className="text-6xl font-bold text-blue-950 font-headline mb-4">Our Providers</h2>
@@ -201,6 +211,7 @@ export function Providers() {
           </div>
         </div>
 
+        </div>
       </div>
     </section>
   );
