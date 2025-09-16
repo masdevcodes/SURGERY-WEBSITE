@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ArrowRight, Heart, Stethoscope, Lungs, Activity, Eye, Bone, Brain, Kidney, Microscope } from 'lucide-react';
+import { ArrowRight, Heart, Stethoscope, Settings as Lungs, Activity, Eye, Bone, Brain, LucideKey as Kidney, Microscope } from 'lucide-react';
 
 export function Services() {
   const services = [
@@ -71,12 +71,12 @@ export function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Side - Doctor Patient Image */}
           <div className="relative">
-            <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl group">
+            <div className="relative h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
                 src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                 alt="Doctor consulting with patient"
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
