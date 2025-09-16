@@ -22,8 +22,8 @@ export default function Home() {
         <MedicalSpecialties />
         <Providers />
         <Services />
-        <Testimonial />
         <Events />
+        <Testimonial />
         <Contact />
       </main>
       <Footer />
