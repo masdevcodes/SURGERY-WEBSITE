@@ -138,25 +138,6 @@ export function Services() {
           </div>
         </div>
 
-        {/* Bottom CTA Section */}
-        <div className="mt-24">
-          <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl p-12 text-white text-center">
-            <h3 className="text-3xl font-bold font-headline mb-4">
-              Need Medical Assistance?
-            </h3>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Our experienced medical professionals are available 24/7 to provide you with the highest quality healthcare services.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-teal-600 font-bold px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                Book Appointment
-              </button>
-              <button className="border-2 border-white text-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-teal-600 transition-all duration-300">
-                Emergency Contact
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
