@@ -61,14 +61,16 @@ export function MedicalSpecialties() {
           
           {/* Right Side - Doctor Image */}
           <div className="relative">
-            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
+              <div className="relative w-full h-full overflow-hidden">
               <Image
                 src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
                 alt="Head of Surgery - Dr. Ashwini Kumar"
                 fill
-                className="object-cover object-center transition-transform duration-700 hover:scale-110"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
                 data-ai-hint="geometric pattern background"
               />
+              </div>
               {/* Overlay gradient for better text readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
