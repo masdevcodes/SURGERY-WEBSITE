@@ -54,12 +54,12 @@ export function InfoCards() {
           {/* Covid-19 Response Card */}
           <div className="rounded-lg shadow-lg overflow-hidden">
             <Image
-              src="https://placehold.co/385x321"
-              alt="Doctor with mask"
+              src="/img.inspect-element-1758003645349.jpeg"
+              alt="Doctors consulting with patient in hospital"
               width={385}
               height={321}
               className="w-full"
-              data-ai-hint="doctor mask"
+              data-ai-hint="doctors patient consultation"
             />
             <div className="p-8 bg-white">
               <div className="w-20 h-20 bg-teal-500 rounded-md flex items-center justify-center -mt-20 mb-6">
