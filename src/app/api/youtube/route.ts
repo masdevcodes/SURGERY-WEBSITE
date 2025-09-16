@@ -32,6 +32,30 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  // Test API key first with a simple request
+  try {
+    const testResponse = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=test&type=channel&maxResults=1&key=${YOUTUBE_API_KEY}`
+    );
+    
+    if (!testResponse.ok) {
+      const errorText = await testResponse.text();
+      console.error('API Key Test Failed:', testResponse.status, errorText);
+      return NextResponse.json(
+        { error: `API key test failed: ${testResponse.status} - ${errorText}` },
+        { status: 500 }
+      );
+    }
+    
+    console.log('✅ YouTube API key is working');
+  } catch (error) {
+    console.error('API Key Test Error:', error);
+    return NextResponse.json(
+      { error: `API key test error: ${error instanceof Error ? error.message : 'Unknown error'}` },
+      { status: 500 }
+    );
+  }
+
   try {
     // First, try to get channel ID using the handle
     let channelId = '';
