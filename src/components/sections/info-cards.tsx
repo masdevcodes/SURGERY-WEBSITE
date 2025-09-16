@@ -80,12 +80,12 @@ export function InfoCards() {
           {/* Vistors & Patients Card */}
           <div className="rounded-lg shadow-lg overflow-hidden">
             <Image
-              src="https://placehold.co/385x321"
-              alt="Hospital hallway"
+              src="/img.inspect-element-1758003765986.jpeg"
+              alt="Doctors consulting with patient in hospital room"
               width={385}
               height={321}
               className="w-full"
-              data-ai-hint="hospital hallway"
+              data-ai-hint="doctors patient consultation hospital room"
             />
             <div className="p-8 bg-white">
               <div className="w-20 h-20 bg-teal-500 rounded-md flex items-center justify-center -mt-20 mb-6">
