@@ -15,12 +15,12 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
           <div className="lg:col-span-2">
             <Image
-              src="/home/project/public/anout.png"
-              alt="Doctor and nurse walking down stairs"
+              src="/img.inspect-element-1758003469127.jpeg"
+              alt="Doctors consulting with patient in hospital"
               width={512}
               height={1102}
               className="rounded-lg object-cover w-full h-full"
-              data-ai-hint="doctor nurse walking"
+              data-ai-hint="doctors patient consultation"
             />
           </div>
           <div className="lg:col-span-3 space-y-12">
