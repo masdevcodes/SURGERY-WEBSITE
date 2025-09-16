@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 
@@ -18,6 +18,7 @@ export function Events() {
   
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(false);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -40,6 +41,51 @@ export function Events() {
     emblaApi.on('select', onSelect);
   }, [emblaApi, onSelect]);
 
+  const openPopup = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
+  const closePopup = () => {
+    setSelectedImageIndex(null);
+  };
+
+  const goToPrevImage = () => {
+    if (selectedImageIndex !== null && selectedImageIndex > 0) {
+      setSelectedImageIndex(selectedImageIndex - 1);
+    }
+  };
+
+  const goToNextImage = () => {
+    if (selectedImageIndex !== null && selectedImageIndex < events.length - 1) {
+      setSelectedImageIndex(selectedImageIndex + 1);
+    }
+  };
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (selectedImageIndex === null) return;
+    
+    if (e.key === 'Escape') {
+      closePopup();
+    } else if (e.key === 'ArrowLeft') {
+      goToPrevImage();
+    } else if (e.key === 'ArrowRight') {
+      goToNextImage();
+    }
+  }, [selectedImageIndex]);
+
+  useEffect(() => {
+    if (selectedImageIndex !== null) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImageIndex, handleKeyDown]);
   const events = [
     {
       id: 1,
@@ -148,6 +194,7 @@ export function Events() {
                 <div
                   key={event.id}
                   className="flex-none w-80 group cursor-pointer"
+                  onClick={() => openPopup(index)}
                 >
                   <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                     {/* Fixed Size Image */}
@@ -191,6 +238,70 @@ export function Events() {
           </button>
         </div>
       </div>
+
+      {/* Image Popup Modal */}
+      {selectedImageIndex !== null && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+          {/* Close Button */}
+          <button
+            onClick={closePopup}
+            className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2 transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Previous Button */}
+          {selectedImageIndex > 0 && (
+            <button
+              onClick={goToPrevImage}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-3 transition-colors"
+            >
+              <ChevronLeft className="w-8 h-8" />
+            </button>
+          )}
+
+          {/* Next Button */}
+          {selectedImageIndex < events.length - 1 && (
+            <button
+              onClick={goToNextImage}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-3 transition-colors"
+            >
+              <ChevronRight className="w-8 h-8" />
+            </button>
+          )}
+
+          {/* Main Image */}
+          <div className="relative max-w-4xl max-h-[80vh] w-full h-full flex items-center justify-center">
+            <div className="relative w-full h-full">
+              <Image
+                src={events[selectedImageIndex].image}
+                alt={events[selectedImageIndex].title}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+              />
+              
+              {/* Image Footer with Event Info */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                <div className="text-center">
+                  <div className="inline-block bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold mb-3">
+                    {events[selectedImageIndex].date}
+                  </div>
+                  <h3 className="text-white font-bold text-xl mb-2">
+                    {events[selectedImageIndex].title}
+                  </h3>
+                  <div className="flex items-center justify-center text-white/80 text-sm">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    <span>{events[selectedImageIndex].date}</span>
+                    <span className="mx-2">•</span>
+                    <span>{selectedImageIndex + 1} of {events.length}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
