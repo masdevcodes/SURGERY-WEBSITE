@@ -6,14 +6,14 @@ export function Contact() {
       <div className="absolute inset-0 bg-stone-200">
         {/* This would be a map component */}
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.8234567890123!2d76.3869!3d30.3398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391028ab86b0b2b7%3A0x4a2b8b0c5d6e7f8g!2sGovernment%20Medical%20College%2C%20Patiala!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.8234567890123!2d76.3854301!3d30.3294288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391028dd695e0c2b%3A0xab9eccd20f905b2d!2sRajindra%20Hospital%20Patiala!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
           width="100%"
           height="100%"
           style={{ border: 0 }}
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="GMC Patiala Location"
+          title="Rajindra Hospital Patiala Location"
         />
       </div>
       <div className="relative container mx-auto h-full flex items-center">
