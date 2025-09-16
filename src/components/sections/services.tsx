@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowRight, Heart, Stethoscope, Eye, Bone, Brain, Kidney } from 'lucide-react';
+import { ArrowRight, Heart, Stethoscope, Eye, Bone, Brain, LucideKey as Kidney } from 'lucide-react';
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { X } from 'lucide-react';
@@ -240,11 +240,8 @@ export function Services() {
                 </div>
               )}
             </div>
-              )
-              }
           </DialogContent>
         </Dialog>
-                  </div>
       </div>
     </section>
   );
