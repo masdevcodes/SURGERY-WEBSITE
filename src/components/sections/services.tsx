@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowRight, Heart, Stethoscope, Eye, Bone, Brain, Kidney } from 'lucide-react';
+import { ArrowRight, Heart, Stethoscope, Eye, Bone, Brain, Activity } from 'lucide-react';
 
 export function Services() {
   const services = [
@@ -38,7 +38,7 @@ export function Services() {
       color: "text-teal-500",
     },
     {
-      icon: <Kidney className="w-8 h-8" />,
+      icon: <Activity className="w-8 h-8" />,
       title: "Urology",
       description: "Etiam metus, tempor quis, sollicitudin sit amet magna cursus vehicula.",
       color: "text-teal-500",
