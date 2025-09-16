@@ -29,59 +29,70 @@ export function Testimonial() {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Mock data for demonstration - replace with actual YouTube API calls
+  // Fetch real YouTube data
   useEffect(() => {
-    // Simulate API call delay
-    const timer = setTimeout(() => {
-      setVideos([
-        {
-          id: "dQw4w9WgXcQ",
-          title: "Advanced Laparoscopic Surgery Techniques",
-          description: "Learn about the latest minimally invasive surgical procedures and their benefits for patient recovery.",
-          thumbnail: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-          duration: "12:45",
-          views: "15.2K",
-          publishedAt: "2 weeks ago"
-        },
-        {
-          id: "dQw4w9WgXcQ",
-          title: "Post-Operative Care Guidelines",
-          description: "Essential information for patients and families about recovery and post-surgical care protocols.",
-          thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-          duration: "8:30",
-          views: "22.8K",
-          publishedAt: "1 month ago"
-        },
-        {
-          id: "dQw4w9WgXcQ",
-          title: "Understanding Surgical Procedures",
-          description: "A comprehensive guide to common surgical procedures performed at our department.",
-          thumbnail: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-          duration: "15:20",
-          views: "31.5K",
-          publishedAt: "3 weeks ago"
-        },
-        {
-          id: "dQw4w9WgXcQ",
-          title: "Patient Success Stories",
-          description: "Hear from our patients about their surgical journey and recovery experiences.",
-          thumbnail: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-          duration: "10:15",
-          views: "18.7K",
-          publishedAt: "1 week ago"
+    const fetchYouTubeData = async () => {
+      try {
+        const response = await fetch('/api/youtube');
+        if (!response.ok) {
+          throw new Error('Failed to fetch YouTube data');
         }
-      ]);
+        
+        const data = await response.json();
+        setVideos(data.videos);
+        setChannelStats(data.channelStats);
+      } catch (error) {
+        console.error('Error fetching YouTube data:', error);
+        // Fallback to mock data if API fails
+        setVideos([
+          {
+            id: "dQw4w9WgXcQ",
+            title: "Advanced Laparoscopic Surgery Techniques",
+            description: "Learn about the latest minimally invasive surgical procedures and their benefits for patient recovery.",
+            thumbnail: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            duration: "12:45",
+            views: "15.2K",
+            publishedAt: "2 weeks ago"
+          },
+          {
+            id: "dQw4w9WgXcQ2",
+            title: "Post-Operative Care Guidelines",
+            description: "Essential information for patients and families about recovery and post-surgical care protocols.",
+            thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            duration: "8:30",
+            views: "22.8K",
+            publishedAt: "1 month ago"
+          },
+          {
+            id: "dQw4w9WgXcQ3",
+            title: "Understanding Surgical Procedures",
+            description: "A comprehensive guide to common surgical procedures performed at our department.",
+            thumbnail: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            duration: "15:20",
+            views: "31.5K",
+            publishedAt: "3 weeks ago"
+          },
+          {
+            id: "dQw4w9WgXcQ4",
+            title: "Patient Success Stories",
+            description: "Hear from our patients about their surgical journey and recovery experiences.",
+            thumbnail: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            duration: "10:15",
+            views: "18.7K",
+            publishedAt: "1 week ago"
+          }
+        ]);
+        setChannelStats({
+          subscriberCount: '12.5K',
+          videoCount: '50+',
+          viewCount: '250K'
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      setChannelStats({
-        subscriberCount: '12.5K',
-        videoCount: '50+',
-        viewCount: '250K'
-      });
-
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
+    fetchYouTubeData();
   }, []);
 
   const openVideoModal = (video: Video) => {
