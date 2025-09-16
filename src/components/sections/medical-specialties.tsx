@@ -20,11 +20,11 @@ export function MedicalSpecialties() {
           <div className="relative">
             <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
+                src="/Gemini_Generated_Image_ywjevmywjevmywje.png"
                 alt="Head of Surgery - Dr. Ashwini Kumar"
                 fill
                 className="object-cover object-center"
-                data-ai-hint="doctor portrait professional"
+                data-ai-hint="medical professionals hospital setting"
               />
               {/* Overlay gradient for better text readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
