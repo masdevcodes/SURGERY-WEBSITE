@@ -145,9 +145,11 @@ export function Testimonial() {
             
             <h2 className="text-5xl font-bold text-white font-headline leading-tight mb-6">
               Our YouTube Channel
+             "SCALPELS AND SUTURES"
+              
             </h2>
             <p className="text-xl text-blue-200 max-w-3xl mx-auto mb-8">
-              Stay informed with our educational videos covering surgical procedures, patient care, and medical insights from our expert team.
+              Stay informed with our educational videos covering surgical procedures, patient care and medical insights from our expert team.
             </p>
             
             {/* Channel Stats */}

@@ -5,23 +5,42 @@ export function Contact() {
     <section id="contact" className="relative h-[852px]">
       <div className="absolute inset-0 bg-stone-200">
         {/* This would be a map component */}
-        <Image src="https://placehold.co/1425x853" alt="Map" fill className="object-cover" data-ai-hint="map city" />
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.8234567890123!2d76.3869!3d30.3398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391028ab86b0b2b7%3A0x4a2b8b0c5d6e7f8g!2sGovernment%20Medical%20College%2C%20Patiala!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="GMC Patiala Location"
+        />
       </div>
       <div className="relative container mx-auto h-full flex items-center">
         <div className="w-full md:w-1/3 bg-white rounded-lg shadow-lg p-8">
-          <Image src="https://placehold.co/376x304" alt="Clinic exterior" width={376} height={304} className="w-full rounded-t-lg" data-ai-hint="clinic exterior" />
+          <Image 
+            src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+            alt="GMC Patiala Hospital exterior" 
+            width={376} 
+            height={304} 
+            className="w-full rounded-t-lg object-cover" 
+          />
           <div className="p-6">
             <div className="mb-6 pb-6 border-b">
               <h4 className="font-bold text-blue-950">Location</h4>
-              <p className="text-blue-950">60 East 65th Street, New York</p>
+              <p className="text-blue-950">Government Medical College & Hospital</p>
+              <p className="text-blue-950">Rajindra Hospital Campus</p>
+              <p className="text-blue-950">Patiala, Punjab 147001, India</p>
             </div>
             <div className="mb-6 pb-6 border-b">
               <h4 className="font-bold text-blue-950">Phone</h4>
-              <p className="text-blue-950">1-800-100-900</p>
+              <p className="text-blue-950">+91-175-2200100</p>
+              <p className="text-blue-950 text-sm">Emergency: +91-175-2200101</p>
             </div>
             <div>
               <h4 className="font-bold text-blue-950">Email</h4>
-              <a href="mailto:appointement@cliniq.com" className="text-teal-500 font-bold">appointement@cliniq.com</a>
+              <a href="mailto:surgery@gmcpatiala.edu.in" className="text-teal-500 font-bold">surgery@gmcpatiala.edu.in</a>
+              <p className="text-blue-950 text-sm mt-1">General: info@gmcpatiala.edu.in</p>
             </div>
           </div>
         </div>
