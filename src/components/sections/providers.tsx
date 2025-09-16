@@ -5,7 +5,7 @@ export function Providers() {
   return (
     <section id="providers" className="py-24 bg-gradient-to-br from-gray-50 to-white relative">
       {/* Background Image */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-50">
         <Image
           src="/111 copy copy.png"
           alt="Geometric background pattern"
