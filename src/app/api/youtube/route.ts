@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-const CHANNEL_ID = '@Scalpelsnsuture'; // Scalpels n Suture channel handle
+const CHANNEL_HANDLE = 'Scalpelsnsuture'; // Channel handle without @
 
 interface YouTubeVideo {
   id: string;
@@ -33,25 +33,67 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // Fetch channel statistics
-    const channelResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${YOUTUBE_API_KEY}`
+    // First, try to get channel ID using the handle
+    let channelId = '';
+    
+    // Try to find channel by handle/username
+    const handleResponse = await fetch(
+      `https://www.googleapis.com/youtube/v3/channels?part=id,statistics&forHandle=${CHANNEL_HANDLE}&key=${YOUTUBE_API_KEY}`
     );
-
-    if (!channelResponse.ok) {
-      throw new Error(`Failed to fetch channel data: ${channelResponse.status} ${channelResponse.statusText}`);
-    }
-
-    const channelData = await channelResponse.json();
     
-    // Check if channel data exists
-    if (!channelData.items || channelData.items.length === 0) {
-      throw new Error('Channel not found or no data returned');
+    let channelData;
+    
+    if (handleResponse.ok) {
+      channelData = await handleResponse.json();
+      if (channelData.items && channelData.items.length > 0) {
+        channelId = channelData.items[0].id;
+      }
     }
     
+    // If handle search failed, try username search
+    if (!channelId) {
+      const usernameResponse = await fetch(
+        `https://www.googleapis.com/youtube/v3/channels?part=id,statistics&forUsername=${CHANNEL_HANDLE}&key=${YOUTUBE_API_KEY}`
+      );
+      
+      if (usernameResponse.ok) {
+        channelData = await usernameResponse.json();
+        if (channelData.items && channelData.items.length > 0) {
+          channelId = channelData.items[0].id;
+        }
+      }
+    }
+    
+    // If still no channel found, try search
+    if (!channelId) {
+      const searchResponse = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=Scalpels+n+Suture&type=channel&maxResults=1&key=${YOUTUBE_API_KEY}`
+      );
+      
+      if (searchResponse.ok) {
+        const searchData = await searchResponse.json();
+        if (searchData.items && searchData.items.length > 0) {
+          channelId = searchData.items[0].snippet.channelId;
+          
+          // Now fetch channel statistics
+          const channelResponse = await fetch(
+            `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${YOUTUBE_API_KEY}`
+          );
+          
+          if (channelResponse.ok) {
+            channelData = await channelResponse.json();
+          }
+        }
+      }
+    }
+
+    if (!channelId || !channelData || !channelData.items || channelData.items.length === 0) {
+      throw new Error('Channel not found. Please verify the channel name "Scalpels n Suture" exists on YouTube.');
+    }
+
     // Fetch latest videos from the channel
     const videosResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=4&order=date&type=video&key=${YOUTUBE_API_KEY}`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=4&order=date&type=video&key=${YOUTUBE_API_KEY}`
     );
 
     if (!videosResponse.ok) {
