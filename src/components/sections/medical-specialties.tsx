@@ -66,7 +66,7 @@ export function MedicalSpecialties() {
                 src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
                 alt="Head of Surgery - Dr. Ashwini Kumar"
                 fill
-                className="object-cover object-center"
+                className="object-cover object-center transition-transform duration-700 hover:scale-110"
                 data-ai-hint="geometric pattern background"
               />
               {/* Overlay gradient for better text readability */}
