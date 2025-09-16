@@ -16,26 +16,7 @@ export function MedicalSpecialties() {
       
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Side - Doctor Image */}
-          <div className="relative">
-            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
-                alt="Head of Surgery - Dr. Ashwini Kumar"
-                fill
-                className="object-cover object-center"
-                data-ai-hint="geometric pattern background"
-              />
-              {/* Overlay gradient for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-            </div>
-            
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-teal-500/20 rounded-full blur-xl"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl"></div>
-          </div>
-          
-          {/* Right Side - Testimony Content */}
+          {/* Left Side - Testimony Content */}
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex items-center gap-4 mb-6">
@@ -76,6 +57,25 @@ export function MedicalSpecialties() {
                 </div>
               </div>
             </div>
+          </div>
+          
+          {/* Right Side - Doctor Image */}
+          <div className="relative">
+            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
+                alt="Head of Surgery - Dr. Ashwini Kumar"
+                fill
+                className="object-cover object-center"
+                data-ai-hint="geometric pattern background"
+              />
+              {/* Overlay gradient for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+            
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-teal-500/20 rounded-full blur-xl"></div>
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl"></div>
           </div>
         </div>
       </div>
