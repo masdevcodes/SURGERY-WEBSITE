@@ -84,7 +84,7 @@ export function Services() {
                   <Heart className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-blue-950">500+</p>
+                  <p className="text-2xl font-bold text-blue-950">200+</p>
                   <p className="text-sm text-gray-600">Patients Treated Daily</p>
                 </div>
               </div>

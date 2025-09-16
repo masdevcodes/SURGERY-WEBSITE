@@ -44,11 +44,6 @@ export function InfoCards() {
                 <p>Closed</p>
               </div>
             </div>
-            <div className="mt-8 pt-8 border-t border-white/50">
-              <h4 className="text-base font-medium mb-2">Time's not Flexible?</h4>
-              <p className="text-sm font-light">We provide high quality, integrated healthcare services, based on a patient–centered</p>
-              <button className="mt-6 w-full border border-white rounded-md py-3 font-bold text-sm">SUGGEST CHECKUP TIME</button>
-            </div>
           </div>
 
           {/* Covid-19 Response Card */}
@@ -90,7 +85,7 @@ export function InfoCards() {
             </div>
             <div className="p-8 bg-white">
               <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
-               Breast clinic
+               Breast Clinic
               </h3>
               <p className="text-zinc-500 leading-relaxed mb-6">
                 No-commitment packages will give you peace of mind and an extra set of hands without the commitment.
