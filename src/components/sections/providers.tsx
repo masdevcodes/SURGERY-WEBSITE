@@ -201,16 +201,6 @@ export function Providers() {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl p-12 text-white">
-            <h3 className="text-3xl font-bold font-headline mb-4">Need to Schedule an Appointment?</h3>
-            <p className="text-xl mb-8 opacity-90">Our medical professionals are here to provide you with the best care possible.</p>
-            <button className="bg-white text-teal-600 font-bold px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-              Book Appointment Now
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );
