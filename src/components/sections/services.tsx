@@ -3,7 +3,12 @@ import { ArrowRight, Heart, Stethoscope, Settings as Lungs, Activity, Eye, Bone,
 
 export function Services() {
   const services = [
-  ,
+    {
+      icon: <Activity className="w-8 h-8" />,
+      title: "COVID-19 Services",
+      description: "Integer vel nisl varius, finibus orci et, congue sapien fusce.",
+      color: "text-teal-500"
+    },
     {
       icon: <Heart className="w-8 h-8" />,
       title: "Cardiology",
@@ -28,7 +33,12 @@ export function Services() {
       description: "Sed vel odio sapien. Vivamus feugiat faucibus enim dapibus.",
       color: "text-teal-500"
     },
-    
+    {
+      icon: <Bone className="w-8 h-8" />,
+      title: "Rheumatology",
+      description: "Fusce ac nulla diam. Nulla facilisi. Donec accumsan est nec laoreet.",
+      color: "text-teal-500"
+    },
     {
       icon: <Brain className="w-8 h-8" />,
       title: "Neurology",
@@ -41,6 +51,12 @@ export function Services() {
       description: "Etiam metus, tempor quis, sollicitudin sit amet magna cursus vehicula.",
       color: "text-teal-500"
     },
+    {
+      icon: <Microscope className="w-8 h-8" />,
+      title: "Dermatology",
+      description: "Vivamus feugiat faucibus enim dapibus. In hac est habitasse dictumst.",
+      color: "text-teal-500"
+    }
   ];
 
   return (
