@@ -1,57 +1,185 @@
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Heart, Stethoscope, Lungs, Activity, Eye, Bone, Brain, Kidney, Microscope } from 'lucide-react';
 
 export function Services() {
+  const services = [
+    {
+      icon: <Activity className="w-8 h-8" />,
+      title: "COVID-19 Services",
+      description: "Integer vel nisl varius, finibus orci et, congue sapien fusce.",
+      color: "text-teal-500"
+    },
+    {
+      icon: <Heart className="w-8 h-8" />,
+      title: "Cardiology",
+      description: "Nam at varius ut dignissim lorem, in condimentum leo. Vestibulum eget.",
+      color: "text-teal-500"
+    },
+    {
+      icon: <Lungs className="w-8 h-8" />,
+      title: "Pulmonology",
+      description: "Donec risus elit, facilisis at vel vulputate sit amet, hac finibus nec purus.",
+      color: "text-teal-500"
+    },
+    {
+      icon: <Stethoscope className="w-8 h-8" />,
+      title: "Gastroenterology",
+      description: "Suspendisse magna nisl, varius ut risus in, porta aliquet nunc.",
+      color: "text-teal-500"
+    },
+    {
+      icon: <Eye className="w-8 h-8" />,
+      title: "Ophthalmology",
+      description: "Sed vel odio sapien. Vivamus feugiat faucibus enim dapibus.",
+      color: "text-teal-500"
+    },
+    {
+      icon: <Bone className="w-8 h-8" />,
+      title: "Rheumatology",
+      description: "Fusce ac nulla diam. Nulla facilisi. Donec accumsan est nec laoreet.",
+      color: "text-teal-500"
+    },
+    {
+      icon: <Brain className="w-8 h-8" />,
+      title: "Neurology",
+      description: "Etiam augue leo, ultrices. Suspendisse magna nisl, varius ut aliquet nunc.",
+      color: "text-teal-500"
+    },
+    {
+      icon: <Kidney className="w-8 h-8" />,
+      title: "Urology",
+      description: "Etiam metus, tempor quis, sollicitudin sit amet magna cursus vehicula.",
+      color: "text-teal-500"
+    },
+    {
+      icon: <Microscope className="w-8 h-8" />,
+      title: "Dermatology",
+      description: "Vivamus feugiat faucibus enim dapibus. In hac est habitasse dictumst.",
+      color: "text-teal-500"
+    }
+  ];
+
   return (
-    <section id="services" className="py-24 bg-white relative">
-      <Image src="https://placehold.co/1425x1302" alt="Medical equipment" fill className="object-cover" data-ai-hint="medical equipment" />
-      <div className="absolute inset-0 bg-white/80" />
+    <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-teal-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+      </div>
+
       <div className="container mx-auto relative">
-        <div className="flex justify-between items-center mb-12">
-          <div>
-            <h2 className="text-6xl font-bold text-blue-950 font-body">Our Services</h2>
-            <p className="text-xl font-semibold text-blue-950">Delivering world class medical care</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* Left Side - Doctor Patient Image */}
+          <div className="relative">
+            <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl group">
+              <Image
+                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Doctor consulting with patient"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            
+            {/* Floating Elements */}
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-teal-500/20 rounded-full blur-xl animate-pulse"></div>
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+            
+            {/* Stats Card */}
+            <div className="absolute bottom-8 left-8 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center">
+                  <Heart className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-blue-950">500+</p>
+                  <p className="text-sm text-gray-600">Patients Treated Daily</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <button className="border border-teal-500 bg-white text-blue-950 font-bold text-sm px-6 py-4 rounded-md flex items-center gap-2">
-            Full List of Services
-          </button>
+
+          {/* Right Side - Services Grid */}
+          <div className="space-y-8">
+            {/* Header */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-1 bg-teal-500"></div>
+                <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
+                  Medical Excellence
+                </span>
+              </div>
+              <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
+                Our Services
+              </h2>
+              <p className="text-xl text-gray-600 font-medium">
+                Delivering world class medical care
+              </p>
+            </div>
+
+            {/* Services Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200"
+                >
+                  {/* Icon */}
+                  <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className={service.color}>
+                      {service.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <h3 className="text-lg font-bold text-blue-950 mb-3 group-hover:text-teal-600 transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    {service.description}
+                  </p>
+                  
+                  {/* Read More Link */}
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
+                  >
+                    READ MORE 
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            {/* Full List Button */}
+            <div className="pt-8">
+              <button className="bg-white border-2 border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white font-bold px-8 py-4 rounded-xl flex items-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Full List of Services
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Service Card 1 */}
-          <div className="space-y-3">
-            <div className="w-16 h-20 bg-teal-500 rounded-full flex items-center justify-center">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M39.6398 20.28C39.6398 9.324 30.6758 0.360001 19.7198 0.360001C8.76384 0.360001 -0.199849 9.324 -0.199849 20.28C-0.199849 31.236 8.76384 40.2 19.7198 40.2C30.6758 40.2 39.6398 31.236 39.6398 20.28Z" fill="white" /></svg>
+
+        {/* Bottom CTA Section */}
+        <div className="mt-24">
+          <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl p-12 text-white text-center">
+            <h3 className="text-3xl font-bold font-headline mb-4">
+              Need Medical Assistance?
+            </h3>
+            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+              Our experienced medical professionals are available 24/7 to provide you with the highest quality healthcare services.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-white text-teal-600 font-bold px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                Book Appointment
+              </button>
+              <button className="border-2 border-white text-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-teal-600 transition-all duration-300">
+                Emergency Contact
+              </button>
             </div>
-            <h4 className="text-blue-950 font-bold font-body text-base">COVID-19 Services</h4>
-            <p className="text-blue-950 text-sm">Integer vel nisl varius, finibus orci et, congue sapien fusce.</p>
-            <a href="#" className="font-bold text-teal-500 flex items-center gap-2">READ MORE <ArrowRight className="w-4 h-4" /></a>
-          </div>
-          {/* Service Card 2 */}
-          <div className="space-y-3">
-            <div className="w-16 h-20 bg-teal-500 rounded-full flex items-center justify-center">
-              <svg width="34" height="40" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M33.1799 20C33.1799 9.259 25.9399 0 17.1799 0C8.41992 0 1.17993 9.259 1.17993 20C1.17993 30.741 8.41992 40 17.1799 40C25.9399 40 33.1799 30.741 33.1799 20Z" fill="white" /></svg>
-            </div>
-            <h4 className="text-blue-950 font-bold font-body text-base">Cardiology</h4>
-            <p className="text-blue-950 text-sm">Nam at varius ut dignissim lorem, in condimentum leo. Vestibulum eget.</p>
-            <a href="#" className="font-bold text-teal-500 flex items-center gap-2">READ MORE <ArrowRight className="w-4 h-4" /></a>
-          </div>
-          {/* Service Card 3 */}
-          <div className="space-y-3">
-            <div className="w-16 h-20 bg-teal-500 rounded-full flex items-center justify-center">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M-0.280273 20.28C-0.280273 9.32403 8.68372 0.360031 19.6397 0.360031C30.5957 0.360031 39.5597 9.32403 39.5597 20.28C39.5597 31.236 30.5957 40.2 19.6397 40.2C8.68372 40.2 -0.280273 31.236 -0.280273 20.28Z" fill="white" /></svg>
-            </div>
-            <h4 className="text-blue-950 font-bold font-body text-base">Pulmology</h4>
-            <p className="text-blue-950 text-sm">Donec risus elit, facilisis at vel vulputate sit amet, hac finibus nec purus.</p>
-            <a href="#" className="font-bold text-teal-500 flex items-center gap-2">READ MORE <ArrowRight className="w-4 h-4" /></a>
-          </div>
-          {/* Service Card 4 */}
-          <div className="space-y-3">
-            <div className="w-16 h-20 bg-teal-500 rounded-full flex items-center justify-center">
-              <svg width="18" height="40" viewBox="0 0 18 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.1599 20C17.1599 30.741 9.91992 40 1.15991 40C-7.59998 40 -14.84 30.741 -14.84 20C-14.84 9.259 -7.59998 0 1.15991 0C9.91992 0 17.1599 9.259 17.1599 20Z" fill="white" /></svg>
-            </div>
-            <h4 className="text-blue-950 font-bold font-body text-base">Rheumatology</h4>
-            <p className="text-blue-950 text-sm">Fusce ac nulla diam. Nulla facilisi. Donec accumsan est nec laoreet.</p>
-            <a href="#" className="font-bold text-teal-500 flex items-center gap-2">READ MORE <ArrowRight className="w-4 h-4" /></a>
           </div>
         </div>
       </div>
