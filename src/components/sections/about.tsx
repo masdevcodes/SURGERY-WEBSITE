@@ -14,14 +14,16 @@ export function About() {
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
           <div className="lg:col-span-2">
-            <Image
-              src="/Gemini_Generated_Image_ywjevmywjevmywje.png"
-              alt="Doctors consulting with patient in hospital"
-              width={512}
-              height={1102}
-              className="rounded-lg object-cover w-full h-full"
-              data-ai-hint="doctors patient consultation"
-            />
+            <div className="relative overflow-hidden rounded-lg">
+              <Image
+                src="/Gemini_Generated_Image_ywjevmywjevmywje.png"
+                alt="Doctors consulting with patient in hospital"
+                width={512}
+                height={1102}
+                className="rounded-lg object-cover w-full h-full transition-transform duration-700 hover:scale-110"
+                data-ai-hint="doctors patient consultation"
+              />
+            </div>
           </div>
           <div className="lg:col-span-3 space-y-12">
             <h2 className="text-4xl font-bold text-blue-950 font-body leading-tight">
