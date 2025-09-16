@@ -3,9 +3,16 @@ import { Check } from 'lucide-react';
 
 export function GuidedByPatients() {
   return (
-    <section id="guided-by-patients" className="bg-white">
+    <section id="guided-by-patients" className="bg-white relative">
+      <Image
+        src="/111 copy.png"
+        alt="Abstract background"
+        fill
+        className="object-cover opacity-20"
+        data-ai-hint="abstract geometric pattern"
+      />
       <div className="container mx-auto">
-        <div className="grid md:grid-cols-2 items-center">
+        <div className="grid md:grid-cols-2 items-center relative">
           <div className="relative h-[833px] hidden md:block">
             <Image
               src="/33.png"
@@ -15,7 +22,7 @@ export function GuidedByPatients() {
               data-ai-hint="patient doctor"
             />
           </div>
-          <div className="space-y-6 text-blue-950 p-8 md:p-16">
+          <div className="space-y-6 text-blue-950 p-8 md:p-16 relative">
             <h2 className="text-6xl font-bold font-body leading-tight">Guided by the needs of our patients</h2>
             <p className="text-xl font-semibold">Delivering world class medical care</p>
             <p className="leading-relaxed">Our Hospital provide the highest quality care to improve the health of our entire community through innovation, collaboration, service excellence, diversity and a commitment to patient safety</p>
