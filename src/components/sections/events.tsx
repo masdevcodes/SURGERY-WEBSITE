@@ -1,67 +1,93 @@
+'use client';
+
 import Image from 'next/image';
-import { Calendar, MapPin, Users, Clock } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 export function Events() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: 'start',
+    slidesToScroll: 1,
+    breakpoints: {
+      '(min-width: 768px)': { slidesToScroll: 2 },
+      '(min-width: 1024px)': { slidesToScroll: 3 }
+    }
+  });
+  
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(false);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(false);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const onSelect = useCallback((emblaApi: any) => {
+    setPrevBtnDisabled(!emblaApi.canScrollPrev());
+    setNextBtnDisabled(!emblaApi.canScrollNext());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    onSelect(emblaApi);
+    emblaApi.on('reInit', onSelect);
+    emblaApi.on('select', onSelect);
+  }, [emblaApi, onSelect]);
+
   const events = [
     {
       id: 1,
       title: "Annual Surgery Conference 2024",
       date: "March 15, 2024",
-      location: "GMC Patiala Auditorium",
-      attendees: "200+",
-      time: "9:00 AM - 5:00 PM",
       image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "A comprehensive conference featuring latest surgical techniques and innovations in medical practice."
     },
     {
       id: 2,
       title: "Medical Workshop on Laparoscopic Surgery",
       date: "February 28, 2024",
-      location: "Surgery Department",
-      attendees: "50+",
-      time: "10:00 AM - 4:00 PM",
       image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "Hands-on workshop for medical students and residents on advanced laparoscopic techniques."
     },
     {
       id: 3,
       title: "Health Awareness Camp",
       date: "January 20, 2024",
-      location: "Community Center",
-      attendees: "500+",
-      time: "8:00 AM - 2:00 PM",
       image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "Free health screening and awareness program for the local community members."
     },
     {
       id: 4,
       title: "Surgical Skills Training Program",
       date: "December 10, 2023",
-      location: "Skills Lab",
-      attendees: "30+",
-      time: "9:00 AM - 6:00 PM",
       image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "Intensive training program for junior doctors on essential surgical skills and procedures."
     },
     {
       id: 5,
       title: "International Surgery Symposium",
       date: "November 25, 2023",
-      location: "Main Conference Hall",
-      attendees: "300+",
-      time: "8:30 AM - 6:30 PM",
       image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "International symposium featuring renowned surgeons sharing their expertise and research."
     },
     {
       id: 6,
       title: "Student Research Presentation",
       date: "October 15, 2023",
-      location: "Lecture Hall",
-      attendees: "100+",
-      time: "2:00 PM - 5:00 PM",
       image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "Annual presentation of research projects by medical students and residents."
+    },
+    {
+      id: 7,
+      title: "Emergency Surgery Workshop",
+      date: "September 12, 2023",
+      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: 8,
+      title: "Medical Equipment Training",
+      date: "August 18, 2023",
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     }
   ];
 
@@ -96,64 +122,65 @@ export function Events() {
           </p>
         </div>
 
-        {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event) => (
-            <div
-              key={event.id}
-              className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-            >
-              {/* Event Image */}
-              <div className="relative overflow-hidden h-64">
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                {/* Date Badge */}
-                <div className="absolute top-4 left-4 bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  {event.date}
+        {/* Slider Container */}
+        <div className="relative">
+          {/* Navigation Buttons */}
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={scrollPrev}
+            disabled={prevBtnDisabled}
+          >
+            <ChevronLeft className="w-6 h-6 text-blue-950" />
+          </button>
+          
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={scrollNext}
+            disabled={nextBtnDisabled}
+          >
+            <ChevronRight className="w-6 h-6 text-blue-950" />
+          </button>
+
+          {/* Embla Carousel */}
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-6">
+              {events.map((event) => (
+                <div
+                  key={event.id}
+                  className="flex-none w-80 group cursor-pointer"
+                >
+                  <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                    {/* Fixed Size Image */}
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                    
+                    {/* Date Badge */}
+                    <div className="absolute top-4 left-4 bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      {event.date}
+                    </div>
+                    
+                    {/* Transparent Footer with Event Title */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                      <h3 className="text-white font-bold text-lg leading-tight mb-2">
+                        {event.title}
+                      </h3>
+                      <div className="flex items-center text-white/80 text-sm">
+                        <Calendar className="w-4 h-4 mr-2" />
+                        <span>{event.date}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              {/* Event Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-blue-950 mb-3 group-hover:text-teal-600 transition-colors duration-300">
-                  {event.title}
-                </h3>
-                
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  {event.description}
-                </p>
-
-                {/* Event Details */}
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <MapPin className="w-4 h-4 text-teal-500" />
-                    <span>{event.location}</span>
-                  </div>
-                  
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <Clock className="w-4 h-4 text-teal-500" />
-                    <span>{event.time}</span>
-                  </div>
-                  
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <Users className="w-4 h-4 text-teal-500" />
-                    <span>{event.attendees} Attendees</span>
-                  </div>
-                </div>
-
-                {/* View Details Button */}
-                <button className="w-full bg-gradient-to-r from-teal-500 to-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:from-teal-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105">
-                  View Details
-                </button>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
 
         {/* View All Events Button */}
