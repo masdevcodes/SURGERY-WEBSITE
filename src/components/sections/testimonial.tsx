@@ -43,6 +43,12 @@ export function Testimonial() {
         setChannelStats(data.channelStats);
       } catch (error) {
         console.error('Error fetching YouTube data:', error);
+        
+        // Check if it's a network error or API configuration issue
+        if (error instanceof TypeError && error.message.includes('fetch')) {
+          console.error('Network error: Unable to connect to YouTube API');
+        }
+        
         // Fallback to mock data if API fails
         setVideos([
           {

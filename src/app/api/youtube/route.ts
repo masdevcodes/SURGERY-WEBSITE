@@ -26,8 +26,17 @@ interface YouTubeApiResponse {
 
 export async function GET(request: NextRequest) {
   if (!YOUTUBE_API_KEY) {
+    console.error('YouTube API key not found in environment variables');
     return NextResponse.json(
-      { error: 'YouTube API key not configured' },
+      { error: 'YouTube API key not configured. Please add YOUTUBE_API_KEY to your .env.local file.' },
+      { status: 500 }
+    );
+  }
+
+  if (YOUTUBE_API_KEY === 'your_youtube_api_key_here') {
+    console.error('YouTube API key is still set to placeholder value');
+    return NextResponse.json(
+      { error: 'YouTube API key is not properly configured. Please replace the placeholder value in .env.local with your actual API key.' },
       { status: 500 }
     );
   }
