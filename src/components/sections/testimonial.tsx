@@ -44,10 +44,11 @@ export function Testimonial() {
       } catch (error) {
         console.error('Error fetching YouTube data:', error);
         
-        // Check if it's a network error or API configuration issue
-        if (error instanceof TypeError && error.message.includes('fetch')) {
-          console.error('Network error: Unable to connect to YouTube API');
-        }
+        // Log more detailed error information
+        console.error('YouTube API Error Details:', {
+          message: error instanceof Error ? error.message : 'Unknown error',
+          type: error instanceof TypeError ? 'Network/Fetch Error' : 'API Error'
+        });
         
         // Fallback to mock data if API fails
         setVideos([

@@ -28,15 +28,15 @@ export async function GET(request: NextRequest) {
   if (!YOUTUBE_API_KEY) {
     console.error('YouTube API key not found in environment variables');
     return NextResponse.json(
-      { error: 'YouTube API key not configured. Please add YOUTUBE_API_KEY to your .env.local file.' },
+      { error: 'YouTube API key not configured. Please add your actual YouTube Data API v3 key to YOUTUBE_API_KEY in your .env.local file.' },
       { status: 500 }
     );
   }
 
-  if (YOUTUBE_API_KEY === 'your_youtube_api_key_here') {
+  if (YOUTUBE_API_KEY === 'your_youtube_api_key_here' || YOUTUBE_API_KEY.includes('Dummy') || YOUTUBE_API_KEY.includes('Replace')) {
     console.error('YouTube API key is still set to placeholder value');
     return NextResponse.json(
-      { error: 'YouTube API key is not properly configured. Please replace the placeholder value in .env.local with your actual API key.' },
+      { error: 'YouTube API key is still set to placeholder. Please replace it in .env.local with your actual YouTube Data API v3 key from Google Cloud Console.' },
       { status: 500 }
     );
   }
@@ -44,15 +44,15 @@ export async function GET(request: NextRequest) {
   if (!YOUTUBE_CHANNEL_ID) {
     console.error('YouTube Channel ID not found in environment variables');
     return NextResponse.json(
-      { error: 'YouTube Channel ID not configured. Please add YOUTUBE_CHANNEL_ID to your .env.local file.' },
+      { error: 'YouTube Channel ID not configured. Please add your actual YouTube Channel ID to YOUTUBE_CHANNEL_ID in your .env.local file.' },
       { status: 500 }
     );
   }
 
-  if (YOUTUBE_CHANNEL_ID === 'your_youtube_channel_id_here') {
+  if (YOUTUBE_CHANNEL_ID === 'your_youtube_channel_id_here' || YOUTUBE_CHANNEL_ID.includes('Dummy') || YOUTUBE_CHANNEL_ID.includes('Replace')) {
     console.error('YouTube Channel ID is still set to placeholder value');
     return NextResponse.json(
-      { error: 'YouTube Channel ID is not properly configured. Please replace the placeholder value in .env.local with your actual Channel ID.' },
+      { error: 'YouTube Channel ID is still set to placeholder. Please replace it in .env.local with your actual YouTube Channel ID (starts with UC).' },
       { status: 500 }
     );
   }
