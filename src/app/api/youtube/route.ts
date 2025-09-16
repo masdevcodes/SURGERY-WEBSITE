@@ -26,7 +26,8 @@ interface YouTubeApiResponse {
 
 export async function GET(request: NextRequest) {
   if (!YOUTUBE_API_KEY) {
-    console.log('YouTube API key not configured, returning fallback data');
+    console.log('❌ YouTube API key not configured in environment variables');
+    console.log('Please set YOUTUBE_API_KEY in your .env file');
     return NextResponse.json({
       videos: [],
       channelStats: {
@@ -37,16 +38,31 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  // Test API key first with a simple request
+  console.log('🔑 Testing YouTube API key...');
+  
   try {
     const testResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&q=test&type=channel&maxResults=1&key=${YOUTUBE_API_KEY}`
     );
     
+    console.log('📡 API Test Response Status:', testResponse.status);
+    
     if (!testResponse.ok) {
       const errorText = await testResponse.text();
-      console.error('API Key Test Failed:', testResponse.status, errorText);
-      console.log('API key test failed, returning fallback data');
+      console.error('❌ API Key Test Failed:', testResponse.status);
+      console.error('Error details:', errorText);
+      
+      // Try to parse error for more specific info
+      try {
+        const errorData = JSON.parse(errorText);
+        if (errorData.error) {
+          console.error('API Error Message:', errorData.error.message);
+          console.error('API Error Code:', errorData.error.code);
+        }
+      } catch (e) {
+        console.error('Raw error response:', errorText);
+      }
+      
       return NextResponse.json({
         videos: [],
         channelStats: {
@@ -57,10 +73,12 @@ export async function GET(request: NextRequest) {
       });
     }
     
-    console.log('✅ YouTube API key is working');
+    const testData = await testResponse.json();
+    console.log('✅ YouTube API key is working!');
+    console.log('📊 API quota used for test request');
+    
   } catch (error) {
-    console.error('API Key Test Error:', error);
-    console.log('API key test error, returning fallback data');
+    console.error('❌ API Key Test Network Error:', error);
     return NextResponse.json({
       videos: [],
       channelStats: {
@@ -71,6 +89,8 @@ export async function GET(request: NextRequest) {
     });
   }
 
+  console.log('🔍 Searching for channel: Scalpelsnsuture');
+  
   try {
     // First, try to get channel ID using the handle
     let channelId = '';
