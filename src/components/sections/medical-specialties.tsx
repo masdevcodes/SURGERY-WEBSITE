@@ -18,12 +18,12 @@ export function MedicalSpecialties() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Doctor Image */}
           <div className="relative">
-            <div className="relative w-full h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
-                alt="Head of Surgery - Dr. Rajesh Kumar"
+                alt="Head of Surgery - Dr. Ashwini Kumar"
                 fill
-                className="object-cover"
+                className="object-cover object-center"
                 data-ai-hint="doctor portrait professional"
               />
               {/* Overlay gradient for better text readability */}
@@ -70,21 +70,11 @@ export function MedicalSpecialties() {
                   <span className="text-white font-bold text-lg">RK</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-blue-950 text-lg">Dr. Rajesh Kumar</h4>
+                  <h4 className="font-bold text-blue-950 text-lg">Dr. Ashwini Kumar</h4>
                   <p className="text-teal-600 font-medium">Head of Surgery Department</p>
                   <p className="text-gray-600 text-sm">GMC Patiala</p>
                 </div>
               </div>
-            </div>
-            
-            {/* Call to Action */}
-            <div className="pt-4">
-              <button className="bg-teal-600 text-white font-bold px-8 py-4 rounded-lg hover:bg-teal-700 transition-colors duration-300 flex items-center gap-2">
-                Learn More About Our Surgery Department
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
             </div>
           </div>
         </div>
