@@ -53,6 +53,11 @@ export function InfoCards() {
 
           {/* Covid-19 Response Card */}
           <div className="rounded-lg shadow-lg overflow-hidden">
+            <div className="p-8 pt-6 bg-white">
+              <div className="w-20 h-20 bg-teal-500 rounded-md flex items-center justify-center mb-6">
+                <svg width="44" height="45" viewBox="0 0 44 45" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M43.9999 22.5119C43.9999 34.3912 34.3911 44.0001 22.5118 44.0001C10.6325 44.0001 1 34.3912 1 22.5119C1 10.6326 10.6325 1.0238 22.5118 1.0238C34.3911 1.0238 43.9999 10.6326 43.9999 22.5119Z" fill="white" /></svg>
+              </div>
+            </div>
             <Image
               src="/stoma.png"
               alt="Stoma care and medical equipment"
@@ -62,9 +67,6 @@ export function InfoCards() {
               data-ai-hint="stoma medical care"
             />
             <div className="p-8 bg-white">
-              <div className="w-20 h-20 bg-teal-500 rounded-md flex items-center justify-center -mt-20 mb-6">
-                <svg width="44" height="45" viewBox="0 0 44 45" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M43.9999 22.5119C43.9999 34.3912 34.3911 44.0001 22.5118 44.0001C10.6325 44.0001 1 34.3912 1 22.5119C1 10.6326 10.6325 1.0238 22.5118 1.0238C34.3911 1.0238 43.9999 10.6326 43.9999 22.5119Z" fill="white" /></svg>
-              </div>
               <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
                 Stoma Clinic
               </h3>
