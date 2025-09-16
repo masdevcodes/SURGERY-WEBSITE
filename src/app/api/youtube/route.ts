@@ -181,13 +181,43 @@ export async function GET(request: NextRequest) {
     }
 
     console.log('🎬 Fetching latest videos for channel:', channelId);
-    // Fetch latest videos from the channel
-    const videosResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=4&order=date&type=video&key=${YOUTUBE_API_KEY}`
+    
+    // First try to get the uploads playlist ID
+    const channelDetailsResponse = await fetch(
+      `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${YOUTUBE_API_KEY}`
     );
+    
+    let videosResponse;
+    
+    if (channelDetailsResponse.ok) {
+      const channelDetails = await channelDetailsResponse.json();
+      const uploadsPlaylistId = channelDetails.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+      
+      if (uploadsPlaylistId) {
+        console.log('📋 Using uploads playlist:', uploadsPlaylistId);
+        // Fetch videos from uploads playlist (more reliable)
+        videosResponse = await fetch(
+          `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=4&key=${YOUTUBE_API_KEY}`
+        );
+      } else {
+        console.log('🔍 Falling back to search method');
+        // Fallback to search method
+        videosResponse = await fetch(
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=4&order=date&type=video&key=${YOUTUBE_API_KEY}`
+        );
+      }
+    } else {
+      console.log('🔍 Using direct search method');
+      // Fallback to search method
+      videosResponse = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=4&order=date&type=video&key=${YOUTUBE_API_KEY}`
+      );
+    }
 
     console.log('📡 Videos fetch response status:', videosResponse.status);
     if (!videosResponse.ok) {
+      const errorText = await videosResponse.text();
+      console.error('❌ Videos fetch error:', errorText);
       console.warn('⚠️ Failed to fetch videos, returning channel stats only');
       const channelStats: YouTubeChannelStats = {
         subscriberCount: formatCount(channelData.items[0]?.statistics?.subscriberCount || '0'),
@@ -199,6 +229,7 @@ export async function GET(request: NextRequest) {
 
     const videosData = await videosResponse.json();
     console.log('📊 Videos found:', videosData.items?.length || 0);
+    console.log('📋 Raw videos data:', JSON.stringify(videosData, null, 2));
     
     // Check if videos data exists
     if (!videosData.items || videosData.items.length === 0) {
@@ -220,18 +251,42 @@ export async function GET(request: NextRequest) {
 
     // Get video details including duration and view count
     console.log('🔍 Fetching detailed video information...');
-    const videoIds = videosData.items.map((item: any) => item.id.videoId).join(',');
+    // Handle both search results and playlist items
+    const videoIds = videosData.items.map((item: any) => {
+      // For playlist items, video ID is in snippet.resourceId.videoId
+      // For search results, video ID is in id.videoId
+      return item.snippet?.resourceId?.videoId || item.id?.videoId;
+    }).filter(Boolean).join(',');
+    
+    console.log('🎯 Video IDs to fetch details for:', videoIds);
+    
+    if (!videoIds) {
+      console.warn('❌ No valid video IDs found');
+      const channelStats: YouTubeChannelStats = {
+        subscriberCount: formatCount(channelData.items[0]?.statistics?.subscriberCount || '0'),
+        videoCount: formatCount(channelData.items[0]?.statistics?.videoCount || '0'),
+        viewCount: formatCount(channelData.items[0]?.statistics?.viewCount || '0'),
+      };
+      return NextResponse.json({ videos: [], channelStats });
+    }
+    
     const videoDetailsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoIds}&key=${YOUTUBE_API_KEY}`
     );
 
     if (!videoDetailsResponse.ok) {
+      const errorText = await videoDetailsResponse.text();
+      console.error('❌ Video details fetch error:', errorText);
       console.warn('Failed to fetch video details, using basic video info');
     } else {
       console.log('✅ Video details fetched successfully');
     }
 
-    const videoDetailsData = await videoDetailsResponse.json();
+    let videoDetailsData = { items: [] };
+    if (videoDetailsResponse.ok) {
+      videoDetailsData = await videoDetailsResponse.json();
+      console.log('📊 Video details count:', videoDetailsData.items?.length || 0);
+    }
 
     // Format the data
     const channelStats: YouTubeChannelStats = {
@@ -242,16 +297,24 @@ export async function GET(request: NextRequest) {
 
     const videos: YouTubeVideo[] = videosData.items.map((item: any, index: number) => {
       const details = videoDetailsData.items?.[index];
+      const videoId = item.snippet?.resourceId?.videoId || item.id?.videoId;
+      
+      console.log(`📹 Processing video ${index + 1}:`, {
+        title: item.snippet?.title,
+        videoId: videoId,
+        hasDetails: !!details
+      });
+      
       return {
-        id: item.id.videoId,
+        id: videoId,
         title: item.snippet.title,
-        description: item.snippet.description,
-        thumbnail: item.snippet.thumbnails.high.url,
+        description: item.snippet.description || 'No description available',
+        thumbnail: item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.medium?.url || item.snippet.thumbnails?.default?.url || '',
         duration: formatDuration(details?.contentDetails?.duration || 'PT0S'),
         views: formatCount(details?.statistics?.viewCount || '0'),
         publishedAt: formatDate(item.snippet.publishedAt),
       };
-    });
+    }).filter(video => video.id); // Filter out any videos without valid IDs
 
     const response: YouTubeApiResponse = {
       videos,
@@ -259,6 +322,7 @@ export async function GET(request: NextRequest) {
     };
 
     console.log('🎉 Successfully returning YouTube data with', videos.length, 'videos');
+    console.log('📋 Final response:', JSON.stringify(response, null, 2));
     return NextResponse.json(response);
   } catch (error) {
     console.error('YouTube API Error:', error);
