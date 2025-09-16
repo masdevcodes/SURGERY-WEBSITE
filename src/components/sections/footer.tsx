@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="bg-zinc-900 text-white pt-24 pb-12">
       <div className="container mx-auto">
         {/* CTA Banner */}
-        <div className="bg-white/10 rounded-lg p-12 flex justify-between items-center mb-24">
+        {/*<div className="bg-white/10 rounded-lg p-12 flex justify-between items-center mb-24">
           <h3 className="text-4xl">
             <span className="font-light">COVID-19</span> <span className="text-teal-500 font-normal">Antigen Test</span>
           </h3>
@@ -14,7 +14,7 @@ export function Footer() {
             <Check className="w-5 h-5 text-teal-500" />
             Book Covid-19 Antigen Test
           </button>
-        </div>
+        </div>/*}
 
         {/* Footer Links */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
