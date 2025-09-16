@@ -1,49 +1,89 @@
 'use client';
-
+import { useState } from 'react';
 import Image from 'next/image';
 import { ArrowRight, Heart, Stethoscope, Eye, Bone, Brain, Activity } from 'lucide-react';
 
 export function Services() {
   const services = [
-   
     {
       icon: <Heart className="w-8 h-8" />,
       title: "Cardiology",
       description: "Nam at varius ut dignissim lorem, in condimentum leo. Vestibulum eget.",
       color: "text-teal-500",
+      // Add detailed content for popup here
+      popupContent: (
+        <div>
+          <h3 className="font-bold text-xl mb-2">Cardiology Services</h3>
+          <p>Detailed description and information about Cardiology services go here. Explain procedures, specialists, and more.</p>
+        </div>
+      ),
     },
-    
     {
       icon: <Stethoscope className="w-8 h-8" />,
       title: "Gastroenterology",
       description: "Suspendisse magna nisl, varius ut risus in, porta aliquet nunc.",
       color: "text-teal-500",
+      popupContent: (
+        <div>
+          <h3 className="font-bold text-xl mb-2">Gastroenterology Services</h3>
+          <p>Details on Gastroenterology including treatments, diagnostic methods, and patient care protocols.</p>
+        </div>
+      ),
     },
     {
       icon: <Eye className="w-8 h-8" />,
       title: "Ophthalmology",
       description: "Sed vel odio sapien. Vivamus feugiat faucibus enim dapibus.",
       color: "text-teal-500",
+      popupContent: (
+        <div>
+          <h3 className="font-bold text-xl mb-2">Ophthalmology Services</h3>
+          <p>Information about eye care, surgeries available, and services for vision health.</p>
+        </div>
+      ),
     },
     {
       icon: <Bone className="w-8 h-8" />,
       title: "Rheumatology",
       description: "Fusce ac nulla diam. Nulla facilisi. Donec accumsan est nec laoreet.",
       color: "text-teal-500",
+      popupContent: (
+        <div>
+          <h3 className="font-bold text-xl mb-2">Rheumatology Services</h3>
+          <p>Details about joint and autoimmune diseases treatment, therapies and specialist information.</p>
+        </div>
+      ),
     },
     {
       icon: <Brain className="w-8 h-8" />,
       title: "Neurology",
       description: "Etiam augue leo, ultrices. Suspendisse magna nisl, varius ut aliquet nunc.",
       color: "text-teal-500",
+      popupContent: (
+        <div>
+          <h3 className="font-bold text-xl mb-2">Neurology Services</h3>
+          <p>Descriptions of neurological disorder treatments, diagnostics, and expert consultation availability.</p>
+        </div>
+      ),
     },
     {
       icon: <Activity className="w-8 h-8" />,
       title: "Urology",
       description: "Etiam metus, tempor quis, sollicitudin sit amet magna cursus vehicula.",
       color: "text-teal-500",
+      popupContent: (
+        <div>
+          <h3 className="font-bold text-xl mb-2">Urology Services</h3>
+          <p>Information on urological health services, minimally invasive surgeries, and patient care.</p>
+        </div>
+      ),
     },
   ];
+
+  const [selectedService, setSelectedService] = useState(null);
+
+  // Function to close modal
+  const closeModal = () => setSelectedService(null);
 
   return (
     <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
@@ -57,7 +97,6 @@ export function Services() {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-transparent to-teal-950/20"></div>
       </div>
-
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Side - Doctor Patient Image */}
@@ -65,18 +104,15 @@ export function Services() {
             <div className="relative h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
                 src="/service11.png"
-              
                 alt="Doctor consulting with patient"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
-            
             {/* Floating Elements */}
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-teal-500/20 rounded-full blur-xl animate-pulse"></div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
-            
             {/* Stats Card */}
             <div className="absolute bottom-8 left-8 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-lg">
               <div className="flex items-center gap-4">
@@ -90,7 +126,6 @@ export function Services() {
               </div>
             </div>
           </div>
-
           {/* Right Side - Services Grid */}
           <div className="space-y-8">
             {/* Header */}
@@ -108,7 +143,6 @@ export function Services() {
                 Delivering world class medical care
               </p>
             </div>
-
             {/* Services Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {services.map((service, index) => (
@@ -122,7 +156,6 @@ export function Services() {
                       {service.icon}
                     </div>
                   </div>
-                  
                   {/* Content */}
                   <h3 className="text-lg font-bold text-blue-950 mb-3 group-hover:text-teal-600 transition-colors duration-300">
                     {service.title}
@@ -130,20 +163,42 @@ export function Services() {
                   <p className="text-sm text-gray-600 leading-relaxed mb-4">
                     {service.description}
                   </p>
-                  
                   {/* Read More Link */}
-                  <a href="#" className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group">
-                    READ MORE 
+                  <button
+                    onClick={() => setSelectedService(service)}
+                    className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
+                  >
+                    READ MORE
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </a>
+                  </button>
                 </div>
               ))}
             </div>
-
           </div>
         </div>
 
-        {/* Modal */}
+        {/* Modal Popup */}
+        {selectedService && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            onClick={closeModal}
+          >
+            <div
+              className="bg-white rounded-lg p-8 max-w-lg w-full shadow-lg relative"
+              onClick={(e) => e.stopPropagation()} // Prevent close on modal click
+            >
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold"
+                aria-label="Close modal"
+              >
+                &times;
+              </button>
+              {/* Popup Content for the selected service */}
+              {selectedService.popupContent}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -48,11 +48,12 @@ export function MedicalSpecialties() {
             <div className="pt-6 border-t border-gray-200">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">RK</span>
+                  <span className="text-white font-bold text-lg">AK</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-blue-950 text-lg">Dr. Ashwini Kumar</h4>
-                  <p className="text-teal-600 font-medium">Head of Surgery Department</p>
+                  <h4 className="font-bold text-blue-950 text-lg">Dr. Ashwani Kumar</h4>
+                  <p className="text-teal-600 font-medium">Prof & Head of Surgery Department</p>
+                   <p className="text-teal-600 font-medium">Unit 1 Incharge</p>
                   <p className="text-gray-600 text-sm">GMC Patiala</p>
                 </div>
               </div>

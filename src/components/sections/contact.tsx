@@ -39,8 +39,8 @@ export function Contact() {
             </div>
             <div>
               <h4 className="font-bold text-blue-950">Email</h4>
-              <a href="mailto:surgery@gmcpatiala.edu.in" className="text-teal-500 font-bold">surgery@gmcpatiala.edu.in</a>
-              <p className="text-blue-950 text-sm mt-1">General: info@gmcpatiala.edu.in</p>
+              <a href="mailto:surgery@gmcpatiala.edu.in" className="text-teal-500 font-bold">gmcpatialasurgery@gmail.com</a>
+              
             </div>
           </div>
         </div>

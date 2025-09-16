@@ -3,14 +3,16 @@ import { Search } from 'lucide-react';
 
 export function Header() {
   return (
-    <header className="absolute top-0 left-0 w-full h-24 z-20 border-b border-white/30 bg-zinc-900/50 backdrop-blur-sm">
+    <header className="sticky top-0 left-0 w-full h-16 z-20 border-b border-white/30 bg-zinc-900/50 backdrop-blur-sm">
       <div className="max-w-4xl mx-auto flex items-center justify-between h-full px-5">
-        <div className="w-28 h-24 mr-auto">
+        {/* Logo container resized to fit smaller header */}
+        <div className="h-12 w-12 mr-auto flex items-center">
           <Image
             src="/GMClogo.jpg"
             alt="GMC Patiala Logo"
-            width={120}
-            height={90}
+            width={48}
+            height={48}
+            style={{ objectFit: 'contain' }}
             data-ai-hint="logo"
           />
         </div>

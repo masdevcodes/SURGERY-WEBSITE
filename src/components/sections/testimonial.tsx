@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Play, ExternalLink } from 'lucide-react';
+import { Play, ExternalLink, X } from 'lucide-react';
 
 interface ChannelStats {
   subscriberCount: string;
@@ -9,37 +9,43 @@ interface ChannelStats {
   viewCount: string;
 }
 
-export function Testimonial() {
-  const [channelStats, setChannelStats] = useState<ChannelStats>({
-    subscriberCount: '0',
-    videoCount: '0',
-    viewCount: '0'
-  });
-  const [loading, setLoading] = useState(true);
+interface Video {
+  id: string;
+  title: string;
+  thumbnail: string;
+}
 
-  // Fetch real YouTube data
+export function Testimonial() {
+  const [channelStats, setChannelStats] = useState<ChannelStats | null>(null);
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
   useEffect(() => {
     const fetchYouTubeData = async () => {
       try {
-        const response = await fetch('/api/youtube');
-        
-        const data = await response.json();
-        
-        if (response.ok && data.channelStats) {
+        const res = await fetch('/api/youtube');
+        const data = await res.json();
+
+        if (res.ok && data.channelStats) {
           setChannelStats(data.channelStats);
+          setVideos(data.latestVideos || []);
         } else {
-          // Use fallback data if API response is not successful
-          throw new Error('API response not successful');
+          throw new Error("API error");
         }
       } catch (error) {
-        console.warn('Using fallback YouTube data due to API configuration');
-        
-        // Fallback to mock data if API fails
+        console.error("Fallback YouTube data", error);
         setChannelStats({
-          subscriberCount: '12.5K',
-          videoCount: '50+',
-          viewCount: '250K'
+          subscriberCount: "12.5K",
+          videoCount: "50+",
+          viewCount: "250K",
         });
+        setVideos([
+          { id: "abc1", title: "Fallback Video 1", thumbnail: "/fallback1.jpg" },
+          { id: "abc2", title: "Fallback Video 2", thumbnail: "/fallback2.jpg" },
+          { id: "abc3", title: "Fallback Video 3", thumbnail: "/fallback3.jpg" },
+          { id: "abc4", title: "Fallback Video 4", thumbnail: "/fallback4.jpg" },
+        ]);
       } finally {
         setLoading(false);
       }
@@ -50,99 +56,103 @@ export function Testimonial() {
 
   if (loading) {
     return (
-      <section id="youtube" className="py-24 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950 relative overflow-hidden">
-        <div className="container mx-auto">
-          <div className="text-center">
-            <div className="animate-pulse">
-              <div className="h-8 bg-blue-800 rounded w-64 mx-auto mb-4"></div>
-              <div className="h-12 bg-blue-800 rounded w-96 mx-auto mb-8"></div>
-              <div className="flex items-center justify-center gap-8 mb-8">
-                {[...Array(3)].map((_, i) => (
-                  <div key={i} className="text-center">
-                    <div className="h-8 bg-blue-800 rounded w-16 mx-auto mb-2"></div>
-                    <div className="h-4 bg-blue-800 rounded w-20 mx-auto"></div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+      <section className="py-24 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950">
+        <div className="container mx-auto text-center text-blue-200 animate-pulse">
+          Loading channel stats...
         </div>
       </section>
     );
   }
 
   return (
-    <section id="youtube" className="py-24 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-teal-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
-      </div>
-
+    <section
+      id="youtube"
+      className="py-24 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950 relative overflow-hidden"
+    >
       <div className="container mx-auto relative">
-        {/* Header */}
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="w-16 h-1 bg-teal-500"></div>
-            <span className="text-teal-400 font-semibold text-sm uppercase tracking-wider">
-              Educational Content
-            </span>
-            <div className="w-16 h-1 bg-teal-500"></div>
-          </div>
-          
-          <h2 className="text-5xl font-bold text-white font-headline leading-tight mb-6">
+          <h2 className="text-5xl font-bold text-white mb-6">
             Our YouTube Channel
-            <br />
-            "SCALPELS AND SUTURES"
+            <br /> "Scalpels and Sutures"
           </h2>
           <p className="text-xl text-blue-200 max-w-3xl mx-auto mb-8">
-            Stay informed with our educational videos covering surgical procedures, patient care and medical insights from our expert team.
+            Educational videos covering surgical procedures, patient care, and medical insights.
           </p>
-          
+
           {/* Channel Stats */}
-          <div className="flex items-center justify-center gap-8 mb-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-teal-400">{channelStats.videoCount}</div>
-              <div className="text-blue-200 text-sm">Videos</div>
+          {channelStats && (
+            <div className="flex items-center justify-center gap-8 mb-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-teal-400">{channelStats.videoCount}</div>
+                <div className="text-blue-200 text-sm">Videos</div>
+              </div>
+              <div className="w-px h-12 bg-blue-700"></div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-teal-400">{channelStats.subscriberCount}</div>
+                <div className="text-blue-200 text-sm">Subscribers</div>
+              </div>
+              <div className="w-px h-12 bg-blue-700"></div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-teal-400">{channelStats.viewCount}</div>
+                <div className="text-blue-200 text-sm">Total Views</div>
+              </div>
             </div>
-            <div className="w-px h-12 bg-blue-700"></div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-teal-400">{channelStats.subscriberCount}</div>
-              <div className="text-blue-200 text-sm">Subscribers</div>
-            </div>
-            <div className="w-px h-12 bg-blue-700"></div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-teal-400">{channelStats.viewCount}</div>
-              <div className="text-blue-200 text-sm">Total Views</div>
-            </div>
-          </div>
+          )}
 
           {/* Subscribe Button */}
-          <a 
-            href="https://www.youtube.com/@Scalpelsnsuture" 
-            target="_blank" 
+          <a
+            href="https://www.youtube.com/@Scalpelsnsuture"
+            target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-12"
+            className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             <Play className="w-5 h-5" />
             Subscribe to Our Channel
             <ExternalLink className="w-4 h-4" />
           </a>
+        </div>
 
-          {/* View All Videos Button */}
-          <div className="text-center">
-            <a
-              href="https://www.youtube.com/@Scalpelsnsuture/videos"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 border-2 border-teal-500 text-teal-400 hover:bg-teal-500 hover:text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+        {/* Latest Videos */}
+        {videos.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+            {videos.map((video) => (
+              <div
+                key={video.id}
+                onClick={() => setSelectedVideo(video.id)}
+                className="cursor-pointer bg-blue-800 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform"
+              >
+                <img
+                  src={video.thumbnail}
+                  alt={video.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4 text-white text-sm font-medium">{video.title}</div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Video Popup Modal */}
+      {selectedVideo && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="relative bg-black rounded-xl max-w-4xl w-full aspect-video">
+            <button
+              className="absolute -top-10 right-0 text-white hover:text-red-500"
+              onClick={() => setSelectedVideo(null)}
             >
-              View All Videos
-              <ExternalLink className="w-5 h-5" />
-            </a>
+              <X className="w-8 h-8" />
+            </button>
+            <iframe
+              className="w-full h-full rounded-xl"
+              src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

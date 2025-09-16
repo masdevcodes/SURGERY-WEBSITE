@@ -7,6 +7,7 @@ import { MedicalSpecialties } from '@/components/sections/medical-specialties';
 import { Providers } from '@/components/sections/providers';
 import { Services } from '@/components/sections/services';
 import { Testimonial } from '@/components/sections/testimonial';
+import { Events } from '@/components/sections/events';
 import { Contact } from '@/components/sections/contact';
 import { Footer } from '@/components/sections/footer';
 
@@ -22,6 +23,7 @@ export default function Home() {
         <Providers />
         <Services />
         <Testimonial />
+        <Events />
         <Contact />
       </main>
       <Footer />
