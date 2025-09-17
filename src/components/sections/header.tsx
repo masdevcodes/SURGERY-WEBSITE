@@ -57,7 +57,7 @@ export function Header() {
             }}
             className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
           >
-            Providers
+            Provider
           </a>
           <a
             href="#events"
@@ -65,17 +65,6 @@ export function Header() {
               e.preventDefault();
               document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' });
             }}
-className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
-          >
-            History
-          </a>
-          <a
-            href="#history"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('history')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            
             className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
           >
             Events
