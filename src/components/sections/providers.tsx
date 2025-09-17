@@ -143,20 +143,16 @@ export function Providers() {
 
   // Helper to render lists with images for certain roles
   const renderListWithImages = (names: string[], showImages: boolean) => (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4 mt-2">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-6 mt-4">
       {names.map((name, idx) => (
         <div key={idx} className="flex flex-col items-center">
           {showImages && (
-            <div 
-              className="w-24 h-24 rounded-full overflow-hidden mb-2 border-2 border-gray-200 cursor-pointer transition-transform duration-300 hover:scale-110"
-              onClick={() => setZoomedImage(getImagePath(name))}
-            >
+            <div className="relative w-32 h-32 rounded-full overflow-hidden mb-3 border-2 border-gray-200 group">
               <Image
                 src={getImagePath(name)}
                 alt={name}
-                width={96}
-                height={96}
-                className="object-cover w-full h-full"
+                fill
+                className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
               />
             </div>
           )}
@@ -249,7 +245,7 @@ export function Providers() {
           onClick={() => setSelectedProvider(null)}
         >
           <div
-            className="bg-white rounded-2xl max-w-2xl w-full p-8 relative overflow-y-auto max-h-[90vh]"
+            className="bg-white rounded-2xl max-w-4xl w-full p-8 relative overflow-y-auto max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -268,17 +264,13 @@ export function Providers() {
             </h2>
 
             {/* Unit Incharge with Image */}
-            <div className="mb-6 flex flex-col items-center">
-              <div 
-                className="w-24 h-24 rounded-full overflow-hidden mb-3 border-2 border-gray-300 cursor-pointer transition-transform duration-300 hover:scale-110"
-                onClick={() => setZoomedImage(getImagePath(selectedProvider.details.incharge))}
-              >
+            <div className="mb-8 flex flex-col items-center">
+              <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4 border-2 border-gray-300 group">
                 <Image
                   src={getImagePath(selectedProvider.details.incharge)}
                   alt={selectedProvider.details.incharge}
-                  width={96}
-                  height={96}
-                  className="object-cover w-full h-full"
+                  fill
+                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
               <p className="text-gray-700 font-bold text-lg">
@@ -286,12 +278,12 @@ export function Providers() {
               </p>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-8">
               <strong className="text-lg">Associate Professors:</strong>
               {renderListWithImages(selectedProvider.details.assistantProfessors, true)}
             </div>
 
-            <div className="mb-6">
+            <div className="mb-8">
               <strong className="text-lg">Senior Residents:</strong>
               {renderListWithImages(selectedProvider.details.seniorResidents, true)}
             </div>
