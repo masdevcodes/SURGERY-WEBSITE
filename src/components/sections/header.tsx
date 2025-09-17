@@ -40,6 +40,16 @@ export function Header() {
             About
           </a>
           <a
+            href="#providers"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('providers')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
+          >
+            Providers
+          </a>
+          <a
             href="#services"
             onClick={(e) => {
               e.preventDefault();
@@ -50,15 +60,14 @@ export function Header() {
             Services
           </a>
           <a
-            href="#providers"
+            href="#history"
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById('providers')?.scrollIntoView({ behavior: 'smooth' });
+              document.getElementById('history')?.scrollIntoView({ behavior: 'smooth' });
             }}
             className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
           >
-            Providers
-          
+            History
           </a>
           <a
             href="#events"
@@ -71,23 +80,11 @@ export function Header() {
             Events
           </a>
           <a
-            href="#history"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('history')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-
-            className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
-          >
-            History
-          </a>
-          <a
             href="#contact"
             onClick={(e) => {
               e.preventDefault();
               document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            
             className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
           >
             Contact
