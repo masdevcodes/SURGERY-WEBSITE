@@ -266,9 +266,7 @@ export function InfoCards() {
                   Breast Clinic
                 </h3>
                 <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
-                  Our Breast Clinic specializes in early detection and treatment
-                  of breast diseases, including cancer screening, imaging,
-                  biopsy, counselling, and rehabilitation.
+                  Our Breast Clinic  provides specialized care for women presenting with breast-related complaints such as lumps, pain, discharge, or infections. The clinic offers early detection services for breast cancer, including clinical breast examination, imaging guidance, and biopsy facilities. Along with diagnosis and treatment, it emphasizes patient counselling, awareness, and follow-up care to ensure comprehensive management of breast health.
                 </p>
               </div>
               <a
