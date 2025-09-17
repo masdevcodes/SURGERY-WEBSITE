@@ -19,7 +19,7 @@ export function InfoCards() {
     e.stopPropagation();
   }
 
-  // ✅ Reusable modal with responsive sizing
+  // ✅ Reusable modal
   const Modal = ({
     children,
     onClose,
@@ -53,7 +53,7 @@ export function InfoCards() {
       case 'stoma':
         return (
           <div className="flex flex-col justify-center items-center text-center">
-            {/* 🔽 Banner Image for Stoma Clinic */}
+            {/* Banner Image for Stoma Clinic */}
             <div className="w-full mb-6">
               <Image
                 src="/stomay.png"
@@ -97,7 +97,7 @@ export function InfoCards() {
       case 'breast':
         return (
           <div className="flex flex-col justify-center items-center text-center">
-            {/* 🔽 Banner Image for Breast Clinic */}
+            {/* Banner Image for Breast Clinic */}
             <div className="w-full mb-6">
               <Image
                 src="/brep.png"
@@ -145,7 +145,7 @@ export function InfoCards() {
   return (
     <section
       id="info"
-      className="pt-0 pb-24 bg-gradient-to-b from-white via-white/0 to-white relative"
+      className="pb-24 bg-gradient-to-b from-white via-white/0 to-white relative"
     >
       {/* Background Image */}
       <div className="absolute inset-0 opacity-30">
@@ -227,7 +227,14 @@ export function InfoCards() {
                   Stoma Clinic
                 </h3>
                 <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
-               Our Stoma Clinic offers expert care for patients with colostomies, ileostomies, and urostomies. Our services include assessment, fitting of appropriate appliances, and prompt management of stoma-related complications. We emphasize patient education, lifestyle counselling, and emotional support to empower individuals in managing their stoma with confidence. Our goal is to restore dignity, comfort, and the highest quality of life for all patients under our care.
+                  Our Stoma Clinic offers expert care for patients with
+                  colostomies, ileostomies, and urostomies. Our services include
+                  assessment, fitting of appropriate appliances, and prompt
+                  management of stoma-related complications. We emphasize
+                  patient education, lifestyle counselling, and emotional
+                  support to empower individuals in managing their stoma with
+                  confidence. Our goal is to restore dignity, comfort, and the
+                  highest quality of life for all patients under our care.
                 </p>
               </div>
               <a
@@ -263,7 +270,14 @@ export function InfoCards() {
                   Breast Clinic
                 </h3>
                 <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
-                  Our Breast Clinic  provides specialized care for women presenting with breast-related complaints such as lumps, pain, discharge, or infections. The clinic offers early detection services for breast cancer, including clinical breast examination, imaging guidance, and biopsy facilities. Along with diagnosis and treatment, it emphasizes patient counselling, awareness, and follow-up care to ensure comprehensive management of breast health.
+                  Our Breast Clinic provides specialized care for women
+                  presenting with breast-related complaints such as lumps, pain,
+                  discharge, or infections. The clinic offers early detection
+                  services for breast cancer, including clinical breast
+                  examination, imaging guidance, and biopsy facilities. Along
+                  with diagnosis and treatment, it emphasizes patient
+                  counselling, awareness, and follow-up care to ensure
+                  comprehensive management of breast health.
                 </p>
               </div>
               <a
