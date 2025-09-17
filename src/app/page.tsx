@@ -5,6 +5,7 @@ import { About } from '@/components/sections/about';
 import { MedicalSpecialties } from '@/components/sections/medical-specialties';
 import { Providers } from '@/components/sections/providers';
 import { Services } from '@/components/sections/services';
+import { History } from '@/components/sections/history';
 import { Testimonial } from '@/components/sections/testimonial';
 import { Events } from '@/components/sections/events';
 import { Contact } from '@/components/sections/contact';
@@ -21,6 +22,7 @@ export default function Home() {
         <MedicalSpecialties />
         <Providers />
         <Services />
+        <History />
         <Events />
         <Testimonial />
         <Contact />
