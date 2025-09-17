@@ -176,7 +176,7 @@ export function Providers() {
                   <div>
                     <p className={`text-${provider.color}-600 font-bold text-sm uppercase tracking-wider`}>{provider.unit}</p>
                     <h3 className="text-2xl font-bold text-blue-950 font-headline">{provider.name}</h3>
-                    <h2 className="text-gray-600">{provider.email}</h2>
+                    <h2 className="text-red-600">{provider.email}</h2>
                   </div>
                 </div>
 
