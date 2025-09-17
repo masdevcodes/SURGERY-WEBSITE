@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export function History() {
   return (
-    <section id="history" className="py-12 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+    <section id="history" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
         <Image
