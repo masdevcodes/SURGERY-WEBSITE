@@ -33,6 +33,14 @@ export function Providers() {
     indigo: { text: 'text-indigo-600', bg: 'bg-indigo-500', from: 'from-indigo-400', to: 'to-indigo-600' },
   };
 
+  // Function to get image path based on name
+  const getImagePath = (name: string) => {
+    // This is a simplified example - you might need a more robust mapping
+    const nameParts = name.toLowerCase().split(' ');
+    const lastName = nameParts[nameParts.length - 1];
+    return `/images/doctors/${lastName}.jpg`; // Assuming images are stored with last name
+  };
+
   const providers: Provider[] = [
     {
       id: 1,
@@ -132,11 +140,33 @@ export function Providers() {
     },
   ];
 
-  // Helper to render lists dynamically with auto-adjust columns
-  const renderList = (names: string[]) => (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-2 mt-1">
+  // Helper to render lists with images for certain roles
+  const renderListWithImages = (names: string[], showImages: boolean) => (
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4 mt-2">
       {names.map((name, idx) => (
-        <p key={idx} className="text-gray-700 break-words">{name}</p>
+        <div key={idx} className="flex flex-col items-center">
+          {showImages && (
+            <div className="w-16 h-16 rounded-full overflow-hidden mb-2 border-2 border-gray-200">
+              <Image
+                src={getImagePath(name)}
+                alt={name}
+                width={64}
+                height={64}
+                className="object-cover"
+              />
+            </div>
+          )}
+          <p className="text-gray-700 break-words text-sm text-center">{name}</p>
+        </div>
+      ))}
+    </div>
+  );
+
+  // Helper to render junior residents (names only)
+  const renderJuniorResidents = (names: string[]) => (
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-2 mt-1">
+      {names.map((name, idx) => (
+        <p key={idx} className="text-gray-700 break-words text-sm">{name}</p>
       ))}
     </div>
   );
@@ -215,14 +245,14 @@ export function Providers() {
           onClick={() => setSelectedProvider(null)}
         >
           <div
-            className="bg-white rounded-2xl max-w-lg w-full p-8 relative overflow-y-auto max-h-[90vh]"
+            className="bg-white rounded-2xl max-w-2xl w-full p-8 relative overflow-y-auto max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 font-bold"
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 font-bold text-xl"
               onClick={() => setSelectedProvider(null)}
             >
-              X
+              ×
             </button>
 
             {/* Centered Unit Name with Provider Color */}
@@ -233,21 +263,35 @@ export function Providers() {
               {selectedProvider.unit}
             </h2>
 
-            <p className="text-gray-700 font-bold mb-4"><strong>Unit Incharge:</strong> {selectedProvider.details.incharge}</p>
+            {/* Unit Incharge with Image */}
+            <div className="mb-6 flex flex-col items-center">
+              <div className="w-24 h-24 rounded-full overflow-hidden mb-3 border-2 border-gray-300">
+                <Image
+                  src={getImagePath(selectedProvider.details.incharge)}
+                  alt={selectedProvider.details.incharge}
+                  width={96}
+                  height={96}
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-gray-700 font-bold text-lg">
+                <strong>Unit Incharge:</strong> {selectedProvider.details.incharge}
+              </p>
+            </div>
 
-            <div className="mb-4">
-              <strong>Associate Professors:</strong>
-              {renderList(selectedProvider.details.assistantProfessors)}
+            <div className="mb-6">
+              <strong className="text-lg">Associate Professors:</strong>
+              {renderListWithImages(selectedProvider.details.assistantProfessors, true)}
+            </div>
+
+            <div className="mb-6">
+              <strong className="text-lg">Senior Residents:</strong>
+              {renderListWithImages(selectedProvider.details.seniorResidents, true)}
             </div>
 
             <div className="mb-4">
-              <strong>Senior Residents:</strong>
-              {renderList(selectedProvider.details.seniorResidents)}
-            </div>
-
-            <div className="mb-4">
-              <strong>Junior Residents:</strong>
-              {renderList(selectedProvider.details.juniorResidents)}
+              <strong className="text-lg">Junior Residents:</strong>
+              {renderJuniorResidents(selectedProvider.details.juniorResidents)}
             </div>
           </div>
         </div>
