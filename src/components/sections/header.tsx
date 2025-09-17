@@ -19,11 +19,11 @@ export function Header() {
         <nav className="hidden lg:flex items-center space-x-12 h-full text-white ml-auto">
           <a
             href="#home"
-            className="h-full flex items-center border-b-[3px] border-white text-base font-semibold uppercase transition-all duration-300"
             onClick={(e) => {
               e.preventDefault();
               document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
             }}
+            className="h-full flex items-center border-b-[3px] border-white text-base font-semibold uppercase transition-all duration-300"
           >
             Home
           </a>
