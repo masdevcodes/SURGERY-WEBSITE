@@ -1,6 +1,11 @@
-import Image from 'next/image';
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 
 export function MedicalSpecialties() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
       {/* Background Pattern */}
@@ -10,13 +15,12 @@ export function MedicalSpecialties() {
           alt="Abstract geometric background"
           fill
           className="object-cover opacity-10"
-          data-ai-hint="geometric pattern background"
         />
       </div>
-      
+
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Side - Testimony Content */}
+          {/* Left Side */}
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex items-center gap-4 mb-6">
@@ -25,66 +29,219 @@ export function MedicalSpecialties() {
                   Head of Department
                 </span>
               </div>
-              
+
               <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
                 Message from our
                 <span className="text-teal-600"> Head of Surgery</span>
               </h2>
             </div>
-            
+
             {/* Quote Icon */}
             <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center">
-              <svg className="w-8 h-8 text-teal-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+              <svg
+                className="w-8 h-8 text-teal-600"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" />
               </svg>
             </div>
-            
+
             {/* Testimony Text */}
             <blockquote className="text-lg leading-relaxed text-gray-700 italic">
-              "As the Head of the Department of Surgery, I am proud of the commitment and dedication shown by our team in providing the highest standard of surgical care. Our department combines advanced clinical expertise with compassion, ensuring that every patient receives personalized treatment tailored to their needs. We place a strong emphasis on continuous learning, innovation, and research to keep pace with the latest developments in the field. It is our mission to not only treat patients but also to guide and support them through every step of their surgical journey. I am confident that with our skilled doctors, modern facilities, and patient-centered approach, we will continue to deliver excellence in surgical care."
+              "As the Head of the Department of Surgery, I am proud of the
+              commitment and dedication shown by our team in providing the
+              highest standard of surgical care. Our department combines
+              advanced clinical expertise with compassion, ensuring that every
+              patient receives personalized treatment tailored to their needs.
+              We place a strong emphasis on continuous learning, innovation, and
+              research to keep pace with the latest developments in the field.
+              It is our mission to not only treat patients but also to guide and
+              support them through every step of their surgical journey. I am
+              confident that with our skilled doctors, modern facilities, and
+              patient-centered approach, we will continue to deliver excellence
+              in surgical care."
             </blockquote>
-            
-            {/* Doctor Info */}
-            <div className="pt-6 border-t border-gray-200">
+
+            {/* Doctor Info + Button */}
+            <div className="pt-6 border-t border-gray-200 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-lg">AK</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-blue-950 text-lg">Dr. Ashwani Kumar</h4>
-                  <p className="text-teal-600 font-medium">Prof & Head of Surgery Department</p>
-                   <p className="text-teal-600 font-medium">Unit 1 Incharge</p>
+                  <h4 className="font-bold text-blue-950 text-lg">
+                    Dr. Ashwani Kumar
+                  </h4>
+                  <p className="text-teal-600 font-medium">
+                    Prof & Head of Surgery Department
+                  </p>
+                  <p className="text-teal-600 font-medium">Unit 1 Incharge</p>
                   <p className="text-gray-600 text-sm">GMC Patiala</p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition"
+              >
+                View Unit 1 Details
+              </button>
+            </div>
+          </div>
+
+
+
+          {/* Right Side */}
+          <div className="relative">
+            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
+              <Image
+                src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
+                alt="Head of Surgery - Dr. Ashwani Kumar"
+                fill
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ✅ Popup Modal */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 z-10"
+            >
+              ✕
+            </button>
+
+            <div className="p-8">
+              <h3 className="text-2xl font-bold text-blue-950 mb-8 text-center">
+                Unit 1 Team Details
+              </h3>
+
+              <div className="space-y-12">
+                {/* Incharge */}
+                <div>
+                  <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">
+                    Unit Incharge
+                  </h4>
+                  <div className="flex justify-center">
+                    <div className="flex flex-col items-center">
+                      <Image
+                        src="/images/ashwini.png"
+                        alt="Dr. Ashwani Kumar"
+                        width={112}
+                        height={112}
+                        className="w-28 h-28 rounded-full object-cover shadow-md transform transition duration-300 hover:scale-110"
+                      />
+                      <p className="mt-3 font-bold text-blue-950">Dr. Ashwani Kumar</p>
+                      <p className="text-gray-600 text-sm text-center">
+                        Prof & Head of Surgery Department
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Assistant Professors */}
+                <div>
+                  <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">
+                    Assistant Professors
+                  </h4>
+                  <div className="grid grid-cols-2 gap-8 justify-items-center">
+                    <div className="flex flex-col items-center">
+                      <Image
+                        src="/images/dineshkumar.png"
+                        alt="Dr. Dinesh Kumar Passi"
+                        width={112}
+                        height={112}
+                        className="w-28 h-28 rounded-full object-cover shadow-md transform transition duration-300 hover:scale-110"
+                      />
+                      <p className="mt-3 font-bold text-blue-950">Dr. Dinesh Kumar Passi</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <Image
+                        src="/images/jaswinder.png"
+                        alt="Dr. Jaswinder Singh"
+                        width={112}
+                        height={112}
+                        className="w-28 h-28 rounded-full object-cover shadow-md transform transition duration-300 hover:scale-110"
+                      />
+                      <p className="mt-3 font-bold text-blue-950">Dr. Jaswinder Singh</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Senior Residents md:grid-cols-3 */}
+                <div>
+                  <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">
+                    Senior Residents
+                  </h4>
+                  <div className="grid grid-cols-2 gap-8 justify-items-center">
+                    <div className="flex flex-col items-center">
+                      <Image
+                        src="/images/parth.png"
+                        alt="Dr. Parth Dhamija"
+                        width={112}
+                        height={112}
+                        className="w-28 h-28 rounded-full object-cover shadow-md transform transition duration-300 hover:scale-110"
+                      />
+                      <p className="mt-3 font-medium text-blue-950">Dr. Parth Dhamija</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <Image
+                        src="/images/thalib.png"
+                        alt="Dr. Talib Khan"
+                        width={112}
+                        height={112}
+                        className="w-28 h-28 rounded-full object-cover shadow-md transform transition duration-300 hover:scale-110"
+                      />
+                      <p className="mt-3 font-medium text-blue-950">Dr. Talib Khan</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Junior Residents */}
+                <div>
+                  <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">
+                    Junior Residents
+                  </h4>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
+                    {[
+                      { name: "Dr. Soumya A", img: "/images/soumya.png" },
+                      { name: "Dr. Aseem Anand", img: "/images/aseem.png" },
+                      { name: "Dr. Naveen Mangla", img: "/images/naveen.png" },
+                      { name: "Dr. Yogyatha", img: "/images/yog.png" },
+                      { name: "Dr. Priyanka", img: "/images/pri.png" },
+                      { name: "Dr. Sooraj", img: "/images/sur.png" },
+                    ].map((jr) => (
+                      <div key={jr.name} className="flex flex-col items-center">
+                        <Image
+                          src={jr.img}
+                          alt={jr.name}
+                          width={112}
+                          height={112}
+                          className="w-28 h-28 rounded-full object-cover shadow-md transform transition duration-300 hover:scale-110"
+                        />
+                        <p className="mt-3 font-medium text-blue-950">{jr.name}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          
-          {/* Right Side - Doctor Image */}
-          <div className="relative">
-            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
-              <div className="relative w-full h-full overflow-hidden">
-              <Image
-                src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
-                alt="Head of Surgery - Dr. Ashwini Kumar"
-                fill
-                className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                loading="lazy"
-                data-ai-hint="geometric pattern background"
-              />
-              </div>
-              {/* Overlay gradient for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-            </div>
-            
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-teal-500/20 rounded-full blur-xl"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl"></div>
-          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
