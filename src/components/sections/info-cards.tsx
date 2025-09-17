@@ -227,10 +227,7 @@ export function InfoCards() {
                   Stoma Clinic
                 </h3>
                 <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
-                  Our Stoma Clinic offers expert care for patients with
-                  colostomies, ileostomies, and urostomies. Services include
-                  appliance fitting, complication management, lifestyle
-                  counselling, and emotional support.
+               Our Stoma Clinic offers expert care for patients with colostomies, ileostomies, and urostomies. Our services include assessment, fitting of appropriate appliances, and prompt management of stoma-related complications. We emphasize patient education, lifestyle counselling, and emotional support to empower individuals in managing their stoma with confidence. Our goal is to restore dignity, comfort, and the highest quality of life for all patients under our care.
                 </p>
               </div>
               <a
