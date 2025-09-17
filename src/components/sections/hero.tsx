@@ -17,9 +17,6 @@ export function Hero() {
           src="/hero1.avif"
           alt="Surgeons in an operating room"
           fill
-          priority
-          quality={85}
-          sizes="100vw"
           data-ai-hint="surgeons operating room"
         />
       </div>

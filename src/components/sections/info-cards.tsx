@@ -139,9 +139,6 @@ export function InfoCards() {
                   width={385}
                   height={321}
                   className="w-full transition-transform duration-700 hover:scale-110"
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
                   data-ai-hint="stoma medical care"
                 />
               </div>
@@ -175,9 +172,6 @@ export function InfoCards() {
                   width={385}
                   height={321}
                   className="w-full transition-transform duration-700 hover:scale-110"
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
                   data-ai-hint="doctors patient consultation hospital room"
                 />
               </div>

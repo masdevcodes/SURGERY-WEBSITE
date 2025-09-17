@@ -32,9 +32,6 @@ export function Providers() {
                   alt="Dr. Jeanette Bowman" 
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -77,9 +74,6 @@ export function Providers() {
                   alt="Dr. Adam Hwang" 
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -122,9 +116,6 @@ export function Providers() {
                   alt="Dr. Sarah Johnson" 
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -167,9 +158,6 @@ export function Providers() {
                   alt="Dr. Michael Chen" 
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -212,9 +200,6 @@ export function Providers() {
                   alt="Dr. Emily Rodriguez" 
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -257,9 +242,6 @@ export function Providers() {
                   alt="Dr. David Kumar" 
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>

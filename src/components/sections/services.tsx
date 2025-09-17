@@ -107,9 +107,6 @@ export function Services() {
                 alt="Doctor consulting with patient"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>

@@ -13,13 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&family=Inter:wght@400;700&family=IBM+Plex+Serif:wght@400&family=Roboto:wght@400&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased" style={{ scrollBehavior: 'smooth' }}>
         {children}
         <Toaster />
       </body>
