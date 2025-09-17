@@ -236,7 +236,7 @@ export function Providers() {
             <p className="text-gray-700 font-bold mb-4"><strong>Unit Incharge:</strong> {selectedProvider.details.incharge}</p>
 
             <div className="mb-4">
-              <strong>Assistant Professors:</strong>
+              <strong>Associate Professors:</strong>
               {renderList(selectedProvider.details.assistantProfessors)}
             </div>
 
