@@ -73,7 +73,7 @@ export function Testimonial() {
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-white mb-6">
             Our YouTube Channel
-            <br /> "SCALPELS AND SUTURES"
+            <br /> " SCALPELS AND SUTURES "
           </h2>
           <p className="text-xl text-blue-200 max-w-3xl mx-auto mb-8">
             Educational videos covering surgical procedures, patient care, and medical insights.
