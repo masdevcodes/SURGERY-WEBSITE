@@ -59,7 +59,7 @@ export function Hero() {
 
           {/* Box 2 - Compassion */}
           <div
-            className="group cursor-pointer bg-gradient-to-br from-blue-500/30 to-purple-500/30 p-6 
+            className="group cursor-pointer bg-teal-500 from-blue-500/30 to-purple-500/30 p-6 
                        shadow-lg border-t border-l md:border-l-0 border-white/30 
                        relative overflow-hidden z-10 
                        transition-all duration-300 ease-in-out
@@ -73,7 +73,7 @@ export function Hero() {
 
           {/* Box 3 - Excellence */}
           <div
-            className="group cursor-pointer bg-gradient-to-br from-blue-500/30 to-purple-500/30 p-6 
+            className="group cursor-pointer bg-teal-500 from-blue-500/30 to-purple-500/30 p-6 
                        rounded-b-lg md:rounded-bl-none md:rounded-r-lg shadow-lg 
                        border-t border-l border-white/30 relative overflow-hidden z-10 
                        transition-all duration-300 ease-in-out
