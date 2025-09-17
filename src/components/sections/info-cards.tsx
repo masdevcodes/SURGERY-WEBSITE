@@ -145,7 +145,7 @@ export function InfoCards() {
   return (
     <section
       id="info"
-      className="py-24 bg-gradient-to-b from-white via-white/0 to-white relative"
+      className="pt-0 pb-24 bg-gradient-to-b from-white via-white/0 to-white relative"
     >
       {/* Background Image */}
       <div className="absolute inset-0 opacity-30">
