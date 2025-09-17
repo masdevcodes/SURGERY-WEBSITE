@@ -182,9 +182,9 @@ export function Providers() {
 
                 <button
                   onClick={() => setSelectedProvider(provider)}
-                  className="px-6 py-2 bg-{provider.color} text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition"
+                  className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition"
                 >
-                  View More Deails of {provider.unit}
+                  View More Deail of {provider.unit}
                 </button>
               </div>
             </div>
