@@ -18,8 +18,6 @@ export function Events() {
   
   const [modalEmblaRef, modalEmblaApi] = useEmblaCarousel({
     loop: true,
-    containScroll: 'keepSnaps',
-    dragFree: false,
   });
   
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(false);
@@ -28,6 +26,7 @@ export function Events() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalPrevBtnDisabled, setModalPrevBtnDisabled] = useState(true);
   const [modalNextBtnDisabled, setModalNextBtnDisabled] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -51,6 +50,7 @@ export function Events() {
   }, []);
 
   const onModalSelect = useCallback((emblaApi) => {
+    setSelectedIndex(emblaApi.selectedScrollSnap());
     setModalPrevBtnDisabled(!emblaApi.canScrollPrev());
     setModalNextBtnDisabled(!emblaApi.canScrollNext());
   }, []);
@@ -63,6 +63,7 @@ export function Events() {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedEvent(null);
+    setSelectedIndex(0);
   };
 
   useEffect(() => {
@@ -93,7 +94,12 @@ export function Events() {
     onModalSelect(modalEmblaApi);
     modalEmblaApi.on('reInit', onModalSelect);
     modalEmblaApi.on('select', onModalSelect);
-  }, [modalEmblaApi, onModalSelect]);
+    
+    // Reset to first image when modal opens
+    if (selectedEvent) {
+      modalEmblaApi.scrollTo(0);
+    }
+  }, [modalEmblaApi, onModalSelect, selectedEvent]);
 
   // Updated events with multiple images
   const events = [
@@ -283,7 +289,7 @@ export function Events() {
         </div>
       </section>
 
-      {/* Modal for Event Images with Slider */}
+      {/* Modal for Event Images with Full Image Slider */}
       {isModalOpen && selectedEvent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
           <div 
@@ -309,57 +315,48 @@ export function Events() {
               </div>
             </div>
             
-            {/* Modal Image Slider */}
-            <div className="relative p-6 bg-gray-100">
-              <div className="overflow-hidden" ref={modalEmblaRef}>
-                <div className="flex">
-                  {/* Group images into slides with 5 images each */}
-                  {(() => {
-                    const slides = [];
-                    for (let i = 0; i < selectedEvent.images.length; i += 5) {
-                      const slideImages = selectedEvent.images.slice(i, i + 5);
-                      slides.push(
-                        <div key={i} className="flex-[0_0_100%] min-w-0">
-                          <div className="grid grid-cols-5 gap-4">
-                            {slideImages.map((img, index) => (
-                              <div key={index} className="relative h-48 rounded-lg overflow-hidden shadow-md">
-                                <Image
-                                  src={img}
-                                  alt={`${selectedEvent.title} - Image ${i + index + 1}`}
-                                  fill
-                                  className="object-cover"
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      );
-                    }
-                    return slides;
-                  })()}
+            {/* Modal Image Slider with Full Images */}
+            <div className="relative h-[60vh] bg-black">
+              <div className="overflow-hidden h-full" ref={modalEmblaRef}>
+                <div className="flex h-full">
+                  {selectedEvent.images.map((img, index) => (
+                    <div key={index} className="flex-[0_0_100%] min-w-0 relative">
+                      <Image
+                        src={img}
+                        alt={`${selectedEvent.title} - Image ${index + 1}`}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
               
               {/* Modal Navigation Buttons */}
               <button
-                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={modalScrollPrev}
                 disabled={modalPrevBtnDisabled}
               >
-                <ChevronLeft className="w-5 h-5 text-blue-950" />
+                <ChevronLeft className="w-6 h-6" />
               </button>
               
               <button
-                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={modalScrollNext}
                 disabled={modalNextBtnDisabled}
               >
-                <ChevronRight className="w-5 h-5 text-blue-950" />
+                <ChevronRight className="w-6 h-6" />
               </button>
+              
+              {/* Image Counter */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+                {selectedIndex + 1} / {selectedEvent.images.length}
+              </div>
             </div>
             
             <div className="p-4 bg-gray-100 text-center text-sm text-gray-500">
-              {selectedEvent.images.length} photos from this event
+              Use arrow keys or swipe to navigate through the photos
             </div>
           </div>
         </div>
