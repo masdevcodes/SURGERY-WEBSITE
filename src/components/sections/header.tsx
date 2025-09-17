@@ -66,20 +66,21 @@ export function Header() {
               e.preventDefault();
               document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' });
             }}
+
+className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
+          >
+            History
+          </a>
+          <a
+            href="#event"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('event')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            
             className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
           >
             Events
-          </a>
-          <a
-            href="#history"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('history')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-
-            className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
-          >
-            History
           </a>
           <a
             href="#contact"
@@ -87,6 +88,7 @@ export function Header() {
               e.preventDefault();
               document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
             }}
+
             
             className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
           >
