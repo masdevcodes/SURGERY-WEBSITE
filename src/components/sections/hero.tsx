@@ -82,7 +82,7 @@ export function Hero() {
                        active:scale-95 active:shadow-inner"
           >
             <h3 className="text-2xl font-bold font-body leading-loose">EXCELLENCE</h3>
-            <div className="w-60 h-0.5 bg-white mt-2 mb-4" />
+            <div className="w-40 h-0.5 bg-white mt-2 mb-4" />
           </div>
         </div>
       </div>
