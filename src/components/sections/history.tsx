@@ -110,7 +110,23 @@ export function History() {
                 <p className="text-sm opacity-90">Established to serve PEPSU region</p>
               </div>
             </div>
-
+ {/* Third Image Holder */}
+            <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl group">
+              <Image
+                src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Government Medical College Patiala historical building"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                quality={85}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 text-white">
+                <h4 className="text-lg font-bold mb-2">GMC Patiala - 1953</h4>
+                <p className="text-sm opacity-90">Established to serve PEPSU region</p>
+              </div>
+            </div>
             {/* Timeline Stats */}
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
               <h4 className="text-2xl font-bold text-blue-950 mb-6 text-center">Key Milestones</h4>
