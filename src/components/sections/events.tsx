@@ -16,10 +16,18 @@ export function Events() {
     }
   });
   
+  const [modalEmblaRef, modalEmblaApi] = useEmblaCarousel({
+    loop: true,
+    containScroll: 'keepSnaps',
+    dragFree: false,
+  });
+  
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(false);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalPrevBtnDisabled, setModalPrevBtnDisabled] = useState(true);
+  const [modalNextBtnDisabled, setModalNextBtnDisabled] = useState(false);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -29,9 +37,22 @@ export function Events() {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  const onSelect = useCallback((emblaApi: any) => {
+  const modalScrollPrev = useCallback(() => {
+    if (modalEmblaApi) modalEmblaApi.scrollPrev();
+  }, [modalEmblaApi]);
+
+  const modalScrollNext = useCallback(() => {
+    if (modalEmblaApi) modalEmblaApi.scrollNext();
+  }, [modalEmblaApi]);
+
+  const onSelect = useCallback((emblaApi) => {
     setPrevBtnDisabled(!emblaApi.canScrollPrev());
     setNextBtnDisabled(!emblaApi.canScrollNext());
+  }, []);
+
+  const onModalSelect = useCallback((emblaApi) => {
+    setModalPrevBtnDisabled(!emblaApi.canScrollPrev());
+    setModalNextBtnDisabled(!emblaApi.canScrollNext());
   }, []);
 
   const handleEventClick = (event) => {
@@ -62,54 +83,104 @@ export function Events() {
 
   useEffect(() => {
     if (!emblaApi) return;
-
     onSelect(emblaApi);
     emblaApi.on('reInit', onSelect);
     emblaApi.on('select', onSelect);
   }, [emblaApi, onSelect]);
 
+  useEffect(() => {
+    if (!modalEmblaApi) return;
+    onModalSelect(modalEmblaApi);
+    modalEmblaApi.on('reInit', onModalSelect);
+    modalEmblaApi.on('select', onModalSelect);
+  }, [modalEmblaApi, onModalSelect]);
+
+  // Updated events with multiple images
   const events = [
     {
       id: 2,
       title: "Medical Workshop on Laparoscopic Surgery",
       date: "February 28, 2024",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
     },
     {
       id: 3,
       title: "Health Awareness Camp",
       date: "January 20, 2024",
-      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
     },
     {
       id: 4,
       title: "Surgical Skills Training Program",
       date: "December 10, 2023",
-      image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
     },
     {
       id: 5,
       title: "International Surgery Symposium",
       date: "November 25, 2023",
-      image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
     },
     {
       id: 6,
       title: "Student Research Presentation",
       date: "October 15, 2023",
-      image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
     },
     {
       id: 7,
       title: "Emergency Surgery Workshop",
       date: "September 12, 2023",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
     },
     {
       id: 8,
       title: "Medical Equipment Training",
       date: "August 18, 2023",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
     }
   ];
 
@@ -175,7 +246,7 @@ export function Events() {
                   >
                     <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                       <Image
-                        src={event.image}
+                        src={event.images[0]}
                         alt={event.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -212,7 +283,7 @@ export function Events() {
         </div>
       </section>
 
-      {/* Modal for Event Image */}
+      {/* Modal for Event Images with Slider */}
       {isModalOpen && selectedEvent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
           <div 
@@ -220,7 +291,7 @@ export function Events() {
             onClick={closeModal}
           ></div>
           
-          <div className="relative z-50 bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="relative z-50 bg-white rounded-xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 z-50 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
@@ -228,16 +299,7 @@ export function Events() {
               <X className="w-6 h-6 text-gray-800" />
             </button>
             
-            <div className="h-[70vh] relative">
-              <Image
-                src={selectedEvent.image}
-                alt={selectedEvent.title}
-                fill
-                className="object-cover"
-              />
-            </div>
-            
-            <div className="p-6 bg-white">
+            <div className="p-6 bg-white border-b">
               <h3 className="text-2xl font-bold text-blue-950 mb-2">
                 {selectedEvent.title}
               </h3>
@@ -245,6 +307,59 @@ export function Events() {
                 <Calendar className="w-5 h-5 mr-2" />
                 <span>{selectedEvent.date}</span>
               </div>
+            </div>
+            
+            {/* Modal Image Slider */}
+            <div className="relative p-6 bg-gray-100">
+              <div className="overflow-hidden" ref={modalEmblaRef}>
+                <div className="flex">
+                  {/* Group images into slides with 5 images each */}
+                  {(() => {
+                    const slides = [];
+                    for (let i = 0; i < selectedEvent.images.length; i += 5) {
+                      const slideImages = selectedEvent.images.slice(i, i + 5);
+                      slides.push(
+                        <div key={i} className="flex-[0_0_100%] min-w-0">
+                          <div className="grid grid-cols-5 gap-4">
+                            {slideImages.map((img, index) => (
+                              <div key={index} className="relative h-48 rounded-lg overflow-hidden shadow-md">
+                                <Image
+                                  src={img}
+                                  alt={`${selectedEvent.title} - Image ${i + index + 1}`}
+                                  fill
+                                  className="object-cover"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    }
+                    return slides;
+                  })()}
+                </div>
+              </div>
+              
+              {/* Modal Navigation Buttons */}
+              <button
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={modalScrollPrev}
+                disabled={modalPrevBtnDisabled}
+              >
+                <ChevronLeft className="w-5 h-5 text-blue-950" />
+              </button>
+              
+              <button
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={modalScrollNext}
+                disabled={modalNextBtnDisabled}
+              >
+                <ChevronRight className="w-5 h-5 text-blue-950" />
+              </button>
+            </div>
+            
+            <div className="p-4 bg-gray-100 text-center text-sm text-gray-500">
+              {selectedEvent.images.length} photos from this event
             </div>
           </div>
         </div>
