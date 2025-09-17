@@ -119,6 +119,7 @@ export function Events() {
   return (
     <>
       <section id="events" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      <section id="events" className="py-12 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-20">
           <Image

@@ -151,7 +151,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden"
+      className="py-12 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
