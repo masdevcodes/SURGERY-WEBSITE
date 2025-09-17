@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export function History() {
   return (
-    <section id="history" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+    <section id="history" className="py-16 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
         <Image
@@ -15,8 +15,8 @@ export function History() {
 
       <div className="container mx-auto relative">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-6">
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-4 mb-4">
             <div className="w-16 h-1 bg-teal-500"></div>
             <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
               Our Legacy
@@ -24,7 +24,7 @@ export function History() {
             <div className="w-16 h-1 bg-teal-500"></div>
           </div>
           
-          <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight mb-6">
+          <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight mb-4">
             A Rich History of Excellence
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -32,9 +32,9 @@ export function History() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left Side - Content */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
               <h3 className="text-3xl font-bold text-blue-950 font-headline mb-6">
                 Surgery Department at Rajindra Medical College: A Pillar of Surgical Care Since the 1950s
@@ -74,7 +74,7 @@ export function History() {
           </div>
 
           {/* Right Side - Images */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* First Image Holder */}
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl group">
               <Image
