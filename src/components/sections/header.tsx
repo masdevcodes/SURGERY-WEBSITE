@@ -79,7 +79,7 @@ export function Header() {
 
             className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
           >
-            Histor
+            History
           </a>
           <a
             href="#contact"
