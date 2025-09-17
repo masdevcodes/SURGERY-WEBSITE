@@ -70,7 +70,7 @@ className="h-full flex items-center border-b-[3px] border-transparent hover:bord
             History
           </a>
           <a
-            href="#events"
+            href="#history"
             onClick={(e) => {
               e.preventDefault();
               document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' });
