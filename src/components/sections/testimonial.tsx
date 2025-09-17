@@ -41,10 +41,10 @@ export function Testimonial() {
           viewCount: "250K",
         });
         setVideos([
-          { id: "abc1", title: "Fallback Video 1", thumbnail: "/fallback1.jpg" },
-          { id: "abc2", title: "Fallback Video 2", thumbnail: "/fallback2.jpg" },
-          { id: "abc3", title: "Fallback Video 3", thumbnail: "/fallback3.jpg" },
-          { id: "abc4", title: "Fallback Video 4", thumbnail: "/fallback4.jpg" },
+          { id: "abc1", title: "Surgical Procedures Overview", thumbnail: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+          { id: "abc2", title: "Patient Care Excellence", thumbnail: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+          { id: "abc3", title: "Advanced Medical Technology", thumbnail: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+          { id: "abc4", title: "Department Tour", thumbnail: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
         ]);
       } finally {
         setLoading(false);

@@ -2,7 +2,6 @@ import { Header } from '@/components/sections/header';
 import { Hero } from '@/components/sections/hero';
 import { InfoCards } from '@/components/sections/info-cards';
 import { About } from '@/components/sections/about';
-import { GuidedByPatients } from '@/components/sections/guided-by-patients';
 import { MedicalSpecialties } from '@/components/sections/medical-specialties';
 import { Providers } from '@/components/sections/providers';
 import { Services } from '@/components/sections/services';

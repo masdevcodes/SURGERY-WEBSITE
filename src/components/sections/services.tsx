@@ -19,7 +19,7 @@ export function Services() {
       description:
         'Nam at varius ut dignissim lorem, in condimentum leo. Vestibulum eget.',
       color: 'text-teal-500',
-      banner: '/cardiology.jpg', // 🔽 Banner image
+      banner: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Cardiology Services</h3>
@@ -37,7 +37,7 @@ export function Services() {
       description:
         'Suspendisse magna nisl, varius ut risus in, porta aliquet nunc.',
       color: 'text-teal-500',
-      banner: '/gastro.jpg',
+      banner: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Gastroenterology Services</h3>
@@ -54,7 +54,7 @@ export function Services() {
       title: 'Ophthalmology',
       description: 'Sed vel odio sapien. Vivamus feugiat faucibus enim dapibus.',
       color: 'text-teal-500',
-      banner: '/ophthalmology.jpg',
+      banner: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Ophthalmology Services</h3>
@@ -71,7 +71,7 @@ export function Services() {
       description:
         'Fusce ac nulla diam. Nulla facilisi. Donec accumsan est nec laoreet.',
       color: 'text-teal-500',
-      banner: '/rheumatology.jpg',
+      banner: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Rheumatology Services</h3>
@@ -89,7 +89,7 @@ export function Services() {
       description:
         'Etiam augue leo, ultrices. Suspendisse magna nisl, varius ut aliquet nunc.',
       color: 'text-teal-500',
-      banner: '/neurology.jpg',
+      banner: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Neurology Services</h3>
@@ -107,7 +107,7 @@ export function Services() {
       description:
         'Etiam metus, tempor quis, sollicitudin sit amet magna cursus vehicula.',
       color: 'text-teal-500',
-      banner: '/urology.jpg',
+      banner: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Urology Services</h3>
