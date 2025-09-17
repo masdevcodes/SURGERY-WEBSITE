@@ -5,6 +5,14 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Healing Touch - GMC Patiala Surgery',
   description: 'Official website for the Department of Surgery at Government Medical College, Patiala.',
+  icons: {
+    icon: '/favicon.ico', // Path to your favicon
+    // You can also add other icon formats:
+    // icon: [{ url: '/favicon.ico' }, { url: '/icon.png', type: 'image/png' }],
+    // shortcut: ['/shortcut-icon.png'],
+    // apple: [{ url: '/apple-icon.png' }, { url: '/apple-icon-x3.png', sizes: '180x180', type: 'image/png' }],
+    // other: { rel: 'apple-touch-icon-precomposed', url: '/apple-touch-icon-precomposed.png' }
+  },
 };
 
 export default function RootLayout({
