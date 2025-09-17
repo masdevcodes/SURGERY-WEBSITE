@@ -230,7 +230,7 @@ export function Providers() {
             </div>
 
             <div className="mb-4">
-              <strong>Junior Residents:</strong>
+              <strong>Junior esidents:</strong>
               {renderList(selectedProvider.details.juniorResidents)}
             </div>
           </div>
