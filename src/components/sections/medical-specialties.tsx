@@ -94,7 +94,7 @@ export function MedicalSpecialties() {
           <div className="relative">
             <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
-                src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
+                src="/hod.png"
                 alt="Head of Surgery - Dr. Ashwani Kumar"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
