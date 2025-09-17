@@ -148,8 +148,7 @@ export function Providers() {
         <div key={idx} className="flex flex-col items-center">
           {showImages && (
             <div 
-              className="w-24 h-24 rounded-full overflow-hidden mb-2 border-2 border-gray-200 cursor-pointer transition-transform duration-300 hover:scale-110"
-              onClick={() => setZoomedImage(getImagePath(name))}
+              className="w-24 h-24 rounded-full overflow-hidden mb-2 border-2 border-gray-200"
             >
               <Image
                 src={getImagePath(name)}
@@ -270,8 +269,7 @@ export function Providers() {
             {/* Unit Incharge with Image */}
             <div className="mb-6 flex flex-col items-center">
               <div 
-                className="w-24 h-24 rounded-full overflow-hidden mb-3 border-2 border-gray-300 cursor-pointer transition-transform duration-300 hover:scale-110"
-                onClick={() => setZoomedImage(getImagePath(selectedProvider.details.incharge))}
+                className="w-24 h-24 rounded-full overflow-hidden mb-3 border-2 border-gray-300"
               >
                 <Image
                   src={getImagePath(selectedProvider.details.incharge)}
