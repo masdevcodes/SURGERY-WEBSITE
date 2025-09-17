@@ -180,12 +180,15 @@ export function Providers() {
                   </div>
                 </div>
 
-                <button
-                  onClick={() => setSelectedProvider(provider)}
-                  className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition"
-                >
-                  View More Deail of {provider.unit}
-                </button>
+                <div className="flex justify-center">
+  <button
+    onClick={() => setSelectedProvider(provider)}
+    className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition"
+  >
+    View More Detail of {provider.unit}
+  </button>
+</div>
+
               </div>
             </div>
           ))}
