@@ -71,6 +71,17 @@ export function Header() {
             Events
           </a>
           <a
+            href="#history"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('history')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+
+            className="h-full flex items-center border-b-[3px] border-transparent hover:border-white text-base font-semibold uppercase"
+          >
+            History
+          </a>
+          <a
             href="#contact"
             onClick={(e) => {
               e.preventDefault();
