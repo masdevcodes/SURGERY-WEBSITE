@@ -14,7 +14,7 @@ export function Hero() {
       <div className="w-full h-full absolute overflow-hidden">
         <Image
           className="w-full h-full object-cover"
-         
+          src="/hero1.avif"
           alt="Surgeons in an operating room"
           fill
           priority
