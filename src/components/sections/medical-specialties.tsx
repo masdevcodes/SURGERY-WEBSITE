@@ -160,23 +160,23 @@ export function MedicalSpecialties() {
                   <div className="grid grid-cols-2 gap-8 justify-items-center">
                     <div className="flex flex-col items-center">
                       <Image
-                        src="/images/dineshkumar.png"
+                        src="/images/jaswinder.png"
                         alt="Dr. Dinesh Kumar Passi"
                         width={112}
                         height={112}
                         className="w-28 h-28 rounded-full object-cover shadow-md transform transition duration-300 hover:scale-110"
                       />
-                      <p className="mt-3 font-bold text-blue-950">Dr. Dinesh Kumar Passi</p>
+                      <p className="mt-3 font-bold text-blue-950">Dr. Jaswinder Singh</p>
                     </div>
                     <div className="flex flex-col items-center">
                       <Image
-                        src="/images/jaswinder.png"
+                        src="/images/dineshkumar.png"
                         alt="Dr. Jaswinder Singh"
                         width={112}
                         height={112}
                         className="w-28 h-28 rounded-full object-cover shadow-md transform transition duration-300 hover:scale-110"
                       />
-                      <p className="mt-3 font-bold text-blue-950">Dr. Jaswinder Singh</p>
+                      <p className="mt-3 font-bold text-blue-950">Dr. Dinesh Kumar Passi</p>
                     </div>
                   </div>
                 </div>
