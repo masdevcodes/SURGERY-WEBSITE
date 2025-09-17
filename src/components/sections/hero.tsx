@@ -45,7 +45,7 @@ export function Hero() {
 
           {/* Box 1 - Precision */}
           <div
-            className="group cursor-pointer bg-gradient-to-br from-blue-500/30 to-purple-500/30 p-6 
+            className="group cursor-pointer bg-teal-500 from-blue-500/30 to-purple-500/30 p-6 
                        rounded-t-lg md:rounded-tr-none md:rounded-l-lg shadow-lg 
                        border-t border-white/30 relative overflow-hidden z-10 
                        transition-all duration-300 ease-in-out
