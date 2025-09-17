@@ -22,6 +22,7 @@ interface Provider {
 
 export function Providers() {
   const [selectedProvider, setSelectedProvider] = useState<Provider | null>(null);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
   // Color mapping for consistent color usage
   const colorMap: Record<string, { text: string; bg: string; from: string; to: string }> = {
@@ -146,13 +147,16 @@ export function Providers() {
       {names.map((name, idx) => (
         <div key={idx} className="flex flex-col items-center">
           {showImages && (
-            <div className="w-16 h-16 rounded-full overflow-hidden mb-2 border-2 border-gray-200">
+            <div 
+              className="w-24 h-24 rounded-full overflow-hidden mb-2 border-2 border-gray-200 cursor-pointer transition-transform duration-300 hover:scale-110"
+              onClick={() => setZoomedImage(getImagePath(name))}
+            >
               <Image
                 src={getImagePath(name)}
                 alt={name}
-                width={64}
-                height={64}
-                className="object-cover"
+                width={96}
+                height={96}
+                className="object-cover w-full h-full"
               />
             </div>
           )}
@@ -238,7 +242,7 @@ export function Providers() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Provider Details Modal */}
       {selectedProvider && (
         <div
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -265,13 +269,16 @@ export function Providers() {
 
             {/* Unit Incharge with Image */}
             <div className="mb-6 flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full overflow-hidden mb-3 border-2 border-gray-300">
+              <div 
+                className="w-24 h-24 rounded-full overflow-hidden mb-3 border-2 border-gray-300 cursor-pointer transition-transform duration-300 hover:scale-110"
+                onClick={() => setZoomedImage(getImagePath(selectedProvider.details.incharge))}
+              >
                 <Image
                   src={getImagePath(selectedProvider.details.incharge)}
                   alt={selectedProvider.details.incharge}
                   width={96}
                   height={96}
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                 />
               </div>
               <p className="text-gray-700 font-bold text-lg">
@@ -292,6 +299,31 @@ export function Providers() {
             <div className="mb-4">
               <strong className="text-lg">Junior Residents:</strong>
               {renderJuniorResidents(selectedProvider.details.juniorResidents)}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Zoomed Image Modal */}
+      {zoomedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-[60] p-4"
+          onClick={() => setZoomedImage(null)}
+        >
+          <div className="relative max-w-4xl max-h-full">
+            <button
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 text-3xl font-bold"
+              onClick={() => setZoomedImage(null)}
+            >
+              ×
+            </button>
+            <div className="relative w-80 h-80 md:w-96 md:h-96">
+              <Image
+                src={zoomedImage}
+                alt="Zoomed profile"
+                fill
+                className="object-contain rounded-lg"
+              />
             </div>
           </div>
         </div>
