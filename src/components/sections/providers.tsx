@@ -176,19 +176,16 @@ export function Providers() {
                   <div>
                     <p className={`text-${provider.color}-600 font-bold text-sm uppercase tracking-wider`}>{provider.unit}</p>
                     <h3 className="text-2xl font-bold text-blue-950 font-headline">{provider.name}</h3>
-                    <h2 className="text-red-600">{provider.email}</h2>
+                    <h2 className="text-gray-600">{provider.email}</h2>
                   </div>
                 </div>
 
-                <div className="flex justify-center">
-  <button
-    onClick={() => setSelectedProvider(provider)}
-    className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition"
-  >
-    View More Detail of {provider.unit}
-  </button>
-</div>
-
+                <button
+                  onClick={() => setSelectedProvider(provider)}
+                  className={`mt-4 w-full py-2 px-4 bg-${provider.color}-600 text-white rounded-xl hover:bg-${provider.color}-700 transition-colors duration-300`}
+                >
+                  View More Details of {provider.unit}
+                </button>
               </div>
             </div>
           ))}
