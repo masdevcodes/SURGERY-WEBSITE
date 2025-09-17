@@ -15,7 +15,7 @@ export function History() {
 
       <div className="container mx-auto relative">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="w-16 h-1 bg-teal-500"></div>
             <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
@@ -24,11 +24,11 @@ export function History() {
             <div className="w-16 h-1 bg-teal-500"></div>
           </div>
           
-          <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight mb-4">
-            A Rich History of Excellence
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-950 font-headline leading-tight mb-4">
+            Surgery Department at Rajindra Medical College
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Serving the community with dedication and surgical expertise since the 1950s
+          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
+            A Pillar of Surgical Care Since the 1950s - Serving the community with dedication and surgical expertise
           </p>
         </div>
 
