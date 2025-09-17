@@ -147,7 +147,7 @@ export function Providers() {
       {names.map((name, idx) => (
         <div key={idx} className="flex flex-col items-center">
           {showImages && (
-            <div className="relative w-32 h-32 rounded-full overflow-hidden mb-3 border-2 border-gray-200 group">
+            <div className="relative w-24 h-24 rounded-full overflow-hidden mb-3 border-2 border-gray-200 group">
               <Image
                 src={getImagePath(name)}
                 alt={name}
@@ -265,7 +265,7 @@ export function Providers() {
 
             {/* Unit Incharge with Image */}
             <div className="mb-8 flex flex-col items-center">
-              <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4 border-2 border-gray-300 group">
+              <div className="relative w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-gray-300 group">
                 <Image
                   src={getImagePath(selectedProvider.details.incharge)}
                   alt={selectedProvider.details.incharge}
