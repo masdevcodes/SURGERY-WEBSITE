@@ -18,8 +18,8 @@ export function Events() {
   
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(false);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState(null); // Track selected event for modal
-  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal state
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -34,19 +34,16 @@ export function Events() {
     setNextBtnDisabled(!emblaApi.canScrollNext());
   }, []);
 
-  // Function to handle event card click
   const handleEventClick = (event) => {
     setSelectedEvent(event);
     setIsModalOpen(true);
   };
 
-  // Function to close modal
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedEvent(null);
   };
 
-  // Close modal on Escape key press
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') closeModal();
@@ -54,7 +51,7 @@ export function Events() {
 
     if (isModalOpen) {
       document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
@@ -118,7 +115,7 @@ export function Events() {
 
   return (
     <>
-      <section id="events" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      <section id="events" className="py-12 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-20">
           <Image
@@ -131,8 +128,8 @@ export function Events() {
         
         <div className="container mx-auto relative">
           {/* Header */}
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-4 mb-6">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-4 mb-4">
               <div className="w-16 h-1 bg-teal-500"></div>
               <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
                 Department Activities
@@ -140,16 +137,16 @@ export function Events() {
               <div className="w-16 h-1 bg-teal-500"></div>
             </div>
             
-            <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight mb-6">
+            <h2 className="text-4xl font-bold text-blue-950 font-headline leading-tight mb-4">
               Recent Events & Activities
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Showcasing our commitment to medical education, research, and community service through various events and programs.
             </p>
           </div>
 
           {/* Slider Container */}
-          <div className="relative px-12"> {/* Added padding to container */}
+          <div className="relative px-12">
             {/* Navigation Buttons */}
             <button
               className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -169,15 +166,14 @@ export function Events() {
 
             {/* Embla Carousel */}
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex"> {/* Removed gap-6 */}
+              <div className="flex">
                 {events.map((event) => (
                   <div
                     key={event.id}
-                    className="flex-none w-80 group cursor-pointer pl-6" /* Added left padding */
+                    className="flex-none w-80 group cursor-pointer pl-6"
                     onClick={() => handleEventClick(event)}
                   >
                     <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                      {/* Fixed Size Image */}
                       <Image
                         src={event.image}
                         alt={event.title}
@@ -188,15 +184,12 @@ export function Events() {
                         loading="lazy"
                       />
                       
-                      {/* Gradient Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                       
-                      {/* Date Badge */}
                       <div className="absolute top-4 left-4 bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                         {event.date}
                       </div>
                       
-                      {/* Transparent Footer with Event Title */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
                         <h3 className="text-white font-bold text-lg leading-tight mb-2">
                           {event.title}
@@ -213,9 +206,8 @@ export function Events() {
             </div>
           </div>
 
-          {/* View All Events Button */}
-          <div className="text-center mt-12">
-            
+          <div className="text-center mt-8">
+            {/* Optional "View All Events" button */}
           </div>
         </div>
       </section>
