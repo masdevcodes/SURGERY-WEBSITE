@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
   ArrowRight,
@@ -19,7 +19,8 @@ export function Services() {
       description:
         'Nam at varius ut dignissim lorem, in condimentum leo. Vestibulum eget.',
       color: 'text-teal-500',
-      banner: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      banner:
+        'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Cardiology Services</h3>
@@ -37,7 +38,8 @@ export function Services() {
       description:
         'Suspendisse magna nisl, varius ut risus in, porta aliquet nunc.',
       color: 'text-teal-500',
-      banner: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      banner:
+        'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Gastroenterology Services</h3>
@@ -54,7 +56,8 @@ export function Services() {
       title: 'Ophthalmology',
       description: 'Sed vel odio sapien. Vivamus feugiat faucibus enim dapibus.',
       color: 'text-teal-500',
-      banner: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      banner:
+        'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Ophthalmology Services</h3>
@@ -71,7 +74,8 @@ export function Services() {
       description:
         'Fusce ac nulla diam. Nulla facilisi. Donec accumsan est nec laoreet.',
       color: 'text-teal-500',
-      banner: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      banner:
+        'https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Rheumatology Services</h3>
@@ -89,7 +93,8 @@ export function Services() {
       description:
         'Etiam augue leo, ultrices. Suspendisse magna nisl, varius ut aliquet nunc.',
       color: 'text-teal-500',
-      banner: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      banner:
+        'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Neurology Services</h3>
@@ -107,7 +112,8 @@ export function Services() {
       description:
         'Etiam metus, tempor quis, sollicitudin sit amet magna cursus vehicula.',
       color: 'text-teal-500',
-      banner: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      banner:
+        'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Urology Services</h3>
@@ -122,6 +128,22 @@ export function Services() {
   ];
 
   const [selectedService, setSelectedService] = useState<any>(null);
+
+  // Left-side carousel images
+  const carouselImages = [
+    '/service11.png',
+    '/service12.png',
+    '/service13.png',
+  ];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Auto-change carousel images every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Close modal
   const closeModal = () => setSelectedService(null);
@@ -144,12 +166,12 @@ export function Services() {
 
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left Side - Doctor Patient Image */}
+          {/* Left Side - Doctor Patient Carousel */}
           <div className="relative">
             <div className="relative h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
-                src="/service11.png"
-                alt="Doctor consulting with patient"
+                src={carouselImages[currentImageIndex]}
+                alt={`Doctor consulting with patient ${currentImageIndex + 1}`}
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 quality={85}
@@ -168,7 +190,7 @@ export function Services() {
                   <Heart className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-blue-950">200+</p>
+                  <p className="text-2xl font-bold text-blue-950">500+</p>
                   <p className="text-sm text-gray-600">Patients Treated Daily</p>
                 </div>
               </div>
