@@ -78,7 +78,7 @@ export function History() {
             {/* First Image Holder */}
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl group">
               <Image
-                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src="/gmcll.png"
                 alt="Historical view of Rajindra Hospital"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
