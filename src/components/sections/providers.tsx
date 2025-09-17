@@ -182,7 +182,7 @@ export function Providers() {
 
                 <button
                   onClick={() => setSelectedProvider(provider)}
-                  className={`mt-4 w-full py-2 px-4 bg-${provider.color}-600 text-white rounded-xl hover:bg-${provider.color}-700 transition-colors duration-300`}
+                  className={`mt-4 w-full py-2 px-4 bg-${provider.color}-600 text-red rounded-xl hover:bg-${provider.color}-700 transition-colors duration-300`}
                 >
                   View More Details of {provider.unit}
                 </button>
