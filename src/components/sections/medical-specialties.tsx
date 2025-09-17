@@ -217,8 +217,9 @@ export function MedicalSpecialties() {
                   </h4>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
                     {[
-                      { name: "Dr. Soumya A", img: "/images/soumya.png" },
+      
                       { name: "Dr. Aseem Anand", img: "/images/aseem.png" },
+            { name: "Dr. Soumya A", img: "/images/soumya.png" },
                       { name: "Dr. Naveen Mangla", img: "/images/naveen.png" },
                       { name: "Dr. Yogyatha", img: "/images/yog.png" },
                       { name: "Dr. Priyanka", img: "/images/pri.png" },
