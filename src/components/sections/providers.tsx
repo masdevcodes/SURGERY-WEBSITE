@@ -41,7 +41,8 @@ export function Providers() {
     const lastName = nameParts[nameParts.length - 1];
     return `/images/doctors/${lastName}.jpg`; // Assuming images are stored with last name
   };
-
+///public/images/doctors/ for Unit incharge AP,SR
+  // Main Provider Images /public/images/
   const providers: Provider[] = [
     {
       id: 1,
