@@ -54,7 +54,7 @@ export function Providers() {
       image: '/images/singla.jpg',
       details: {
         incharge: 'Dr. Prem Singla',
-        assistantProfessors: ['Dr. Parth ', 'Dr. M'],
+        assistantProfessors: ['Dr. Parth Dhamija', 'Dr. M'],
         seniorResidents: ['Dr. Soumya A', 'Dr. Aseem Anand', 'Dr. C'],
         juniorResidents: ['Dr. Aseem Anand', 'Dr. Naveen Mangla', 'Dr. Soumya A', 'Dr. Navneeth', 'Dr. Dinesh', 'Dr. Vineeth Sunaria'],
       },
