@@ -53,7 +53,7 @@ export function Providers() {
       color: 'blue',
       image: '/images/ashwinii.png',
       details: {
-        incharge: 'Dr. Prem Singa',
+        incharge: 'Dr. Prem Singla',
         assistantProfessors: ['Dr. Parth ', 'Dr. M'],
         seniorResidents: ['Dr. Soumya A', 'Dr. Aseem Anand', 'Dr. C'],
         juniorResidents: ['Dr. Aseem Anand', 'Dr. Naveen Mangla', 'Dr. Soumya A', 'Dr. Navneeth', 'Dr. Dinesh', 'Dr. Vineeth Sunaria'],
