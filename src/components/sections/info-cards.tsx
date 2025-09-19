@@ -40,7 +40,7 @@ export function InfoCards() {
       setStomaImageIndex((prevIndex) => 
         prevIndex === stomaImages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 4000); // Change image every 3 seconds
+    }, 3000); // Change image every 3 seconds
 
     const breastInterval = setInterval(() => {
       setBreastImageIndex((prevIndex) => 
