@@ -48,7 +48,7 @@ export function MedicalSpecialties() {
             </div>
 
             {/* Testimony Text */}
-            <blockquote className="text-lg leading-relaxed text-gray-700 italic">
+            <blockquote className="text-lg leading-relaxed text-justify text-gray-700 italic">
               "As the Head of the Department of Surgery, I am proud of the
               commitment and dedication shown by our team in providing the
               highest standard of surgical care. Our department combines
