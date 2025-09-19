@@ -1,5 +1,6 @@
 import { Header } from '@/components/sections/header';
 import { Hero } from '@/components/sections/hero';
+import { Intro } from '@/components/sections/info';
 import { InfoCards } from '@/components/sections/info-cards';
 import { About } from '@/components/sections/about';
 import { MedicalSpecialties } from '@/components/sections/medical-specialties';
@@ -19,6 +20,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Intro />
         <InfoCards />
         <About />
         <MedicalSpecialties />
