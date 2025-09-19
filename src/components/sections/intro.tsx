@@ -107,7 +107,7 @@ export function Intro() {
           {/* Right Side - OPD + OT Info Card */}
           <div className="flex flex-col gap-8 h-full justify-between">
             {/* OPD/OT Card - Decreased width, increased height */}
-            <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl w-full max-w-sm mx-auto h-full flex flex-col justify-between">
+            <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl w-full max-w-sm mx-auto h-full flex flex-col">
               {/* Header with icon */}
               <div className="flex items-center justify-center mb-4">
                 <div className="bg-white/20 p-3 rounded-full mr-3">
@@ -125,7 +125,7 @@ export function Intro() {
                 <h4 className="font-semibold text-lg mb-3 flex items-center">
                   <Users className="w-5 h-5 mr-2" /> OPD Days
                 </h4>
-                <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
+                <div className="space-y-2 h-48 overflow-y-auto pr-2"> {/* Increased height */}
                   {[
                     {unit: 'Unit 1', days: 'Mon & Thu', room: 'Room 8'},
                     {unit: 'Unit 2', days: 'Tue & Fri', room: 'Room 8'},
@@ -134,6 +134,8 @@ export function Intro() {
                     {unit: 'Unit 5', days: 'Tue & Fri', room: 'Room 7'},
                     {unit: 'Unit 6', days: 'Wed & Sat', room: 'Room 7'},
                     {unit: 'Unit 7', days: 'Mon & Thu', room: 'Room 3'},
+                    {unit: 'Unit 8', days: 'Tue & Fri', room: 'Room 3'},
+                    {unit: 'Unit 9', days: 'Wed & Sat', room: 'Room 3'},
                   ].map((item, index) => (
                     <div
                       key={index}
@@ -153,7 +155,7 @@ export function Intro() {
                 <h4 className="font-semibold text-lg mb-3 flex items-center">
                   <Scissors className="w-5 h-5 mr-2" /> OT Days
                 </h4>
-                <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
+                <div className="space-y-2 h-48 overflow-y-auto pr-2"> {/* Increased height */}
                   {[
                     {unit: 'Unit 1', days: 'Tue & Fri'},
                     {unit: 'Unit 2', days: 'Wed & Sat'},
@@ -162,6 +164,9 @@ export function Intro() {
                     {unit: 'Unit 5', days: 'Wed & Sat'},
                     {unit: 'Unit 6', days: 'Mon & Thu'},
                     {unit: 'Unit 7', days: 'Wed & Sat'},
+                    {unit: 'Unit 8', days: 'Mon & Thu'},
+                    {unit: 'Unit 9', days: 'Tue & Fri'},
+                    {unit: 'Unit 10', days: 'Wed & Sat'},
                   ].map((item, index) => (
                     <div
                       key={index}
