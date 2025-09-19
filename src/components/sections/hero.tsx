@@ -48,12 +48,12 @@ export function Hero() {
 
           {/* Box 1 - Precision */}
           <div
-            className="group cursor-pointer bg-teal-500 from-blue-500/30 to-purple-500/30 p-6 
+            className="group cursor-pointer bg-gradient-to-br from-teal-400 to-white p-6 
                        rounded-t-lg md:rounded-tr-none md:rounded-l-lg shadow-lg 
                        border-t border-white/30 relative overflow-hidden z-10 
                        transition-all duration-300 ease-in-out
                        hover:scale-105 hover:shadow-2xl hover:border-white 
-                       hover:from-blue-500/50 hover:to-purple-500/50
+                       hover:bg-teal-500
                        active:scale-95 active:shadow-inner"
           >
             <h3 className="text-2xl font-bold font-body leading-loose">PRECISION</h3>
@@ -62,12 +62,12 @@ export function Hero() {
 
           {/* Box 2 - Compassion */}
           <div
-            className="group cursor-pointer bg-teal-500 from-blue-500/30 to-purple-500/30 p-6 
+            className="group cursor-pointer bg-gradient-to-br from-teal-400 to-white p-6 
                        shadow-lg border-t border-l md:border-l-0 border-white/30 
                        relative overflow-hidden z-10 
                        transition-all duration-300 ease-in-out
                        hover:scale-105 hover:shadow-2xl hover:border-white 
-                       hover:from-blue-500/50 hover:to-purple-500/50
+                       hover:bg-teal-500
                        active:scale-95 active:shadow-inner"
           >
             <h3 className="text-2xl font-bold font-body leading-loose">COMPASSION</h3>
@@ -76,12 +76,12 @@ export function Hero() {
 
           {/* Box 3 - Excellence */}
           <div
-            className="group cursor-pointer bg-teal-500 from-blue-500/30 to-purple-500/30 p-6 
+            className="group cursor-pointer bg-gradient-to-br from-teal-400 to-white p-6 
                        rounded-b-lg md:rounded-bl-none md:rounded-r-lg shadow-lg 
                        border-t border-l border-white/30 relative overflow-hidden z-10 
                        transition-all duration-300 ease-in-out
                        hover:scale-105 hover:shadow-2xl hover:border-white 
-                       hover:from-blue-500/50 hover:to-purple-500/50
+                       hover:bg-teal-500
                        active:scale-95 active:shadow-inner"
           >
             <h3 className="text-2xl font-bold font-body leading-loose">EXCELLENCE</h3>
