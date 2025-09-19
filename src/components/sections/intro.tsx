@@ -46,8 +46,7 @@ export function Intro() {
               </p>
               
               <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                At present, the department is staffed by 5 Professors, 6 Associate Professors, and 6 Assistant Professors, along with 10 Senior Residents who contribute to both patient care and academic activities. With a capacity of 210 surgical beds, we provide extensive facilities for inpatient and operative care.
-                Today, the department operates through seven specialized units, each led by experienced surgeons and supported by a dedicated team of residents and healthcare professionals. Our commitment goes beyond treatment to include medical education, research, and community service, making us a cornerstone of healthcare in the region.
+                At present, the Department of Surgery is staffed by 5 Professors, 6 Associate Professors, 6 Assistant Professors, and 10 Senior Residents who actively contribute to patient care, teaching, and research. With a capacity of 210 surgical beds, the department functions through seven specialized units, each led by experienced surgeons and supported by dedicated residents and healthcare professionals. Our commitment extends beyond providing advanced inpatient and operative care to also fostering medical education, research, and community service, making us a cornerstone of healthcare in the region
               </p>
             </div>
 
