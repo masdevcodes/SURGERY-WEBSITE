@@ -8,6 +8,7 @@ export function InfoCards() {
   const [modalContent, setModalContent] = useState<string | null>(null);
   const [stomaImageIndex, setStomaImageIndex] = useState(0);
   const [breastImageIndex, setBreastImageIndex] = useState(0);
+  const [traumaImageIndex, setTraumaImageIndex] = useState(0);
 
   // Sample image arrays - replace with your actual image paths
   const stomaImages = [
@@ -21,6 +22,12 @@ export function InfoCards() {
     '/brep.png',
     '/bre5.png',
     '/bre1.jpeg',
+  ];
+
+  const traumaImages = [
+    '/trauma1.jpg',
+    '/trauma2.jpg',
+    '/trauma3.jpg',
   ];
 
   function openModal(key: string) {
@@ -49,11 +56,18 @@ export function InfoCards() {
       );
     }, 3500); // Slightly offset timing for visual interest
 
+    const traumaInterval = setInterval(() => {
+      setTraumaImageIndex((prevIndex) => 
+        prevIndex === traumaImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3200); // Different timing for trauma images
+
     return () => {
       clearInterval(stomaInterval);
       clearInterval(breastInterval);
+      clearInterval(traumaInterval);
     };
-  }, [stomaImages.length, breastImages.length]);
+  }, [stomaImages.length, breastImages.length, traumaImages.length]);
 
   // ✅ Reusable modal
   const Modal = ({
@@ -173,6 +187,45 @@ export function InfoCards() {
           </div>
         );
 
+      case 'trauma':
+        return (
+          <div className="flex flex-col justify-center items-center text-center">
+            {/* Banner Image for Trauma Clinic */}
+            <div className="w-full mb-6">
+              <Image
+                src="/trauma1.jpg"
+                alt="Trauma Clinic Banner"
+                width={1200}
+                height={400}
+                className="rounded-lg object-cover w-full h-64"
+              />
+            </div>
+
+            <h2 className="text-3xl font-bold mb-6">Trauma & Emergency Surgery Clinic Details</h2>
+            <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
+              The Trauma & Emergency Surgery Clinic at GMC Patiala provides
+              round-the-clock comprehensive care for patients with acute surgical
+              conditions and traumatic injuries. Our dedicated team of trauma
+              surgeons, emergency physicians, and support staff are trained to
+              handle a wide spectrum of emergencies including road traffic accidents,
+              falls, penetrating injuries, and acute abdominal conditions. The clinic
+              follows advanced trauma life support protocols to ensure rapid assessment,
+              resuscitation, and definitive management of critically injured patients.
+              We are equipped with state-of-the-art facilities for diagnostic imaging,
+              emergency operations, and postoperative critical care. Our multidisciplinary
+              approach involves close collaboration with orthopedics, neurosurgery,
+              radiology, and anesthesia departments to provide integrated care for
+              polytrauma patients. Beyond immediate surgical intervention, the clinic
+              focuses on rehabilitation and long-term recovery, helping patients regain
+              function and return to their normal lives. We also emphasize prevention
+              through community awareness programs about road safety and injury prevention.
+              The Trauma & Emergency Surgery Clinic is committed to delivering timely,
+              expert care when every second counts, saving lives and reducing disability
+              through evidence-based practices and compassionate service.
+            </p>
+          </div>
+        );
+
       default:
         return null;
     }
@@ -196,50 +249,59 @@ export function InfoCards() {
       {/* Container */}
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* OPD + OT Info Card */}
-          <div className="bg-teal-500 rounded-lg p-8 text-white shadow-xl flex flex-col h-full">
-            <h3 className="text-3xl font-bold font-body mb-6">
-              OPD Days{' '}
-              <span className="text-base font-normal opacity-80">
-                (8am - 2.30pm)
-              </span>
-            </h3>
-            <div className="max-h-56 overflow-y-auto mb-10 border border-white/30 rounded-lg bg-white/10 p-4 backdrop-blur-sm shadow-inner">
-              {[
-                'Unit 1 - Mon-Thu, Room No:8',
-                'Unit 2 - Tue-Fri, Room No:8',
-                'Unit 3 - Wed-Sat, Room No:8',
-                'Unit 4 - Mon-Thu, Room No:7',
-                'Unit 5 - Tue-Fri, Room No:7',
-                'Unit 6 - Wed-Sat, Room No:7',
-                'Unit 7 - Mon-Thu, Room No:3',
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="p-3 mb-3 last:mb-0 rounded-md bg-white/20 hover:bg-white/30 transition-colors"
-                >
-                  <p className="font-semibold">{item}</p>
-                </div>
-              ))}
+          {/* Trauma & Emergency Surgery Clinic Card */}
+          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
+            <div className="relative overflow-hidden group">
+              {/* Image Container with Fixed Aspect Ratio */}
+              <div className="w-full h-64 relative">
+                <Image
+                  src={traumaImages[traumaImageIndex]}
+                  alt="Trauma and emergency surgery care"
+                  fill
+                  className="object-cover transition-all duration-1000 ease-in-out"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
+                />
+              </div>
+              
+              {/* Image Indicators */}
+              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+                {traumaImages.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === traumaImageIndex ? 'bg-white scale-125' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
-            <h3 className="text-3xl font-bold font-body mb-6">OT Days</h3>
-            <div className="max-h-56 overflow-y-auto border border-white/30 rounded-lg bg-white/10 p-4 backdrop-blur-sm shadow-inner">
-              {[
-                'Unit 1 - Tue - Fri',
-                'Unit 2 - Wed - Sat',
-                'Unit 3 - Mon - Thu',
-                'Unit 4 - Tue - Fri',
-                'Unit 5 - Wed - Sat',
-                'Unit 6 - Mon - Thu',
-                'Unit 7 - Wed - Sat',
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="p-3 mb-3 last:mb-0 rounded-md bg-white/20 hover:bg-white/30 transition-colors"
-                >
-                  <p className="font-semibold">{item}</p>
-                </div>
-              ))}
+            
+            <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
+              <div>
+                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
+                  Trauma & Emergency Surgery
+                </h3>
+                <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
+                  Our Trauma & Emergency Surgery Clinic provides 24/7 comprehensive care
+                  for patients with acute surgical conditions and traumatic injuries.
+                  Our expert team is trained in advanced trauma life support and manages
+                  everything from road traffic accidents to acute abdominal emergencies.
+                  We emphasize rapid assessment, resuscitation, and definitive surgical
+                  management to save lives and reduce disability.
+                </p>
+              </div>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openModal('trauma');
+                }}
+                className="font-bold text-teal-500 flex items-center gap-2 justify-center"
+              >
+                READ MORE <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
