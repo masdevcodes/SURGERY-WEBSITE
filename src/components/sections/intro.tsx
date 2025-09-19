@@ -3,7 +3,7 @@ import { Users, Award, Clock, Heart, Calendar, Scissors } from 'lucide-react';
 
 export function Intro() {
   return (
-    <section id="intro" className="mt-[-93.9px] py-24 bg-gradient-to-br from-blue-50 via-white to-teal-50 relative overflow-hidden">
+   <section id="intro" className="mt-[-93.9px] py-24 bg-gradient-to-br from-blue-50 via-white to-teal-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-40">
         <Image
@@ -50,7 +50,7 @@ export function Intro() {
 
             {/* Key Highlights */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center">
                     <Users className="w-6 h-6 text-white" />
@@ -62,7 +62,7 @@ export function Intro() {
                 </div>
               </div>
 
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
                     <Award className="w-6 h-6 text-white" />
@@ -74,7 +74,7 @@ export function Intro() {
                 </div>
               </div>
 
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
                     <Clock className="w-6 h-6 text-white" />
@@ -86,7 +86,7 @@ export function Intro() {
                 </div>
               </div>
 
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
                     <Heart className="w-6 h-6 text-white" />
@@ -102,7 +102,7 @@ export function Intro() {
 
           {/* Right Side - OPD + OT Info Card */}
           <div className="relative flex flex-col items-center">
-            <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl w-full max-w-md transform transition-all duration-300 hover:scale-105 cursor-pointer">
+            <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl w-full max-w-md">
               {/* Header with icon */}
               <div className="flex items-center justify-center mb-4">
                 <div className="bg-white/20 p-3 rounded-full mr-3">
@@ -132,7 +132,7 @@ export function Intro() {
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center transform transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center"
                     >
                       <span className="font-medium">{item.unit}</span>
                       <div className="text-right text-sm">
@@ -160,7 +160,7 @@ export function Intro() {
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center transform transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center"
                     >
                       <span className="font-medium">{item.unit}</span>
                       <span className="text-sm">{item.days}</span>
@@ -171,7 +171,7 @@ export function Intro() {
             </div>
 
             {/* Stats Card */}
-            <div className="mt-8 bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg w-full max-w-md border border-teal-100 transform transition-all duration-300 hover:scale-105 cursor-pointer">
+            <div className="mt-8 bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg w-full max-w-md border border-teal-100">
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="p-2">
                   <div className="text-2xl font-bold text-teal-600 mb-1">500+</div>
@@ -196,7 +196,7 @@ export function Intro() {
 
         {/* Bottom Section - Mission Statement */}
         <div className="mt-20 text-center">
-          <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20 transform transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+          <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
             <h3 className="text-2xl font-bold text-blue-950 mb-4">Our Mission</h3>
             <p className="text-lg text-gray-700 leading-relaxed italic">
               "To provide exceptional surgical care through innovation, education, and compassionate service, 
@@ -205,19 +205,6 @@ export function Intro() {
           </div>
         </div>
       </div>
-
-      {/* Add custom CSS for smooth zoom transitions */}
-      <style jsx>{`
-        .transform {
-          transition: transform 0.3s ease;
-        }
-        .hover\\:scale-105:hover {
-          transform: scale(1.05);
-        }
-        .hover\\:scale-\\[1\\.02\\]:hover {
-          transform: scale(1.02);
-        }
-      `}</style>
     </section>
   );
 }
