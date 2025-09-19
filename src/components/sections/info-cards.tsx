@@ -20,7 +20,6 @@ export function InfoCards() {
     '/brep.png',
     '/bre5.png',
     '/breast2.jpg',
-    '/breast3.jpg'
   ];
 
   function openModal(key: string) {
