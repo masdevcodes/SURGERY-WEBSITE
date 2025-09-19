@@ -343,7 +343,7 @@ export function InfoCards() {
                   examination, imaging guidance, and biopsy facilities. Along
                   with diagnosis and treatment, it emphasizes patient
                   counselling, awareness, and follow-up care to ensure
-                  comprehensive managemet of breast health.
+                  comprehensive management of breast health.
                 </p>
               </div>
               <a
