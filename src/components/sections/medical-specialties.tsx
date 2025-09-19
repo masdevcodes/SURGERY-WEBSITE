@@ -14,7 +14,7 @@ export function MedicalSpecialties() {
           src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
           alt="Abstract geometric background"
           fill
-          className="object-cover opacity-10"
+          className="object-cover opacity-30"
         />
       </div>
 
