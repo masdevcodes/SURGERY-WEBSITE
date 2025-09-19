@@ -11,10 +11,10 @@ export function MedicalSpecialties() {
       {/* Background Pattern */}
       <div className="absolute inset-0">
         <Image
-          src="/Gemini_Generated_Image_d69dd3d69dd3d69d.png"
+          src="/hod.png"
           alt="Abstract geometric background"
           fill
-          className="object-cover opacity-30"
+          className="object-cover opacity-10"
         />
       </div>
 
