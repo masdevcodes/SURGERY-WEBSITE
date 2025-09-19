@@ -45,7 +45,7 @@ export function About() {
                 <p className="text-base text-blue-950/80 text-justify leading-relaxed">
                   A community in which all people achieve their full potential for health and well-being across the lifespan. We work to be trusted by patients, a valued partner in the community, and creators of positive change.
                 </p>
-                <p className="text-base text-blue-950/80 leading-relaxed mt-4">
+                <p className="text-base text-blue-950/80 text-justify leading-relaxed mt-4">
                   We use a team approach to providing health care, and involve the patient as part of our team. Health our staff in the community enhances our ability to provide of often highly specialized effective.
                 </p>
               </div>
