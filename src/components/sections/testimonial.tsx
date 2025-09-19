@@ -9,7 +9,7 @@ interface ChannelStats {
   viewCount: string;
 }
 
-interface Video {
+//interface Video {
   id: string;
   title: string;
   thumbnail: string;
@@ -17,8 +17,8 @@ interface Video {
 
 export function Testimonial() {
   const [channelStats, setChannelStats] = useState<ChannelStats | null>(null);
-  const [videos, setVideos] = useState<Video[]>([]);
-  const [loading, setLoading] = useState(true);
+  //const [videos, setVideos] = useState<Video[]>([]);
+  //const [loading, setLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   useEffect(() => {
