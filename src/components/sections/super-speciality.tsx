@@ -65,7 +65,7 @@ export function SuperSpeciality() {
       name: 'Surgical Oncology',
       icon: <Shield className="w-8 h-8" />,
       description: 'Comprehensive cancer surgery with multidisciplinary approach for optimal patient outcomes.',
-      detailedDescription: 'Our Surgical Oncology department provides specialized cancer surgery services with a multidisciplinary approach. We work closely with medical oncologists and radiation oncologists to provide comprehensive cancer care. Our expertise includes complex tumor resections and reconstructive procedures.',
+      detailedDescription: 'The Department of Surgical Oncology at GMC & Rajindra Hospital, Patiala is committed to providing comprehensive surgical care in the diagnosis, treatment, and management of cancer. Our skilled surgical oncologists perform complex operations for a wide variety of tumors, including breast, gastrointestinal, head & neck, skin, soft tissue, and other malignancies.With access to modern operating theatres, multidisciplinary collaboration (with medical oncology, radiation oncology, radiology, pathology), and a patient-centric approach, the department aims to deliver the best possible outcomes while ensuring compassionate care. We also serve as a center for cancer surgery training and research, helping advance oncological surgical practices in the region.',
       color: 'text-green-600',
       image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       services: [
