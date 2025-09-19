@@ -3,7 +3,7 @@ import { Users, Award, Clock, Heart, Stethoscope, Activity } from 'lucide-react'
 
 export function Intro() {
   return (
-    <section id="intro" className="py-24 bg-gradient-to-br from-blue-50 via-white to-teal-50 relative overflow-hidden">
+   <section id="intro" className="mt-[-93.9px] py-24 bg-gradient-to-br from-blue-50 via-white to-teal-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <Image
