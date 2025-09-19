@@ -25,9 +25,8 @@ export function InfoCards() {
   ];
 
   const traumaImages = [
-    '/trauma1.jpg',
-    '/trauma2.jpg',
-    '/trauma3.jpg',
+    '/emer.png',
+    
   ];
 
   function openModal(key: string) {
