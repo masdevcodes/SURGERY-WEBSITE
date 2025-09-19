@@ -19,7 +19,7 @@ export function InfoCards() {
   const breastImages = [
     '/brep.png',
     '/bre5.png',
-    '/breast2.jpg',
+    '/bre1.jpeg',
   ];
 
   function openModal(key: string) {
