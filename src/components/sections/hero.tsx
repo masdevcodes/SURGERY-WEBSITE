@@ -35,10 +35,10 @@ export function Hero() {
           </h1>
           <h1 className="text-8xl font-bold font-headline leading-tight">
             at your service
-          </h1>
+          </h1><P>
           <h1 className="text-3xl font-bold font-headline leading-tight">
             DEPARTMENT OF GENERAL & MINIMAL ACCESS SURGERY
-          </h1>
+          </h1></P>
         </div>
       </div>
 
