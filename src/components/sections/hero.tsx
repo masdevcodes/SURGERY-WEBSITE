@@ -53,7 +53,7 @@ export function Hero() {
                        border-t border-white/30 relative overflow-hidden z-10 
                        transition-all duration-300 ease-in-out
                        hover:scale-105 hover:shadow-2xl hover:border-white 
-                       hover:bg-teal-500
+                       hover:!bg-teal-500
                        active:scale-95 active:shadow-inner"
           >
             <h3 className="text-2xl font-bold font-body leading-loose">PRECISION</h3>
@@ -67,7 +67,7 @@ export function Hero() {
                        relative overflow-hidden z-10 
                        transition-all duration-300 ease-in-out
                        hover:scale-105 hover:shadow-2xl hover:border-white 
-                       hover:bg-teal-500
+                       hover:!bg-teal-500
                        active:scale-95 active:shadow-inner"
           >
             <h3 className="text-2xl font-bold font-body leading-loose">COMPASSION</h3>
@@ -81,7 +81,7 @@ export function Hero() {
                        border-t border-l border-white/30 relative overflow-hidden z-10 
                        transition-all duration-300 ease-in-out
                        hover:scale-105 hover:shadow-2xl hover:border-white 
-                       hover:bg-teal-500
+                       hover:!bg-teal-500
                        active:scale-95 active:shadow-inner"
           >
             <h3 className="text-2xl font-bold font-body leading-loose">EXCELLENCE</h3>
