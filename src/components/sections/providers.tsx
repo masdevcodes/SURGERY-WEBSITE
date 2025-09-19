@@ -11,7 +11,7 @@ interface Provider {
   email: string;
   description: string;
   color: string;
-  image: string; // local path
+  image: string;
   details: {
     incharge: string;
     assistantProfessors: string[];
@@ -24,7 +24,6 @@ export function Providers() {
   const [selectedProvider, setSelectedProvider] = useState<Provider | null>(null);
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
-  // Color mapping for consistent color usage
   const colorMap: Record<string, { text: string; bg: string; from: string; to: string }> = {
     blue: { text: 'text-blue-600', bg: 'bg-blue-500', from: 'from-blue-400', to: 'to-blue-600' },
     purple: { text: 'text-purple-600', bg: 'bg-purple-500', from: 'from-purple-400', to: 'to-purple-600' },
@@ -34,29 +33,26 @@ export function Providers() {
     indigo: { text: 'text-indigo-600', bg: 'bg-indigo-500', from: 'from-indigo-400', to: 'to-indigo-600' },
   };
 
-  // Function to get image path based on name
   const getImagePath = (name: string) => {
-    // Remove "Dr. " prefix and split the name
-    const cleanName = name.replace('Dr. ', '');
-    const nameParts = cleanName.toLowerCase().split(' ');
+    const cleanName = name.replace('Dr. ', '').toLowerCase();
     
-    // For Junior Residents, we have specific image paths
-    if (nameParts.includes('dinesh')) return '/images/dinesh.png';
-    if (nameParts.includes('navneeth') || nameParts.includes('shankar')) return '/images/navneeth.png';
-    if (nameParts.includes('vineeth') || nameParts.includes('sunaria')) return '/images/vineeth.png';
-    if (nameParts.includes('aseem') || nameParts.includes('anand')) return '/images/aseem.png';
-    if (nameParts.includes('soumya')) return '/images/soumya.png';
-    if (nameParts.includes('naveen') || nameParts.includes('mangla')) return '/images/naveen.png';
-    if (nameParts.includes('yogyatha') || nameParts.includes('yog')) return '/images/yog.png';
-    if (nameParts.includes('priyanka') || nameParts.includes('pri')) return '/images/pri.png';
-    if (nameParts.includes('sooraj') || nameParts.includes('sur')) return '/images/sur.png';
+    // Map specific names to image paths
+    if (cleanName.includes('dinesh')) return '/images/dinesh.png';
+    if (cleanName.includes('navneeth') || cleanName.includes('shankar')) return '/images/navneeth.png';
+    if (cleanName.includes('vineeth') || cleanName.includes('sunaria')) return '/images/vineeth.png';
+    if (cleanName.includes('aseem') || cleanName.includes('anand')) return '/images/aseem.png';
+    if (cleanName.includes('soumya')) return '/images/soumya.png';
+    if (cleanName.includes('naveen') || cleanName.includes('mangla')) return '/images/naveen.png';
+    if (cleanName.includes('yogyatha') || cleanName.includes('yog')) return '/images/yog.png';
+    if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/pri.png';
+    if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/sur.png';
     
-    // Default fallback for other doctors
+    // Default fallback
+    const nameParts = cleanName.split(' ');
     const lastName = nameParts[nameParts.length - 1];
     return `/images/doctors/${lastName}.jpg`;
   };
 
-  // Main Provider Images /public/images/
   const providers: Provider[] = [
     {
       id: 1,
@@ -156,7 +152,6 @@ export function Providers() {
     },
   ];
 
-  // Helper to render lists with images for certain roles
   const renderListWithImages = (names: string[], showImages: boolean) => (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 justify-items-center mt-4">
       {names.map((name, idx) => (
@@ -175,4 +170,159 @@ export function Providers() {
               />
             </div>
           )}
-          <p className="
+          <p className="font-medium text-blue-950 text-sm text-center">{name}</p>
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <section id="providers" className="py-24 bg-gradient-to-br from-gray-50 to-white relative">
+      <div className="absolute inset-0 opacity-50">
+        <Image
+          src="/111 copy copy.png"
+          alt="Geometric background pattern"
+          fill
+          className="object-cover"
+        />
+      </div>
+
+      <div className="container mx-auto relative z-10">
+        <h2 className="text-6xl font-bold text-blue-950 font-headline mb-4">Our Providers</h2>
+        <p className="text-xl text-gray-600 mb-12">Meet our experienced Medical Professionals</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {providers.map((provider) => {
+            const colorInfo = colorMap[provider.color] || colorMap.blue;
+            
+            return (
+              <div
+                key={provider.id}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+              >
+                <div className="relative overflow-hidden h-80">
+                  <Image
+                    src={provider.image}
+                    alt={provider.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    quality={85}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="p-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div
+                      className={`w-16 h-16 bg-gradient-to-br ${colorInfo.from} ${colorInfo.to} rounded-xl flex items-center justify-center shadow-lg`}
+                    >
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2C19.5 2 24 6.5 24 12C24 17.5 19.5 22 14 22C8.5 22 4 17.5 4 12C4 6.5 8.5 2 14 2Z" fill="white" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className={`${colorInfo.text} font-bold text-sm uppercase tracking-wider`}>{provider.unit}</p>
+                      <h3 className="text-2xl font-bold text-blue-950 font-headline">{provider.name}</h3>
+                      <h2 className="text-red-600">{provider.email}</h2>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center">
+                    <button
+                      onClick={() => setSelectedProvider(provider)}
+                      className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition"
+                    >
+                      View More Detail of {provider.unit}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {selectedProvider && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedProvider(null)}
+        >
+          <div
+            className="bg-white rounded-2xl max-w-4xl w-full p-8 relative overflow-y-auto max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 font-bold text-xl"
+              onClick={() => setSelectedProvider(null)}
+            >
+              ×
+            </button>
+
+            <h2
+              className="text-3xl font-bold mb-6 text-center"
+              style={{ color: selectedProvider.color }}
+            >
+              {selectedProvider.unit}
+            </h2>
+
+            <div className="mb-8 flex flex-col items-center">
+              <div 
+                className="relative w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-gray-300 group cursor-pointer"
+                onClick={() => setZoomedImage(getImagePath(selectedProvider.details.incharge))}
+              >
+                <Image
+                  src={getImagePath(selectedProvider.details.incharge)}
+                  alt={selectedProvider.details.incharge}
+                  fill
+                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <p className="text-gray-700 font-bold text-lg">
+                <strong>Unit Incharge:</strong> {selectedProvider.details.incharge}
+              </p>
+            </div>
+
+            <div className="mb-8">
+              <strong className="text-lg">Associate Professors:</strong>
+              {renderListWithImages(selectedProvider.details.assistantProfessors, true)}
+            </div>
+
+            <div className="mb-8">
+              <strong className="text-lg">Senior Residents:</strong>
+              {renderListWithImages(selectedProvider.details.seniorResidents, true)}
+            </div>
+
+            <div className="mb-4">
+              <strong className="text-lg">Junior Residents:</strong>
+              {renderListWithImages(selectedProvider.details.juniorResidents, true)}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {zoomedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-[60] p-4"
+          onClick={() => setZoomedImage(null)}
+        >
+          <div className="relative max-w-4xl max-h-full">
+            <button
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 text-3xl font-bold"
+              onClick={() => setZoomedImage(null)}
+            >
+              ×
+            </button>
+            <div className="relative w-80 h-80 md:w-96 md:h-96">
+              <Image
+                src={zoomedImage}
+                alt="Zoomed profile"
+                fill
+                className="object-contain rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
