@@ -58,7 +58,7 @@ export function Testimonial() {
     return (
       <section className="py-24 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950">
         <div className="container mx-auto text-center text-blue-200 animate-pulse">
-          Loading channe stats...
+          Loading channel stats...
         </div>
       </section>
     );
