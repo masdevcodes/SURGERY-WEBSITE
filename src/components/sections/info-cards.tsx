@@ -13,7 +13,7 @@ export function InfoCards() {
   const stomaImages = [
     '/stomay.png',
     '/sto2.jpg',
-    '/brep.png',
+    '/sto3.jpg',
     '/stonav.png'
   ];
   
