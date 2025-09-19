@@ -195,8 +195,8 @@ export function InfoCards() {
 
       {/* Container */}
       <div className="container mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* OPD + OT Info Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-stretch">
+          {/* OPD Info Card */}
           <div className="bg-teal-500 rounded-lg p-8 text-white shadow-xl flex flex-col h-full">
             <h3 className="text-3xl font-bold font-body mb-6">
               OPD Days{' '}
@@ -204,7 +204,7 @@ export function InfoCards() {
                 (8am - 2.30pm)
               </span>
             </h3>
-            <div className="max-h-56 overflow-y-auto mb-10 border border-white/30 rounded-lg bg-white/10 p-4 backdrop-blur-sm shadow-inner">
+            <div className="max-h-56 overflow-y-auto mb-4 border border-white/30 rounded-lg bg-white/10 p-4 backdrop-blur-sm shadow-inner">
               {[
                 'Unit 1 - Mon-Thu, Room No:8',
                 'Unit 2 - Tue-Fri, Room No:8',
@@ -222,6 +222,10 @@ export function InfoCards() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* OT Info Card */}
+          <div className="bg-teal-600 rounded-lg p-8 text-white shadow-xl flex flex-col h-full">
             <h3 className="text-3xl font-bold font-body mb-6">OT Days</h3>
             <div className="max-h-56 overflow-y-auto border border-white/30 rounded-lg bg-white/10 p-4 backdrop-blur-sm shadow-inner">
               {[
