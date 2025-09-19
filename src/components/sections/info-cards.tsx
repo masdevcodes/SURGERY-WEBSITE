@@ -135,7 +135,7 @@ export function InfoCards() {
             {/* Banner Image for Breast Clinic */}
             <div className="w-full mb-6">
               <Image
-                src="/bre1.png"
+                src="/bre1.jpeg"
                 alt="Breast Clinic Banner"
                 width={1200}
                 height={400}
