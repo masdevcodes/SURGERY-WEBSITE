@@ -66,7 +66,7 @@ export function MedicalSpecialties() {
             {/* Doctor Info + Button */}
             <div className="pt-6 border-t border-gray-200 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-teal-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-lg">AK</span>
                 </div>
                 <div>
@@ -137,7 +137,7 @@ export function MedicalSpecialties() {
                   </h4>
                   <div className="flex justify-center">
                     <div className="flex flex-col items-center">
-                      <div className="w-40 h-40 rounded-full overflow-hidden shadow-md mb-4 group">
+                      <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
                           src="/images/ashwini.png"
                           alt="Dr. Ashwani Kumar"
@@ -161,7 +161,7 @@ export function MedicalSpecialties() {
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center">
                     <div className="flex flex-col items-center">
-                      <div className="w-36 h-36 rounded-full overflow-hidden shadow-md mb-4 group">
+                      <div className="w-36 h-36 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
                           src="/images/jaswinder.jpg"
                           alt="Dr. Jaswinder Singh"
@@ -173,7 +173,7 @@ export function MedicalSpecialties() {
                       <p className="font-bold text-blue-950 text-center">Dr. Jaswinder Singh</p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="w-36 h-36 rounded-full overflow-hidden shadow-md mb-4 group">
+                      <div className="w-36 h-36 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
                           src="/images/dineshkumar.png"
                           alt="Dr. Dinesh Kumar Passi"
@@ -194,7 +194,7 @@ export function MedicalSpecialties() {
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center">
                     <div className="flex flex-col items-center">
-                      <div className="w-32 h-32 rounded-full overflow-hidden shadow-md mb-4 group">
+                      <div className="w-32 h-32 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
                           src="/images/parth.png"
                           alt="Dr. Parth Dhamija"
@@ -206,7 +206,7 @@ export function MedicalSpecialties() {
                       <p className="font-medium text-blue-950 text-center">Dr. Parth Dhamija</p>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="w-32 h-32 rounded-full overflow-hidden shadow-md mb-4 group">
+                      <div className="w-32 h-32 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
                           src="/images/thalib.png"
                           alt="Dr. Talib Khan"
@@ -238,7 +238,7 @@ export function MedicalSpecialties() {
                       { name: "Dr. Sooraj", img: "/images/sur.png" },
                     ].map((jr) => (
                       <div key={jr.name} className="flex flex-col items-center">
-                        <div className="w-28 h-28 rounded-full overflow-hidden shadow-md mb-3 group">
+                        <div className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group">
                           <Image
                             src={jr.img}
                             alt={jr.name}
