@@ -101,7 +101,7 @@ export function Testimonial() {
 
           {/* Subscribe Button */}
           <div className="flex items-center justify-center gap-4">
-            <img src="ytlogo.png" alt="YouTube Channel Logo" className="w-10 h-10 rounded-full" />
+            <img src="ytlogo.png" alt="YouTube Channel Logo" className="w-20 h-10 rounded-full" />
             <a
               href="https://www.youtube.com/@Scalpelsnsuture"
               target="_blank"
