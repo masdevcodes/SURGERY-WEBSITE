@@ -196,66 +196,50 @@ export function InfoCards() {
       {/* Container */}
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* OPD + OT Info Card - UPDATED */}
+          {/* OPD + OT Info Card */}
           <div className="bg-teal-500 rounded-lg p-8 text-white shadow-xl flex flex-col h-full">
-            <div className="mb-8 text-center">
-              <h2 className="text-4xl font-bold font-body mb-2">OPD & OT Schedule</h2>
-              <div className="w-20 h-1 bg-white mx-auto"></div>
+            <h3 className="text-3xl font-bold font-body mb-6">
+              OPD Days{' '}
+              <span className="text-base font-normal opacity-80">
+                (8am - 2.30pm)
+              </span>
+            </h3>
+            <div className="max-h-56 overflow-y-auto mb-10 border border-white/30 rounded-lg bg-white/10 p-4 backdrop-blur-sm shadow-inner">
+              {[
+                'Unit 1 - Mon-Thu, Room No:8',
+                'Unit 2 - Tue-Fri, Room No:8',
+                'Unit 3 - Wed-Sat, Room No:8',
+                'Unit 4 - Mon-Thu, Room No:7',
+                'Unit 5 - Tue-Fri, Room No:7',
+                'Unit 6 - Wed-Sat, Room No:7',
+                'Unit 7 - Mon-Thu, Room No:3',
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="p-3 mb-3 last:mb-0 rounded-md bg-white/20 hover:bg-white/30 transition-colors"
+                >
+                  <p className="font-semibold">{item}</p>
+                </div>
+              ))}
             </div>
-            
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* OPD Schedule */}
-              <div className="bg-white/10 rounded-xl p-5 backdrop-blur-sm border border-white/20">
-                <h3 className="text-2xl font-bold mb-4 text-center pb-2 border-b border-white/30">
-                  OPD Days <span className="text-sm font-normal opacity-80">(8am - 2.30pm)</span>
-                </h3>
-                <div className="max-h-64 overflow-y-auto space-y-3 pr-2">
-                  {[
-                    {unit: 'Unit 1', schedule: 'Mon-Thu', room: 'Room No:8'},
-                    {unit: 'Unit 2', schedule: 'Tue-Fri', room: 'Room No:8'},
-                    {unit: 'Unit 3', schedule: 'Wed-Sat', room: 'Room No:8'},
-                    {unit: 'Unit 4', schedule: 'Mon-Thu', room: 'Room No:7'},
-                    {unit: 'Unit 5', schedule: 'Tue-Fri', room: 'Room No:7'},
-                    {unit: 'Unit 6', schedule: 'Wed-Sat', room: 'Room No:7'},
-                    {unit: 'Unit 7', schedule: 'Mon-Thu', room: 'Room No:3'},
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="p-3 rounded-lg bg-white/15 hover:bg-white/20 transition-colors"
-                    >
-                      <p className="font-semibold text-lg">{item.unit}</p>
-                      <p className="text-sm opacity-90">{item.schedule}</p>
-                      <p className="text-xs opacity-80 mt-1">{item.room}</p>
-                    </div>
-                  ))}
+            <h3 className="text-3xl font-bold font-body mb-6">OT Days</h3>
+            <div className="max-h-56 overflow-y-auto border border-white/30 rounded-lg bg-white/10 p-4 backdrop-blur-sm shadow-inner">
+              {[
+                'Unit 1 - Tue - Fri',
+                'Unit 2 - Wed - Sat',
+                'Unit 3 - Mon - Thu',
+                'Unit 4 - Tue - Fri',
+                'Unit 5 - Wed - Sat',
+                'Unit 6 - Mon - Thu',
+                'Unit 7 - Wed - Sat',
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="p-3 mb-3 last:mb-0 rounded-md bg-white/20 hover:bg-white/30 transition-colors"
+                >
+                  <p className="font-semibold">{item}</p>
                 </div>
-              </div>
-
-              {/* OT Schedule */}
-              <div className="bg-white/10 rounded-xl p-5 backdrop-blur-sm border border-white/20">
-                <h3 className="text-2xl font-bold mb-4 text-center pb-2 border-b border-white/30">
-                  OT Days
-                </h3>
-                <div className="max-h-64 overflow-y-auto space-y-3 pr-2">
-                  {[
-                    {unit: 'Unit 1', days: 'Tue - Fri'},
-                    {unit: 'Unit 2', days: 'Wed - Sat'},
-                    {unit: 'Unit 3', days: 'Mon - Thu'},
-                    {unit: 'Unit 4', days: 'Tue - Fri'},
-                    {unit: 'Unit 5', days: 'Wed - Sat'},
-                    {unit: 'Unit 6', days: 'Mon - Thu'},
-                    {unit: 'Unit 7', days: 'Wed - Sat'},
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="p-3 rounded-lg bg-white/15 hover:bg-white/20 transition-colors"
-                    >
-                      <p className="font-semibold text-lg">{item.unit}</p>
-                      <p className="text-sm opacity-90">{item.days}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
