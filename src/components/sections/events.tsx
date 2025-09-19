@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image/event';
+import Image from 'next/image/';
 import { Calendar, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -108,7 +108,7 @@ export function Events() {
       title: "Workshop on Robotic Laparoscopic Surgery",
       date: "February 28, 2024",
       images: [
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "/event/spark/sp4.jpg",
         "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
