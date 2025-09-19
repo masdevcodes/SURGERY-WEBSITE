@@ -248,7 +248,7 @@ export function InfoCards() {
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {/* Breast Clinic Card - Now First */}
-          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-shadow duration-300">
+          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
             <div className="relative overflow-hidden">
               {/* Image Container with Fixed Aspect Ratio and Zoom Effect */}
               <div className="w-full h-64 relative overflow-hidden">
@@ -278,7 +278,7 @@ export function InfoCards() {
             
             <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
               <div>
-                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
+                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
                   Breast Clinic
                 </h3>
                 <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
@@ -306,7 +306,7 @@ export function InfoCards() {
           </div>
 
           {/* Trauma & Emergency Surgery Clinic Card - Now Second */}
-          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-shadow duration-300">
+          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
             <div className="relative overflow-hidden">
               {/* Image Container with Fixed Aspect Ratio and Zoom Effect */}
               <div className="w-full h-64 relative overflow-hidden">
@@ -336,7 +336,7 @@ export function InfoCards() {
             
             <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
               <div>
-                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
+                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
                   Trauma & Emergency Surgery
                 </h3>
                 <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
@@ -362,7 +362,7 @@ export function InfoCards() {
           </div>
 
           {/* Stoma Clinic Card - Now Third */}
-          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-shadow duration-300">
+          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
             <div className="relative overflow-hidden">
               {/* Image Container with Fixed Aspect Ratio and Zoom Effect */}
               <div className="w-full h-64 relative overflow-hidden">
@@ -392,7 +392,7 @@ export function InfoCards() {
             
             <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
               <div>
-                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
+                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
                   Stoma Clinic
                 </h3>
                 <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
