@@ -66,8 +66,8 @@ export function Providers() {
       details: {
         incharge: 'Dr. Prem Singla',
         assistantProfessors: ['Dr. Parth Dhamija', 'Dr. M'],
-        seniorResidents: ['Dr. Soumya A', 'Dr. Aseem Anand', 'Dr. C'],
-        juniorResidents: ['Dr. Aseem Anand', 'Dr. Naveen Mangla', 'Dr. Soumya A', 'Dr. Navneeth Shankar', 'Dr. Dinesh', 'Dr. Vineeth Sunaria', 'Dr. Yogyatha', 'Dr. Priyanka', 'Dr. Sooraj'],
+        seniorResidents: ['Dr. S', 'Dr.', 'Dr. C'],
+        juniorResidents: ['Dr. A', 'Dr. N', 'Dr. S', 'Dr. N', 'Dr. D', 'Dr. V', 'Dr. Y', 'Dr. P', 'Dr. S'],
       },
     },
     {
