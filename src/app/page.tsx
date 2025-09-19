@@ -5,12 +5,11 @@ import { Intro } from '@/components/sections/intro';
 import { About } from '@/components/sections/about';
 import { MedicalSpecialties } from '@/components/sections/medical-specialties';
 import { Providers } from '@/components/sections/providers';
-
 import { Services } from '@/components/sections/services';
 import { SuperSpeciality } from '@/components/sections/super-speciality';
-import { History } from '@/components/sections/history';
 import { Testimonial } from '@/components/sections/testimonial';
 import { InfoCards } from '@/components/sections/info-cards';
+import { History } from '@/components/sections/history';
 import { Events } from '@/components/sections/events';
 import { Contact } from '@/components/sections/contact';
 import { Footer } from '@/components/sections/footer';
@@ -28,9 +27,9 @@ export default function Home() {
         <Providers />
        
         <Services />
-        <SuperSpeciality />
-          <History />
+        <SuperSpeciality />    
         <InfoCards />
+        <History />
         <Events />
         <Testimonial />
         <Contact />
