@@ -9,7 +9,7 @@ interface ChannelStats {
   viewCount: string;
 }
 
-//interface Video {
+interface Video {
   id: string;
   title: string;
   thumbnail: string;
@@ -17,8 +17,8 @@ interface ChannelStats {
 
 export function Testimonial() {
   const [channelStats, setChannelStats] = useState<ChannelStats | null>(null);
-  //const [videos, setVideos] = useState<Video[]>([]);
-  //const [loading, setLoading] = useState(true);
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export function Testimonial() {
     return (
       <section className="py-24 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950">
         <div className="container mx-auto text-center text-blue-200 animate-pulse">
-          Loading channel stats...
+          Loading channe stats...
         </div>
       </section>
     );
