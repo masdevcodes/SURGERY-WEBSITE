@@ -14,7 +14,7 @@ export function InfoCards() {
     '/stomay.png',
     '/stonav.jpg',
     '/brep.png',
-    '/stonav.jpg'
+    '/stonv.jpg'
   ];
   
   const breastImages = [
