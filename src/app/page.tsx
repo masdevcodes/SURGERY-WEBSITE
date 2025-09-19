@@ -24,11 +24,10 @@ export default function Home() {
        
         <About />
         <MedicalSpecialties />
-        <Providers />
-       
+        <Providers /> 
         <Services />
-        <SuperSpeciality />    
         <InfoCards />
+        <SuperSpeciality />    
         <History />
         <Events />
         <Testimonial />
