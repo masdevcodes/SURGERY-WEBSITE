@@ -247,16 +247,18 @@ export function InfoCards() {
           {/* Stoma Clinic Card */}
           <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
             <div className="relative overflow-hidden group">
-              <Image
-                src={stomaImages[stomaImageIndex]}
-                alt="Stoma care and medical equipment"
-                width={385}
-                height={321}
-                className="w-full transition-all duration-1000 ease-in-out"
-                quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                loading="lazy"
-              />
+              {/* Image Container with Fixed Aspect Ratio */}
+              <div className="w-full h-64 relative">
+                <Image
+                  src={stomaImages[stomaImageIndex]}
+                  alt="Stoma care and medical equipment"
+                  fill
+                  className="object-cover transition-all duration-1000 ease-in-out"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
+                />
+              </div>
               
               {/* Image Indicators */}
               <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
@@ -303,16 +305,18 @@ export function InfoCards() {
           {/* Breast Clinic Card */}
           <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
             <div className="relative overflow-hidden group">
-              <Image
-                src={breastImages[breastImageIndex]}
-                alt="Doctors consulting with patient in hospital room"
-                width={385}
-                height={321}
-                className="w-full transition-all duration-1000 ease-in-out"
-                quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                loading="lazy"
-              />
+              {/* Image Container with Fixed Aspect Ratio */}
+              <div className="w-full h-64 relative">
+                <Image
+                  src={breastImages[breastImageIndex]}
+                  alt="Doctors consulting with patient in hospital room"
+                  fill
+                  className="object-cover transition-all duration-1000 ease-in-out"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
+                />
+              </div>
               
               {/* Image Indicators */}
               <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
