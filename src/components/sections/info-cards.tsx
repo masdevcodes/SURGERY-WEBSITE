@@ -93,7 +93,7 @@ export function InfoCards() {
             {/* Banner Image for Stoma Clinic */}
             <div className="w-full mb-6">
               <Image
-                src="/stomay.png"
+                src="/sto2.jpg"
                 alt="Stoma Clinic Banner"
                 width={1200}
                 height={400}
