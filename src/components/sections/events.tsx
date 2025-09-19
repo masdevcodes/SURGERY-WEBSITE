@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from 'next/image/event';
 import { Calendar, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
