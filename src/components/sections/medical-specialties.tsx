@@ -157,7 +157,7 @@ export function MedicalSpecialties() {
                 {/* Assistant Professors */}
                 <div>
                   <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">
-                    Associat Professors
+                    Associate Professors
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center">
                     <div className="flex flex-col items-center">
