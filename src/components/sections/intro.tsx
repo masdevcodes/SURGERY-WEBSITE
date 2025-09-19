@@ -125,7 +125,7 @@ export function Intro() {
                 <h4 className="font-semibold text-lg mb-3 flex items-center">
                   <Users className="w-5 h-5 mr-2" /> OPD Days
                 </h4>
-                <div className="space-y-2 h-48 overflow-y-auto pr-2"> {/* Increased height */}
+                <div className="space-y-2 h-64 overflow-y-auto pr-2"> {/* Increased height to h-64 */}
                   {[
                     {unit: 'Unit 1', days: 'Mon & Thu', room: 'Room 8'},
                     {unit: 'Unit 2', days: 'Tue & Fri', room: 'Room 8'},
@@ -136,6 +136,9 @@ export function Intro() {
                     {unit: 'Unit 7', days: 'Mon & Thu', room: 'Room 3'},
                     {unit: 'Unit 8', days: 'Tue & Fri', room: 'Room 3'},
                     {unit: 'Unit 9', days: 'Wed & Sat', room: 'Room 3'},
+                    {unit: 'Unit 10', days: 'Mon & Thu', room: 'Room 4'},
+                    {unit: 'Unit 11', days: 'Tue & Fri', room: 'Room 4'},
+                    {unit: 'Unit 12', days: 'Wed & Sat', room: 'Room 4'},
                   ].map((item, index) => (
                     <div
                       key={index}
@@ -155,7 +158,7 @@ export function Intro() {
                 <h4 className="font-semibold text-lg mb-3 flex items-center">
                   <Scissors className="w-5 h-5 mr-2" /> OT Days
                 </h4>
-                <div className="space-y-2 h-48 overflow-y-auto pr-2"> {/* Increased height */}
+                <div className="space-y-2 h-64 overflow-y-auto pr-2"> {/* Increased height to h-64 */}
                   {[
                     {unit: 'Unit 1', days: 'Tue & Fri'},
                     {unit: 'Unit 2', days: 'Wed & Sat'},
@@ -167,6 +170,8 @@ export function Intro() {
                     {unit: 'Unit 8', days: 'Mon & Thu'},
                     {unit: 'Unit 9', days: 'Tue & Fri'},
                     {unit: 'Unit 10', days: 'Wed & Sat'},
+                    {unit: 'Unit 11', days: 'Mon & Thu'},
+                    {unit: 'Unit 12', days: 'Tue & Fri'},
                   ].map((item, index) => (
                     <div
                       key={index}
