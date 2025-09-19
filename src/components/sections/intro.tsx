@@ -17,85 +17,87 @@ export function Intro() {
       </div>
 
       <div className="container mx-auto relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
           {/* Left Side - Content */}
-          <div className="space-y-8">
-            {/* Header */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-1 bg-teal-500"></div>
-                <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
-                  Department Overview
-                </span>
+          <div className="space-y-8 flex flex-col justify-between">
+            <div className="space-y-8">
+              {/* Header */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-1 bg-teal-500"></div>
+                  <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
+                    Department Overview
+                  </span>
+                </div>
+
+                <h2 className="text-4xl md:text-5xl font-bold text-blue-950 font-headline leading-tight">
+                  Leading Surgical Excellence at
+                  <span className="text-teal-600"> GMC Patiala</span>
+                </h2>
+                
+                <p className="text-xl text-gray-600 font-medium leading-relaxed">
+                  Pioneering advanced surgical care with compassion, innovation, and unwavering commitment to patient well-being.
+                </p>
               </div>
 
-              <h2 className="text-4xl md:text-5xl font-bold text-blue-950 font-headline leading-tight">
-                Leading Surgical Excellence at
-                <span className="text-teal-600"> GMC Patiala</span>
-              </h2>
-              
-              <p className="text-xl text-gray-600 font-medium leading-relaxed">
-                Pioneering advanced surgical care with compassion, innovation, and unwavering commitment to patient well-being.
-              </p>
-            </div>
+              {/* Description */}
+              <div className="space-y-6">
+                <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                  The Department of Surgery at Government Medical College, Patiala stands as a beacon of surgical excellence in North India. With over seven decades of distinguished service since 1954, our department has grown into a comprehensive surgical center offering state-of-the-art medical care across multiple specialties.
+                </p>
+                
+                <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                  At present, the Department of Surgery is staffed by 5 Professors, 6 Associate Professors, 6 Assistant Professors, and 10 Senior Residents who actively contribute to patient care, teaching, and research. With a capacity of 210 surgical beds, the department functions through seven specialized units, each led by experienced surgeons and supported by dedicated residents and healthcare professionals. Our commitment extends beyond providing advanced inpatient and operative care to also fostering medical education, research, and community service, making us a cornerstone of healthcare in the region
+                </p>
+              </div>
 
-            {/* Description */}
-            <div className="space-y-6">
-              <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                The Department of Surgery at Government Medical College, Patiala stands as a beacon of surgical excellence in North India. With over seven decades of distinguished service since 1954, our department has grown into a comprehensive surgical center offering state-of-the-art medical care across multiple specialties.
-              </p>
-              
-              <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                At present, the Department of Surgery is staffed by 5 Professors, 6 Associate Professors, 6 Assistant Professors, and 10 Senior Residents who actively contribute to patient care, teaching, and research. With a capacity of 210 surgical beds, the department functions through seven specialized units, each led by experienced surgeons and supported by dedicated residents and healthcare professionals. Our commitment extends beyond providing advanced inpatient and operative care to also fostering medical education, research, and community service, making us a cornerstone of healthcare in the region
-              </p>
-            </div>
-
-            {/* Key Highlights */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center">
-                    <Users className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-blue-950 text-lg">6 Specialized Units</h4>
-                    <p className="text-gray-600 text-sm">Comprehensive surgical care</p>
+              {/* Key Highlights */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center">
+                      <Users className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-blue-950 text-lg">6 Specialized Units</h4>
+                      <p className="text-gray-600 text-sm">Comprehensive surgical care</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
-                    <Award className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-blue-950 text-lg">70+ Years Legacy</h4>
-                    <p className="text-gray-600 text-sm">Trusted healthcare since 1954</p>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                      <Award className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-blue-950 text-lg">70+ Years Legacy</h4>
+                      <p className="text-gray-600 text-sm">Trusted healthcare since 1954</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
-                    <Clock className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-blue-950 text-lg">24/7 Emergency</h4>
-                    <p className="text-gray-600 text-sm">Round-the-clock surgical care</p>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-blue-950 text-lg">24/7 Emergency</h4>
+                      <p className="text-gray-600 text-sm">Round-the-clock surgical care</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
-                    <Heart className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-blue-950 text-lg">Patient-Centered</h4>
-                    <p className="text-gray-600 text-sm">Compassionate healthcare approach</p>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
+                      <Heart className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-blue-950 text-lg">Patient-Centered</h4>
+                      <p className="text-gray-600 text-sm">Compassionate healthcare approach</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -103,9 +105,9 @@ export function Intro() {
           </div>
 
           {/* Right Side - OPD + OT Info Card */}
-          <div className="flex flex-col gap-8">
-            {/* OPD/OT Card - Original height maintained, only stretched horizontally */}
-            <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl w-full">
+          <div className="flex flex-col gap-8 h-full justify-between">
+            {/* OPD/OT Card - Decreased width, increased height */}
+            <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl w-full max-w-sm mx-auto h-full flex flex-col justify-between">
               {/* Header with icon */}
               <div className="flex items-center justify-center mb-4">
                 <div className="bg-white/20 p-3 rounded-full mr-3">
@@ -119,7 +121,7 @@ export function Intro() {
                 </h3>
               </div>
               
-              <div className="mb-6 bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20">
+              <div className="mb-6 bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20 flex-grow">
                 <h4 className="font-semibold text-lg mb-3 flex items-center">
                   <Users className="w-5 h-5 mr-2" /> OPD Days
                 </h4>
@@ -147,7 +149,7 @@ export function Intro() {
                 </div>
               </div>
               
-              <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20">
+              <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20 flex-grow">
                 <h4 className="font-semibold text-lg mb-3 flex items-center">
                   <Scissors className="w-5 h-5 mr-2" /> OT Days
                 </h4>
@@ -173,8 +175,8 @@ export function Intro() {
               </div>
             </div>
 
-            {/* Stats Card - Kept at original size */}
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg w-full max-w-md border border-teal-100 transition-all duration-300 hover:scale-105 cursor-pointer mx-auto">
+            {/* Stats Card - Original size */}
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg w-full max-w-sm mx-auto border border-teal-100 transition-all duration-300 hover:scale-105 cursor-pointer">
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="p-2">
                   <div className="text-2xl font-bold text-teal-600 mb-1">500+</div>
