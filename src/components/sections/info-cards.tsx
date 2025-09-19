@@ -1,11 +1,28 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, MouseEvent } from 'react';
 
 export function InfoCards() {
   const [modalContent, setModalContent] = useState<string | null>(null);
+  const [stomaImageIndex, setStomaImageIndex] = useState(0);
+  const [breastImageIndex, setBreastImageIndex] = useState(0);
+
+  // Sample image arrays - replace with your actual image paths
+  const stomaImages = [
+    '/stomay.png',
+    '/stoma1.jpg',
+    '/stoma2.jpg',
+    '/stoma3.jpg'
+  ];
+  
+  const breastImages = [
+    '/brep.png',
+    '/breast1.jpg',
+    '/breast2.jpg',
+    '/breast3.jpg'
+  ];
 
   function openModal(key: string) {
     setModalContent(key);
@@ -17,6 +34,31 @@ export function InfoCards() {
 
   function stopPropagation(e: MouseEvent<HTMLDivElement>) {
     e.stopPropagation();
+  }
+
+  // Image slider navigation functions
+  function nextStomaImage() {
+    setStomaImageIndex((prevIndex) => 
+      prevIndex === stomaImages.length - 1 ? 0 : prevIndex + 1
+    );
+  }
+
+  function prevStomaImage() {
+    setStomaImageIndex((prevIndex) => 
+      prevIndex === 0 ? stomaImages.length - 1 : prevIndex - 1
+    );
+  }
+
+  function nextBreastImage() {
+    setBreastImageIndex((prevIndex) => 
+      prevIndex === breastImages.length - 1 ? 0 : prevIndex + 1
+    );
+  }
+
+  function prevBreastImage() {
+    setBreastImageIndex((prevIndex) => 
+      prevIndex === 0 ? breastImages.length - 1 : prevIndex - 1
+    );
   }
 
   // ✅ Reusable modal
@@ -64,6 +106,34 @@ export function InfoCards() {
               />
             </div>
 
+            {/* Additional Images for Stoma Clinic */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mb-6">
+              <div className="relative h-48">
+                <Image
+                  src="/stoma1.jpg" // Replace with your image path
+                  alt="Stoma care example 1"
+                  fill
+                  className="rounded-lg object-cover"
+                />
+              </div>
+              <div className="relative h-48">
+                <Image
+                  src="/stoma2.jpg" // Replace with your image path
+                  alt="Stoma care example 2"
+                  fill
+                  className="rounded-lg object-cover"
+                />
+              </div>
+              <div className="relative h-48">
+                <Image
+                  src="/stoma3.jpg" // Replace with your image path
+                  alt="Stoma care example 3"
+                  fill
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            </div>
+
             <h2 className="text-3xl font-bold mb-6">Stoma Clinic Details</h2>
             <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
               The Stoma Clinic at GMC Patiala functions as a dedicated service
@@ -108,6 +178,34 @@ export function InfoCards() {
               />
             </div>
 
+            {/* Additional Images for Breast Clinic */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mb-6">
+              <div className="relative h-48">
+                <Image
+                  src="/breast1.jpg" // Replace with your image path
+                  alt="Breast clinic example 1"
+                  fill
+                  className="rounded-lg object-cover"
+                />
+              </div>
+              <div className="relative h-48">
+                <Image
+                  src="/breast2.jpg" // Replace with your image path
+                  alt="Breast clinic example 2"
+                  fill
+                  className="rounded-lg object-cover"
+                />
+              </div>
+              <div className="relative h-48">
+                <Image
+                  src="/breast3.jpg" // Replace with your image path
+                  alt="Breast clinic example 3"
+                  fill
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            </div>
+
             <h2 className="text-3xl font-bold mb-6">Breast Clinic Details</h2>
             <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
               The Breast Clinic at GMC Patiala, under the Department of General
@@ -125,7 +223,7 @@ export function InfoCards() {
               their condition, available treatment options, and expected
               outcomes. Preventive strategies such as breast self-examination
               training and awareness programs are also integrated into the
-              clinic’s routine. Postoperative follow-up and rehabilitation,
+              clinic's routine. Postoperative follow-up and rehabilitation,
               including wound care and lymphedema management, are actively
               supported. The clinic also provides psychological and emotional
               support, recognizing the significant impact breast diseases can
@@ -209,18 +307,58 @@ export function InfoCards() {
 
           {/* Stoma Clinic Card */}
           <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden group">
               <Image
-                src="/stomay.png"
+                src={stomaImages[stomaImageIndex]}
                 alt="Stoma care and medical equipment"
                 width={385}
                 height={321}
-                className="w-full transition-transform duration-700 hover:scale-110"
+                className="w-full transition-transform duration-700 group-hover:scale-110"
                 quality={85}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 loading="lazy"
               />
+              
+              {/* Slider Navigation Buttons */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevStomaImage();
+                }}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextStomaImage();
+                }}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
+                aria-label="Next image"
+              >
+                <ChevronRight size={20} />
+              </button>
+              
+              {/* Image Indicators */}
+              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+                {stomaImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setStomaImageIndex(index);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === stomaImageIndex ? 'bg-white' : 'bg-white/50'
+                    }`}
+                    aria-label={`View image ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
+            
             <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
               <div>
                 <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
@@ -252,18 +390,58 @@ export function InfoCards() {
 
           {/* Breast Clinic Card */}
           <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden group">
               <Image
-                src="/brep.png"
+                src={breastImages[breastImageIndex]}
                 alt="Doctors consulting with patient in hospital room"
                 width={385}
                 height={321}
-                className="w-full transition-transform duration-700 hover:scale-110"
+                className="w-full transition-transform duration-700 group-hover:scale-110"
                 quality={85}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 loading="lazy"
               />
+              
+              {/* Slider Navigation Buttons */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevBreastImage();
+                }}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextBreastImage();
+                }}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
+                aria-label="Next image"
+              >
+                <ChevronRight size={20} />
+              </button>
+              
+              {/* Image Indicators */}
+              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+                {breastImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setBreastImageIndex(index);
+                    }}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === breastImageIndex ? 'bg-white' : 'bg-white/50'
+                    }`}
+                    aria-label={`View image ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
+            
             <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
               <div>
                 <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
