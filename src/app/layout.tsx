@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Healing Touch - GMC Patiala Surgery',
+  title: 'GMC Patiala Surgery',
   description: 'Official website for the Department of Surgery at Government Medical College, Patiala.',
   icons: {
     icon: '/logo.png',
