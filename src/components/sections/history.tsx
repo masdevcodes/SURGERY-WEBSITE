@@ -96,7 +96,7 @@ export function History() {
             {/* Second Image Holder */}
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl group">
               <Image
-                src="gmc1.jpg"
+                src="/gmc1.jpg"
                 alt="Government Medical College Patiala historical building"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
