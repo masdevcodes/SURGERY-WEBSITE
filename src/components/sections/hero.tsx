@@ -31,7 +31,7 @@ export function Hero() {
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center h-full">
         <div className="max-w-4xl mt-32">
           <h1 className="text-8xl font-bold font-headline leading-tight">
-            Our expertis
+            Our expertise
           </h1>
           <h1 className="text-8xl font-bold font-headline leading-tight">
             at your service
