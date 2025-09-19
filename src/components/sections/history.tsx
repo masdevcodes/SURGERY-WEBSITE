@@ -123,8 +123,8 @@ export function History() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
               <div className="absolute bottom-6 left-6 text-white">
-                <h4 className="text-lg font-bold mb-2">GMC Patiala - 1953</h4>
-                <p className="text-sm opacity-90">Established to serve PEPSU region</p>
+                <h4 className="text-lg font-bold mb-2">MS Program Begins - 1960</h4>
+                <p className="text-sm opacity-90">Postgraduate surgery training</p>
               </div>
             </div>
             {/* Timeline Stats */}
