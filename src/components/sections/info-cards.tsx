@@ -26,7 +26,6 @@ export function InfoCards() {
 
   const traumaImages = [
     '/emer.png',
-    
   ];
 
   function openModal(key: string) {
@@ -249,15 +248,15 @@ export function InfoCards() {
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {/* Breast Clinic Card - Now First */}
-          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
-            <div className="relative overflow-hidden group">
-              {/* Image Container with Fixed Aspect Ratio */}
-              <div className="w-full h-64 relative">
+          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-shadow duration-300">
+            <div className="relative overflow-hidden">
+              {/* Image Container with Fixed Aspect Ratio and Zoom Effect */}
+              <div className="w-full h-64 relative overflow-hidden">
                 <Image
                   src={breastImages[breastImageIndex]}
                   alt="Doctors consulting with patient in hospital room"
                   fill
-                  className="object-cover transition-all duration-1000 ease-in-out"
+                  className="object-cover transition-all duration-700 ease-in-out group-hover:scale-110"
                   quality={85}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   loading="lazy"
@@ -299,7 +298,7 @@ export function InfoCards() {
                   e.preventDefault();
                   openModal('breast');
                 }}
-                className="font-bold text-teal-500 flex items-center gap-2 justify-center"
+                className="font-bold text-teal-500 flex items-center gap-2 justify-center hover:text-teal-600 transition-colors duration-300"
               >
                 READ MORE <ArrowRight className="w-4 h-4" />
               </a>
@@ -307,15 +306,15 @@ export function InfoCards() {
           </div>
 
           {/* Trauma & Emergency Surgery Clinic Card - Now Second */}
-          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
-            <div className="relative overflow-hidden group">
-              {/* Image Container with Fixed Aspect Ratio */}
-              <div className="w-full h-64 relative">
+          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-shadow duration-300">
+            <div className="relative overflow-hidden">
+              {/* Image Container with Fixed Aspect Ratio and Zoom Effect */}
+              <div className="w-full h-64 relative overflow-hidden">
                 <Image
                   src={traumaImages[traumaImageIndex]}
                   alt="Trauma and emergency surgery care"
                   fill
-                  className="object-cover transition-all duration-1000 ease-in-out"
+                  className="object-cover transition-all duration-700 ease-in-out group-hover:scale-110"
                   quality={85}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   loading="lazy"
@@ -355,7 +354,7 @@ export function InfoCards() {
                   e.preventDefault();
                   openModal('trauma');
                 }}
-                className="font-bold text-teal-500 flex items-center gap-2 justify-center"
+                className="font-bold text-teal-500 flex items-center gap-2 justify-center hover:text-teal-600 transition-colors duration-300"
               >
                 READ MORE <ArrowRight className="w-4 h-4" />
               </a>
@@ -363,15 +362,15 @@ export function InfoCards() {
           </div>
 
           {/* Stoma Clinic Card - Now Third */}
-          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
-            <div className="relative overflow-hidden group">
-              {/* Image Container with Fixed Aspect Ratio */}
-              <div className="w-full h-64 relative">
+          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-shadow duration-300">
+            <div className="relative overflow-hidden">
+              {/* Image Container with Fixed Aspect Ratio and Zoom Effect */}
+              <div className="w-full h-64 relative overflow-hidden">
                 <Image
                   src={stomaImages[stomaImageIndex]}
                   alt="Stoma care and medical equipment"
                   fill
-                  className="object-cover transition-all duration-1000 ease-in-out"
+                  className="object-cover transition-all duration-700 ease-in-out group-hover:scale-110"
                   quality={85}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   loading="lazy"
@@ -413,7 +412,7 @@ export function InfoCards() {
                   e.preventDefault();
                   openModal('stoma');
                 }}
-                className="font-bold text-teal-500 flex items-center gap-2 justify-center"
+                className="font-bold text-teal-500 flex items-center gap-2 justify-center hover:text-teal-600 transition-colors duration-300"
               >
                 READ MORE <ArrowRight className="w-4 h-4" />
               </a>
