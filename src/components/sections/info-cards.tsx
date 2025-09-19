@@ -249,7 +249,65 @@ export function InfoCards() {
       {/* Container */}
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* Trauma & Emergency Surgery Clinic Card */}
+          {/* Breast Clinic Card - Now First */}
+          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
+            <div className="relative overflow-hidden group">
+              {/* Image Container with Fixed Aspect Ratio */}
+              <div className="w-full h-64 relative">
+                <Image
+                  src={breastImages[breastImageIndex]}
+                  alt="Doctors consulting with patient in hospital room"
+                  fill
+                  className="object-cover transition-all duration-1000 ease-in-out"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
+                />
+              </div>
+              
+              {/* Image Indicators */}
+              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+                {breastImages.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === breastImageIndex ? 'bg-white scale-125' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+            
+            <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
+              <div>
+                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
+                  Breast Clinic
+                </h3>
+                <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
+                  Our Breast Clinic provides specialized care for women
+                  presenting with breast-related complaints such as lumps, pain,
+                  discharge, or infections. The clinic offers early detection
+                  services for breast cancer, including clinical breast
+                  examination, imaging guidance, and biopsy facilities. Along
+                  with diagnosis and treatment, it emphasizes patient
+                  counselling, awareness, and follow-up care to ensure
+                  comprehensive management of breast health.
+                </p>
+              </div>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openModal('breast');
+                }}
+                className="font-bold text-teal-500 flex items-center gap-2 justify-center"
+              >
+                READ MORE <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Trauma & Emergency Surgery Clinic Card - Now Second */}
           <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
             <div className="relative overflow-hidden group">
               {/* Image Container with Fixed Aspect Ratio */}
@@ -305,7 +363,7 @@ export function InfoCards() {
             </div>
           </div>
 
-          {/* Stoma Clinic Card */}
+          {/* Stoma Clinic Card - Now Third */}
           <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
             <div className="relative overflow-hidden group">
               {/* Image Container with Fixed Aspect Ratio */}
@@ -355,64 +413,6 @@ export function InfoCards() {
                 onClick={(e) => {
                   e.preventDefault();
                   openModal('stoma');
-                }}
-                className="font-bold text-teal-500 flex items-center gap-2 justify-center"
-              >
-                READ MORE <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* Breast Clinic Card */}
-          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
-            <div className="relative overflow-hidden group">
-              {/* Image Container with Fixed Aspect Ratio */}
-              <div className="w-full h-64 relative">
-                <Image
-                  src={breastImages[breastImageIndex]}
-                  alt="Doctors consulting with patient in hospital room"
-                  fill
-                  className="object-cover transition-all duration-1000 ease-in-out"
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
-                />
-              </div>
-              
-              {/* Image Indicators */}
-              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
-                {breastImages.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === breastImageIndex ? 'bg-white scale-125' : 'bg-white/50'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-            
-            <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
-              <div>
-                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
-                  Breast Clinic
-                </h3>
-                <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
-                  Our Breast Clinic provides specialized care for women
-                  presenting with breast-related complaints such as lumps, pain,
-                  discharge, or infections. The clinic offers early detection
-                  services for breast cancer, including clinical breast
-                  examination, imaging guidance, and biopsy facilities. Along
-                  with diagnosis and treatment, it emphasizes patient
-                  counselling, awareness, and follow-up care to ensure
-                  comprehensive management of breast health.
-                </p>
-              </div>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  openModal('breast');
                 }}
                 className="font-bold text-teal-500 flex items-center gap-2 justify-center"
               >
