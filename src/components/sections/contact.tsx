@@ -35,11 +35,7 @@ export function Contact() {
               <p className="text-blue-950">Rajindra Hospital Campus</p>
               <p className="text-blue-950">Patiala, Punjab 147001, India</p>
             </div>
-            <div className="mb-6 pb-6 border-b">
-              <h4 className="font-bold text-blue-950">Phone</h4>
-              <p className="text-blue-950">+91-175-2200100</p>
-              <p className="text-blue-950 text-sm">Emergency: +91-175-2200101</p>
-            </div>
+            
             <div>
               <h4 className="font-bold text-blue-950">Email</h4>
               <a href="mailto:surgery@gmcpatiala.edu.in" className="text-teal-500 font-bold">gmcpatialasurgery@gmail.com</a>
