@@ -36,7 +36,7 @@ export function Hero() {
           <h1 className="text-8xl font-bold font-headline leading-tight">
             at your service
           </h1>
-          <h1 className="text-2xl font-bold font-headline leading-tight">
+          <h1 className="text-1xl font-bold font-headline leading-tight">
             DEPARTMENT OF GENERAL & MINIMAL ACCESS SURGERY, GMC PATIALA
           </h1>
         </div>
