@@ -196,20 +196,21 @@ export function InfoCards() {
       {/* Container */}
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* OPD + OT Info Card - UPDATED */}
+          {/* OPD + OT Info Card - FIXED */}
           <div className="bg-teal-500 rounded-lg p-8 text-white shadow-xl flex flex-col h-full">
             <div className="mb-8 text-center">
               <h2 className="text-4xl font-bold font-body mb-2">OPD & OT Schedule</h2>
               <div className="w-20 h-1 bg-white mx-auto"></div>
             </div>
             
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex-1">
               {/* OPD Schedule */}
-              <div className="bg-white/10 rounded-xl p-5 backdrop-blur-sm border border-white/20">
-                <h3 className="text-2xl font-bold mb-4 text-center pb-2 border-b border-white/30">
-                  OPD Days <span className="text-sm font-normal opacity-80">(8am - 2.30pm)</span>
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold mb-2">
+                  OPD Days <span className="text-base font-normal opacity-80">(8am - 2.30pm)</span>
                 </h3>
-                <div className="max-h-64 overflow-y-auto space-y-3 pr-2">
+                <div className="h-px bg-white/30 mb-4"></div>
+                <div className="max-h-64 overflow-y-auto space-y-4 pr-2">
                   {[
                     {unit: 'Unit 1', schedule: 'Mon-Thu', room: 'Room No:8'},
                     {unit: 'Unit 2', schedule: 'Tue-Fri', room: 'Room No:8'},
@@ -232,11 +233,10 @@ export function InfoCards() {
               </div>
 
               {/* OT Schedule */}
-              <div className="bg-white/10 rounded-xl p-5 backdrop-blur-sm border border-white/20">
-                <h3 className="text-2xl font-bold mb-4 text-center pb-2 border-b border-white/30">
-                  OT Days
-                </h3>
-                <div className="max-h-64 overflow-y-auto space-y-3 pr-2">
+              <div>
+                <h3 className="text-2xl font-bold mb-2">OT Days</h3>
+                <div className="h-px bg-white/30 mb-4"></div>
+                <div className="max-h-64 overflow-y-auto space-y-4 pr-2">
                   {[
                     {unit: 'Unit 1', days: 'Tue - Fri'},
                     {unit: 'Unit 2', days: 'Wed - Sat'},
