@@ -134,7 +134,7 @@ export function Intro() {
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-all duration-200 hover:scale-[1.02] cursor-pointer flex justify-between items-center"
+                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center"
                     >
                       <span className="font-medium">{item.unit}</span>
                       <div className="text-right text-sm">
@@ -162,7 +162,7 @@ export function Intro() {
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-all duration-200 hover:scale-[1.02] cursor-pointer flex justify-between items-center"
+                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center"
                     >
                       <span className="font-medium">{item.unit}</span>
                       <span className="text-sm">{item.days}</span>
