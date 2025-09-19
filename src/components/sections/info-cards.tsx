@@ -18,7 +18,7 @@ export function InfoCards() {
   
   const breastImages = [
     '/brep.png',
-    '/breast1.jpg',
+    '/brep5.png',
     '/breast2.jpg',
     '/breast3.jpg'
   ];
