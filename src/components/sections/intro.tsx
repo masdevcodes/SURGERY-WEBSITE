@@ -103,8 +103,8 @@ export function Intro() {
           </div>
 
           {/* Right Side - OPD + OT Info Card */}
-          <div className="flex flex-col gap-8 h-full justify-between">
-            {/* OPD/OT Card - Original height maintained */}
+          <div className="flex flex-col gap-8">
+            {/* OPD/OT Card - Original height maintained, only stretched horizontally */}
             <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl w-full">
               {/* Header with icon */}
               <div className="flex items-center justify-center mb-4">
@@ -173,9 +173,9 @@ export function Intro() {
               </div>
             </div>
 
-            {/* Stats Card - Adjusted to fill remaining space */}
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-lg w-full border border-teal-100 transition-all duration-300 hover:scale-105 cursor-pointer flex-grow flex items-center">
-              <div className="grid grid-cols-3 gap-4 text-center w-full">
+            {/* Stats Card - Kept at original size */}
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg w-full max-w-md border border-teal-100 transition-all duration-300 hover:scale-105 cursor-pointer mx-auto">
+              <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="p-2">
                   <div className="text-2xl font-bold text-teal-600 mb-1">500+</div>
                   <div className="text-xs text-gray-600 font-medium">Daily Patients</div>
