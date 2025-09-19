@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   title: 'Healing Touch - GMC Patiala Surgery',
   description: 'Official website for the Department of Surgery at Government Medical College, Patiala.',
   icons: {
-    icon: '/logofav.png',
-    shortcut: '/logofav.png',
-    apple: '/logofav.png',
+    icon: '/log.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
   },
 };
 
