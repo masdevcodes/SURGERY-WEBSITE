@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="bg-zinc-900 text-white py-8">
       <div className="container mx-auto">
         <div className="text-center">
-          <p className="text-xs">©2025 SURGERY DEPARTMENT, GMC PATIALA</p>
+          <p className="text-xs">©2025 DEPARTMENT OF GENERAL & MINIMAL ACCESS SURGERY, GMC PATIALA</p>
         </div>
       </div>
     </footer>
