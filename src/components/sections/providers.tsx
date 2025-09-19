@@ -76,7 +76,7 @@ export function Providers() {
       unit: 'UNIT 3',
       department: 'Urology Department, Floor 4',
       email: 'a.hwang@gmcpatiala.edu',
-      description: 'Leading urologist specializing in minimally invasive procedures and robotic surgery for urological conditions.',
+      description: 'Leading urologist specializing in minimally invasive procedures and robotic surgery for uological conditions.',
       color: 'purple',
       image: '/images/rekhi.jpg',
       details: {
@@ -154,9 +154,10 @@ export function Providers() {
 
   const renderListWithImages = (names: string[], showImages: boolean, centerIfFew = false) => {
     const shouldCenter = centerIfFew && names.length <= 3;
+    const gridCols = shouldCenter ? `grid-cols-${names.length}` : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
     
     return (
-      <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 ${shouldCenter ? 'justify-items-center' : ''} mt-4`}>
+      <div className={`grid ${gridCols} gap-6 md:gap-8 ${shouldCenter ? 'justify-center' : ''} mt-4`}>
         {names.map((name, idx) => (
           <div key={idx} className="flex flex-col items-center">
             {showImages && (
