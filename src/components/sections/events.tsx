@@ -149,6 +149,12 @@ export function Events() {
     }
   }, [modalEmblaApi, onModalSelect, selectedEvent]);
 
+  // Function to parse date strings into Date objects for sorting
+  const parseDate = (dateString) => {
+    const [month, day, year] = dateString.split(' ')[1].split(',')[0].split('/');
+    return new Date(`${year}-${month}-${day}`);
+  };
+
   // Updated events with multiple images - sorted by date (newest first)
   const events = [
     {
@@ -235,7 +241,13 @@ export function Events() {
         "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
     }
-  ].sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date (newest first)
+  ].sort((a, b) => {
+    // Convert date strings to Date objects for proper comparison
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    // Sort in descending order (newest first)
+    return dateB - dateA;
+  });
 
   return (
     <>
