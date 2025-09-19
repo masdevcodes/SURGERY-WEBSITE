@@ -56,7 +56,7 @@ export function Intro() {
                     <Users className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-blue-950 text-lg">7 Specialized Units</h4>
+                    <h4 className="font-bold text-blue-950 text-lg">6 Specialized Units</h4>
                     <p className="text-gray-600 text-sm">Comprehensive surgical care</p>
                   </div>
                 </div>
