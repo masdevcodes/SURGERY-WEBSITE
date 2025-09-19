@@ -66,7 +66,7 @@ export function History() {
 
                 <div className="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500">
                   <p className="font-medium text-blue-950">
-                    While the precise date of its opening may be a detail lost to time, the legacy of the Department of Surgery is evident in its continuous service to the community and its contributions to medical education and surgical advancement in the region for over six decades.
+                    The legacy of the Department of Surgery is evident in its continuous service to the community and its contributions to medical education and surgical advancement in the region for over six decades.
                   </p>
                 </div>
               </div>
