@@ -12,7 +12,7 @@ export function InfoCards() {
   // Sample image arrays - replace with your actual image paths
   const stomaImages = [
     '/stomay.png',
-    '/stonav.png',
+    '/sto2.jpg',
     '/brep.png',
     '/stonav.png'
   ];
