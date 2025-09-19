@@ -40,7 +40,7 @@ export function History() {
                 Surgery Department at Rajindra Medical College: A Pillar of Surgical Care Since the 1950s
               </h3>
               
-              <div className="space-y-6 text-gray-700 leading-relaxed">
+              <div className="space-y-6 text-justify text-gray-700 leading-relaxed">
                 <p>
                   While an exact inauguration date for the Department of Surgery at Government Medical College, Patiala (formerly known as Rajendra Medical College) remains unrecorded in readily available public records, it is evident that the department was established in the mid-1950s, shortly after the college's inception in 1953 and the inauguration of its affiliated Rajindra Hospital in 1954. A significant marker of its early establishment and functional prowess is the commencement of the Master of Surgery (MS) program in General Surgery in 1960, indicating that a well-established department with the necessary infrastructure and qualified faculty was already in place.
                 </p>
