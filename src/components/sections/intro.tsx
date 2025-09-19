@@ -134,11 +134,7 @@ export function Intro() {
                     {unit: 'Unit 5', days: 'Tue & Fri', room: 'Room 7'},
                     {unit: 'Unit 6', days: 'Wed & Sat', room: 'Room 7'},
                     {unit: 'Unit 7', days: 'Mon & Thu', room: 'Room 3'},
-                    {unit: 'Unit 8', days: 'Tue & Fri', room: 'Room 3'},
-                    {unit: 'Unit 9', days: 'Wed & Sat', room: 'Room 3'},
-                    {unit: 'Unit 10', days: 'Mon & Thu', room: 'Room 4'},
-                    {unit: 'Unit 11', days: 'Tue & Fri', room: 'Room 4'},
-                    {unit: 'Unit 12', days: 'Wed & Sat', room: 'Room 4'},
+                    
                   ].map((item, index) => (
                     <div
                       key={index}
@@ -167,11 +163,7 @@ export function Intro() {
                     {unit: 'Unit 5', days: 'Wed & Sat'},
                     {unit: 'Unit 6', days: 'Mon & Thu'},
                     {unit: 'Unit 7', days: 'Wed & Sat'},
-                    {unit: 'Unit 8', days: 'Mon & Thu'},
-                    {unit: 'Unit 9', days: 'Tue & Fri'},
-                    {unit: 'Unit 10', days: 'Wed & Sat'},
-                    {unit: 'Unit 11', days: 'Mon & Thu'},
-                    {unit: 'Unit 12', days: 'Tue & Fri'},
+                   
                   ].map((item, index) => (
                     <div
                       key={index}
