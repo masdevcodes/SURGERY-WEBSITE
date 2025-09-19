@@ -208,7 +208,7 @@ export function MedicalSpecialties() {
                     <div className="flex flex-col items-center">
                       <div className="w-32 h-32 rounded-full overflow-hidden shadow-md mb-4 group">
                         <Image
-                          src="/images/thali.png"
+                          src="/images/thalib.png"
                           alt="Dr. Talib Khan"
                           width={128}
                           height={128}
