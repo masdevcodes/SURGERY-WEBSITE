@@ -100,19 +100,16 @@ export function Testimonial() {
           )}
 
           {/* Subscribe Button */}
-          <div className="flex items-center justify-center gap-4">
-            <img src="ytlogo.png" alt="YouTube Channel Logo" className="w-10 h-20 rounded-full" />
-            <a
-              href="https://www.youtube.com/@Scalpelsnsuture"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              <Play className="w-5 h-5" />
-              Subscribe to Our Channel
-              <ExternalLink className="w-4 h-4" />
-            </a>
-          </div>
+          <a
+            href="https://www.youtube.com/@Scalpelsnsuture"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            <Play className="w-5 h-5" />
+            Subscribe to Our Channel
+            <ExternalLink className="w-4 h-4" />
+          </a>
         </div>
 
         {/* Latest Videos */}
