@@ -246,64 +246,6 @@ export function InfoCards() {
         />
       </div>
 
-      {/* Container */}
-      <div className="container mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* Trauma & Emergency Surgery Clinic Card */}
-          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
-            <div className="relative overflow-hidden group">
-              {/* Image Container with Fixed Aspect Ratio */}
-              <div className="w-full h-64 relative">
-                <Image
-                  src={traumaImages[traumaImageIndex]}
-                  alt="Trauma and emergency surgery care"
-                  fill
-                  className="object-cover transition-all duration-1000 ease-in-out"
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
-                />
-              </div>
-              
-              {/* Image Indicators */}
-              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
-                {traumaImages.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === traumaImageIndex ? 'bg-white scale-125' : 'bg-white/50'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-            
-            <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
-              <div>
-                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
-                  Trauma & Emergency Surgery
-                </h3>
-                <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
-                  Our Trauma & Emergency Surgery Clinic provides 24/7 comprehensive care
-                  for patients with acute surgical conditions and traumatic injuries.
-                  Our expert team is trained in advanced trauma life support and manages
-                  everything from road traffic accidents to acute abdominal emergencies.
-                  We emphasize rapid assessment, resuscitation, and definitive surgical
-                  management to save lives and reduce disability.
-                </p>
-              </div>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  openModal('trauma');
-                }}
-                className="font-bold text-teal-500 flex items-center gap-2 justify-center"
-              >
-                READ MORE <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
 
           {/* Stoma Clinic Card */}
           <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
@@ -363,6 +305,65 @@ export function InfoCards() {
             </div>
           </div>
 
+      {/* Container */}
+      <div className="container mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          {/* Trauma & Emergency Surgery Clinic Card */}
+          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
+            <div className="relative overflow-hidden group">
+              {/* Image Container with Fixed Aspect Ratio */}
+              <div className="w-full h-64 relative">
+                <Image
+                  src={traumaImages[traumaImageIndex]}
+                  alt="Trauma and emergency surgery care"
+                  fill
+                  className="object-cover transition-all duration-1000 ease-in-out"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
+                />
+              </div>
+              
+              {/* Image Indicators */}
+              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+                {traumaImages.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === traumaImageIndex ? 'bg-white scale-125' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+            
+            <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
+              <div>
+                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
+                  Trauma & Emergency Surgery
+                </h3>
+                <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
+                  Our Trauma & Emergency Surgery Clinic provides 24/7 comprehensive care
+                  for patients with acute surgical conditions and traumatic injuries.
+                  Our expert team is trained in advanced trauma life support and manages
+                  everything from road traffic accidents to acute abdominal emergencies.
+                  We emphasize rapid assessment, resuscitation, and definitive surgical
+                  management to save lives and reduce disability.
+                </p>
+              </div>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openModal('trauma');
+                }}
+                className="font-bold text-teal-500 flex items-center gap-2 justify-center"
+              >
+                READ MORE <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+          
           {/* Breast Clinic Card */}
           <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
             <div className="relative overflow-hidden group">
