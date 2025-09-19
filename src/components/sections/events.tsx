@@ -105,7 +105,7 @@ export function Events() {
   const events = [
     {
       id: 2,
-      title: "Workshop on Robotic Laparoscopic Surgery",
+      title: "SPARK 2025-Workshop on Robotic Laparoscopic Surgery",
       date: "February 28, 2024",
       images: [
         "/images/event/spark/sp4.jpg",
