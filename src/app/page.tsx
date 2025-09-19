@@ -6,6 +6,7 @@ import { MedicalSpecialties } from '@/components/sections/medical-specialties';
 import { Providers } from '@/components/sections/providers';
 import { History } from '@/components/sections/history';
 import { Services } from '@/components/sections/services';
+import { SuperSpeciality } from '@/components/sections/super-speciality';
 
 import { Testimonial } from '@/components/sections/testimonial';
 import { Events } from '@/components/sections/events';
@@ -24,6 +25,7 @@ export default function Home() {
         <Providers />
          <History />
         <Services />
+        <SuperSpeciality />
        
         <Events />
         <Testimonial />

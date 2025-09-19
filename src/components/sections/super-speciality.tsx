@@ -1,0 +1,285 @@
+'use client';
+
+import Image from 'next/image';
+import { useState } from 'react';
+import { 
+  Heart, 
+  Brain, 
+  Shield, 
+  Scissors, 
+  Baby, 
+  Activity,
+  ArrowRight,
+  X
+} from 'lucide-react';
+
+interface Speciality {
+  id: number;
+  name: string;
+  icon: React.ReactNode;
+  description: string;
+  detailedDescription: string;
+  color: string;
+  image: string;
+  services: string[];
+}
+
+export function SuperSpeciality() {
+  const [selectedSpeciality, setSelectedSpeciality] = useState<Speciality | null>(null);
+
+  const specialities: Speciality[] = [
+    {
+      id: 1,
+      name: 'Pediatric Surgery',
+      icon: <Baby className="w-8 h-8" />,
+      description: 'Specialized surgical care for infants, children, and adolescents with congenital and acquired conditions.',
+      detailedDescription: 'Our Pediatric Surgery department provides comprehensive surgical care for children from birth to adolescence. We specialize in treating congenital anomalies, trauma, tumors, and other surgical conditions unique to the pediatric population. Our team is trained in minimally invasive techniques and age-appropriate care protocols.',
+      color: 'text-pink-600',
+      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      services: [
+        'Congenital anomaly corrections',
+        'Pediatric trauma surgery',
+        'Minimally invasive procedures',
+        'Neonatal surgery',
+        'Pediatric oncology surgery'
+      ]
+    },
+    {
+      id: 2,
+      name: 'Neuro Surgery',
+      icon: <Brain className="w-8 h-8" />,
+      description: 'Advanced neurosurgical procedures for brain, spine, and peripheral nervous system disorders.',
+      detailedDescription: 'Our Neurosurgery department offers state-of-the-art treatment for complex neurological conditions. We perform intricate brain and spine surgeries using advanced imaging and surgical techniques. Our team handles everything from trauma cases to complex tumor removals and vascular malformations.',
+      color: 'text-purple-600',
+      image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      services: [
+        'Brain tumor surgery',
+        'Spinal surgery',
+        'Trauma neurosurgery',
+        'Vascular neurosurgery',
+        'Stereotactic procedures'
+      ]
+    },
+    {
+      id: 3,
+      name: 'Surgical Oncology',
+      icon: <Shield className="w-8 h-8" />,
+      description: 'Comprehensive cancer surgery with multidisciplinary approach for optimal patient outcomes.',
+      detailedDescription: 'Our Surgical Oncology department provides specialized cancer surgery services with a multidisciplinary approach. We work closely with medical oncologists and radiation oncologists to provide comprehensive cancer care. Our expertise includes complex tumor resections and reconstructive procedures.',
+      color: 'text-green-600',
+      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      services: [
+        'Complex tumor resections',
+        'Oncoplastic surgery',
+        'Minimally invasive cancer surgery',
+        'Reconstructive oncology',
+        'Palliative surgery'
+      ]
+    },
+    {
+      id: 4,
+      name: 'CVTS',
+      icon: <Heart className="w-8 h-8" />,
+      description: 'Cardiothoracic and Vascular Surgery for heart, lung, and vascular system conditions.',
+      detailedDescription: 'Our Cardiothoracic and Vascular Surgery (CVTS) department specializes in surgical treatment of heart, lung, and vascular diseases. We perform complex cardiac procedures, thoracic surgeries, and vascular interventions using the latest surgical techniques and technology.',
+      color: 'text-red-600',
+      image: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      services: [
+        'Cardiac surgery',
+        'Thoracic surgery',
+        'Vascular surgery',
+        'Minimally invasive cardiac procedures',
+        'Emergency cardiac interventions'
+      ]
+    },
+    {
+      id: 5,
+      name: 'Urology',
+      icon: <Activity className="w-8 h-8" />,
+      description: 'Advanced urological procedures for kidney, bladder, prostate, and reproductive system disorders.',
+      detailedDescription: 'Our Urology department provides comprehensive care for urological conditions affecting the kidneys, bladder, prostate, and reproductive systems. We offer both medical and surgical treatments using minimally invasive techniques whenever possible.',
+      color: 'text-blue-600',
+      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      services: [
+        'Kidney stone treatment',
+        'Prostate surgery',
+        'Bladder procedures',
+        'Minimally invasive urology',
+        'Reconstructive urology'
+      ]
+    },
+    {
+      id: 6,
+      name: 'Plastic Surgery',
+      icon: <Scissors className="w-8 h-8" />,
+      description: 'Reconstructive and aesthetic surgery for trauma, congenital defects, and cosmetic enhancement.',
+      detailedDescription: 'Our Plastic Surgery department offers both reconstructive and aesthetic surgical procedures. We specialize in trauma reconstruction, congenital defect corrections, burn surgery, and cosmetic procedures. Our goal is to restore both function and appearance.',
+      color: 'text-orange-600',
+      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      services: [
+        'Reconstructive surgery',
+        'Burn surgery',
+        'Hand surgery',
+        'Microsurgery',
+        'Aesthetic procedures'
+      ]
+    }
+  ];
+
+  const closeModal = () => setSelectedSpeciality(null);
+
+  return (
+    <section id="super-speciality" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-20">
+        <Image
+          src="/111.png"
+          alt="Abstract background pattern"
+          fill
+          className="object-cover"
+        />
+      </div>
+
+      <div className="container mx-auto relative">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-16 h-1 bg-teal-500"></div>
+            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
+              Advanced Medical Care
+            </span>
+            <div className="w-16 h-1 bg-teal-500"></div>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-950 font-headline leading-tight mb-4">
+            Super Speciality Wings
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
+            Specialized surgical departments offering advanced care across multiple medical disciplines at GMC Patiala
+          </p>
+        </div>
+
+        {/* Specialities Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {specialities.map((speciality) => (
+            <div
+              key={speciality.id}
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden"
+            >
+              {/* Image */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src={speciality.image}
+                  alt={speciality.name}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                
+                {/* Icon Overlay */}
+                <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className={speciality.color}>{speciality.icon}</div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-blue-950 mb-3 group-hover:text-teal-600 transition-colors duration-300">
+                  {speciality.name}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                  {speciality.description}
+                </p>
+                
+                {/* Learn More Button */}
+                <button
+                  onClick={() => setSelectedSpeciality(speciality)}
+                  className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
+                >
+                  LEARN MORE
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Stats Section */}
+        <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">6</div>
+              <div className="text-gray-600 text-sm">Super Specialities</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">50+</div>
+              <div className="text-gray-600 text-sm">Specialist Doctors</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">1000+</div>
+              <div className="text-gray-600 text-sm">Complex Surgeries/Year</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">24/7</div>
+              <div className="text-gray-600 text-sm">Emergency Care</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal for Speciality Details */}
+      {selectedSpeciality && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+              aria-label="Close modal"
+            >
+              <X className="w-6 h-6 text-gray-800" />
+            </button>
+            
+            {/* Modal Header Image */}
+            <div className="relative h-64 overflow-hidden rounded-t-2xl">
+              <Image
+                src={selectedSpeciality.image}
+                alt={selectedSpeciality.name}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 text-white">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    {selectedSpeciality.icon}
+                  </div>
+                  <h3 className="text-3xl font-bold">{selectedSpeciality.name}</h3>
+                </div>
+              </div>
+            </div>
+            
+            {/* Modal Content */}
+            <div className="p-8">
+              <p className="text-gray-700 leading-relaxed mb-6 text-justify">
+                {selectedSpeciality.detailedDescription}
+              </p>
+              
+              <h4 className="text-xl font-bold text-blue-950 mb-4">Our Services Include:</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {selectedSpeciality.services.map((service, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
+                    <span className="text-gray-700">{service}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
