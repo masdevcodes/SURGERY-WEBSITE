@@ -158,7 +158,7 @@ export function Providers() {
         <div key={idx} className="flex flex-col items-center">
           {showImages && (
             <div 
-              className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group cursor-pointer"
+              className="w-28 h-28 rounded-full overflow-hidden shadow-md mb-3 group cursor-pointer"
               onClick={() => setZoomedImage(getImagePath(name))}
             >
               <Image
