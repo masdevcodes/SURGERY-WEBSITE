@@ -127,13 +127,13 @@ export function Intro() {
                 </h4>
                 <div className="space-y-2 h-64 overflow-y-auto pr-2"> {/* Increased height to h-64 */}
                   {[
-                    {unit: 'Unit 1', days: 'Mon & Thu', room: 'Room 8'},
-                    {unit: 'Unit 2', days: 'Tue & Fri', room: 'Room 8'},
-                    {unit: 'Unit 3', days: 'Wed & Sat', room: 'Room 8'},
-                    {unit: 'Unit 4', days: 'Mon & Thu', room: 'Room 7'},
-                    {unit: 'Unit 5', days: 'Tue & Fri', room: 'Room 7'},
-                    {unit: 'Unit 6', days: 'Wed & Sat', room: 'Room 7'},
-                    {unit: 'Unit 7', days: 'Mon & Thu', room: 'Room 3'},
+                      {unit: 'Unit 1', days: 'Mon & Thu', room: 'Room 8'},
+          {unit: 'Unit 2', days: 'Tue & Fri', room: 'Room 8'},
+          {unit: 'Unit 3', days: 'Wed & Sat', room: 'Room 8'},
+          {unit: 'Unit 4', days: 'Mon & Thu', room: 'Room 7'},
+          {unit: 'Unit 5', days: 'Tue & Fri', room: 'Room 7'},
+          {unit: 'Unit 6', days: 'Wed & Sat', room: 'Room 7'},
+          {unit: 'Unit 7', days: 'Mon & Thu', room: 'Room 3'},
                     
                   ].map((item, index) => (
                     <div
