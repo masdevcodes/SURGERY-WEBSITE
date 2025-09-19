@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import {
   ArrowRight,
@@ -119,7 +119,7 @@ export function Services() {
           <h3 className="font-bold text-2xl mb-4">Urology Services</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
             Information on kidney stone treatment, prostate care, minimally
-            invasive surgeries, dialysis services, and comprehensive men’s
+            invasive surgeries, dialysis services, and comprehensive men's
             health.
           </p>
         </div>
@@ -128,6 +128,8 @@ export function Services() {
   ];
 
   const [selectedService, setSelectedService] = useState<any>(null);
+  const rightSideRef = useRef<HTMLDivElement>(null);
+  const [rightSideHeight, setRightSideHeight] = useState(0);
 
   // Left-side carousel images
   const carouselImages = [
@@ -136,6 +138,24 @@ export function Services() {
     '/service13.png',
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Update right side height on resize and after initial render
+  useEffect(() => {
+    const updateHeight = () => {
+      if (rightSideRef.current) {
+        setRightSideHeight(rightSideRef.current.offsetHeight);
+      }
+    };
+
+    // Initial height calculation
+    updateHeight();
+
+    // Add resize listener
+    window.addEventListener('resize', updateHeight);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
 
   // Auto-change carousel images every 3 seconds
   useEffect(() => {
@@ -168,7 +188,10 @@ export function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Side - Doctor Patient Carousel */}
           <div className="relative">
-            <div className="relative h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
+            <div 
+              className="relative rounded-2xl overflow-hidden shadow-2xl group"
+              style={{ height: `${rightSideHeight}px` }}
+            >
               <Image
                 src={carouselImages[currentImageIndex]}
                 alt={`Doctor consulting with patient ${currentImageIndex + 1}`}
@@ -198,7 +221,7 @@ export function Services() {
           </div>
 
           {/* Right Side - Services Grid */}
-          <div className="space-y-8">
+          <div ref={rightSideRef} className="space-y-8">
             {/* Header */}
             <div className="space-y-4">
               <div className="flex items-center gap-4">
