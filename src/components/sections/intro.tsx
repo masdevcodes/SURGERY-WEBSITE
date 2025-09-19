@@ -42,11 +42,12 @@ export function Intro() {
             {/* Description */}
             <div className="space-y-6">
               <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                The Department of Surgery at Government Medical College, Patiala stands as a beacon of surgical excellence in North India. With over seven decades of distinguished service since 1954, our department has evolved into a comprehensive surgical center offering state-of-the-art medical care across multiple specialties.
+                The Department of Surgery at Government Medical College, Patiala stands as a beacon of surgical excellence in North India. With over seven decades of distinguished service since 1954, our department has grown into a comprehensive surgical center offering state-of-the-art medical care across multiple specialties.
               </p>
               
               <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                Today, we operate seven specialized units, each led by experienced surgeons and supported by dedicated teams of residents and healthcare professionals. Our commitment extends beyond treatment to include medical education, research, and community service, making us a cornerstone of healthcare in the region.
+                At present, the department is staffed by 5 Professors, 6 Associate Professors, and 6 Assistant Professors, along with 10 Senior Residents who contribute to both patient care and academic activities. With a capacity of 210 surgical beds, we provide extensive facilities for inpatient and operative care.
+                Today, the department operates through seven specialized units, each led by experienced surgeons and supported by a dedicated team of residents and healthcare professionals. Our commitment goes beyond treatment to include medical education, research, and community service, making us a cornerstone of healthcare in the region.
               </p>
             </div>
 
