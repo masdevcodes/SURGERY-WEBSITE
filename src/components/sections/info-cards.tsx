@@ -196,7 +196,7 @@ export function InfoCards() {
       {/* Container */}
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* OPD + OT Info Card - FIXED */}
+          {/* OPD + OT Info Card */}
           <div className="bg-teal-500 rounded-lg p-8 text-white shadow-xl flex flex-col h-full">
             <h3 className="text-3xl font-bold font-body mb-6">
               OPD Days{' '}
