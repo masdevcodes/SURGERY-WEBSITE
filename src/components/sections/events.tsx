@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image/';
+import Image from 'next/image';
 import { Calendar, ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 
 export function Events() {
@@ -27,13 +27,18 @@ export function Events() {
   const [modalPrevBtnDisabled, setModalPrevBtnDisabled] = useState(true);
   const [modalNextBtnDisabled, setModalNextBtnDisabled] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const autoScrollIntervalRef = useRef(null);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
+    // Reset auto-scroll timer on manual navigation
+    resetAutoScroll();
   }, [emblaApi]);
 
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
+    // Reset auto-scroll timer on manual navigation
+    resetAutoScroll();
   }, [emblaApi]);
 
   const modalScrollPrev = useCallback(() => {
@@ -58,12 +63,47 @@ export function Events() {
   const handleEventClick = (event) => {
     setSelectedEvent(event);
     setIsModalOpen(true);
+    // Pause auto-scroll when modal is open
+    pauseAutoScroll();
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedEvent(null);
     setSelectedIndex(0);
+    // Resume auto-scroll when modal is closed
+    resumeAutoScroll();
+  };
+
+  // Auto-scroll functionality
+  const startAutoScroll = useCallback(() => {
+    if (!emblaApi) return;
+    
+    autoScrollIntervalRef.current = setInterval(() => {
+      if (emblaApi && !emblaApi.canScrollNext()) {
+        emblaApi.scrollTo(0); // Go back to the first slide if at the end
+      } else {
+        emblaApi.scrollNext();
+      }
+    }, 4000); // Scroll every 4 seconds
+  }, [emblaApi]);
+
+  const pauseAutoScroll = () => {
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+      autoScrollIntervalRef.current = null;
+    }
+  };
+
+  const resumeAutoScroll = () => {
+    if (!autoScrollIntervalRef.current) {
+      startAutoScroll();
+    }
+  };
+
+  const resetAutoScroll = () => {
+    pauseAutoScroll();
+    resumeAutoScroll();
   };
 
   useEffect(() => {
@@ -87,7 +127,15 @@ export function Events() {
     onSelect(emblaApi);
     emblaApi.on('reInit', onSelect);
     emblaApi.on('select', onSelect);
-  }, [emblaApi, onSelect]);
+    
+    // Start auto-scroll
+    startAutoScroll();
+    
+    // Cleanup on unmount
+    return () => {
+      pauseAutoScroll();
+    };
+  }, [emblaApi, onSelect, startAutoScroll]);
 
   useEffect(() => {
     if (!modalEmblaApi) return;
@@ -101,7 +149,7 @@ export function Events() {
     }
   }, [modalEmblaApi, onModalSelect, selectedEvent]);
 
-  // Updated events with multiple images
+  // Updated events with multiple images - sorted by date (newest first)
   const events = [
     {
       id: 2,
@@ -109,11 +157,10 @@ export function Events() {
       date: "February 28, 2024",
       images: [
         "/images/event/spark/sp4.jpg",
-         "/images/event/spark/sp1.jpg",
-         "/images/event/spark/sp.jpg",
-         "/images/event/spark/sp2.jpg",
-         "/images/event/spark/sp3.jpg",
-        
+        "/images/event/spark/sp1.jpg",
+        "/images/event/spark/sp.jpg",
+        "/images/event/spark/sp2.jpg",
+        "/images/event/spark/sp3.jpg",
       ],
     },
     {
@@ -188,11 +235,11 @@ export function Events() {
         "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
       ],
     }
-  ];
+  ].sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date (newest first)
 
   return (
     <>
-      <section id="events" className="py-12 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      <section id="events" className="py-16 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-20">
           <Image
@@ -205,7 +252,7 @@ export function Events() {
         
         <div className="container mx-auto relative">
           {/* Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="w-16 h-1 bg-teal-500"></div>
               <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
@@ -214,7 +261,7 @@ export function Events() {
               <div className="w-16 h-1 bg-teal-500"></div>
             </div>
             
-            <h2 className="text-4xl font-bold text-blue-950 font-headline leading-tight mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-950 font-headline leading-tight mb-4">
               Recent Events & Activities
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -224,21 +271,23 @@ export function Events() {
 
           {/* Slider Container */}
           <div className="relative px-12">
-            {/* Navigation Buttons */}
+            {/* Navigation Buttons - Larger and more prominent */}
             <button
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-4 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={scrollPrev}
               disabled={prevBtnDisabled}
+              aria-label="Previous events"
             >
-              <ChevronLeft className="w-6 h-6 text-blue-950" />
+              <ChevronLeft className="w-8 h-8 text-blue-950" />
             </button>
             
             <button
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-4 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={scrollNext}
               disabled={nextBtnDisabled}
+              aria-label="Next events"
             >
-              <ChevronRight className="w-6 h-6 text-blue-950" />
+              <ChevronRight className="w-8 h-8 text-blue-950" />
             </button>
 
             {/* Embla Carousel */}
@@ -247,16 +296,16 @@ export function Events() {
                 {events.map((event) => (
                   <div
                     key={event.id}
-                    className="flex-none w-80 group cursor-pointer pl-6"
+                    className="flex-none w-96 group cursor-pointer pl-6" // Increased card width
                     onClick={() => handleEventClick(event)}
                   >
-                    <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                    <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                       <Image
                         src={event.images[0]}
                         alt={event.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        quality={85}
+                        quality={90}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         loading="lazy"
                       />
@@ -268,7 +317,7 @@ export function Events() {
                       </div>
                       
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                        <h3 className="text-white font-bold text-lg leading-tight mb-2">
+                        <h3 className="text-white font-bold text-xl leading-tight mb-2">
                           {event.title}
                         </h3>
                         <div className="flex items-center text-white/80 text-sm">
@@ -283,8 +332,21 @@ export function Events() {
             </div>
           </div>
 
-          <div className="text-center mt-8">
-            {/* Optional "View All Events" button */}
+          <div className="text-center mt-12">
+            <div className="flex justify-center space-x-2">
+              {events.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full ${
+                    index === emblaApi?.selectedScrollSnap() 
+                      ? 'bg-teal-500' 
+                      : 'bg-gray-300'
+                  }`}
+                  onClick={() => emblaApi?.scrollTo(index)}
+                  aria-label={`Go to event ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -301,6 +363,7 @@ export function Events() {
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 z-50 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+              aria-label="Close modal"
             >
               <X className="w-6 h-6 text-gray-800" />
             </button>
@@ -337,6 +400,7 @@ export function Events() {
                 className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={modalScrollPrev}
                 disabled={modalPrevBtnDisabled}
+                aria-label="Previous image"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
@@ -345,6 +409,7 @@ export function Events() {
                 className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={modalScrollNext}
                 disabled={modalNextBtnDisabled}
+                aria-label="Next image"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
