@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image/';
+import Image from 'next/image';
 import { useState } from 'react';
 import { 
   Heart, 
@@ -26,6 +26,11 @@ interface Speciality {
 
 export function SuperSpeciality() {
   const [selectedSpeciality, setSelectedSpeciality] = useState<Speciality | null>(null);
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
+
+  const handleImageError = (id: number) => {
+    setImageErrors(prev => ({ ...prev, [id]: true }));
+  };
 
   const specialities: Speciality[] = [
     {
@@ -35,7 +40,7 @@ export function SuperSpeciality() {
       description: 'Specialized surgical care for infants, children, and adolescents with congenital and acquired conditions.',
       detailedDescription: 'The Department of Pediatric Surgery at Government Medical College & Rajindra Hospital, Patiala provides specialized surgical care for infants, children, and adolescents. Our experienced team of surgeons and faculty manage a wide range of conditions including congenital anomalies, neonatal surgical emergencies, pediatric trauma, and tumors.The department runs regular OPD and emergency services, along with specialized clinics for newborn care, epilepsy, asthma, cerebral palsy, nephrotic syndrome, and more. With modern facilities and a compassionate approach, the unit is dedicated to ensuring the best outcomes for young patients while also serving as a center for medical education and training.',
       color: 'text-pink-600',
-      image: '/image/ped.png',
+      image: '/ped.png',
       services: [
         'Congenital anomaly corrections',
         'Pediatric trauma surgery',
@@ -51,7 +56,7 @@ export function SuperSpeciality() {
       description: 'Advanced neurosurgical procedures for brain, spine, and peripheral nervous system disorders.',
       detailedDescription: 'The Department of Neurosurgery at Government Medical College & Rajindra Hospital, Patiala is dedicated to delivering advanced surgical care for disorders of the brain, spinal cord, peripheral nerves, and skull. Our experts handle a wide spectrum of neurosurgical conditions — including head and spinal trauma, congenital anomalies, brain tumors, hydrocephalus, spinal disorders, neurovascular conditions, and critical neurological emergencies.Equipped with modern operation theatres and diagnostic imaging support, the department combines precise surgical skills with compassionate, patient-centered care. We strive not only for excellent surgical outcomes but also for teaching, research, and community health, serving southern Punjab and beyond with accessible neurosurgical services.',
       color: 'text-purple-600',
-      image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/neuro.png',
       services: [
         'Brain tumor surgery',
         'Spinal surgery',
@@ -67,7 +72,7 @@ export function SuperSpeciality() {
       description: 'Comprehensive cancer surgery with multidisciplinary approach for optimal patient outcomes.',
       detailedDescription: 'The Department of Surgical Oncology at GMC & Rajindra Hospital, Patiala is committed to providing comprehensive surgical care in the diagnosis, treatment, and management of cancer. Our skilled surgical oncologists perform complex operations for a wide variety of tumors, including breast, gastrointestinal, head & neck, skin, soft tissue, and other malignancies.With access to modern operating theatres, multidisciplinary collaboration (with medical oncology, radiation oncology, radiology, pathology), and a patient-centric approach, the department aims to deliver the best possible outcomes while ensuring compassionate care. We also serve as a center for cancer surgery training and research, helping advance oncological surgical practices in the region.',
       color: 'text-green-600',
-      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/oncology.png',
       services: [
         'Complex tumor resections',
         'Oncoplastic surgery',
@@ -83,7 +88,7 @@ export function SuperSpeciality() {
       description: 'Cardiothoracic and Vascular Surgery for heart, lung, and vascular system conditions.',
       detailedDescription: 'The CVTS (Cardio-Vascular & Thoracic Surgery)Department at Government Medical College & Rajindra Hospital, Patiala delivers high-end surgical care for diseases of the heart, blood vessels, lungs, and chest structures. Our team of cardiovascular & thoracic surgeons is experienced in treating congenital and acquired cardiac conditions, performing open-heart surgeries, valve replacements and repairs, coronary artery bypass grafting (CABG), thoracic tumor resections, lung surgeries, and interventions for trauma and other chest emergencies.Equipped with modern operating theatres, advanced imaging, post-operative intensive care, and multidisciplinary collaboration (including cardiology, anesthesiology, critical care), the department strives for the highest standards of safety, precision, and compassionate patient care. We are committed not only to excellent surgical outcomes but also to training the next generation of surgeons and bringing accessible cardiac & thoracic care to the region.',
       color: 'text-red-600',
-      image: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/cvts.png',
       services: [
         'Cardiac surgery',
         'Thoracic surgery',
@@ -99,7 +104,7 @@ export function SuperSpeciality() {
       description: 'Advanced urological procedures for kidney, bladder, prostate, and reproductive system disorders.',
       detailedDescription: 'The Urology Department at GMC & Rajindra Hospital, Patiala offers expert surgical and medical care for disorders of the urinary tract and male reproductive system. Under the leadership of accomplished faculty such as Dr. Harjinder Singh (Professor & Principal) and Dr. Harbhupinder Singh (Professor), the department handles a wide range of conditions — kidney stones, enlarged prostate, urinary incontinence, urinary tract infections, urethral strictures, male infertility, and urinary cancers.Drawing on advanced diagnostics and therapies, including minimally invasive and endoscopic surgery, the department emphasizes personalised, compassionate treatment plans. We strive for high standards in patient-care, research, and medical teaching, serving the health needs of Patiala and the surrounding region.',
       color: 'text-blue-600',
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/urology.png',
       services: [
         'Kidney stone treatment',
         'Prostate surgery',
@@ -115,7 +120,7 @@ export function SuperSpeciality() {
       description: 'Reconstructive and aesthetic surgery for trauma, congenital defects, and cosmetic enhancement.',
       detailedDescription: 'The Plastic Surgery Department at GMC & Rajindra Hospital, Patiala offers both aesthetic and reconstructive surgical care using up-to-date techniques and compassionate, patient-centred service. The team handles a broad spectrum of procedures—cosmetic surgery like rhinoplasty, breast procedures, liposuction, body contouring; reconstructive surgery including hand surgery, burn care, microsurgery, treatment of congenital deformities, trauma reconstruction, and post-cancer reconstructive work.Equipped with modern operating theatres and supported by diagnostic imaging and anaesthesia services, the department strives to deliver high standards of safety, functional restoration, and improved appearance. Whether restoring health and function after injury, surgery or congenital condition, or helping patients with cosmetic concerns, we are committed to excellence in surgical technique, research, and teaching.',
       color: 'text-orange-600',
-      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/plastic-surgery.png',
       services: [
         'Reconstructive surgery',
         'Burn surgery',
@@ -168,15 +173,22 @@ export function SuperSpeciality() {
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={speciality.image}
-                  alt={speciality.name}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="lazy"
-                />
+                {imageErrors[speciality.id] ? (
+                  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                    <div className={speciality.color}>{speciality.icon}</div>
+                  </div>
+                ) : (
+                  <Image
+                    src={speciality.image}
+                    alt={speciality.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    quality={85}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
+                    onError={() => handleImageError(speciality.id)}
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 
                 {/* Icon Overlay */}
@@ -244,12 +256,19 @@ export function SuperSpeciality() {
             
             {/* Modal Header Image */}
             <div className="relative h-64 overflow-hidden rounded-t-2xl">
-              <Image
-                src={selectedSpeciality.image}
-                alt={selectedSpeciality.name}
-                fill
-                className="object-cover"
-              />
+              {imageErrors[selectedSpeciality.id] ? (
+                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <div className={selectedSpeciality.color}>{selectedSpeciality.icon}</div>
+                </div>
+              ) : (
+                <Image
+                  src={selectedSpeciality.image}
+                  alt={selectedSpeciality.name}
+                  fill
+                  className="object-cover"
+                  onError={() => handleImageError(selectedSpeciality.id)}
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div className="absolute bottom-6 left-6 text-white">
                 <div className="flex items-center gap-3 mb-2">
