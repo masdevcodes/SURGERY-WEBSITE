@@ -221,7 +221,7 @@ export function InfoCards() {
               </div>
               <div className="relative h-32">
                 <Image
-                  src="/stonav.png" // Replace with your image path
+                  src="/stonav.jpg" // Replace with your image path
                   alt="Stoma care example 2"
                   fill
                   className="object-cover rounded-md"
