@@ -192,7 +192,7 @@ export function InfoCards() {
             {/* Banner Image for Trauma Clinic */}
             <div className="w-full mb-6">
               <Image
-                src="/trauma1.jpg"
+                src="/emer.png"
                 alt="Trauma Clinic Banner"
                 width={1200}
                 height={400}
