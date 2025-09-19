@@ -19,9 +19,9 @@ export function InfoCards() {
   
   const breastImages = [
     '/brep.png',
-    '/breast1.jpg',
-    '/breast2.jpg',
-    '/breast3.jpg'
+    '/brep.png',
+    '/brep.png',
+    '/brep.png'
   ];
 
   function openModal(key: string) {
