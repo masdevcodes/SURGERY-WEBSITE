@@ -42,7 +42,7 @@ export function About() {
                 </p>
               </div>
               <div className="md:col-span-2">
-                <p className="text-base text-blue-950/80 leading-relaxed">
+                <p className="text-base text-blue-950/80 text-justify leading-relaxed">
                   A community in which all people achieve their full potential for health and well-being across the lifespan. We work to be trusted by patients, a valued partner in the community, and creators of positive change.
                 </p>
                 <p className="text-base text-blue-950/80 leading-relaxed mt-4">
