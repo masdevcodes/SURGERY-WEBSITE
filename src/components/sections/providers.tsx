@@ -36,12 +36,26 @@ export function Providers() {
 
   // Function to get image path based on name
   const getImagePath = (name: string) => {
-    // This is a simplified example - you might need a more robust mapping
-    const nameParts = name.toLowerCase().split(' ');
+    // Remove "Dr. " prefix and split the name
+    const cleanName = name.replace('Dr. ', '');
+    const nameParts = cleanName.toLowerCase().split(' ');
+    
+    // For Junior Residents, we have specific image paths
+    if (nameParts.includes('dinesh')) return '/images/dinesh.png';
+    if (nameParts.includes('navneeth') || nameParts.includes('shankar')) return '/images/navneeth.png';
+    if (nameParts.includes('vineeth') || nameParts.includes('sunaria')) return '/images/vineeth.png';
+    if (nameParts.includes('aseem') || nameParts.includes('anand')) return '/images/aseem.png';
+    if (nameParts.includes('soumya')) return '/images/soumya.png';
+    if (nameParts.includes('naveen') || nameParts.includes('mangla')) return '/images/naveen.png';
+    if (nameParts.includes('yogyatha') || nameParts.includes('yog')) return '/images/yog.png';
+    if (nameParts.includes('priyanka') || nameParts.includes('pri')) return '/images/pri.png';
+    if (nameParts.includes('sooraj') || nameParts.includes('sur')) return '/images/sur.png';
+    
+    // Default fallback for other doctors
     const lastName = nameParts[nameParts.length - 1];
-    return `/images/doctors/${lastName}.jpg`; // Assuming images are stored with last name
+    return `/images/doctors/${lastName}.jpg`;
   };
-///public/images/doctors/ for Unit incharge AP,SR
+
   // Main Provider Images /public/images/
   const providers: Provider[] = [
     {
@@ -57,7 +71,7 @@ export function Providers() {
         incharge: 'Dr. Prem Singla',
         assistantProfessors: ['Dr. Parth Dhamija', 'Dr. M'],
         seniorResidents: ['Dr. Soumya A', 'Dr. Aseem Anand', 'Dr. C'],
-        juniorResidents: ['Dr. Aseem Anand', 'Dr. Naveen Mangla', 'Dr. Soumya A', 'Dr. Navneeth', 'Dr. Dinesh', 'Dr. Vineeth Sunaria'],
+        juniorResidents: ['Dr. Aseem Anand', 'Dr. Naveen Mangla', 'Dr. Soumya A', 'Dr. Navneeth Shankar', 'Dr. Dinesh', 'Dr. Vineeth Sunaria', 'Dr. Yogyatha', 'Dr. Priyanka', 'Dr. Sooraj'],
       },
     },
     {
@@ -144,183 +158,21 @@ export function Providers() {
 
   // Helper to render lists with images for certain roles
   const renderListWithImages = (names: string[], showImages: boolean) => (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-6 mt-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 justify-items-center mt-4">
       {names.map((name, idx) => (
         <div key={idx} className="flex flex-col items-center">
           {showImages && (
-            <div className="relative w-24 h-24 rounded-full overflow-hidden mb-3 border-2 border-gray-200 group">
+            <div 
+              className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group cursor-pointer"
+              onClick={() => setZoomedImage(getImagePath(name))}
+            >
               <Image
                 src={getImagePath(name)}
                 alt={name}
-                fill
-                className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                width={112}
+                height={112}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
             </div>
           )}
-          <p className="text-gray-700 break-words text-sm text-center">{name}</p>
-        </div>
-      ))}
-    </div>
-  );
-
-  // Helper to render junior residents (names only)
-  const renderJuniorResidents = (names: string[]) => (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-2 mt-1">
-      {names.map((name, idx) => (
-        <p key={idx} className="text-gray-700 break-words text-sm">{name}</p>
-      ))}
-    </div>
-  );
-
-  return (
-    <section id="providers" className="py-24 bg-gradient-to-br from-gray-50 to-white relative">
-      {/* Background Image */}
-      <div className="absolute inset-0 opacity-50">
-        <Image
-          src="/111 copy copy.png"
-          alt="Geometric background pattern"
-          fill
-          className="object-cover"
-        />
-      </div>
-
-      <div className="container mx-auto relative z-10">
-        <h2 className="text-6xl font-bold text-blue-950 font-headline mb-4">Our Providers</h2>
-        <p className="text-xl text-gray-600 mb-12">Meet our experienced Medical Professionals</p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {providers.map((provider) => {
-            const colorInfo = colorMap[provider.color] || colorMap.blue;
-            
-            return (
-              <div
-                key={provider.id}
-                className="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-              >
-                <div className="relative overflow-hidden h-80">
-                  <Image
-                    src={provider.image}
-                    alt={provider.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    quality={85}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                <div className="p-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div
-                      className={`w-16 h-16 bg-gradient-to-br ${colorInfo.from} ${colorInfo.to} rounded-xl flex items-center justify-center shadow-lg`}
-                    >
-                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14 2C19.5 2 24 6.5 24 12C24 17.5 19.5 22 14 22C8.5 22 4 17.5 4 12C4 6.5 8.5 2 14 2Z" fill="white" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className={`${colorInfo.text} font-bold text-sm uppercase tracking-wider`}>{provider.unit}</p>
-                      <h3 className="text-2xl font-bold text-blue-950 font-headline">{provider.name}</h3>
-                      <h2 className="text-red-600">{provider.email}</h2>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-center">
-                    <button
-                      onClick={() => setSelectedProvider(provider)}
-                      className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition"
-                    >
-                      View More Detail of {provider.unit}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Provider Details Modal */}
-      {selectedProvider && (
-        <div
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
-          onClick={() => setSelectedProvider(null)}
-        >
-          <div
-            className="bg-white rounded-2xl max-w-4xl w-full p-8 relative overflow-y-auto max-h-[90vh]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 font-bold text-xl"
-              onClick={() => setSelectedProvider(null)}
-            >
-              ×
-            </button>
-
-            {/* Centered Unit Name with Provider Color */}
-            <h2
-              className="text-3xl font-bold mb-6 text-center"
-              style={{ color: selectedProvider.color }}
-            >
-              {selectedProvider.unit}
-            </h2>
-
-            {/* Unit Incharge with Image */}
-            <div className="mb-8 flex flex-col items-center">
-              <div className="relative w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-gray-300 group">
-                <Image
-                  src={getImagePath(selectedProvider.details.incharge)}
-                  alt={selectedProvider.details.incharge}
-                  fill
-                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <p className="text-gray-700 font-bold text-lg">
-                <strong>Unit Incharge:</strong> {selectedProvider.details.incharge}
-              </p>
-            </div>
-
-            <div className="mb-8">
-              <strong className="text-lg">Associate Professors:</strong>
-              {renderListWithImages(selectedProvider.details.assistantProfessors, true)}
-            </div>
-
-            <div className="mb-8">
-              <strong className="text-lg">Senior Residents:</strong>
-              {renderListWithImages(selectedProvider.details.seniorResidents, true)}
-            </div>
-
-            <div className="mb-4">
-              <strong className="text-lg">Junior Residents:</strong>
-              {renderJuniorResidents(selectedProvider.details.juniorResidents)}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Zoomed Image Modal */}
-      {zoomedImage && (
-        <div
-          className="fixed inset-0 bg-black/90 flex items-center justify-center z-[60] p-4"
-          onClick={() => setZoomedImage(null)}
-        >
-          <div className="relative max-w-4xl max-h-full">
-            <button
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 text-3xl font-bold"
-              onClick={() => setZoomedImage(null)}
-            >
-              ×
-            </button>
-            <div className="relative w-80 h-80 md:w-96 md:h-96">
-              <Image
-                src={zoomedImage}
-                alt="Zoomed profile"
-                fill
-                className="object-contain rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-      )}
-    </section>
-  );
-}
+          <p className="
