@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import { Users, Award, Clock, Heart, Stethoscope, Activity } from 'lucide-react';
+import { Users, Award, Clock, Heart, Calendar, Scissors } from 'lucide-react';
 
 export function Intro() {
   return (
    <section id="intro" className="mt-[-93.9px] py-24 bg-gradient-to-br from-blue-50 via-white to-teal-50 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-50">
+      <div className="absolute inset-0 opacity-30">
         <Image
           src="/111.png"
           alt="Abstract background pattern"
@@ -101,67 +101,89 @@ export function Intro() {
           </div>
 
           {/* Right Side - OPD + OT Info Card */}
-          <div className="relative">
-            <div className="bg-teal-500 rounded-lg p-6 text-white shadow-xl flex flex-col">
-              <h3 className="text-2xl font-bold font-body mb-4">
-                OPD Days{' '}
-                <span className="text-sm font-normal opacity-80">
-                  (8am - 2.30pm)
-                </span>
-              </h3>
-              <div className="max-h-40 overflow-y-auto mb-6 border border-white/30 rounded-lg bg-white/10 p-3 backdrop-blur-sm shadow-inner">
-                {[
-                  'Unit 1 - Mon-Thu, Room No:8',
-                  'Unit 2 - Tue-Fri, Room No:8',
-                  'Unit 3 - Wed-Sat, Room No:8',
-                  'Unit 4 - Mon-Thu, Room No:7',
-                  'Unit 5 - Tue-Fri, Room No:7',
-                  'Unit 6 - Wed-Sat, Room No:7',
-                  'Unit 7 - Mon-Thu, Room No:3',
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="p-2 mb-2 last:mb-0 rounded-md bg-white/20 hover:bg-white/30 transition-colors"
-                  >
-                    <p className="font-semibold text-sm">{item}</p>
-                  </div>
-                ))}
+          <div className="relative flex flex-col items-center">
+            <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl w-full max-w-md">
+              {/* Header with icon */}
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-white/20 p-3 rounded-full mr-3">
+                  <Calendar className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-center">
+                  OPD Schedule
+                  <span className="block text-sm font-normal opacity-90 mt-1">
+                    (8:00 AM - 2:30 PM)
+                  </span>
+                </h3>
               </div>
-              <h3 className="text-2xl font-bold font-body mb-4">OT Days</h3>
-              <div className="max-h-40 overflow-y-auto border border-white/30 rounded-lg bg-white/10 p-3 backdrop-blur-sm shadow-inner">
-                {[
-                  'Unit 1 - Tue - Fri',
-                  'Unit 2 - Wed - Sat',
-                  'Unit 3 - Mon - Thu',
-                  'Unit 4 - Tue - Fri',
-                  'Unit 5 - Wed - Sat',
-                  'Unit 6 - Mon - Thu',
-                  'Unit 7 - Wed - Sat',
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="p-2 mb-2 last:mb-0 rounded-md bg-white/20 hover:bg-white/30 transition-colors"
-                  >
-                    <p className="font-semibold text-sm">{item}</p>
-                  </div>
-                ))}
+              
+              <div className="mb-6 bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20">
+                <h4 className="font-semibold text-lg mb-3 flex items-center">
+                  <Users className="w-5 h-5 mr-2" /> OPD Days
+                </h4>
+                <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
+                  {[
+                    {unit: 'Unit 1', days: 'Mon-Thu', room: 'Room 8'},
+                    {unit: 'Unit 2', days: 'Tue-Fri', room: 'Room 8'},
+                    {unit: 'Unit 3', days: 'Wed-Sat', room: 'Room 8'},
+                    {unit: 'Unit 4', days: 'Mon-Thu', room: 'Room 7'},
+                    {unit: 'Unit 5', days: 'Tue-Fri', room: 'Room 7'},
+                    {unit: 'Unit 6', days: 'Wed-Sat', room: 'Room 7'},
+                    {unit: 'Unit 7', days: 'Mon-Thu', room: 'Room 3'},
+                  ].map((item, index) => (
+                    <div
+                      key={index}
+                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center"
+                    >
+                      <span className="font-medium">{item.unit}</span>
+                      <div className="text-right text-sm">
+                        <div>{item.days}</div>
+                        <div className="text-teal-100">{item.room}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20">
+                <h4 className="font-semibold text-lg mb-3 flex items-center">
+                  <Scissors className="w-5 h-5 mr-2" /> OT Days
+                </h4>
+                <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
+                  {[
+                    {unit: 'Unit 1', days: 'Tue - Fri'},
+                    {unit: 'Unit 2', days: 'Wed - Sat'},
+                    {unit: 'Unit 3', days: 'Mon - Thu'},
+                    {unit: 'Unit 4', days: 'Tue - Fri'},
+                    {unit: 'Unit 5', days: 'Wed - Sat'},
+                    {unit: 'Unit 6', days: 'Mon - Thu'},
+                    {unit: 'Unit 7', days: 'Wed - Sat'},
+                  ].map((item, index) => (
+                    <div
+                      key={index}
+                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center"
+                    >
+                      <span className="font-medium">{item.unit}</span>
+                      <span className="text-sm">{item.days}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Floating Stats Card */}
-            <div className="mt-8 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+            {/* Stats Card */}
+            <div className="mt-8 bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg w-full max-w-md border border-teal-100">
               <div className="grid grid-cols-3 gap-4 text-center">
-                <div>
+                <div className="p-2">
                   <div className="text-2xl font-bold text-teal-600 mb-1">500+</div>
-                  <div className="text-xs text-gray-600">Daily Patients</div>
+                  <div className="text-xs text-gray-600 font-medium">Daily Patients</div>
                 </div>
-                <div>
+                <div className="p-2">
                   <div className="text-2xl font-bold text-blue-600 mb-1">50+</div>
-                  <div className="text-xs text-gray-600">Expert Surgeons</div>
+                  <div className="text-xs text-gray-600 font-medium">Expert Surgeons</div>
                 </div>
-                <div>
+                <div className="p-2">
                   <div className="text-2xl font-bold text-purple-600 mb-1">1000+</div>
-                  <div className="text-xs text-gray-600">Surgeries/Month</div>
+                  <div className="text-xs text-gray-600 font-medium">Surgeries/Month</div>
                 </div>
               </div>
             </div>
