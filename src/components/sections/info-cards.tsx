@@ -13,8 +13,8 @@ export function InfoCards() {
   const stomaImages = [
     '/stomay.png',
     '/stonav.jpg',
-    '/stoma2.jpg',
-    '/stoma3.jpg'
+    '/brep.png',
+    '/stonav.jpg'
   ];
   
   const breastImages = [
