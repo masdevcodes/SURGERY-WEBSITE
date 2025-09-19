@@ -46,7 +46,7 @@ export function History() {
                 </p>
 
                 <div className="bg-teal-50 rounded-lg p-6 border-l-4 border-teal-500">
-                  <h4 className="text-xl font-bold text-blue-950 mb-4">A Brief History</h4>
+                  <h4 className="text-xl font-bold text-justify text-blue-950 mb-4">A Brief History</h4>
                   <p>
                     Government Medical College, Patiala, was founded on September 29, 1953, to address the need for qualified medical professionals in the erstwhile Patiala and East Punjab States Union (PEPSU). The college's clinical training was intrinsically linked to the Rajindra Hospital, a large multi-specialty institution inaugurated in 1954.
                   </p>
