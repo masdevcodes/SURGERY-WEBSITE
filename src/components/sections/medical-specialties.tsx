@@ -228,6 +228,9 @@ export function MedicalSpecialties() {
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 justify-items-center">
                     {[
                       { name: "Dr. Aseem Anand", img: "/images/aseem.png" },
+                      { name: "Dr. Aseem Anand", img: "/images/aseem.png" },
+                      { name: "Dr. Aseem Anand", img: "/images/aseem.png" },
+                      { name: "Dr. Aseem Anand", img: "/images/aseem.png" },
                       { name: "Dr. Soumya A", img: "/images/soumya.png" },
                       { name: "Dr. Naveen Mangla", img: "/images/naveen.png" },
                       { name: "Dr. Yogyatha", img: "/images/yog.png" },
