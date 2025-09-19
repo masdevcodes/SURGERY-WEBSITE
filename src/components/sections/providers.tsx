@@ -152,29 +152,33 @@ export function Providers() {
     },
   ];
 
-  const renderListWithImages = (names: string[], showImages: boolean, centerAlign = false) => (
-    <div className={`grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 ${centerAlign ? 'justify-items-center' : ''} mt-4`}>
-      {names.map((name, idx) => (
-        <div key={idx} className="flex flex-col items-center">
-          {showImages && (
-            <div 
-              className="w-28 h-28 rounded-full overflow-hidden shadow-md mb-3 group cursor-pointer"
-              onClick={() => setZoomedImage(getImagePath(name))}
-            >
-              <Image
-                src={getImagePath(name)}
-                alt={name}
-                width={112}
-                height={112}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-              />
-            </div>
-          )}
-          <p className="font-medium text-blue-950 text-sm text-center">{name}</p>
-        </div>
-      ))}
-    </div>
-  );
+  const renderListWithImages = (names: string[], showImages: boolean, centerIfFew = false) => {
+    const shouldCenter = centerIfFew && names.length <= 3;
+    
+    return (
+      <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 ${shouldCenter ? 'justify-items-center' : ''} mt-4`}>
+        {names.map((name, idx) => (
+          <div key={idx} className="flex flex-col items-center">
+            {showImages && (
+              <div 
+                className="w-28 h-28 rounded-full overflow-hidden shadow-md mb-3 group cursor-pointer"
+                onClick={() => setZoomedImage(getImagePath(name))}
+              >
+                <Image
+                  src={getImagePath(name)}
+                  alt={name}
+                  width={112}
+                  height={112}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+              </div>
+            )}
+            <p className="font-medium text-blue-950 text-sm text-center">{name}</p>
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <section id="providers" className="py-24 bg-gradient-to-br from-gray-50 to-white relative">
