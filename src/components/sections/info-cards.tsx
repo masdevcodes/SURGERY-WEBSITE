@@ -196,21 +196,20 @@ export function InfoCards() {
       {/* Container */}
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* OPD + OT Info Card - FIXED */}
-          <div className="bg-teal-500 rounded-lg p-8 text-white shadow-xl flex flex-col h-full">
-            <div className="mb-8 text-center">
-              <h2 className="text-4xl font-bold font-body mb-2">OPD & OT Schedule</h2>
-              <div className="w-20 h-1 bg-white mx-auto"></div>
+          {/* OPD + OT Info Card - RESIZED */}
+          <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full bg-teal-500 text-white">
+            <div className="p-6 bg-teal-600">
+              <h3 className="text-2xl font-bold text-center">OPD & OT Schedule</h3>
             </div>
             
-            <div className="flex-1">
+            <div className="p-6 flex-grow flex flex-col">
               {/* OPD Schedule */}
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold mb-2">
-                  OPD Days <span className="text-base font-normal opacity-80">(8am - 2.30pm)</span>
-                </h3>
-                <div className="h-px bg-white/30 mb-4"></div>
-                <div className="max-h-64 overflow-y-auto space-y-4 pr-2">
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold mb-2">
+                  OPD Days <span className="text-sm font-normal opacity-90">(8am - 2.30pm)</span>
+                </h4>
+                <div className="h-px bg-white/30 mb-3"></div>
+                <div className="max-h-40 overflow-y-auto space-y-2 pr-2 text-sm">
                   {[
                     {unit: 'Unit 1', schedule: 'Mon-Thu', room: 'Room No:8'},
                     {unit: 'Unit 2', schedule: 'Tue-Fri', room: 'Room No:8'},
@@ -222,10 +221,10 @@ export function InfoCards() {
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className="p-3 rounded-lg bg-white/15 hover:bg-white/20 transition-colors"
+                      className="p-2 rounded bg-white/10 hover:bg-white/15 transition-colors"
                     >
-                      <p className="font-semibold text-lg">{item.unit}</p>
-                      <p className="text-sm opacity-90">{item.schedule}</p>
+                      <p className="font-medium">{item.unit}</p>
+                      <p className="text-xs opacity-90">{item.schedule}</p>
                       <p className="text-xs opacity-80 mt-1">{item.room}</p>
                     </div>
                   ))}
@@ -234,9 +233,9 @@ export function InfoCards() {
 
               {/* OT Schedule */}
               <div>
-                <h3 className="text-2xl font-bold mb-2">OT Days</h3>
-                <div className="h-px bg-white/30 mb-4"></div>
-                <div className="max-h-64 overflow-y-auto space-y-4 pr-2">
+                <h4 className="text-lg font-semibold mb-2">OT Days</h4>
+                <div className="h-px bg-white/30 mb-3"></div>
+                <div className="max-h-40 overflow-y-auto space-y-2 pr-2 text-sm">
                   {[
                     {unit: 'Unit 1', days: 'Tue - Fri'},
                     {unit: 'Unit 2', days: 'Wed - Sat'},
@@ -248,10 +247,10 @@ export function InfoCards() {
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className="p-3 rounded-lg bg-white/15 hover:bg-white/20 transition-colors"
+                      className="p-2 rounded bg-white/10 hover:bg-white/15 transition-colors"
                     >
-                      <p className="font-semibold text-lg">{item.unit}</p>
-                      <p className="text-sm opacity-90">{item.days}</p>
+                      <p className="font-medium">{item.unit}</p>
+                      <p className="text-xs opacity-90">{item.days}</p>
                     </div>
                   ))}
                 </div>
@@ -263,7 +262,7 @@ export function InfoCards() {
           <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
             <div className="relative overflow-hidden group">
               {/* Image Container with Fixed Aspect Ratio */}
-              <div className="w-full h-64 relative">
+              <div className="w-full h-48 relative">
                 <Image
                   src={stomaImages[stomaImageIndex]}
                   alt="Stoma care and medical equipment"
@@ -280,7 +279,7 @@ export function InfoCards() {
                 {stomaImages.map((_, index) => (
                   <div
                     key={index}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       index === stomaImageIndex ? 'bg-white scale-125' : 'bg-white/50'
                     }`}
                   />
@@ -288,20 +287,19 @@ export function InfoCards() {
               </div>
             </div>
             
-            <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
+            <div className="p-6 bg-white flex-grow flex flex-col justify-between">
               <div>
-                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
+                <h3 className="text-xl font-bold text-blue-950 mb-3 text-center">
                   Stoma Clinic
                 </h3>
-                <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
+                <p className="text-zinc-500 text-sm leading-relaxed mb-4 text-justify">
                   Our Stoma Clinic offers expert care for patients with
                   colostomies, ileostomies, and urostomies. Our services include
                   assessment, fitting of appropriate appliances, and prompt
                   management of stoma-related complications. We emphasize
                   patient education, lifestyle counselling, and emotional
                   support to empower individuals in managing their stoma with
-                  confidence. Our goal is to restore dignity, comfort, and the
-                  highest quality of life for all patients under our care.
+                  confidence.
                 </p>
               </div>
               <a
@@ -310,9 +308,9 @@ export function InfoCards() {
                   e.preventDefault();
                   openModal('stoma');
                 }}
-                className="font-bold text-teal-500 flex items-center gap-2 justify-center"
+                className="font-bold text-teal-500 flex items-center gap-1 justify-center text-sm"
               >
-                READ MORE <ArrowRight className="w-4 h-4" />
+                READ MORE <ArrowRight className="w-3 h-3" />
               </a>
             </div>
           </div>
@@ -321,7 +319,7 @@ export function InfoCards() {
           <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
             <div className="relative overflow-hidden group">
               {/* Image Container with Fixed Aspect Ratio */}
-              <div className="w-full h-64 relative">
+              <div className="w-full h-48 relative">
                 <Image
                   src={breastImages[breastImageIndex]}
                   alt="Doctors consulting with patient in hospital room"
@@ -338,7 +336,7 @@ export function InfoCards() {
                 {breastImages.map((_, index) => (
                   <div
                     key={index}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       index === breastImageIndex ? 'bg-white scale-125' : 'bg-white/50'
                     }`}
                   />
@@ -346,20 +344,17 @@ export function InfoCards() {
               </div>
             </div>
             
-            <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
+            <div className="p-6 bg-white flex-grow flex flex-col justify-between">
               <div>
-                <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
+                <h3 className="text-xl font-bold text-blue-950 mb-3 text-center">
                   Breast Clinic
                 </h3>
-                <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
+                <p className="text-zinc-500 text-sm leading-relaxed mb-4 text-justify">
                   Our Breast Clinic provides specialized care for women
                   presenting with breast-related complaints such as lumps, pain,
                   discharge, or infections. The clinic offers early detection
                   services for breast cancer, including clinical breast
-                  examination, imaging guidance, and biopsy facilities. Along
-                  with diagnosis and treatment, it emphasizes patient
-                  counselling, awareness, and follow-up care to ensure
-                  comprehensive management of breast health.
+                  examination, imaging guidance, and biopsy facilities.
                 </p>
               </div>
               <a
@@ -368,9 +363,9 @@ export function InfoCards() {
                   e.preventDefault();
                   openModal('breast');
                 }}
-                className="font-bold text-teal-500 flex items-center gap-2 justify-center"
+                className="font-bold text-teal-500 flex items-center gap-1 justify-center text-sm"
               >
-                READ MORE <ArrowRight className="w-4 h-4" />
+                READ MORE <ArrowRight className="w-3 h-3" />
               </a>
             </div>
           </div>
