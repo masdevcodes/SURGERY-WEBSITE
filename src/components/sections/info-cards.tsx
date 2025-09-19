@@ -64,34 +64,6 @@ export function InfoCards() {
               />
             </div>
 
-            {/* Additional Images for Stoma Clinic */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mb-6">
-              <div className="relative h-48">
-                <Image
-                  src="/stoma1.jpg" // Replace with your image path
-                  alt="Stoma care example 1"
-                  fill
-                  className="rounded-lg object-cover"
-                />
-              </div>
-              <div className="relative h-48">
-                <Image
-                  src="/stoma2.jpg" // Replace with your image path
-                  alt="Stoma care example 2"
-                  fill
-                  className="rounded-lg object-cover"
-                />
-              </div>
-              <div className="relative h-48">
-                <Image
-                  src="/stoma3.jpg" // Replace with your image path
-                  alt="Stoma care example 3"
-                  fill
-                  className="rounded-lg object-cover"
-                />
-              </div>
-            </div>
-
             <h2 className="text-3xl font-bold mb-6">Stoma Clinic Details</h2>
             <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
               The Stoma Clinic at GMC Patiala functions as a dedicated service
@@ -136,34 +108,6 @@ export function InfoCards() {
               />
             </div>
 
-            {/* Additional Images for Breast Clinic */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mb-6">
-              <div className="relative h-48">
-                <Image
-                  src="/breast1.jpg" // Replace with your image path
-                  alt="Breast clinic example 1"
-                  fill
-                  className="rounded-lg object-cover"
-                />
-              </div>
-              <div className="relative h-48">
-                <Image
-                  src="/breast2.jpg" // Replace with your image path
-                  alt="Breast clinic example 2"
-                  fill
-                  className="rounded-lg object-cover"
-                />
-              </div>
-              <div className="relative h-48">
-                <Image
-                  src="/breast3.jpg" // Replace with your image path
-                  alt="Breast clinic example 3"
-                  fill
-                  className="rounded-lg object-cover"
-                />
-              </div>
-            </div>
-
             <h2 className="text-3xl font-bold mb-6">Breast Clinic Details</h2>
             <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
               The Breast Clinic at GMC Patiala, under the Department of General
@@ -181,7 +125,7 @@ export function InfoCards() {
               their condition, available treatment options, and expected
               outcomes. Preventive strategies such as breast self-examination
               training and awareness programs are also integrated into the
-              clinic's routine. Postoperative follow-up and rehabilitation,
+              clinic’s routine. Postoperative follow-up and rehabilitation,
               including wound care and lymphedema management, are actively
               supported. The clinic also provides psychological and emotional
               support, recognizing the significant impact breast diseases can
@@ -277,35 +221,6 @@ export function InfoCards() {
                 loading="lazy"
               />
             </div>
-            
-            {/* Additional Images for Stoma Clinic Card */}
-            <div className="grid grid-cols-3 gap-2 p-2 bg-gray-100">
-              <div className="relative h-24">
-                <Image
-                  src="/stoma1.jpg" // Replace with your image path
-                  alt="Stoma care example 1"
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-              <div className="relative h-24">
-                <Image
-                  src="/stoma2.jpg" // Replace with your image path
-                  alt="Stoma care example 2"
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-              <div className="relative h-24">
-                <Image
-                  src="/stoma3.jpg" // Replace with your image path
-                  alt="Stoma care example 3"
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-            </div>
-            
             <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
               <div>
                 <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
@@ -349,35 +264,6 @@ export function InfoCards() {
                 loading="lazy"
               />
             </div>
-            
-            {/* Additional Images for Breast Clinic Card */}
-            <div className="grid grid-cols-3 gap-2 p-2 bg-gray-100">
-              <div className="relative h-24">
-                <Image
-                  src="/breast1.jpg" // Replace with your image path
-                  alt="Breast clinic example 1"
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-              <div className="relative h-24">
-                <Image
-                  src="/breast2.jpg" // Replace with your image path
-                  alt="Breast clinic example 2"
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-              <div className="relative h-24">
-                <Image
-                  src="/breast3.jpg" // Replace with your image path
-                  alt="Breast clinic example 3"
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-            </div>
-            
             <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
               <div>
                 <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
