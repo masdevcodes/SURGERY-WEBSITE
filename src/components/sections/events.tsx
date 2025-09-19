@@ -109,8 +109,8 @@ export function Events() {
       date: "February 28, 2024",
       images: [
         "/images/event/spark/sp4.jpg",
-         "/images/event/spark/sp.jpg",
          "/images/event/spark/sp1.jpg",
+         "/images/event/spark/sp.jpg",
          "/images/event/spark/sp2.jpg",
          "/images/event/spark/sp3.jpg",
         
