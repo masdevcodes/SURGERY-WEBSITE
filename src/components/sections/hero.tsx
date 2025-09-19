@@ -31,13 +31,10 @@ export function Hero() {
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center h-full">
         <div className="max-w-4xl mt-32">
           <h1 className="text-8xl font-bold font-headline leading-tight">
-            Our expertise
+            Our expertis
           </h1>
           <h1 className="text-8xl font-bold font-headline leading-tight">
             at your service
-          </h1>
-          <h1 className="text-1.7xl font-bold color-teal-500 font-headline leading-tight">
-            DEPARTMENT OF GENERAL & MINIMAL ACCESS SURGERY, GMC PATIALA
           </h1>
         </div>
       </div>
