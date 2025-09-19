@@ -152,8 +152,8 @@ export function Providers() {
     },
   ];
 
-  const renderListWithImages = (names: string[], showImages: boolean) => (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 justify-items-center mt-4">
+  const renderListWithImages = (names: string[], showImages: boolean, centerAlign = false) => (
+    <div className={`grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 ${centerAlign ? 'justify-items-center' : ''} mt-4`}>
       {names.map((name, idx) => (
         <div key={idx} className="flex flex-col items-center">
           {showImages && (
@@ -283,13 +283,13 @@ export function Providers() {
             </div>
 
             <div className="mb-8">
-              <strong className="text-lg">Associate Professors:</strong>
-              {renderListWithImages(selectedProvider.details.assistantProfessors, true)}
+              <strong className="text-lg block text-center">Associate Professors:</strong>
+              {renderListWithImages(selectedProvider.details.assistantProfessors, true, true)}
             </div>
 
             <div className="mb-8">
-              <strong className="text-lg">Senior Residents:</strong>
-              {renderListWithImages(selectedProvider.details.seniorResidents, true)}
+              <strong className="text-lg block text-center">Senior Residents:</strong>
+              {renderListWithImages(selectedProvider.details.seniorResidents, true, true)}
             </div>
 
             <div className="mb-4">
