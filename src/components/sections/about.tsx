@@ -55,7 +55,7 @@ export function About() {
               <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg hover:bg-white/15 hover:scale-105 transition-all duration-300">
                 <Globe className="w-10 h-10 text-teal-500 mb-4" />
                 <h4 className="font-bold text-blue-950 font-body text-base mb-2">Our Vision</h4>
-                <p className="text-sm text-blue-950/80">
+                <p className="text-sm text-justify text-blue-950/80">
                   A community in which our vision is to establish all people achieve their full potential for health and well-being across complexity the lifespan.
                 </p>
               </div>
