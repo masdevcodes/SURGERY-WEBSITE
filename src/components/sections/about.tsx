@@ -43,13 +43,10 @@ export function About() {
               </div>
               <div className="md:col-span-2">
                 <p className="text-base text-blue-950/80 text-justify leading-relaxed">
-                  We aspire to build a community where every individual has the opportunity to achieve their highest potential for health and well-being at every stage of life. Guided by compassion, excellence, and innovation, we aim to be more than just a healthcare provider—we strive to be a trusted partner in your journey toward better health, a valued member of the community, and a catalyst for positive change.
+                  A community where all people can achieve their full potential for health and well-being across the lifespan. We strie to be trusted by our patients, a valued partner in the community, and a driver of positive change.
                 </p>
                 <p className="text-base text-blue-950/80 text-justify leading-relaxed mt-4">
-                At the heart of our care is a team-based model that places the patient at the center. We believe that healthcare works best when patients are active participants in their treatment, supported by a multidisciplinary team of skilled professionals. This collaborative approach ensures that care is not only comprehensive but also personalized to meet each individual’s unique needs.
-                </p>
-                <p className="text-base text-blue-950/80 text-justify leading-relaxed mt-4">
-                With a dedicated staff rooted in the community, we bring world-class medical expertise closer to home. Our presence allows us to provide highly specialized and effective care while fostering strong, lasting relationships with the people we serve. By combining advanced medical knowledge with a deep understanding of community needs, we are committed to delivering healthcare that truly makes a difference.
+                We use a team-based approach to providing health care, involving the patient as an active member of the team. The presence of our dedicated staff within the community enhances our ability to deliver highly specialized and effective care.
                 </p>
               </div>
             </div>
