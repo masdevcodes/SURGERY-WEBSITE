@@ -213,7 +213,7 @@ export function Achievements() {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <Image
-          src="/medical-pattern.jpg"
+          src="/111.png"
           alt="Medical pattern background"
           fill
           className="object-cover"
