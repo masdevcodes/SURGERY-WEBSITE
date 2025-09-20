@@ -32,7 +32,7 @@ export default function Home() {
         <SuperSpeciality />   
         <TraumaEmergency />
         <History />
-        <Achievements/>
+        <Achievements />
         <Events />
         <Testimonial />
         <Contact />
