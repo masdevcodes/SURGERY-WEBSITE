@@ -81,7 +81,7 @@ export function Providers() {
       image: '/images/rekhi.jpg',
       details: {
         incharge: 'Dr. H.S Rekhi',
-        assistantProfessors: ['Dr. G', 'Dr. H', 'Dr. I'],
+        assistantProfessors: [],
         seniorResidents: ['Dr. J', 'Dr. K'],
         juniorResidents: ['Dr. L', 'Dr. M', 'Dr. N'],
       },
