@@ -54,7 +54,7 @@ export function About() {
               </div>
               <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg hover:bg-white/15 hover:scale-105 transition-all duration-300">
                 <Users className="w-10 h-10 text-teal-500 mb-4" />
-                <h4 className="font-bold text-blue-950 font-body text-base mb-2">Our Team</h4>
+                <h2 className="font-bold text-blue-950 font-body text-base mb-2">Our Team</h2>
                 <p className="text-sm text-blue-950/80">
                   Provide patient-centered healthcare with excellence in quality, service, and access. A community in which all people to provide our patients.
                 </p>
