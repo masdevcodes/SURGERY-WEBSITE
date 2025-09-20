@@ -7,6 +7,8 @@ import { MedicalSpecialties } from '@/components/sections/medical-specialties';
 import { Providers } from '@/components/sections/providers';
 import { Services } from '@/components/sections/services';
 import { SuperSpeciality } from '@/components/sections/super-speciality';
+import { TraumaEmergency } from '@/components/sections/trauma';
+import { Achievements } from '@/components/sections/achivement';
 import { Testimonial } from '@/components/sections/testimonial';
 import { InfoCards } from '@/components/sections/info-cards';
 import { History } from '@/components/sections/history';
@@ -27,8 +29,10 @@ export default function Home() {
         <Providers /> 
         <Services />
         <InfoCards />
-        <SuperSpeciality />    
+        <SuperSpeciality />   
+        <TraumaEmergency,>
         <History />
+        <Achievements/>
         <Events />
         <Testimonial />
         <Contact />
