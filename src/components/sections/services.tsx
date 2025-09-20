@@ -9,11 +9,16 @@ import {
   Bone,
   Brain,
   Activity,
+  X,
+  Trash2,
+  Undo
 } from 'lucide-react';
 
 export function Services() {
-  const services = [
+  // Initial services data
+  const initialServices = [
     {
+      id: 1,
       icon: <Heart className="w-8 h-8" />,
       title: 'Cardiology',
       description:
@@ -33,6 +38,7 @@ export function Services() {
       ),
     },
     {
+      id: 2,
       icon: <Stethoscope className="w-8 h-8" />,
       title: 'Gastroenterology',
       description:
@@ -52,6 +58,7 @@ export function Services() {
       ),
     },
     {
+      id: 3,
       icon: <Eye className="w-8 h-8" />,
       title: 'Ophthalmology',
       description: 'Sed vel odio sapien. Vivamus feugiat faucibus enim dapibus.',
@@ -69,6 +76,7 @@ export function Services() {
       ),
     },
     {
+      id: 4,
       icon: <Bone className="w-8 h-8" />,
       title: 'Rheumatology',
       description:
@@ -88,6 +96,7 @@ export function Services() {
       ),
     },
     {
+      id: 5,
       icon: <Brain className="w-8 h-8" />,
       title: 'Neurology',
       description:
@@ -107,6 +116,7 @@ export function Services() {
       ),
     },
     {
+      id: 6,
       icon: <Activity className="w-8 h-8" />,
       title: 'Urology',
       description:
@@ -127,8 +137,10 @@ export function Services() {
     },
   ];
 
-  const [selectedService, setSelectedService] = useState<any>(null);
-  const rightSideRef = useRef<HTMLDivElement>(null);
+  const [services, setServices] = useState(initialServices);
+  const [deletedServices, setDeletedServices] = useState([]);
+  const [selectedService, setSelectedService] = useState(null);
+  const rightSideRef = useRef(null);
   const [rightSideHeight, setRightSideHeight] = useState(0);
 
   // Left-side carousel images
@@ -155,7 +167,7 @@ export function Services() {
 
     // Cleanup
     return () => window.removeEventListener('resize', updateHeight);
-  }, []);
+  }, [services]); // Update when services change
 
   // Auto-change carousel images every 3 seconds
   useEffect(() => {
@@ -167,6 +179,19 @@ export function Services() {
 
   // Close modal
   const closeModal = () => setSelectedService(null);
+
+  // Delete a service
+  const deleteService = (id) => {
+    const serviceToDelete = services.find(service => service.id === id);
+    setServices(services.filter(service => service.id !== id));
+    setDeletedServices([...deletedServices, serviceToDelete]);
+  };
+
+  // Restore all deleted services
+  const restoreAllServices = () => {
+    setServices([...services, ...deletedServices]);
+    setDeletedServices([]);
+  };
 
   return (
     <section
@@ -213,8 +238,8 @@ export function Services() {
                   <Heart className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-blue-950">500+</p>
-                  <p className="text-sm text-gray-600">Patients Treated Daily</p>
+                  <p className="text-2xl font-bold text-blue-950">{services.length}+</p>
+                  <p className="text-sm text-gray-600">Services Available</p>
                 </div>
               </div>
             </div>
@@ -230,24 +255,46 @@ export function Services() {
                   Medical Excellence
                 </span>
               </div>
-              <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
-                Our Services
-              </h2>
+              <div className="flex justify-between items-center">
+                <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
+                  Our Services
+                </h2>
+                {deletedServices.length > 0 && (
+                  <button
+                    onClick={restoreAllServices}
+                    className="flex items-center gap-2 text-teal-600 hover:text-teal-800 font-medium text-sm transition-colors"
+                  >
+                    <Undo size={16} />
+                    Restore All
+                  </button>
+                )}
+              </div>
               <p className="text-xl text-gray-600 font-medium">
                 Delivering world class medical care
               </p>
             </div>
+            
             {/* Services Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {services.map((service, index) => (
                 <div
-                  key={index}
-                  className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200"
+                  key={service.id}
+                  className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 relative"
                 >
+                  {/* Delete Button */}
+                  <button
+                    onClick={() => deleteService(service.id)}
+                    className="absolute top-3 right-3 p-1.5 text-gray-400 hover:text-red-500 rounded-full hover:bg-red-50 transition-all duration-300 opacity-0 group-hover:opacity-100"
+                    aria-label={`Delete ${service.title}`}
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                  
                   {/* Icon */}
                   <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                     <div className={service.color}>{service.icon}</div>
                   </div>
+                  
                   {/* Content */}
                   <h3 className="text-lg font-bold text-blue-950 mb-3 group-hover:text-teal-600 transition-colors duration-300">
                     {service.title}
@@ -255,6 +302,7 @@ export function Services() {
                   <p className="text-sm text-gray-600 leading-relaxed mb-4">
                     {service.description}
                   </p>
+                  
                   {/* Read More Link */}
                   <button
                     onClick={() => setSelectedService(service)}
@@ -266,6 +314,24 @@ export function Services() {
                 </div>
               ))}
             </div>
+            
+            {/* Empty State */}
+            {services.length === 0 && (
+              <div className="text-center py-12 bg-white rounded-xl shadow-lg border border-gray-100">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Trash2 className="w-8 h-8 text-gray-400" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-700 mb-2">No services available</h3>
+                <p className="text-gray-500 mb-6">All services have been deleted</p>
+                <button
+                  onClick={restoreAllServices}
+                  className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                >
+                  <Undo size={16} />
+                  Restore All Services
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
