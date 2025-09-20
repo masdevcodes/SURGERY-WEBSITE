@@ -158,7 +158,7 @@ export function Services() {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
         <Image
-          src="/111.jpg"
+          src="/111.png"
           alt="Surgical team in operating room"
           fill
           className="object-cover"
