@@ -125,7 +125,7 @@ export function Intro() {
                 <h4 className="font-semibold text-lg mb-3 flex items-center">
                   <Users className="w-5 h-5 mr-2" /> OPD Days
                 </h4>
-                <div className="space-y-2 h-64 overflow-y-auto pr-2"> {/* Increased height to h-64 */}
+                <div className="space-y-2 h-65 overflow-y-auto pr-2"> {/* Increased height to h-64 */}
                   {[
                       {unit: 'Unit 1', days: 'Mon & Thu', room: 'Room 8'},
           {unit: 'Unit 2', days: 'Tue & Fri', room: 'Room 8'},
