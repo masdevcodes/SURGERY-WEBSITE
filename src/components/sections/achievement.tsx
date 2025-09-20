@@ -165,42 +165,6 @@ export function Achievements() {
   ];
 
   const [selectedAchievement, setSelectedAchievement] = useState<any>(null);
-  const rightSideRef = useRef<HTMLDivElement>(null);
-  const [rightSideHeight, setRightSideHeight] = useState(0);
-
-  // Left-side carousel images
-  const carouselImages = [
-    '/surgery1.jpg',
-    '/surgery2.jpg',
-    '/surgery3.jpg',
-  ];
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Update right side height on resize and after initial render
-  useEffect(() => {
-    const updateHeight = () => {
-      if (rightSideRef.current) {
-        setRightSideHeight(rightSideRef.current.offsetHeight);
-      }
-    };
-
-    // Initial height calculation
-    updateHeight();
-
-    // Add resize listener
-    window.addEventListener('resize', updateHeight);
-
-    // Cleanup
-    return () => window.removeEventListener('resize', updateHeight);
-  }, []);
-
-  // Auto-change carousel images every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Close modal
   const closeModal = () => setSelectedAchievement(null);
@@ -223,44 +187,8 @@ export function Achievements() {
 
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left Side - Surgical Team Carousel */}
-          <div className="relative">
-            <div 
-              className="relative rounded-2xl overflow-hidden shadow-2xl group"
-              style={{ height: `${rightSideHeight}px` }}
-            >
-              <Image
-                src={carouselImages[currentImageIndex]}
-                alt={`Surgical team ${currentImageIndex + 1}`}
-                fill
-                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              
-              {/* Overlay Badge */}
-              <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center">
-                    <Award className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-lg font-bold text-blue-950">25+</p>
-                    <p className="text-xs text-gray-600">Years Excellence</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Floating Elements */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-teal-500/20 rounded-full blur-xl animate-pulse"></div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
-          </div>
-
-          {/* Right Side - Achievements List */}
-          <div ref={rightSideRef} className="space-y-8">
+          {/* Left Side - Stats Cards */}
+          <div className="space-y-8">
             {/* Header */}
             <div className="space-y-4">
               <div className="flex items-center gap-4">
@@ -276,53 +204,85 @@ export function Achievements() {
                 Celebrating milestones in surgical care and innovation
               </p>
             </div>
-            
-            {/* Achievements List */}
-            <div className="space-y-6 max-h-[calc(100%-180px)] overflow-y-auto pr-2">
-              {achievements.map((achievement, index) => (
-                <div
-                  key={index}
-                  className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4 cursor-pointer"
-                  onClick={() => setSelectedAchievement(achievement)}
-                >
-                  {/* Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <div className={achievement.color}>{achievement.icon}</div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex justify-between items-start mb-1">
-                      <h3 className="text-lg font-bold text-blue-950 group-hover:text-teal-600 transition-colors duration-300">
-                        {achievement.title}
-                      </h3>
-                      <span className="text-xs font-semibold bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
-                        {achievement.year}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-600 leading-relaxed mb-2">
-                      {achievement.description}
-                    </p>
-                    <div className="flex items-center gap-2 text-sm font-semibold text-teal-600">
-                      <TrendingUp className="w-4 h-4" />
-                      <span>{achievement.stats}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
 
-            {/* Additional Stats */}
-            <div className="grid grid-cols-2 gap-6 pt-6">
-              <div className="bg-white rounded-xl p-5 shadow-md border border-gray-100">
+            {/* Stats Cards */}
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
+                  <Award className="w-8 h-8 text-teal-600" />
+                </div>
                 <div className="text-3xl font-bold text-blue-950 mb-2">98%</div>
                 <div className="text-sm text-gray-600">Surgical Success Rate</div>
               </div>
-              <div className="bg-white rounded-xl p-5 shadow-md border border-gray-100">
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                  <Users className="w-8 h-8 text-blue-600" />
+                </div>
                 <div className="text-3xl font-bold text-blue-950 mb-2">50+</div>
                 <div className="text-sm text-gray-600">Expert Surgeons</div>
               </div>
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                <div className="w-16 h-16 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+                  <Clock className="w-8 h-8 text-amber-600" />
+                </div>
+                <div className="text-3xl font-bold text-blue-950 mb-2">25+</div>
+                <div className="text-sm text-gray-600">Years of Excellence</div>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                  <TrendingUp className="w-8 h-8 text-purple-600" />
+                </div>
+                <div className="text-3xl font-bold text-blue-950 mb-2">15K+</div>
+                <div className="text-sm text-gray-600">Successful Surgeries</div>
+              </div>
             </div>
+
+            {/* Additional Info Card */}
+            <div className="bg-gradient-to-r from-teal-500 to-blue-500 rounded-xl p-6 text-white shadow-lg">
+              <h3 className="text-xl font-bold mb-3">24/7 Emergency Surgery</h3>
+              <p className="text-sm opacity-90 mb-4">
+                Our surgical team is available round the clock for emergency procedures with a response time of under 15 minutes.
+              </p>
+              <div className="flex items-center gap-2 text-sm font-semibold">
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                <span>Immediate care when you need it most</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Achievements List */}
+          <div className="space-y-6">
+            {achievements.map((achievement, index) => (
+              <div
+                key={index}
+                className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4 cursor-pointer"
+                onClick={() => setSelectedAchievement(achievement)}
+              >
+                {/* Icon */}
+                <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <div className={achievement.color}>{achievement.icon}</div>
+                </div>
+                
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between items-start mb-1">
+                    <h3 className="text-lg font-bold text-blue-950 group-hover:text-teal-600 transition-colors duration-300">
+                      {achievement.title}
+                    </h3>
+                    <span className="text-xs font-semibold bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+                      {achievement.year}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-2">
+                    {achievement.description}
+                  </p>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-teal-600">
+                    <TrendingUp className="w-4 h-4" />
+                    <span>{achievement.stats}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
