@@ -219,7 +219,7 @@ export function SuperSpeciality() {
           ))}
         </div>
 
-        {/* Stats Sectio */}
+        {/* Stats Section */}
         <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
