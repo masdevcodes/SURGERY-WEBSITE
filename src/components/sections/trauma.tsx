@@ -261,7 +261,7 @@ export function Trauma() {
                   </div>
                 </div>
                 <p className="text-sm text-gray-600">
-                  Available 24/7 for trauma emergencies. Our team is ready to coordinate 
+                 Available 24/7 for trauma emergencies. Our team is ready to coordinate 
                   transport and prepare for your arrival.
                 </p>
               </div>
