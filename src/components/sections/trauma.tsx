@@ -232,7 +232,7 @@ export function Trauma() {
 
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left Side - Trauma Team Carousel */}
+          {/* Left Side - Trauma Tea Carousel */}
           <div className="relative">
             <div 
               className="relative rounded-2xl overflow-hidden shadow-2xl group"
