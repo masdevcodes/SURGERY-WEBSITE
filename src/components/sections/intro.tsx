@@ -185,7 +185,7 @@ export function Intro() {
                   <div className="text-xs text-gray-600 font-medium">Daily Patients</div>
                 </div>
                 <div className="p-2">
-                  <div className="text-2xl font-bold text-blue-600 mb-1">50+</div>
+                  <div className="text-2xl font-bold text-blue-600 mb-1">27+</div>
                   <div className="text-xs text-gray-600 font-medium">Expert Surgeons</div>
                 </div>
                 <div className="p-2">
