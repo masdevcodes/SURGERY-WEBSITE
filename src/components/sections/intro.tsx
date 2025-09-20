@@ -105,7 +105,7 @@ export function Intro() {
           </div>
 
           {/* Right Side - OPD + OT Info Card */}
-          <div className="flex flex-col gap-8 h-full justify-between">
+          <div className="flex flex-col gap-8 h-full">
             {/* OPD/OT Card - Decreased width, increased height */}
             <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl w-full max-w-sm mx-auto h-full flex flex-col">
               {/* Header with icon */}
