@@ -291,7 +291,7 @@ export function Providers() {
                   className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <p className="text-gray-700 text-teal-500 font-bold text-lg">
+              <p className="text-gray-700 font-bold text-lg">
                 <strong>Unit Incharge:</strong> {selectedProvider.details.incharge}
               </p>
             </div>
