@@ -7,7 +7,7 @@ import { MedicalSpecialties } from '@/components/sections/medical-specialties';
 import { Providers } from '@/components/sections/providers';
 import { Services } from '@/components/sections/services';
 import { SuperSpeciality } from '@/components/sections/super-speciality';
-import { TraumaEmergency } from '@/components/sections/trauma';
+import { Trauma } from '@/components/sections/trauma';
 import { Achievements } from '@/components/sections/achievement';
 import { Testimonial } from '@/components/sections/testimonial';
 import { InfoCards } from '@/components/sections/info-cards';
