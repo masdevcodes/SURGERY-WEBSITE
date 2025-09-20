@@ -26,7 +26,7 @@ export function Trauma() {
         <div>
           <h3 className="font-bold text-2xl mb-4">Level 1 Trauma Center</h3>
           <p className="text-gray-700 leading-relaxed text-justify mb-4">
-            ur Level 1 Trauma Center is verified by the American College of Surgeons and provides 
+            Our Level 1 Trauma Center is verified by the American College of Surgeons and provides 
             the highest level of surgical care for critically injured patients. We have a dedicated 
             trauma team available 24/7, ready within minutes of patient arrival.
           </p>
