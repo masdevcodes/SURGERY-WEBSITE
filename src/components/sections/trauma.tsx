@@ -227,7 +227,7 @@ export function Trauma() {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-red-100/20 via-transparent to-blue-100/20"></div>
+        <div className="absolute inset-0 ></div>
       </div>
 
       <div className="container mx-auto relative">
