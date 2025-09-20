@@ -220,7 +220,7 @@ export function Trauma() {
       className="py-24 bg-gradient-to-br from-red-50 to-white relative overflow-hidden"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-40">
         <Image
           src="/111.png"
           alt="Medical pattern background"
