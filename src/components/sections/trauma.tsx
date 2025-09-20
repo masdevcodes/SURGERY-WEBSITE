@@ -181,7 +181,6 @@ export function Trauma() {
   const carouselImages = [
     '/trauma1.jpg',
     '/trauma2.jpg',
-    '/trauma3.jpg',
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
