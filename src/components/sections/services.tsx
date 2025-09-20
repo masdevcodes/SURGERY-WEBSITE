@@ -220,7 +220,7 @@ export function Services() {
             </div>
           </div>
 
-          {/* Right Side - Services List */}
+          {/* Right Side - Services Grid */}
           <div ref={rightSideRef} className="space-y-8">
             {/* Header */}
             <div className="space-y-4">
@@ -237,36 +237,32 @@ export function Services() {
                 Delivering world class medical care
               </p>
             </div>
-            
-            {/* Services List */}
-            <div className="space-y-4 max-h-[calc(100%-180px)] overflow-y-auto pr-2">
+            {/* Services Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {services.map((service, index) => (
                 <div
                   key={index}
-                  className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4"
+                  className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200"
                 >
                   {/* Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                     <div className={service.color}>{service.icon}</div>
                   </div>
-                  
                   {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold text-blue-950 mb-2 group-hover:text-teal-600 transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                      {service.description}
-                    </p>
-                    {/* Read More Link */}
-                    <button
-                      onClick={() => setSelectedService(service)}
-                      className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
-                    >
-                      READ MORE
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </button>
-                  </div>
+                  <h3 className="text-lg font-bold text-blue-950 mb-3 group-hover:text-teal-600 transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    {service.description}
+                  </p>
+                  {/* Read More Link */}
+                  <button
+                    onClick={() => setSelectedService(service)}
+                    className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
+                  >
+                    READ MORE..
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </button>
                 </div>
               ))}
             </div>
