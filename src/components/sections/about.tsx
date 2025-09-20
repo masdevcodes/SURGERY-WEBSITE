@@ -62,7 +62,7 @@ export function About() {
               <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg hover:bg-white/15 hover:scale-105 transition-all duration-300">
                 <Heart className="w-10 h-10 text-teal-500 mb-4" />
                 <h4 className="font-bold text-blue-950 font-body text-base mb-2">Our Values</h4>
-                <p className="text-sm text-justify text-blue-950/80">
+                <p className="text-sm text-center text-blue-950/80">
                   We care for the whole person, see the complexity of each person's life, and believe that addressing a broad range of human needs is the best.
                 </p>
               </div>
