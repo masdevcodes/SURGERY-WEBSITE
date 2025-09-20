@@ -14,6 +14,7 @@ interface Provider {
   image: string;
   details: {
     incharge: string;
+    associateProfessors: string[]; // Added this field
     assistantProfessors: string[];
     seniorResidents: string[];
     juniorResidents: string[];
@@ -65,6 +66,7 @@ export function Providers() {
       image: '/images/asem.png',
       details: {
         incharge: 'Dr. Prem Singla',
+        associateProfessors: ['Dr. A', 'Dr. B'], // Added associate professors
         assistantProfessors: ['Dr. P', 'Dr. M'],
         seniorResidents: ['Dr. S', 'Dr.', 'Dr. C'],
         juniorResidents: ['Dr. A', 'Dr. N', 'Dr. S', 'Dr. N', 'Dr. D', 'Dr. V', 'Dr. Y', 'Dr. P', 'Dr. S'],
@@ -81,6 +83,7 @@ export function Providers() {
       image: '/images/rekhi.jpg',
       details: {
         incharge: 'Dr. H.S Rekhi',
+        associateProfessors: [], // No associate professors
         assistantProfessors: ['Dr. G', 'Dr. H', 'Dr. I'],
         seniorResidents: ['Dr. J', 'Dr. K'],
         juniorResidents: ['Dr. L', 'Dr. M', 'Dr. N'],
@@ -97,6 +100,7 @@ export function Providers() {
       image: '/images/provider3.jpg',
       details: {
         incharge: 'Dr. D.J.S Wallia',
+        associateProfessors: ['Dr. X', 'Dr. Y'], // Added associate professors
         assistantProfessors: ['Dr. M', 'Dr. N'],
         seniorResidents: ['Dr. O', 'Dr. P', 'Dr. Q'],
         juniorResidents: ['Dr. R', 'Dr. S', 'Dr. T', 'Dr. U', 'Dr. V'],
@@ -113,6 +117,7 @@ export function Providers() {
       image: '/images/provider4.jpg',
       details: {
         incharge: 'Dr. Sanjeev Gupta',
+        associateProfessors: [], // No associate professors
         assistantProfessors: ['Dr. S', 'Dr. T'],
         seniorResidents: ['Dr. U', 'Dr. V'],
         juniorResidents: ['Dr. W', 'Dr. X', 'Dr. Y', 'Dr. Z'],
@@ -129,6 +134,7 @@ export function Providers() {
       image: '/images/provider5.jpg',
       details: {
         incharge: 'Dr. R.S Mohi',
+        associateProfessors: ['Dr. W', 'Dr. X'], // Added associate professors
         assistantProfessors: ['Dr. Y', 'Dr. Z'],
         seniorResidents: ['Dr. AA', 'Dr. BB'],
         juniorResidents: ['Dr. CC', 'Dr. DD', 'Dr. EE', 'Dr. FF', 'Dr. GG', 'Dr. HH'],
@@ -145,6 +151,7 @@ export function Providers() {
       image: '/images/provider6.jpg',
       details: {
         incharge: 'Dr. Vikas Goyal',
+        associateProfessors: [], // No associate professors
         assistantProfessors: ['Dr. EE', 'Dr. FF'],
         seniorResidents: ['Dr. GG', 'Dr. HH'],
         juniorResidents: ['Dr. II', 'Dr. JJ', 'Dr. KK', 'Dr. LL', 'Dr. MM', 'Dr. NN'],
@@ -153,8 +160,10 @@ export function Providers() {
   ];
 
   const renderListWithImages = (names: string[], showImages: boolean, centerIfFew = false) => {
+    if (names.length === 0) return null; // Don't render if no names
+    
     const shouldCenter = centerIfFew && names.length <= 3;
-    const gridCols = shouldCenter ? `grid-cols-${names.length}` : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
+    const gridCols = shouldCenter ? `grid-cols-${Math.min(names.length, 3)}` : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
     
     return (
       <div className={`grid ${gridCols} gap-6 md:gap-8 ${shouldCenter ? 'justify-center' : ''} mt-4`}>
@@ -287,20 +296,37 @@ export function Providers() {
               </p>
             </div>
 
-            <div className="mb-8">
-              <strong className="text-lg block text-center">Assistant Professors:</strong>
-              {renderListWithImages(selectedProvider.details.assistantProfessors, true, true)}
-            </div>
+            {/* Conditionally render Associate Professors section */}
+            {selectedProvider.details.associateProfessors.length > 0 && (
+              <div className="mb-8">
+                <strong className="text-lg block text-center">Associate Professors:</strong>
+                {renderListWithImages(selectedProvider.details.associateProfessors, true, true)}
+              </div>
+            )}
 
-            <div className="mb-8">
-              <strong className="text-lg block text-center">Senior Residents:</strong>
-              {renderListWithImages(selectedProvider.details.seniorResidents, true, true)}
-            </div>
+            {/* Conditionally render Assistant Professors section */}
+            {selectedProvider.details.assistantProfessors.length > 0 && (
+              <div className="mb-8">
+                <strong className="text-lg block text-center">Assistant Professors:</strong>
+                {renderListWithImages(selectedProvider.details.assistantProfessors, true, true)}
+              </div>
+            )}
 
-            <div className="mb-4">
-              <strong className="text-lg">Junior Residents:</strong>
-              {renderListWithImages(selectedProvider.details.juniorResidents, true)}
-            </div>
+            {/* Conditionally render Senior Residents section */}
+            {selectedProvider.details.seniorResidents.length > 0 && (
+              <div className="mb-8">
+                <strong className="text-lg block text-center">Senior Residents:</strong>
+                {renderListWithImages(selectedProvider.details.seniorResidents, true, true)}
+              </div>
+            )}
+
+            {/* Conditionally render Junior Residents section */}
+            {selectedProvider.details.juniorResidents.length > 0 && (
+              <div className="mb-4">
+                <strong className="text-lg block text-center">Junior Residents:</strong>
+                {renderListWithImages(selectedProvider.details.juniorResidents, true)}
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -330,4 +356,4 @@ export function Providers() {
       )}
     </section>
   );
-} 
+}
