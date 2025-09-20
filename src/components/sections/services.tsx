@@ -156,7 +156,7 @@ export function Services() {
       className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-40">
+      <div className="absolute inset-0 opacity-30">
         <Image
           src="/22222.jpg"
           alt="Surgical team in operating room"
