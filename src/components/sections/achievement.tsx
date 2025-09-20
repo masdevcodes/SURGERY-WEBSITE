@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import {
   Award,
@@ -15,6 +15,7 @@ import {
 export function Achievements() {
   const achievements = [
     {
+      id: 1,
       icon: <Award className="w-8 h-8" />,
       title: 'National Excellence Award',
       description: 'Recognized as top surgical department for innovative procedures',
@@ -47,6 +48,7 @@ export function Achievements() {
       ),
     },
     {
+      id: 2,
       icon: <Users className="w-8 h-8" />,
       title: '15,000+ Successful Surgeries',
       description: 'Performed with exceptional outcomes and patient satisfaction',
@@ -83,6 +85,7 @@ export function Achievements() {
       ),
     },
     {
+      id: 3,
       icon: <Clock className="w-8 h-8" />,
       title: 'Fastest Recovery Times',
       description: 'Innovative techniques reducing hospital stays significantly',
@@ -124,6 +127,7 @@ export function Achievements() {
       ),
     },
     {
+      id: 4,
       icon: <TrendingUp className="w-8 h-8" />,
       title: 'Research Publications',
       description: 'Contributing to surgical advancements through research',
@@ -168,6 +172,11 @@ export function Achievements() {
 
   // Close modal
   const closeModal = () => setSelectedAchievement(null);
+
+  // Open modal for specific achievement
+  const openModal = (achievement: any) => {
+    setSelectedAchievement(achievement);
+  };
 
   return (
     <section
@@ -272,11 +281,11 @@ export function Achievements() {
 
           {/* Right Side - Achievements List */}
           <div className="space-y-6">
-            {achievements.map((achievement, index) => (
+            {achievements.map((achievement) => (
               <div
-                key={index}
+                key={achievement.id}
                 className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4 cursor-pointer"
-                onClick={() => setSelectedAchievement(achievement)}
+                onClick={() => openModal(achievement)}
               >
                 {/* Icon */}
                 <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
