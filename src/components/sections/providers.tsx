@@ -288,7 +288,7 @@ export function Providers() {
             </div>
 
             <div className="mb-8">
-              <strong className="text-lg block text-center">Associate Professors:</strong>
+              <strong className="text-lg block text-center">Assistant Professors:</strong>
               {renderListWithImages(selectedProvider.details.assistantProfessors, true, true)}
             </div>
 
