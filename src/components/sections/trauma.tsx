@@ -217,7 +217,7 @@ export function Trauma() {
   return (
     <section
       id="trauma"
-      className=""
+      className="absolute inset-0"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-40">
