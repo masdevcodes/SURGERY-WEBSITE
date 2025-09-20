@@ -7,7 +7,7 @@ export function Intro() {
   return (
     <section id="intro" className="mt-[-93.9px] py-24 bg-gradient-to-br from-blue-50 via-white to-teal-50 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-50">
         <Image
           src="/111.png"
           alt="Abstract background pattern"
