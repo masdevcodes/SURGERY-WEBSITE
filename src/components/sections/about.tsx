@@ -8,7 +8,7 @@ export function About() {
         src="/111.png"
         alt="Abstract background"
         fill
-        className="object-cover opacity-40"
+        className="object-cover opacity-50"
         data-ai-hint="abstract texture"
       />
       <div className="container mx-auto relative">
