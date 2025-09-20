@@ -292,7 +292,7 @@ export function Providers() {
                 />
               </div>
               <p className="text-gray-700 font-bold text-lg">
-                <strong>Unit Incharge:</strong> {selectedProvider.details.incharge}
+                <strong><p classname="text-teal-500"></p>Unit Incharge:</strong> {selectedProvider.details.incharge}
               </p>
             </div>
 
