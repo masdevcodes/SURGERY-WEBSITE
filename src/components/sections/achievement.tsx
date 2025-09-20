@@ -8,8 +8,8 @@ import {
   Star,
   TrendingUp,
   CheckCircle,
-  Scalpel,
   HeartPulse,
+  Scissors // Replacing Scalpel with Scissors which is available in lucide-react
 } from 'lucide-react';
 
 export function Achievements() {
@@ -146,7 +146,7 @@ export function Achievements() {
             <h4 className="font-semibold text-lg mb-3">Notable Research Areas</h4>
             <ul className="space-y-2">
               <li className="flex items-center gap-2">
-                <Scalpel className="w-5 h-5 text-purple-500" />
+                <Scissors className="w-5 h-5 text-purple-500" /> {/* Fixed: Replaced Scalpel with Scissors */}
                 <span>Minimally invasive surgical techniques</span>
               </li>
               <li className="flex items-center gap-2">
