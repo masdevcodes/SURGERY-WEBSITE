@@ -32,25 +32,7 @@ export function Services() {
         </div>
       ),
     },
-    //{
-      icon: <Stethoscope className="w-8 h-8" />,
-      title: 'Gastroenterology',
-      description:
-        'Suspendisse magna nisl, varius ut risus in, porta aliquet nunc.',
-      color: 'text-teal-500',
-      banner:
-        'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      popupContent: (
-        <div>
-          <h3 className="font-bold text-2xl mb-4">Gastroenterology Services</h3>
-          <p className="text-gray-700 leading-relaxed text-justify">
-            Details on Gastroenterology including advanced diagnostic endoscopy,
-            treatment protocols for GI disorders, liver care, and nutritional
-            counselling.
-          </p>
-        </div>
-      ),
-    },
+    
     {
       icon: <Eye className="w-8 h-8" />,
       title: 'Ophthalmology',
