@@ -206,8 +206,7 @@ export function Intro() {
           <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
             <h3 className="text-2xl font-bold text-blue-950 mb-4">Our Mission</h3>
             <p className="text-lg text-gray-700 leading-relaxed italic">
-              "To provide exceptional surgical care through innovation, education, and compassionate service, 
-              while advancing the field of surgery through research and training the next generation of medical professionals."
+              "To provide exceptional surgical care through innovation, education, and compassionate service, while advancing the field of surgery through research and training the next generation of medical professionals."
             </p>
           </div>
         </div>
