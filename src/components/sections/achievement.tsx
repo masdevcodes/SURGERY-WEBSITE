@@ -188,7 +188,7 @@ export function Achievements() {
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Side - Stats Cards */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Header */}
             <div className="space-y-4">
               <div className="flex items-center gap-4">
@@ -205,47 +205,67 @@ export function Achievements() {
               </p>
             </div>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
+            {/* Stats Cards - Same size as achievement cards */}
+            <div className="space-y-6">
+              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4">
+                <div className="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Award className="w-8 h-8 text-teal-600" />
                 </div>
-                <div className="text-3xl font-bold text-blue-950 mb-2">98%</div>
-                <div className="text-sm text-gray-600">Surgical Success Rate</div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-bold text-blue-950 mb-1">98% Success Rate</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Highest surgical success rate in the region across all procedures
+                  </p>
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+
+              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200 flex items-start gap-4">
+                <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Users className="w-8 h-8 text-blue-600" />
                 </div>
-                <div className="text-3xl font-bold text-blue-950 mb-2">50+</div>
-                <div className="text-sm text-gray-600">Expert Surgeons</div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-bold text-blue-950 mb-1">50+ Expert Surgeons</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Board-certified specialists with decades of combined experience
+                  </p>
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="w-16 h-16 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+
+              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-amber-200 flex items-start gap-4">
+                <div className="w-16 h-16 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Clock className="w-8 h-8 text-amber-600" />
                 </div>
-                <div className="text-3xl font-bold text-blue-950 mb-2">25+</div>
-                <div className="text-sm text-gray-600">Years of Excellence</div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-bold text-blue-950 mb-1">25+ Years Excellence</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Decades of providing exceptional surgical care to our community
+                  </p>
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+
+              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 flex items-start gap-4">
+                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
                   <TrendingUp className="w-8 h-8 text-purple-600" />
                 </div>
-                <div className="text-3xl font-bold text-blue-950 mb-2">15K+</div>
-                <div className="text-sm text-gray-600">Successful Surgeries</div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-bold text-blue-950 mb-1">15,000+ Surgeries</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Successful procedures performed with outstanding outcomes
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Additional Info Card */}
-            <div className="bg-gradient-to-r from-teal-500 to-blue-500 rounded-xl p-6 text-white shadow-lg">
-              <h3 className="text-xl font-bold mb-3">24/7 Emergency Surgery</h3>
-              <p className="text-sm opacity-90 mb-4">
-                Our surgical team is available round the clock for emergency procedures with a response time of under 15 minutes.
-              </p>
-              <div className="flex items-center gap-2 text-sm font-semibold">
-                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                <span>Immediate care when you need it most</span>
+            {/* Emergency Info Card */}
+            <div className="group bg-gradient-to-r from-teal-500 to-blue-500 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 text-white flex items-start gap-4">
+              <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Clock className="w-8 h-8 text-white" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg font-bold mb-1">24/7 Emergency Surgery</h3>
+                <p className="text-sm opacity-90 leading-relaxed">
+                  Our surgical team is available round the clock with a response time of under 15 minutes for emergency procedures.
+                </p>
               </div>
             </div>
           </div>
