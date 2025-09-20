@@ -115,14 +115,7 @@ export function Services() {
       banner:
         'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       popupContent: (
-        <div>
-          <h3 className="font-bold text-2xl mb-4">Urology Services</h3>
-          <p className="text-gray-700 leading-relaxed text-justify">
-            Information on kidney stone treatment, prostate care, minimally
-            invasive surgeries, dialysis services, and comprehensive men's
-            health.
-          </p>
-        </div>
+   
       ),
     },
   ];
