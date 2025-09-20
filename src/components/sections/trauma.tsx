@@ -14,6 +14,12 @@ import {
   MapPin,
 } from 'lucide-react';
 
+// Import your images - update these paths to match your actual image locations
+import trauma1 from '@/public/trauma1.jpg';
+import trauma2 from '@/public/trauma2.jpg';
+import trauma3 from '@/public/trauma3.jpg';
+import pattern from '@/public/111.png';
+
 export function Trauma() {
   const services = [
     {
@@ -177,12 +183,8 @@ export function Trauma() {
   const rightSideRef = useRef<HTMLDivElement>(null);
   const [rightSideHeight, setRightSideHeight] = useState(0);
 
-  // Left-side carousel images
-  const carouselImages = [
-    '/trauma1.jpg',
-    '/trauma2.jpg',
-    '/trauma3.jpg',
-  ];
+  // Left-side carousel images using imported images
+  const carouselImages = [trauma1, trauma2, trauma3];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Update right side height on resize and after initial render
@@ -222,12 +224,11 @@ export function Trauma() {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-40">
         <Image
-          src="/111.png"
+          src={pattern}
           alt="Medical pattern background"
           fill
           className="object-cover"
         />
-       
       </div>
 
       <div className="container mx-auto relative">
@@ -261,7 +262,7 @@ export function Trauma() {
                   </div>
                 </div>
                 <p className="text-sm text-gray-600">
-                 Available 24/7 for trauma emergencies. Our team is ready to coordinate 
+                  Available 24/7 for trauma emergencies. Our team is ready to coordinate 
                   transport and prepare for your arrival.
                 </p>
               </div>
