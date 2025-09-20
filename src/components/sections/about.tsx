@@ -43,7 +43,7 @@ export function About() {
               </div>
               <div className="md:col-span-2">
                 <p className="text-base text-blue-950/80 text-justify leading-relaxed">
-                  A community where all people can achieve their full potential for health and well-being across the lifespan. We strie to be trusted by our patients, a valued partner in the community, and a driver of positive change.
+                  A community where all people can achieve their full potential for health and well-being across the lifespan. We strive to be trusted by our patients, a valued partner in the community, and a driver of positive change.
                 </p>
                 <p className="text-base text-blue-950/80 text-justify leading-relaxed mt-4">
                 We use a team-based approach to providing health care, involving the patient as an active member of the team. The presence of our dedicated staff within the community enhances our ability to deliver highly specialized and effective care.
