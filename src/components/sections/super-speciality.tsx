@@ -220,27 +220,28 @@ export function SuperSpeciality() {
         </div>
 
         {/* Stats Section */}
-        <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-teal-600 mb-2">6</div>
-              <div className="text-gray-600 text-sm">Super Specialities</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-teal-600 mb-2">27+</div>
-              <div className="text-gray-600 text-sm">Specialist Doctors</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-teal-600 mb-2">1000+</div>
-              <div className="text-gray-600 text-sm">Complex Surgeries/Year</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-teal-600 mb-2">24/7</div>
-              <div className="text-gray-600 text-sm">Emergency Care</div>
-            </div>
-          </div>
+       <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    {[
+      { number: "6", label: "Super Specialities" },
+      { number: "27+", label: "Specialist Doctors" },
+      { number: "1000+", label: "Complex Surgeries/Year" },
+      { number: "24/7", label: "Emergency Care" }
+    ].map((stat, index) => (
+      <div 
+        key={index}
+        className="transform transition-all duration-500 hover:scale-110 hover:-translate-y-2 cursor-pointer"
+      >
+        <div className="text-3xl font-bold text-teal-600 mb-2 transition-all duration-300 hover:text-teal-700">
+          {stat.number}
+        </div>
+        <div className="text-gray-600 text-sm transition-all duration-300 hover:text-gray-800">
+          {stat.label}
         </div>
       </div>
+    ))}
+  </div>
+</div>
 
       {/* Modal for Speciality Details */}
       {selectedSpeciality && (
