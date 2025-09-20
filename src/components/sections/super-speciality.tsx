@@ -227,7 +227,7 @@ export function SuperSpeciality() {
               <div className="text-gray-600 text-sm">Super Specialities</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-teal-600 mb-2">50+</div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">27+</div>
               <div className="text-gray-600 text-sm">Specialist Doctors</div>
             </div>
             <div>
