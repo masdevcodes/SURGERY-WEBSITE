@@ -91,17 +91,18 @@ export function MedicalSpecialties() {
           </div>
 
           {/* Right Side */}
-          <div className="relative">
-            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl group mt-12">
-              <Image
-                src="/hod.png"
-                alt="Head of Surgery - Dr. Ashwani Kumar"
-                fill
-                className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-            </div>
-          </div>
+          {/* Right Side */}
+<div className="relative">
+  <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl group mt-12">
+    <Image
+      src="/hod.png"
+      alt="Head of Surgery - Dr. Ashwani Kumar"
+      fill
+      className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+  </div>
+</div>
         </div>
       </div>
 
