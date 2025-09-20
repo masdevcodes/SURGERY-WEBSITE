@@ -38,12 +38,12 @@ export function About() {
                 <Stethoscope className="w-10 h-10 text-teal-500 mb-4" />
                 <h4 className="text-blue-950 font-bold font-body text-xl mb-2">Our Approach</h4>
                 <p className="text-sm text-justify text-blue-950/80">
-                We are committed to providing care that meets your needs—whether it’s routine check-ups or critical treatments.Our team works with compassion and expertise to ensure the best outcomes for every patient.You can rely on us to keep you and your loved ones safe, healthy, and supported at every step.
+                We are committed to providing care that meets your needs, whether it’s routine check-ups or critical treatments. Our team works with compassion and expertise to ensure the best outcomes for every patient.You can rely on us to keep you and your loved ones safe, healthy, and supported at every step.
                 </p>
               </div>
               <div className="md:col-span-2">
                 <p className="text-base text-blue-950/80 text-justify leading-relaxed">
-                  We aspire to build a community where every individual has the opportunity to achieve their highest potential for health and well-being at every stage of life. Guided by compassion, excellence, and innovation, we aim to be more than just a healthcare provider—we strive to be a trusted partner in your journey toward better health, a valued member of the community, and a catalyst for positive change.
+                  We aspire to build a community where every individual has the opportunity to achieve their highest potential for health and well-being at every stage of life. Guided by compassion, excellence, and innovation, we aim to be more than just a healthcare provider, we strive to be a trusted partner in your journey toward better health, a valued member of the community, and a catalyst for positive change.
                 </p>
                 <p className="text-base text-blue-950/80 text-justify leading-relaxed mt-4">
                At the heart of our care is a team-based model that places the patient at the center. We believe that healthcare works best when patients are active participants in their treatment, supported by a multidisciplinary team of skilled professionals. This collaborative approach ensures that care is not only comprehensive but also personalized to meet each individual’s unique needs.
