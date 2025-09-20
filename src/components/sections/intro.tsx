@@ -123,7 +123,7 @@ export function Intro() {
               
               <div className="mb-6 bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20 flex-grow">
                 <h4 className="font-semibold text-lg mb-3 flex items-center">
-                  <Users className="w-5 h-4 mr-2" /> OPD Days
+                  <Users className="w-5 h-5 mr-2" /> OPD Days
                 </h4>
                 <div className="space-y-2 h-64 overflow-y-auto pr-2"> {/* Increased height to h-64 */}
                   {[
