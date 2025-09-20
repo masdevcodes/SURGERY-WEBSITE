@@ -38,7 +38,7 @@ export function About() {
                 <Stethoscope className="w-10 h-10 text-teal-500 mb-4" />
                 <h4 className="text-blue-950 font-bold font-body text-xl mb-2">Our Approach</h4>
                 <p className="text-sm text-justify text-blue-950/80">
-                  Whether it’s routine care or life-changing treatment, you can count on us to keep you and your loved ones safe, healthy, and supported every step of the way.
+                We are committed to providing care that meets your needs—whether it’s routine check-ups or critical treatments.Our team works with compassion and expertise to ensure the best outcomes for every patient.You can rely on us to keep you and your loved ones safe, healthy, and supported at every step.
                 </p>
               </div>
               <div className="md:col-span-2">
