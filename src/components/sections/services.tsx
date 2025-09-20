@@ -32,7 +32,7 @@ export function Services() {
         </div>
       ),
     },
-    {
+    //{
       icon: <Stethoscope className="w-8 h-8" />,
       title: 'Gastroenterology',
       description:
