@@ -217,7 +217,7 @@ export function Trauma() {
   return (
     <section
       id="trauma"
-      className="absolute inset-0"
+      className="py-24 bg-gradient-to-br from-red-50 to-white relative overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-40">
