@@ -37,7 +37,7 @@ export function About() {
               <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg hover:bg-white/15 hover:scale-105 transition-all duration-300 flex flex-col items-center text-center md:text-left md:items-start md:col-span-1">
                 <Stethoscope className="w-10 h-10 text-teal-500 mb-4" />
                 <h4 className="text-blue-950 font-bold font-body text-xl mb-2">Our Approach</h4>
-                <p className="text-sm text-left text-blue-950/80">
+                <p className="text-sm text-center text-blue-950/80">
                 We are committed to providing care that meets your needs, whether it’s routine check-ups or critical treatments. Our team works with compassion and expertise to ensure the best outcomes for every patient.You can rely on us to keep you and your loved ones safe, healthy and supported at every step.
                 </p>
               </div>
