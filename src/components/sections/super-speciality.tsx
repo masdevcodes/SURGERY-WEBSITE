@@ -171,8 +171,8 @@ export function SuperSpeciality() {
               key={speciality.id}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden"
             >
-              {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              {/* Image - Increased height from h-48 to h-60 */}
+              <div className="relative h-60 overflow-hidden">
                 {imageErrors[speciality.id] ? (
                   <div className="w-full h-full bg-gray-200 flex items-center justify-center">
                     <div className={speciality.color}>{speciality.icon}</div>
@@ -254,8 +254,8 @@ export function SuperSpeciality() {
               <X className="w-6 h-6 text-gray-800" />
             </button>
             
-            {/* Modal Header Image */}
-            <div className="relative h-64 overflow-hidden rounded-t-2xl">
+            {/* Modal Header Image - Increased height from h-64 to h-80 */}
+            <div className="relative h-80 overflow-hidden rounded-t-2xl">
               {imageErrors[selectedSpeciality.id] ? (
                 <div className="w-full h-full bg-gray-200 flex items-center justify-center">
                   <div className={selectedSpeciality.color}>{selectedSpeciality.icon}</div>
