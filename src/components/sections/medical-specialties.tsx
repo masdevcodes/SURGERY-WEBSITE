@@ -146,7 +146,7 @@ export function MedicalSpecialties() {
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                         />
                       </div>
-                      <p className="font-bold text-blue-950 text-lg">Dr. Ashwani K umar</p>
+                      <p className="font-bold text-blue-950 text-lg">Dr. Ashwani Kumar</p>
                       <p className="text-gray-600">
                         Prof & Head of Surgery Department
                       </p>
