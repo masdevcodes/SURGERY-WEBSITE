@@ -63,7 +63,7 @@ export function Providers() {
       email: 'j.bowman@gmcpatiala.edu',
       description: 'Expert in respiratory medicine and critical care with extensive experience in treating lung diseases and sleep disorders.',
       color: 'blue',
-      image: '/images/hod.png',
+      image: '/images/dinesh.png',
       details: {
         incharge: 'Dr. Prem Singla',
         associateProfessors: ['Dr. A', 'Dr. B'], // Added associate professors
