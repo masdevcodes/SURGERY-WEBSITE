@@ -27,9 +27,9 @@ export default function Home() {
         <MedicalSpecialties />
         <Providers /> 
         <Services />
+        <Trauma />
         <InfoCards />
         <SuperSpeciality />   
-        <Trauma />
         <History />
         <Achievements />
         <Events />
