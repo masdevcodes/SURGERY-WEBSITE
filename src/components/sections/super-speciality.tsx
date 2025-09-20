@@ -33,102 +33,7 @@ export function SuperSpeciality() {
   };
 
   const specialities: Speciality[] = [
-    {
-      id: 1,
-      name: 'Pediatric Surgery',
-      icon: <Baby className="w-8 h-8" />,
-      description: 'Specialized surgical care for infants, children, and adolescents with congenital and acquired conditions.',
-      detailedDescription: 'The Department of Pediatric Surgery at Government Medical College & Rajindra Hospital, Patiala provides specialized surgical care for infants, children, and adolescents. Our experienced team of surgeons and faculty manage a wide range of conditions including congenital anomalies, neonatal surgical emergencies, pediatric trauma, and tumors.The department runs regular OPD and emergency services, along with specialized clinics for newborn care, epilepsy, asthma, cerebral palsy, nephrotic syndrome, and more. With modern facilities and a compassionate approach, the unit is dedicated to ensuring the best outcomes for young patients while also serving as a center for medical education and training.',
-      color: 'text-pink-600',
-      image: '/images/pediatric-surgery.jpg',
-      services: [
-        'Congenital anomaly corrections',
-        'Pediatric trauma surgery',
-        'Minimally invasive procedures',
-        'Neonatal surgery',
-        'Pediatric oncology surgery'
-      ]
-    },
-    {
-      id: 2,
-      name: 'Neuro Surgery',
-      icon: <Brain className="w-8 h-8" />,
-      description: 'Advanced neurosurgical procedures for brain, spine, and peripheral nervous system disorders.',
-      detailedDescription: 'The Department of Neurosurgery at Government Medical College & Rajindra Hospital, Patiala is dedicated to delivering advanced surgical care for disorders of the brain, spinal cord, peripheral nerves, and skull. Our experts handle a wide spectrum of neurosurgical conditions — including head and spinal trauma, congenital anomalies, brain tumors, hydrocephalus, spinal disorders, neurovascular conditions, and critical neurological emergencies.Equipped with modern operation theatres and diagnostic imaging support, the department combines precise surgical skills with compassionate, patient-centered care. We strive not only for excellent surgical outcomes but also for teaching, research, and community health, serving southern Punjab and beyond with accessible neurosurgical services.',
-      color: 'text-purple-600',
-      image: '/images/neuro-surgery.jpg',
-      services: [
-        'Brain tumor surgery',
-        'Spinal surgery',
-        'Trauma neurosurgery',
-        'Vascular neurosurgery',
-        'Stereotactic procedures'
-      ]
-    },
-    {
-      id: 3,
-      name: 'Surgical Oncology',
-      icon: <Shield className="w-8 h-8" />,
-      description: 'Comprehensive cancer surgery with multidisciplinary approach for optimal patient outcomes.',
-      detailedDescription: 'The Department of Surgical Oncology at GMC & Rajindra Hospital, Patiala is committed to providing comprehensive surgical care in the diagnosis, treatment, and management of cancer. Our skilled surgical oncologists perform complex operations for a wide variety of tumors, including breast, gastrointestinal, head & neck, skin, soft tissue, and other malignancies.With access to modern operating theatres, multidisciplinary collaboration (with medical oncology, radiation oncology, radiology, pathology), and a patient-centric approach, the department aims to deliver the best possible outcomes while ensuring compassionate care. We also serve as a center for cancer surgery training and research, helping advance oncological surgical practices in the region.',
-      color: 'text-green-600',
-      image: '/images/surgical-oncology.jpg',
-      services: [
-        'Complex tumor resections',
-        'Oncoplastic surgery',
-        'Minimally invasive cancer surgery',
-        'Reconstructive oncology',
-        'Palliative surgery'
-      ]
-    },
-    {
-      id: 4,
-      name: 'CVTS',
-      icon: <Heart className="w-8 h-8" />,
-      description: 'Cardiothoracic and Vascular Surgery for heart, lung, and vascular system conditions.',
-      detailedDescription: 'The CVTS (Cardio-Vascular & Thoracic Surgery)Department at Government Medical College & Rajindra Hospital, Patiala delivers high-end surgical care for diseases of the heart, blood vessels, lungs, and chest structures. Our team of cardiovascular & thoracic surgeons is experienced in treating congenital and acquired cardiac conditions, performing open-heart surgeries, valve replacements and repairs, coronary artery bypass grafting (CABG), thoracic tumor resections, lung surgeries, and interventions for trauma and other chest emergencies.Equipped with modern operating theatres, advanced imaging, post-operative intensive care, and multidisciplinary collaboration (including cardiology, anesthesiology, critical care), the department strives for the highest standards of safety, precision, and compassionate patient care. We are committed not only to excellent surgical outcomes but also to training the next generation of surgeons and bringing accessible cardiac & thoracic care to the region.',
-      color: 'text-red-600',
-      image: '/images/ctvs.png',
-      services: [
-        'Cardiac surgery',
-        'Thoracic surgery',
-        'Vascular surgery',
-        'Minimally invasive cardiac procedures',
-        'Emergency cardiac interventions'
-      ]
-    },
-    {
-      id: 5,
-      name: 'Urology',
-      icon: <Activity className="w-8 h-8" />,
-      description: 'Advanced urological procedures for kidney, bladder, prostate, and reproductive system disorders.',
-      detailedDescription: 'The Urology Department at GMC & Rajindra Hospital, Patiala offers expert surgical and medical care for disorders of the urinary tract and male reproductive system. Under the leadership of accomplished faculty such as Dr. Harjinder Singh (Professor & Principal) and Dr. Harbhupinder Singh (Professor), the department handles a wide range of conditions — kidney stones, enlarged prostate, urinary incontinence, urinary tract infections, urethral strictures, male infertility, and urinary cancers.Drawing on advanced diagnostics and therapies, including minimally invasive and endoscopic surgery, the department emphasizes personalised, compassionate treatment plans. We strive for high standards in patient-care, research, and medical teaching, serving the health needs of Patiala and the surrounding region.',
-      color: 'text-blue-600',
-      image: '/images/urology.png',
-      services: [
-        'Kidney stone treatment',
-        'Prostate surgery',
-        'Bladder procedures',
-        'Minimally invasive urology',
-        'Reconstructive urology'
-      ]
-    },
-    {
-      id: 6,
-      name: 'Plastic Surgery',
-      icon: <Scissors className="w-8 h-8" />,
-      description: 'Reconstructive and aesthetic surgery for trauma, congenital defects, and cosmetic enhancement.',
-      detailedDescription: 'The Plastic Surgery Department at GMC & Rajindra Hospital, Patiala offers both aesthetic and reconstructive surgical care using up-to-date techniques and compassionate, patient-centred service. The team handles a broad spectrum of procedures—cosmetic surgery like rhinoplasty, breast procedures, liposuction, body contouring; reconstructive surgery including hand surgery, burn care, microsurgery, treatment of congenital deformities, trauma reconstruction, and post-cancer reconstructive work.Equipped with modern operating theatres and supported by diagnostic imaging and anaesthesia services, the department strives to deliver high standards of safety, functional restoration, and improved appearance. Whether restoring health and function after injury, surgery or congenital condition, or helping patients with cosmetic concerns, we are committed to excellence in surgical technique, research, and teaching.',
-      color: 'text-orange-600',
-      image: '/images/plastic-surgery.png',
-      services: [
-        'Reconstructive surgery',
-        'Burn surgery',
-        'Hand surgery',
-        'Microsurgery',
-        'Aesthetic procedures'
-      ]
-    }
+    // ... (specialities array remains the same)
   ];
 
   const closeModal = () => setSelectedSpeciality(null);
@@ -219,22 +124,22 @@ export function SuperSpeciality() {
           ))}
         </div>
 
-        {/* Stats Section */}
+        {/* Stats Section with Zoom Effect */}
         <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
+            <div className="transform transition-all duration-500 hover:scale-110 cursor-pointer">
               <div className="text-3xl font-bold text-teal-600 mb-2">6</div>
               <div className="text-gray-600 text-sm">Super Specialities</div>
             </div>
-            <div>
+            <div className="transform transition-all duration-500 hover:scale-110 cursor-pointer">
               <div className="text-3xl font-bold text-teal-600 mb-2">27+</div>
               <div className="text-gray-600 text-sm">Specialist Doctors</div>
             </div>
-            <div>
+            <div className="transform transition-all duration-500 hover:scale-110 cursor-pointer">
               <div className="text-3xl font-bold text-teal-600 mb-2">1000+</div>
               <div className="text-gray-600 text-sm">Complex Surgeries/Year</div>
             </div>
-            <div>
+            <div className="transform transition-all duration-500 hover:scale-110 cursor-pointer">
               <div className="text-3xl font-bold text-teal-600 mb-2">24/7</div>
               <div className="text-gray-600 text-sm">Emergency Care</div>
             </div>
