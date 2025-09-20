@@ -29,7 +29,7 @@ export default function Home() {
         <Services />
         <InfoCards />
         <SuperSpeciality />   
-        <TraumaEmergency />
+        <Trauma />
         <History />
         <Achievements />
         <Events />
