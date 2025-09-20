@@ -92,7 +92,7 @@ export function MedicalSpecialties() {
 
           {/* Right Side */}
           <div className="relative">
-            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
+            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden shadow-2xl group mt-12">
               <Image
                 src="/hod.png"
                 alt="Head of Surgery - Dr. Ashwani Kumar"
