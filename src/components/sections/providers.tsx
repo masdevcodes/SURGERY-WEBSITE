@@ -287,13 +287,10 @@ export function Providers() {
               </p>
             </div>
 
-            {/* Added Assistant Professors Section */}
-            {selectedProvider.details.assistantProfessors.length > 0 && (
-              <div className="mb-8">
-                <strong className="text-lg block text-center">Assistant Professors:</strong>
-                {renderListWithImages(selectedProvider.details.assistantProfessors, true, true)}
-              </div>
-            )}
+            <div className="mb-8">
+              <strong className="text-lg block text-center">Associate Professors:</strong>
+              {renderListWithImages(selectedProvider.details.assistantProfessors, true, true)}
+            </div>
 
             <div className="mb-8">
               <strong className="text-lg block text-center">Senior Residents:</strong>
@@ -301,7 +298,7 @@ export function Providers() {
             </div>
 
             <div className="mb-4">
-              <strong className="text-lg block text-center">Junior Residents:</strong>
+              <strong className="text-lg">Junior Residents:</strong>
               {renderListWithImages(selectedProvider.details.juniorResidents, true)}
             </div>
           </div>
@@ -333,4 +330,4 @@ export function Providers() {
       )}
     </section>
   );
-}
+} 
