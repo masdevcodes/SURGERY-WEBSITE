@@ -142,7 +142,7 @@ export function Providers() {
       email: '',
       description: 'Orthopedic surgeon specializing in joint replacement and sports medicine with advanced training.',
       color: 'orange',
-      image: '/images/sanjeev.jpg',
+      image: '/images/sanjeev_gupta.jpg',
       details: {
         incharge: 'Dr. Sanjeev Gupta',
         inchargeTitle: 'Prof & Unit Incharge',
