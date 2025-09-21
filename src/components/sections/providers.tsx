@@ -17,7 +17,7 @@ interface Provider {
     associateProfessors: string[];
     assistantProfessors: string[];
     seniorResidents: string[];
-    juniorResidents: { name: string; year: number }[]; // Changed to object with year
+    juniorResidents: { name: string; year: number }[];
   };
 }
 
@@ -239,29 +239,16 @@ export function Providers() {
   const renderJuniorResidentsByYear = (residents: { name: string; year: number }[]) => {
     if (residents.length === 0) return null;
     
-    // Group residents by year
-    const groupedByYear: Record<number, string[]> = {};
-    residents.forEach(resident => {
-      if (!groupedByYear[resident.year]) {
-        groupedByYear[resident.year] = [];
-      }
-      groupedByYear[resident.year].push(resident.name);
-    });
+    // Sort residents by year in descending order (JR3, JR2, JR1)
+    const sortedResidents = [...residents].sort((a, b) => b.year - a.year);
     
-    // Sort years in descending order (JR3, JR2, JR1)
-    const sortedYears = Object.keys(groupedByYear)
-      .map(Number)
-      .sort((a, b) => b - a);
+    // Extract just the names in the sorted order
+    const residentNames = sortedResidents.map(resident => resident.name);
     
     return (
       <div className="mb-4">
         <strong className="text-lg block text-teal-600 text-center mb-4">Junior Residents:</strong>
-        {sortedYears.map(year => (
-          <div key={year} className="mb-6">
-            <h4 className="text-md font-semibold text-gray-700 text-center mb-3">JR{year}</h4>
-            {renderListWithImages(groupedByYear[year], true, true)}
-          </div>
-        ))}
+        {renderListWithImages(residentNames, true)}
       </div>
     );
   };
