@@ -114,7 +114,7 @@ export function Providers() {
       email: 'm.chen@gmcpatiala.edu',
       description: 'Orthopedic surgeon specializing in joint replacement and sports medicine with advanced training.',
       color: 'orange',
-      image: '/images/provider4.jpg',
+      image: '/images/sanjeev.jpg',
       details: {
         incharge: 'Dr. Sanjeev Gupta',
         associateProfessors: [], // No associate professors
