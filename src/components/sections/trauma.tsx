@@ -337,7 +337,37 @@ export function Trauma() {
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
             </div>
 
-            {/* Emergency Notice - Moved up */}
+            {/* Last Two Services */}
+            <div ref={rightSideRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {services.slice(2, 4).map((service, index) => (
+                <div
+                  key={index}
+                  className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-red-200 flex flex-col cursor-pointer"
+                  onClick={() => setSelectedService(service)}
+                >
+                  {/* Icon */}
+                  <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-red-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 mb-4">
+                    <div className={service.color}>{service.icon}</div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold text-blue-950 group-hover:text-red-600 transition-colors duration-300 mb-2">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                      {service.description}
+                    </p>
+                    <div className="flex items-center gap-2 text-sm font-semibold text-red-600 mt-auto">
+                      <Clock className="w-4 h-4" />
+                      <span>{service.stats}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Emergency Notice */}
             <div className="bg-red-50 border border-red-200 rounded-xl p-5">
               <div className="flex items-start gap-3">
                 <Shield className="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5" />
@@ -350,36 +380,6 @@ export function Trauma() {
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Last Two Services - Reduced height */}
-            <div ref={rightSideRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {services.slice(2, 4).map((service, index) => (
-                <div
-                  key={index}
-                  className="group bg-white rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-red-200 flex flex-col cursor-pointer h-64"
-                  onClick={() => setSelectedService(service)}
-                >
-                  {/* Icon */}
-                  <div className="w-12 h-12 bg-gradient-to-br from-red-100 to-red-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 mb-3">
-                    <div className={service.color}>{service.icon}</div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold text-blue-950 group-hover:text-red-600 transition-colors duration-300 mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-3">
-                      {service.description}
-                    </p>
-                    <div className="flex items-center gap-2 text-sm font-semibold text-red-600 mt-auto">
-                      <Clock className="w-4 h-4" />
-                      <span>{service.stats}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
