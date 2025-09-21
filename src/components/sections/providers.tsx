@@ -14,7 +14,7 @@ interface Provider {
   image: string;
   details: {
     incharge: string;
-    associateProfessors: string[]; // Added this field
+    associateProfessors: string[];
     assistantProfessors: string[];
     seniorResidents: string[];
     juniorResidents: string[];
@@ -48,10 +48,9 @@ export function Providers() {
     if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/pri.png';
     if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/sur.png';
     
-    // Use first name instead of last name for image path
-    const nameParts = cleanName.split(' ');
-    const firstName = nameParts[0]; // Changed from nameParts[nameParts.length - 1] to nameParts[0]
-    return `/images/doctors/${firstName}.jpg`;
+    // Use full name for image path to avoid conflicts
+    const fullName = cleanName.replace(/\s+/g, '_');
+    return `/images/doctors/${fullName}.jpg`;
   };
 
   const providers: Provider[] = [
@@ -66,7 +65,7 @@ export function Providers() {
       image: '/images/ho.png',
       details: {
         incharge: 'Dr. Prem Singla',
-        associateProfessors: ['Dr. A', 'Dr. B'], // Added associate professors
+        associateProfessors: ['Dr. A', 'Dr. B'],
         assistantProfessors: ['Dr. P', 'Dr. M'],
         seniorResidents: ['Dr. S', 'Dr.', 'Dr. C'],
         juniorResidents: ['Dr. A', 'Dr. N', 'Dr. S', 'Dr. N', 'Dr. D', 'Dr. V', 'Dr. Y', 'Dr. P', 'Dr. S'],
@@ -83,7 +82,7 @@ export function Providers() {
       image: '/images/rekhi.jpg',
       details: {
         incharge: 'Dr. H.S Rekhi',
-        associateProfessors: [ ], // No  associate professors
+        associateProfessors: [ ],
         assistantProfessors: ['Dr. Sudesh Parthaph Singh', 'Dr. Malkiat Singh'],
         seniorResidents: ['Dr. Simran Deep Singh', 'Dr. Baljeet Kaur'],
         juniorResidents: ['Dr. Rajat Talresa', 'Dr. Samrat Singh Sra', 'Dr. Mohit Pareekh','Dr. Akhil Remesh','Dr. Geetanjli chopra','Dr. Shubham Chhabra','Dr. Bachittar Singh','Dr. Rishu Garg','Dr. Pardeep Bansal'],
@@ -100,7 +99,7 @@ export function Providers() {
       image: '/images/provider3.jpg',
       details: {
         incharge: 'Dr. D.J.S Wallia',
-        associateProfessors: ['Dr. X', 'Dr. Y'], // Added associate professors
+        associateProfessors: ['Dr. X', 'Dr. Y'],
         assistantProfessors: ['Dr. M', 'Dr. N'],
         seniorResidents: ['Dr. O', 'Dr. P', 'Dr. Q'],
         juniorResidents: ['Dr. R', 'Dr. S', 'Dr. T', 'Dr. U', 'Dr. V'],
@@ -117,7 +116,7 @@ export function Providers() {
       image: '/images/sanjeev.jpg',
       details: {
         incharge: 'Dr. Sanjeev Gupta',
-        associateProfessors: [], // No associate professors
+        associateProfessors: [],
         assistantProfessors: ['Dr. Gunjeet Singh Sandhu'],
         seniorResidents: ['Dr. d', 'Dr. V'],
         juniorResidents: ['Dr. Karanveer Kohli', 'Dr. Rajat  Choudhary', 'Dr. Akshay Kumar Samyal', 'Dr. Ritane Mangoch'],
@@ -134,7 +133,7 @@ export function Providers() {
       image: '/images/provider5.jpg',
       details: {
         incharge: 'Dr. R.S Mohi',
-        associateProfessors: ['Dr. W', 'Dr. X'], // Added associate professors
+        associateProfessors: ['Dr. W', 'Dr. X'],
         assistantProfessors: ['Dr. Y', 'Dr. Z'],
         seniorResidents: ['Dr. AA', 'Dr. BB'],
         juniorResidents: ['Dr. CC', 'Dr. DD', 'Dr. EE', 'Dr. FF', 'Dr. GG', 'Dr. HH'],
@@ -151,7 +150,7 @@ export function Providers() {
       image: '/images/provider6.jpg',
       details: {
         incharge: 'Dr. Vikas Goyal',
-        associateProfessors: [], // No associate professors
+        associateProfessors: [],
         assistantProfessors: ['Dr. EE', 'Dr. FF'],
         seniorResidents: ['Dr. GG', 'Dr. HH'],
         juniorResidents: ['Dr. II', 'Dr. JJ', 'Dr. KK', 'Dr. LL', 'Dr. MM', 'Dr. NN'],
@@ -160,7 +159,7 @@ export function Providers() {
   ];
 
   const renderListWithImages = (names: string[], showImages: boolean, centerIfFew = false) => {
-    if (names.length === 0) return null; // Don't render if no names
+    if (names.length === 0) return null;
     
     const shouldCenter = centerIfFew && names.length <= 3;
     const gridCols = shouldCenter ? `grid-cols-${Math.min(names.length, 3)}` : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
@@ -298,7 +297,6 @@ export function Providers() {
               </p>
             </div>
 
-            {/* Conditionally render Associate Professors section */}
             {selectedProvider.details.associateProfessors.length > 0 && (
               <div className="mb-8">
                 <strong className="text-lg block text-teal-600 text-center">Associate Professors:</strong>
@@ -306,7 +304,6 @@ export function Providers() {
               </div>
             )}
 
-            {/* Conditionally render Assistant Professors section */}
             {selectedProvider.details.assistantProfessors.length > 0 && (
               <div className="mb-8">
                 <strong className="text-lg block text-teal-600 text-center">Assistant Professors:</strong>
@@ -314,7 +311,6 @@ export function Providers() {
               </div>
             )}
 
-            {/* Conditionally render Senior Residents section */}
             {selectedProvider.details.seniorResidents.length > 0 && (
               <div className="mb-8">
                 <strong className="text-lg block text-teal-600 text-center">Senior Residents:</strong>
@@ -322,7 +318,6 @@ export function Providers() {
               </div>
             )}
 
-            {/* Condi tionally render Junior Residents section */}
             {selectedProvider.details.juniorResidents.length > 0 && (
               <div className="mb-4">
                 <strong className="text-lg block text-teal-600 text-center">Junior Residents:</strong>
@@ -333,7 +328,27 @@ export function Providers() {
         </div>
       )}
 
-      
+      {zoomedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
+          onClick={() => setZoomedImage(null)}
+        >
+          <div className="relative max-w-4xl max-h-full">
+            <button
+              className="absolute -top-12 right-0 text-white text-3xl font-bold"
+              onClick={() => setZoomedImage(null)}
+            >
+              ×
+            </button>
+            <Image
+              src={zoomedImage}
+              alt="Zoomed doctor image"
+              width={400}
+              height={400}
+              className="rounded-lg object-contain max-h-[80vh]"
+            />
+          </div>
+        </div>
       )}
     </section>
   );
