@@ -14,6 +14,7 @@ interface Provider {
   image: string;
   details: {
     incharge: string;
+    inchargeTitle?: string;
     associateProfessors: string[];
     assistantProfessors: string[];
     seniorResidents: string[];
@@ -65,6 +66,7 @@ export function Providers() {
       image: '/images/ho.png',
       details: {
         incharge: 'Dr. Prem Singla',
+        inchargeTitle: 'Prof & Unit Incharge',
         associateProfessors: ['Dr. A', 'Dr. B'],
         assistantProfessors: ['Dr. P', 'Dr. M'],
         seniorResidents: ['Dr. S', 'Dr.', 'Dr. C'],
@@ -92,6 +94,7 @@ export function Providers() {
       image: '/images/rekhi.jpg',
       details: {
         incharge: 'Dr. H.S Rekhi',
+        inchargeTitle: 'Associate Prof & Incharge',
         associateProfessors: [ ],
         assistantProfessors: ['Dr. Sudesh Parthaph Singh', 'Dr. Malkiat Singh'],
         seniorResidents: ['Dr. Simran Deep Singh', 'Dr. Baljeet Kaur'],
@@ -142,6 +145,7 @@ export function Providers() {
       image: '/images/sanjeev.jpg',
       details: {
         incharge: 'Dr. Sanjeev Gupta',
+        inchargeTitle: 'Prof & Unit Incharge',
         associateProfessors: [],
         assistantProfessors: ['Dr. Gunjeet Singh Sandhu'],
         seniorResidents: [],
@@ -166,6 +170,7 @@ export function Providers() {
       image: '/images/provider5.jpg',
       details: {
         incharge: 'Dr. R.S Mohi',
+        inchargeTitle: 'Associate Prof & Incharge',
         associateProfessors: ['Dr. W', 'Dr. X'],
         assistantProfessors: ['Dr. Y', 'Dr. Z'],
         seniorResidents: ['Dr. AA', 'Dr. BB'],
@@ -190,6 +195,7 @@ export function Providers() {
       image: '/images/doctors/vikas_goyal.jpg',
       details: {
         incharge: 'Dr. Vikas Goyal',
+        inchargeTitle: 'Prof & Unit Incharge',
         associateProfessors: [],
         assistantProfessors: ['Dr. Karamjot Singh Sandhu'],
         seniorResidents: ['Dr. Manjeet Rait'],
@@ -362,7 +368,7 @@ export function Providers() {
                 />
               </div>
               <p className="text-gray-700  text-teal-600 font-bold text-lg">
-                <strong>Prof & Unit Incharge: </strong> 
+                <strong>{selectedProvider.details.inchargeTitle || 'Prof & Unit Incharge'}: </strong> 
                 {selectedProvider.details.incharge}
               </p>
             </div>
