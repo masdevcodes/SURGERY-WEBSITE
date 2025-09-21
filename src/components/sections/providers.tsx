@@ -116,7 +116,7 @@ export function Providers() {
       color: 'orange',
       image: '/images/sanjeev.jpg',
       details: {
-        incharge: 'Dr. Sanjev Gupta',
+        incharge: 'Dr. Sanjeev Gupta',
         associateProfessors: [], // No associate professors
         assistantProfessors: ['Dr. S', 'Dr. T'],
         seniorResidents: ['Dr. U', 'Dr. V'],
