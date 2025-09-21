@@ -216,10 +216,7 @@ export function Providers() {
         {names.map((name, idx) => (
           <div key={idx} className="flex flex-col items-center">
             {showImages && (
-              <div 
-                className="w-28 h-28 rounded-full overflow-hidden shadow-md mb-3 group cursor-pointer"
-                onClick={() => setZoomedImage(getImagePath(name))}
-              >
+              <div className="w-28 h-28 rounded-full overflow-hidden shadow-md mb-3 group">
                 <Image
                   src={getImagePath(name)}
                   alt={name}
@@ -355,10 +352,7 @@ export function Providers() {
             </h2>
 
             <div className="mb-8 flex flex-col items-center">
-              <div 
-                className="relative w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-gray-300 group cursor-pointer"
-                onClick={() => setZoomedImage(getImagePath(selectedProvider.details.incharge))}
-              >
+              <div className="relative w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-gray-300 group">
                 <Image
                   src={getImagePath(selectedProvider.details.incharge)}
                   alt={selectedProvider.details.incharge}
