@@ -354,7 +354,7 @@ export function Providers() {
               {selectedProvider.unit}
             </h2>
 
-            <div className="mb-10 flex flex-col items-center">
+            <div className="mb-8 flex flex-col items-center">
               <div 
                 className="relative w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-gray-300 group cursor-pointer"
                 onClick={() => setZoomedImage(getImagePath(selectedProvider.details.incharge))}
