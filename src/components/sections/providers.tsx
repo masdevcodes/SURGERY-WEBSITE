@@ -49,7 +49,7 @@ export function Providers() {
     if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/pri.png';
     if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/sur.png';
     
-    // Use full name for image path to  avoid conflicts
+    // Use full name for image path to avoid conflicts
     const fullName = cleanName.replace(/\s+/g, '_');
     return `/images/doctors/${fullName}.jpg`;
   };
@@ -71,17 +71,15 @@ export function Providers() {
         assistantProfessors: ['Dr. Paramjit Singh Kahlon'],
         seniorResidents: ['Dr. Varun Gupta', 'Dr. Megha Choudhary'],
         juniorResidents: [
-         
           { name: 'Dr. Ninara Wadhwa', year: 3 },
           { name: 'Dr. Bhawdeep Singla', year: 3 },
           { name: 'Dr. Anshika Garg', year: 3 },
-           { name: 'Dr. Arushi Singla', year: 2 },
-           { name: 'Dr. Rajeev SR', year: 2 },
+          { name: 'Dr. Arushi Singla', year: 2 },
+          { name: 'Dr. Rajeev SR', year: 2 },
           { name: 'Dr. Astha Sinha', year: 2 },
           { name: 'Dr. Deepak Singh Thakur', year: 1 },
           { name: 'Dr. Dheeraj Garg', year: 1 },
           { name: 'Dr. Rohit', year: 1 },
-         
         ],
       },
     },
@@ -216,11 +214,16 @@ export function Providers() {
   const renderListWithImages = (names: string[], showImages: boolean, centerIfFew = false) => {
     if (names.length === 0) return null;
     
-    const shouldCenter = centerIfFew && names.length <= 3;
-    const gridCols = shouldCenter ? `grid-cols-${Math.min(names.length, 3)}` : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
+    // Determine grid columns based on number of items
+    let gridClass = 'grid grid-cols-1 gap-6 md:gap-8 mt-4';
+    if (names.length === 2) {
+      gridClass = 'grid grid-cols-2 gap-6 md:gap-8 mt-4';
+    } else if (names.length >= 3) {
+      gridClass = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mt-4';
+    }
     
     return (
-      <div className={`grid ${gridCols} gap-6 md:gap-8 ${shouldCenter ? 'justify-center' : ''} mt-4`}>
+      <div className={`${gridClass} ${centerIfFew ? 'justify-center' : ''}`}>
         {names.map((name, idx) => (
           <div key={idx} className="flex flex-col items-center">
             {showImages && (
@@ -263,6 +266,7 @@ export function Providers() {
         <strong className="text-lg block text-teal-600 text-center mb-4">Junior Residents:</strong>
         {sortedYears.map(year => (
           <div key={year} className="mb-6">
+            <h4 className="text-md font-semibold text-gray-700 text-center mb-3">JR{year}</h4>
             {renderListWithImages(groupedByYear[year], true, true)}
           </div>
         ))}
