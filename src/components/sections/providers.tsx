@@ -332,13 +332,7 @@ export function Providers() {
         </div>
       )}
 
-      {zoomedImage && (
-        <div
-          className="fixed inset-0 bg-black/90 flex items-center justify-center z-[60] p-4"
-          onClick={() => setZoomedImage(null)}
-        >
-          
-        </div>
+      
       )}
     </section>
   );
