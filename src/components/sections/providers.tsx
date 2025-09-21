@@ -417,7 +417,7 @@ export function Providers() {
               className="absolute -top-12 right-0 text-white text-3xl font-bold"
               onClick={() => setZoomedImage(null)}
             >
-              ×*
+              ×**
             </button>
             <Image
               src={zoomedImage}
