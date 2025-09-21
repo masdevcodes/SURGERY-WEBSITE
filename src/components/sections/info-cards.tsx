@@ -25,10 +25,10 @@ export function InfoCards() {
   ];
 
   const sliderImages = [
-    '/slider1.jpg',
-    '/slider2.jpg',
-    '/slider3.jpg',
-    '/slider4.jpg',
+    '/brep.jpg',
+    '/brep5.jpg',
+    '/brep.jpg',
+  
   ];
 
   // Define the desired order of clinics
