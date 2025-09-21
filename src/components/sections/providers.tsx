@@ -37,7 +37,7 @@ export function Providers() {
   const getImagePath = (name: string) => {
     const cleanName = name.replace('Dr. ', '').toLowerCase();
     
-    // Map specific names to image paths
+    // Map specific  names to image paths
     if (cleanName.includes('dinesh')) return '/images/dinesh.png';
     if (cleanName.includes('navneeth') || cleanName.includes('shankar')) return '/images/navneeth.png';
     if (cleanName.includes('vineeth') || cleanName.includes('sunaria')) return '/images/vineeth.png';
