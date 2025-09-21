@@ -292,7 +292,7 @@ export function Providers() {
                   className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <p className="text-gray-700 font-bold text-lg">
+              <p className="text-gray-700 text-teal-600 font-bold text-lg">
                 <strong>Prof & Unit Incharge:</strong> {selectedProvider.details.incharge}
               </p>
             </div>
@@ -300,7 +300,7 @@ export function Providers() {
             {/* Conditionally render Associate Professors section */}
             {selectedProvider.details.associateProfessors.length > 0 && (
               <div className="mb-8">
-                <strong className="text-lg block text-center">Associate Professors:</strong>
+                <strong className="text-lg block text-teal-600 text-center">Associate Professors:</strong>
                 {renderListWithImages(selectedProvider.details.associateProfessors, true, true)}
               </div>
             )}
@@ -308,7 +308,7 @@ export function Providers() {
             {/* Conditionally render Assistant Professors section */}
             {selectedProvider.details.assistantProfessors.length > 0 && (
               <div className="mb-8">
-                <strong className="text-lg block text-center">Assistant Professors:</strong>
+                <strong className="text-lg block text-teal-600 text-center">Assistant Professors:</strong>
                 {renderListWithImages(selectedProvider.details.assistantProfessors, true, true)}
               </div>
             )}
@@ -316,7 +316,7 @@ export function Providers() {
             {/* Conditionally render Senior Residents section */}
             {selectedProvider.details.seniorResidents.length > 0 && (
               <div className="mb-8">
-                <strong className="text-lg block text-center">Senior Residents:</strong>
+                <strong className="text-lg block text-teal-600 text-center">Senior Residents:</strong>
                 {renderListWithImages(selectedProvider.details.seniorResidents, true, true)}
               </div>
             )}
@@ -324,7 +324,7 @@ export function Providers() {
             {/* Conditionally render Junior Residents section */}
             {selectedProvider.details.juniorResidents.length > 0 && (
               <div className="mb-4">
-                <strong className="text-lg block text-center">Junior Residents:</strong>
+                <strong className="text-lg block text-teal-600 text-center">Junior Residents:</strong>
                 {renderListWithImages(selectedProvider.details.juniorResidents, true)}
               </div>
             )}
