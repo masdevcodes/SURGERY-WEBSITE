@@ -88,7 +88,7 @@ export function Providers() {
       name: 'Dr. H.S Rekhi',
       unit: 'UNIT 3',
       department: 'Urology Department, Floor 4',
-      email: 'a.hwang@gmcpatiala.edu',
+      email: '',
       description: 'Leading urologist specializing in minimally invasive procedures and robotic surgery for uological conditions.',
       color: 'purple',
       image: '/images/rekhi.jpg',
