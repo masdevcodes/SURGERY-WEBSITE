@@ -1,4 +1,4 @@
-'use client';
+'in this code 'use client';
 
 import Image from 'next/image';
 import { useState } from 'react';
@@ -48,9 +48,9 @@ export function Providers() {
     if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/pri.png';
     if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/sur.png';
     
-    // Default fallback
+    // Use first name instead of last name for image path
     const nameParts = cleanName.split(' ');
-    const firstName = nameParts[nameParts.length - 1];
+    const firstName = nameParts[0]; // Changed from nameParts[nameParts.length - 1] to nameParts[0]
     return `/images/doctors/${firstName}.jpg`;
   };
 
