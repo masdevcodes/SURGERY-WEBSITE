@@ -164,7 +164,7 @@ export function Providers() {
       name: 'Dr. R.S Mohi',
       unit: 'UNIT 6',
       department: 'Gynecology Department, Floor 3',
-      email: 'e.rodriguez@gmcpatiala.edu',
+      email: '',
       description: 'Gynecologist with expertise in women\'s health, reproductive medicine, and minimally invasive procedures.',
       color: 'pink',
       image: '/images/provider5.jpg',
