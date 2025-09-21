@@ -94,7 +94,7 @@ export function Providers() {
       image: '/images/rekhi.jpg',
       details: {
         incharge: 'Dr. H.S Rekhi',
-        inchargeTitle: 'Associate Prof & Incharge',
+        inchargeTitle: 'Prof & Incharge',
         associateProfessors: [ ],
         assistantProfessors: ['Dr. Sudesh Parthaph Singh', 'Dr. Malkiat Singh'],
         seniorResidents: ['Dr. Simran Deep Singh', 'Dr. Baljeet Kaur'],
