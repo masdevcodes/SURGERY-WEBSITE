@@ -26,7 +26,7 @@ export function InfoCards() {
 
   const sliderImages = [
     '/brep.png',
-    '/brep5.png',
+    '/sto2.jpg',
     '/brep.png',
   
   ];
