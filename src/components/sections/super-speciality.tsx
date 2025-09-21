@@ -33,7 +33,7 @@ export function SuperSpeciality() {
   };
 
   const specialities: Speciality[] = [
-    // ... (specialities array remains the same)
+    // ... (specialities array remainsthe same)
   ];
 
   const closeModal = () => setSelectedSpeciality(null);
