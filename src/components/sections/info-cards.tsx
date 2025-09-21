@@ -227,7 +227,7 @@ export function InfoCards() {
     },
     slider: {
       title: "Medical Gallery",
-      description: "Explore our state-of-the-art medical facilities and advanced equipment through our comprehensive gallery showcasing our commitment to excellence in healthcare.",
+      description: "",
       images: sliderImages,
       imageIndex: sliderImageIndex,
       setImageIndex: setSliderImageIndex
