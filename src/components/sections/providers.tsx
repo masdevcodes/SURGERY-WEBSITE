@@ -266,7 +266,6 @@ export function Providers() {
         <strong className="text-lg block text-teal-600 text-center mb-4">Junior Residents:</strong>
         {sortedYears.map(year => (
           <div key={year} className="mb-6">
-            <h4 className="text-md font-semibold text-gray-700 text-center mb-3">JR{year}</h4>
             {renderListWithImages(groupedByYear[year], true, true)}
           </div>
         ))}
