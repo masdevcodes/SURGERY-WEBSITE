@@ -5,7 +5,7 @@ import { Users, Award, Clock, Heart, Calendar, Scissors } from 'lucide-react';
 
 export function Intro() {
   return (
-    <section id="intro" className="mt-[-93.9px] py-24 bg-gradient-to-br from-blue-50 via-white to-teal-50 relative overflow-hidden">
+    <div id="intro" className="mt-[-93.9px] py-24 bg-gradient-to-br from-blue-50 via-white to-teal-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <Image
@@ -17,9 +17,9 @@ export function Intro() {
       </div>
 
       <div className="container mx-auto relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
-          {/* Left Side - Content */}
-          <div className="space-y-8 flex flex-col justify-between">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          {/* Left Side - Content Card */}
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
             <div className="space-y-8">
               {/* Header */}
               <div className="space-y-4">
@@ -47,7 +47,7 @@ export function Intro() {
                 </p>
                 
                 <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                  At present, the Department of Surgery is staffed by 5 Professors, 6 Associate Professors, 6 Assistant Professors, and 10 Senior Residents who actively contribute to patient care, teaching, and research. With a capacity of 210 surgical beds, the department functions through seven specialized units, each led by experienced surgeons and supported by dedicated residents and healthcare professionals. Our commitment extends beyond providing advanced inpatient and operative care to also fostering medical education, research, and community service, making us a cornerstone of healthcare in the region
+                  At present, the Department of Surgery is staffed by 5 Professors, 6 Associate Professors, 6 Assistant Professors, and 10 Senior Residents who actively contribute to patient care, teaching, and research. With a capacity of 210 surgical beds, the department functions through seven specialized units, each led by experienced surgeons and supported by dedicated residents and healthcare professionals.
                 </p>
               </div>
 
@@ -104,113 +104,105 @@ export function Intro() {
             </div>
           </div>
 
-          {/* Right Side - OPD + OT Info Card */}
+          {/* Right Side - Split Cards */}
           <div className="flex flex-col gap-8 h-full">
-            {/* OPD/OT Card - Decreased width, increased height */}
-            <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl w-full max-w-sm mx-auto h-full flex flex-col">
-              {/* Header with icon */}
-              <div className="flex items-center justify-center mb-4">
-                <div className="bg-white/20 p-3 rounded-full mr-3">
-                  <Calendar className="w-6 h-6 text-white" />
+            <div className="flex flex-row gap-8 justify-center">
+              {/* OPD Card */}
+              <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-xl max-w-md w-full flex flex-col">
+                {/* ...existing OPD card content... */}
+                <div className="flex items-center justify-center mb-4">
+                  <div className="bg-white/20 p-3 rounded-full mr-3">
+                    <Calendar className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-center">
+                    OPD Schedule
+                    <span className="block text-sm font-normal opacity-90 mt-1">
+                      (8:00 AM - 2:30 PM)
+                    </span>
+                  </h3>
                 </div>
-                <h3 className="text-2xl font-bold text-center">
-                  OPD Schedule
-                  <span className="block text-sm font-normal opacity-90 mt-1">
-                    (8:00 AM - 2:30 PM)
-                  </span>
-                </h3>
-              </div>
-              
-              <div className="mb-6 bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20 flex-grow">
-                <h4 className="font-semibold text-lg mb-3 flex items-center">
-                  <Users className="w-5 h-5 mr-2" /> OPD Days
-                </h4>
-                <div className="space-y-2 h-64 overflow-y-auto pr-2"> {/* Increased height to h-64 */}
-                  {[
+                <div className="mb-4 bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20 flex-grow">
+                  <h4 className="font-bold text-lg mb-3 flex items-center">
+                    <Users className="w-5 h-5 mr-2" /> OPD Days
+                  </h4>
+                  <div className="grid grid-cols-1 gap-2">
+                    {[ 
                       {unit: 'Unit 1', days: 'Mon & Thu', room: 'Room 8'},
-          {unit: 'Unit 2', days: 'Tue & Fri', room: 'Room 8'},
-          {unit: 'Unit 3', days: 'Wed & Sat', room: 'Room 8'},
-          {unit: 'Unit 4', days: 'Mon & Thu', room: 'Room 7'},
-          {unit: 'Unit 5', days: 'Tue & Fri', room: 'Room 7'},
-          {unit: 'Unit 6', days: 'Wed & Sat', room: 'Room 7'},
-          {unit: 'Unit 7', days: 'Mon & Thu', room: 'Room 3'},
-                    
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center"
-                    >
-                      <span className="font-medium">{item.unit}</span>
-                      <div className="text-right text-sm">
-                        <div>{item.days}</div>
-                        <div className="text-teal-100">{item.room}</div>
+                      {unit: 'Unit 2', days: 'Tue & Fri', room: 'Room 8'},
+                      {unit: 'Unit 3', days: 'Wed & Sat', room: 'Room 8'},
+                      {unit: 'Unit 4', days: 'Mon & Thu', room: 'Room 7'},
+                      {unit: 'Unit 5', days: 'Tue & Fri', room: 'Room 7'},
+                      {unit: 'Unit 6', days: 'Wed & Sat', room: 'Room 7'},
+                      {unit: 'Unit 7', days: 'Mon & Thu', room: 'Room 3'},
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center"
+                      >
+                        <span className="font-semibold text-lg">{item.unit}</span>
+                        <div className="text-right">
+                          <div className="text-base font-semibold">{item.days}</div>
+                          <div className="text-teal-100 text-base font-semibold">{item.room}</div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-              
-              <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20 flex-grow">
-                <h4 className="font-semibold text-lg mb-3 flex items-center">
-                  <Scissors className="w-5 h-5 mr-2" /> OT Days
-                </h4>
-                <div className="space-y-2 h-64 overflow-y-auto pr-2"> {/* Increased height to h-64 */}
-                  {[
-                   {unit: 'Unit 1', days: 'Tue & Fri'},
-          {unit: 'Unit 2', days: 'Wed & Sat'},
-          {unit: 'Unit 3', days: 'Mon & Thu'},
-          {unit: 'Unit 4', days: 'Tue & Fri'},
-          {unit: 'Unit 5', days: 'Wed & Sat'},
-          {unit: 'Unit 6', days: 'Mon & Thu'},
-          {unit: 'Unit 7', days: 'Wed & Sat'},
-                   
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center"
-                    >
-                      <span className="font-medium">{item.unit}</span>
-                      <span className="text-sm">{item.days}</span>
-                    </div>
-                  ))}
+
+              {/* OT Card */}
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-xl max-w-md w-full flex flex-col">
+                {/* ...existing OT card content... */}
+                <div className="flex items-center justify-center mb-4">
+                  <div className="bg-white/20 p-3 rounded-full mr-3">
+                    <Scissors className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-center">
+                    OT Schedule
+                  </h3>
+                </div>
+                <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/20 flex-grow">
+                  <h4 className="font-semibold text-lg mb-3 flex items-center">
+                    <Scissors className="w-5 h-5 mr-2" /> OT Days
+                  </h4>
+                  <div className="grid grid-cols-1 gap-2">
+                    {[ 
+                      {unit: 'Unit 1', days: 'Tue & Fri'},
+                      {unit: 'Unit 2', days: 'Wed & Sat'},
+                      {unit: 'Unit 3', days: 'Mon & Thu'},
+                      {unit: 'Unit 4', days: 'Tue & Fri'},
+                      {unit: 'Unit 5', days: 'Wed & Sat'},
+                      {unit: 'Unit 6', days: 'Mon & Thu'},
+                      {unit: 'Unit 7', days: 'Wed & Sat'},
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="p-4 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center text-lg"
+                      >
+                        <span className="font-bold">{item.unit}</span>
+                        <span className="text-base font-semibold">{item.days}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Stats Card - Original size */}
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg w-full max-w-sm mx-auto border border-teal-100 transition-all duration-300 hover:scale-105 cursor-pointer">
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="p-2">
-                  <div className="text-2xl font-bold text-teal-600 mb-1">500+</div>
-                  <div className="text-xs text-gray-600 font-medium">Daily Patients</div>
-                </div>
-                <div className="p-2">
-                  <div className="text-2xl font-bold text-blue-600 mb-1">27+</div>
-                  <div className="text-xs text-gray-600 font-medium">Expert Surgeons</div>
-                </div>
-                <div className="p-2">
-                  <div className="text-2xl font-bold text-purple-600 mb-1">1000+</div>
-                  <div className="text-xs text-gray-600 font-medium">Surgeries/Month</div>
-                </div>
+            {/* Mission Statement Section - moved here */}
+            <div className="mt-16 text-center">
+              <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+                <h3 className="text-2xl font-bold text-blue-950 mb-4">Our Mission</h3>
+                <p className="text-lg text-gray-700 leading-relaxed italic">
+                  "To provide exceptional surgical care through innovation, education, and compassionate service, while advancing the field of surgery through research and training the next generation of medical professionals."
+                </p>
               </div>
             </div>
+            </div>
 
-            {/* Floating Elements */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-teal-500/20 rounded-full blur-xl animate-pulse"></div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+            {/* Stats Card */}
           </div>
         </div>
 
         {/* Bottom Section - Mission Statement */}
-        <div className="mt-20 text-center">
-          <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
-            <h3 className="text-2xl font-bold text-blue-950 mb-4">Our Mission</h3>
-            <p className="text-lg text-gray-700 leading-relaxed italic">
-              "To provide exceptional surgical care through innovation, education, and compassionate service, while advancing the field of surgery through research and training the next generation of medical professionals."
-            </p>
-          </div>
-        </div>
       </div>
-    </section>
-  );
+    );
 }
