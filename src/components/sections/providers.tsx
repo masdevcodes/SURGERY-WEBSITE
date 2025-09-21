@@ -119,7 +119,7 @@ export function Providers() {
         associateProfessors: [],
         assistantProfessors: ['Dr. Gunjeet Singh Sandhu'],
         seniorResidents: [],
-        juniorResidents: ['Dr. Karanv eer Kohli', { 'Dr. Rajat  Choudhary', 'Dr. Akshay Kumar Samyal', 'Dr. Ritane Mangoch','Dr. Dipit Monocha','Dr. Jaswinder Singh',],
+        juniorResidents: ['Dr. Karanveer Kohli', { 'Dr. Rajat  Choudhary', 'Dr. Akshay Kumar Samyal', 'Dr. Ritane Mangoch','Dr. Dipit Monocha','Dr. Jaswinder Singh',],
       },
     },
     {
