@@ -79,7 +79,7 @@ export function Providers() {
            { name: 'Dr. Rajeev SR', year: 2 },
           { name: 'Dr. Astha Sinha', year: 2 },
           { name: 'Dr. Deepak Singh Thakur', year: 1 },
-          { name: 'Dr. Dheeraj Garg.jpg', year: 1 },
+          { name: 'Dr. Dheeraj Garg', year: 1 },
           { name: 'Dr. Rohit', year: 1 },
          
         ],
