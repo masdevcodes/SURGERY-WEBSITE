@@ -88,7 +88,7 @@ export function Trauma() {
       ),
     },
     {
-      icon: <Clock className="w-6 h-6" />,
+      icon: <Clock className="w-5 h-5" />,
       title: 'Rapid Assessment',
       description: 'Advanced imaging and diagnostics within minutes of arrival',
       color: 'text-teal-500',
