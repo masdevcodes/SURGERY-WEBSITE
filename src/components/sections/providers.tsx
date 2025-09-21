@@ -136,7 +136,7 @@ export function Providers() {
       name: 'Dr. Sanjeev Gupta',
       unit: 'UNIT 5',
       department: 'Orthopedics Department, Floor 2',
-      email: 'm.chen@gmcpatiala.edu',
+      email: '',
       description: 'Orthopedic surgeon specializing in joint replacement and sports medicine with advanced training.',
       color: 'orange',
       image: '/images/sanjeev.jpg',
