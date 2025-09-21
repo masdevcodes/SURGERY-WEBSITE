@@ -117,7 +117,7 @@ export function Providers() {
       image: '/images/sanjeev.jpg',
       details: {
         incharge: 'Dr. Sanjeev Gupta',
-        associateProfessors: [], // No associate proessors
+        associateProfessors: [], // No associate professors
         assistantProfessors: ['Dr. S', 'Dr. T'],
         seniorResidents: ['Dr. U', 'Dr. V'],
         juniorResidents: ['Dr. W', 'Dr. X', 'Dr. Y', 'Dr. Z'],
