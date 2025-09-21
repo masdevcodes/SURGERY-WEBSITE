@@ -116,7 +116,7 @@ export function Providers() {
       name: 'Dr. D.J.S Wallia',
       unit: 'UNIT 4',
       department: 'Surgery Department, Floor 1',
-      email: 's.johnson@gmcpatiala.edu',
+      email: '',
       description: 'Experienced general surgeon with expertise in laparoscopic procedures and emergency surgery.',
       color: 'green',
       image: '/images/provider3.jpg',
