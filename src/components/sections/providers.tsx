@@ -48,7 +48,7 @@ export function Providers() {
     if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/pri.png';
     if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/sur.png';
     
-    // Use full  name for image path to avoid conflicts
+    // Use full  name  for image path to avoid conflicts
     const fullName = cleanName.replace(/\s+/g, '_');
     return `/images/doctors/${fullName}.jpg`;
   };
