@@ -184,7 +184,7 @@ export function Providers() {
       name: 'Dr. Vikas Goyal',
       unit: 'UNIT 7',
       department: 'Neurosurgery Department, Floor 4',
-      email: 'd.kumar@gmcpatiala.edu',
+      email: '',
       description: 'Neurosurgeon specializing in brain and spine surgery with expertise in complex neurological procedures.',
       color: 'indigo',
       image: '/images/doctors/vikas_goyal.jpg',
