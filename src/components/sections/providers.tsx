@@ -50,8 +50,8 @@ export function Providers() {
     
     // Default fallback
     const nameParts = cleanName.split(' ');
-    const lastName = nameParts[nameParts.length - 1];
-    return `/images/doctors/${lastName}.jpg`;
+    const firstName = nameParts[nameParts.length - 1];
+    return `/images/doctors/${firstName}.jpg`;
   };
 
   const providers: Provider[] = [
