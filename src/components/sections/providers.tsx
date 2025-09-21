@@ -17,7 +17,7 @@ interface Provider {
     associateProfessors: string[];
     assistantProfessors: string[];
     seniorResidents: string[];
-    juniorResidents: string[];
+    juniorResidents: { name: string; year: number }[]; // Changed to object with year
   };
 }
 
@@ -37,7 +37,7 @@ export function Providers() {
   const getImagePath = (name: string) => {
     const cleanName = name.replace('Dr. ', '').toLowerCase();
     
-    // Map specific  names to image paths
+    // Map specific names to image paths
     if (cleanName.includes('dinesh')) return '/images/dinesh.png';
     if (cleanName.includes('navneeth') || cleanName.includes('shankar')) return '/images/navneeth.png';
     if (cleanName.includes('vineeth') || cleanName.includes('sunaria')) return '/images/vineeth.png';
@@ -48,7 +48,7 @@ export function Providers() {
     if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/pri.png';
     if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/sur.png';
     
-    // Use full name  for image path to avoid conflicts
+    // Use full name for image path to avoid conflicts
     const fullName = cleanName.replace(/\s+/g, '_');
     return `/images/doctors/${fullName}.jpg`;
   };
@@ -68,7 +68,17 @@ export function Providers() {
         associateProfessors: ['Dr. A', 'Dr. B'],
         assistantProfessors: ['Dr. P', 'Dr. M'],
         seniorResidents: ['Dr. S', 'Dr.', 'Dr. C'],
-        juniorResidents: ['Dr. A', 'Dr. N', 'Dr. S', 'Dr. N', 'Dr. D', 'Dr. V', 'Dr. Y', 'Dr. P', 'Dr. S'],
+        juniorResidents: [
+          { name: 'Dr. A', year: 1 },
+          { name: 'Dr. N', year: 1 },
+          { name: 'Dr. S', year: 2 },
+          { name: 'Dr. N', year: 2 },
+          { name: 'Dr. D', year: 3 },
+          { name: 'Dr. V', year: 3 },
+          { name: 'Dr. Y', year: 3 },
+          { name: 'Dr. P', year: 3 },
+          { name: 'Dr. S', year: 3 },
+        ],
       },
     },
     {
@@ -85,7 +95,17 @@ export function Providers() {
         associateProfessors: [ ],
         assistantProfessors: ['Dr. Sudesh Parthaph Singh', 'Dr. Malkiat Singh'],
         seniorResidents: ['Dr. Simran Deep Singh', 'Dr. Baljeet Kaur'],
-        juniorResidents: ['Dr. Rajat Talresa', 'Dr. Samrat Singh Sra', 'Dr. Mohit Pareekh','Dr. Akhil Remesh','Dr. Geetanjli Chopra','Dr. Shubham Chhabra','Dr. Bachittar Singh','Dr. Rishu Garg','Dr. Pardeep Bansal'],
+        juniorResidents: [
+          { name: 'Dr. Rajat Talresa', year: 1 },
+          { name: 'Dr. Samrat Singh Sra', year: 1 },
+          { name: 'Dr. Mohit Pareekh', year: 2 },
+          { name: 'Dr. Akhil Remesh', year: 2 },
+          { name: 'Dr. Geetanjli Chopra', year: 3 },
+          { name: 'Dr. Shubham Chhabra', year: 3 },
+          { name: 'Dr. Bachittar Singh', year: 3 },
+          { name: 'Dr. Rishu Garg', year: 3 },
+          { name: 'Dr. Pardeep Bansal', year: 3 },
+        ],
       },
     },
     {
@@ -102,7 +122,13 @@ export function Providers() {
         associateProfessors: ['Dr. X', 'Dr. Y'],
         assistantProfessors: ['Dr. M', 'Dr. N'],
         seniorResidents: ['Dr. O', 'Dr. P', 'Dr. Q'],
-        juniorResidents: ['Dr. R', 'Dr. S', 'Dr. T', 'Dr. U', 'Dr. V'],
+        juniorResidents: [
+          { name: 'Dr. R', year: 1 },
+          { name: 'Dr. S', year: 1 },
+          { name: 'Dr. T', year: 2 },
+          { name: 'Dr. U', year: 2 },
+          { name: 'Dr. V', year: 3 },
+        ],
       },
     },
     {
@@ -119,7 +145,14 @@ export function Providers() {
         associateProfessors: [],
         assistantProfessors: ['Dr. Gunjeet Singh Sandhu'],
         seniorResidents: [],
-        juniorResidents: ['Dr. Karanveer Kohli','Dr. Rajat  Choudhary', 'Dr. Akshay Kumar Samyal', 'Dr. Ritane Mangoch','Dr. Dipit Monocha','Dr. Jaswinder Singh',],
+        juniorResidents: [
+          { name: 'Dr. Karanveer Kohli', year: 3 },
+          { name: 'Dr. Rajat Choudhary', year: 3 },
+          { name: 'Dr. Akshay Kumar Samyal', year: 2 },
+          { name: 'Dr. Ritane Mangoch', year: 2 },
+          { name: 'Dr. Dipit Monocha', year: 1 },
+          { name: 'Dr. Jaswinder Singh', year: 1 },
+        ],
       },
     },
     {
@@ -136,7 +169,14 @@ export function Providers() {
         associateProfessors: ['Dr. W', 'Dr. X'],
         assistantProfessors: ['Dr. Y', 'Dr. Z'],
         seniorResidents: ['Dr. AA', 'Dr. BB'],
-        juniorResidents: ['Dr. CC', 'Dr. DD', 'Dr. EE', 'Dr. FF', 'Dr. GG', 'Dr. HH'],
+        juniorResidents: [
+          { name: 'Dr. CC', year: 3 },
+          { name: 'Dr. DD', year: 3 },
+          { name: 'Dr. EE', year: 2 },
+          { name: 'Dr. FF', year: 2 },
+          { name: 'Dr. GG', year: 1 },
+          { name: 'Dr. HH', year: 1 },
+        ],
       },
     },
     {
@@ -153,7 +193,14 @@ export function Providers() {
         associateProfessors: [],
         assistantProfessors: ['Dr. EE', 'Dr. FF'],
         seniorResidents: ['Dr. GG', 'Dr. HH'],
-        juniorResidents: ['Dr. II', 'Dr. JJ', 'Dr. KK', 'Dr. LL', 'Dr. MM', 'Dr. NN'],
+        juniorResidents: [
+          { name: 'Dr. II', year: 3 },
+          { name: 'Dr. JJ', year: 3 },
+          { name: 'Dr. KK', year: 2 },
+          { name: 'Dr. LL', year: 2 },
+          { name: 'Dr. MM', year: 1 },
+          { name: 'Dr. NN', year: 1 },
+        ],
       },
     },
   ];
@@ -183,6 +230,36 @@ export function Providers() {
               </div>
             )}
             <p className="font-medium text-blue-950 text-sm text-center">{name}</p>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderJuniorResidentsByYear = (residents: { name: string; year: number }[]) => {
+    if (residents.length === 0) return null;
+    
+    // Group residents by year
+    const groupedByYear: Record<number, string[]> = {};
+    residents.forEach(resident => {
+      if (!groupedByYear[resident.year]) {
+        groupedByYear[resident.year] = [];
+      }
+      groupedByYear[resident.year].push(resident.name);
+    });
+    
+    // Sort years in descending order (JR3, JR2, JR1)
+    const sortedYears = Object.keys(groupedByYear)
+      .map(Number)
+      .sort((a, b) => b - a);
+    
+    return (
+      <div className="mb-4">
+        <strong className="text-lg block text-teal-600 text-center mb-4">Junior Residents:</strong>
+        {sortedYears.map(year => (
+          <div key={year} className="mb-6">
+            <h4 className="text-md font-semibold text-gray-700 text-center mb-3">JR{year}</h4>
+            {renderListWithImages(groupedByYear[year], true, true)}
           </div>
         ))}
       </div>
@@ -319,10 +396,7 @@ export function Providers() {
             )}
 
             {selectedProvider.details.juniorResidents.length > 0 && (
-              <div className="mb-4">
-                <strong className="text-lg block text-teal-600 text-center">Junior Residents:</strong>
-                {renderListWithImages(selectedProvider.details.juniorResidents, true)}
-              </div>
+              renderJuniorResidentsByYear(selectedProvider.details.juniorResidents)
             )}
           </div>
         </div>
