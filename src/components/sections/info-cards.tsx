@@ -1,14 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useState, MouseEvent, useEffect } from 'react';
 
 export function InfoCards() {
   const [modalContent, setModalContent] = useState<string | null>(null);
   const [stomaImageIndex, setStomaImageIndex] = useState(0);
   const [breastImageIndex, setBreastImageIndex] = useState(0);
-  const [sliderImageIndex, setSliderImageIndex] = useState(0);
+  const [traumaImageIndex, setTraumaImageIndex] = useState(0);
 
   // Sample image arrays - replace with your actual image paths
   const stomaImages = [
@@ -24,15 +24,12 @@ export function InfoCards() {
     '/bre1.jpeg',
   ];
 
-  const sliderImages = [
-    '/slider1.jpg',
-    '/slider2.jpg',
-    '/slider3.jpg',
-    '/slider4.jpg',
+  const traumaImages = [
+    '/emer.png',
   ];
 
   // Define the desired order of clinics
-  const clinicOrder = ['breast','stoma','slider']; // Change this array to reorder
+  const clinicOrder = ['breast','stoma','trauma']; // Change this array to reorder
 
   function openModal(key: string) {
     setModalContent(key);
@@ -60,31 +57,18 @@ export function InfoCards() {
       );
     }, 3500); // Slightly offset timing for visual interest
 
-    const sliderInterval = setInterval(() => {
-      setSliderImageIndex((prevIndex) => 
-        prevIndex === sliderImages.length - 1 ? 0 : prevIndex + 1
+    const traumaInterval = setInterval(() => {
+      setTraumaImageIndex((prevIndex) => 
+        prevIndex === traumaImages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3200); // Different timing for slider images
+    }, 3200); // Different timing for trauma images
 
     return () => {
       clearInterval(stomaInterval);
       clearInterval(breastInterval);
-      clearInterval(sliderInterval);
+      clearInterval(traumaInterval);
     };
-  }, [stomaImages.length, breastImages.length, sliderImages.length]);
-
-  // Function to manually change slider image
-  const changeSliderImage = (direction: 'next' | 'prev') => {
-    if (direction === 'next') {
-      setSliderImageIndex((prevIndex) => 
-        prevIndex === sliderImages.length - 1 ? 0 : prevIndex + 1
-      );
-    } else {
-      setSliderImageIndex((prevIndex) => 
-        prevIndex === 0 ? sliderImages.length - 1 : prevIndex - 1
-      );
-    }
-  };
+  }, [stomaImages.length, breastImages.length, traumaImages.length]);
 
   // ✅ Reusable modal
   const Modal = ({
@@ -204,6 +188,45 @@ export function InfoCards() {
           </div>
         );
 
+      case 'trauma':
+        return (
+          <div className="flex flex-col justify-center items-center text-center">
+            {/* Banner Image for Trauma Clinic */}
+            <div className="w-full mb-6">
+              <Image
+                src="/emer.png"
+                alt="Trauma Clinic Banner"
+                width={1200}
+                height={400}
+                className="rounded-lg object-cover w-full h-64"
+              />
+            </div>
+
+            <h2 className="text-3xl font-bold mb-6">Trauma & Emergency Surgery Clinic Details</h2>
+            <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
+              The Trauma & Emergency Surgery Clinic at GMC Patiala provides
+              round-the-clock comprehensive care for patients with acute surgical
+              conditions and traumatic injuries. Our dedicated team of trauma
+              surgeons, emergency physicians, and support staff are trained to
+              handle a wide spectrum of emergencies including road traffic accidents,
+              falls, penetrating injuries, and acute abdominal conditions. The clinic
+              follows advanced trauma life support protocols to ensure rapid assessment,
+              resuscitation, and definitive management of critically injured patients.
+              We are equipped with state-of-the-art facilities for diagnostic imaging,
+              emergency operations, and postoperative critical care. Our multidisciplinary
+              approach involves close collaboration with orthopedics, neurosurgery,
+              radiology, and anesthesia departments to provide integrated care for
+              polytrauma patients. Beyond immediate surgical intervention, the clinic
+              focuses on rehabilitation and long-term recovery, helping patients regain
+              function and return to their normal lives. We also emphasize prevention
+              through community awareness programs about road safety and injury prevention.
+              The Trauma & Emergency Surgery Clinic is committed to delivering timely,
+              expert care when every second counts, saving lives and reducing disability
+              through evidence-based practices and compassionate service.
+            </p>
+          </div>
+        );
+
       default:
         return null;
     }
@@ -225,92 +248,18 @@ export function InfoCards() {
       imageIndex: breastImageIndex,
       setImageIndex: setBreastImageIndex
     },
-    slider: {
-      title: "Gallery",
-      description: "Explore our medical facility through our gallery showcasing state-of-the-art equipment, dedicated staff, and patient care environments. Our images highlight the advanced technology and compassionate care that define our approach to healthcare.",
-      images: sliderImages,
-      imageIndex: sliderImageIndex,
-      setImageIndex: setSliderImageIndex
+    trauma: {
+      title: "Trauma & Emergency Surgery",
+      description: "Our Trauma & Emergency Surgery Clinic provides 24/7 comprehensive care for patients with acute surgical conditions and traumatic injuries. Our expert team is trained in advanced trauma life support and manages everything from road traffic accidents to acute abdominal emergencies. We emphasize rapid assessment, resuscitation, and definitive surgical management to save lives and reduce disability.",
+      images: traumaImages,
+      imageIndex: traumaImageIndex,
+      setImageIndex: setTraumaImageIndex
     }
   };
 
   // Render a single clinic card
   const renderClinicCard = (key: string) => {
     const clinic = clinicCards[key as keyof typeof clinicCards];
-    
-    if (key === 'slider') {
-      return (
-        <div key={key} className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out">
-          <div className="relative overflow-hidden">
-            {/* Image Container with Fixed Aspect Ratio and Zoom Effect */}
-            <div className="w-full h-64 relative overflow-hidden">
-              <Image
-                src={clinic.images[clinic.imageIndex]}
-                alt={`Gallery image ${clinic.imageIndex + 1}`}
-                fill
-                className="object-cover transition-all duration-700 ease-in-out"
-                quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                loading="lazy"
-              />
-              
-              {/* Navigation Arrows */}
-              <button 
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  changeSliderImage('prev');
-                }}
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button 
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  changeSliderImage('next');
-                }}
-                aria-label="Next image"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-            
-            {/* Image Indicators */}
-            <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
-              {clinic.images.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === clinic.imageIndex ? 'bg-white scale-125' : 'bg-white/50'
-                  }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    clinic.setImageIndex(index);
-                  }}
-                  aria-label={`View image ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-          
-          <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
-            <div>
-              <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
-                {clinic.title}
-              </h3>
-              <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
-                {clinic.description}
-              </p>
-            </div>
-            <div className="text-xs text-zinc-400 mt-2">
-              Image {clinic.imageIndex + 1} of {clinic.images.length}
-            </div>
-          </div>
-        </div>
-      );
-    }
     
     return (
       <div key={key} className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
