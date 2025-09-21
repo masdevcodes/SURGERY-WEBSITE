@@ -53,7 +53,7 @@ export function Providers() {
     const fullName = cleanName.replace(/\s+/g, '_');
     return `/images/doctors/${fullName}.jpg`;
   };
-
+// image size for cards Recommended: 800px × 704px
   const providers: Provider[] = [
     {
       id: 1,
