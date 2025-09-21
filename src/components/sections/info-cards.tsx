@@ -220,7 +220,7 @@ export function InfoCards() {
               focuses on rehabilitation and long-term recovery, helping patients regain
               function and return to their normal lives. We also emphasize prevention
               through community awareness programs about road safety and injury prevention.
-              The Trauma & Emergency Surgery Clinic is committed to delivering timely
+              The Trauma & Emergency Surgery Clinic is committed to delivering timely,
               expert care when every second counts, saving lives and reducing disability
               through evidence-based practices and compassionate service.
             </p>
