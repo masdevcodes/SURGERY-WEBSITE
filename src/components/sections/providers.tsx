@@ -292,8 +292,8 @@ export function Providers() {
                   className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <p className="text-gray-700  font-bold text-lg">
-                <strong>Prof & Unit Incharge:</strong> {selectedProvider.details.incharge}
+              <p className="text-gray-700  text-teal-600 font-bold text-lg">
+                <strong>Prof & Unit Incharge:</strong> <p className="text-grey-700>"{selectedProvider.details.incharge}
               </p>
             </div>
 
