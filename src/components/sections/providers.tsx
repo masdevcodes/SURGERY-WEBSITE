@@ -118,7 +118,7 @@ export function Providers() {
       details: {
         incharge: 'Dr. Sanjeev Gupta',
         associateProfessors: [], // No associate professors
-        assistantProfessors: ['Dr. Sanjeev', 'Dr. T'],
+        assistantProfessors: ['Dr. Samrat', 'Dr. T'],
         seniorResidents: ['Dr. U', 'Dr. V'],
         juniorResidents: ['Dr. W', 'Dr. X', 'Dr. Y', 'Dr. Z'],
       },
