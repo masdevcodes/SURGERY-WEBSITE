@@ -66,7 +66,7 @@ export function Providers() {
       image: '/images/ho.png',
       details: {
         incharge: 'Dr. Prem Singla',
-        inchargeTitle: 'Prof & Unit Incharge', // Added custom title
+        inchargeTitle: 'Prof & Unit Incharge', // Added  custom title
         associateProfessors: ['Dr. A', 'Dr. B'],
         assistantProfessors: ['Dr. P', 'Dr. M'],
         seniorResidents: ['Dr. S', 'Dr.', 'Dr. C'],
