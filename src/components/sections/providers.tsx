@@ -119,8 +119,8 @@ export function Providers() {
         incharge: 'Dr. Sanjeev Gupta',
         associateProfessors: [], // No associate professors
         assistantProfessors: ['Dr. Gunjeet Singh Sandhu'],
-        seniorResidents: ['Dr. U', 'Dr. V'],
-        juniorResidents: ['Dr. W', 'Dr. X', 'Dr. Y', 'Dr. Z'],
+        seniorResidents: ['Dr. d', 'Dr. V'],
+        juniorResidents: ['Dr. Karanveer Kohli', 'Dr. Rajat Choudhary', 'Dr. Akshay Kumar Samyal', 'Dr. Ritane Mangoch'],
       },
     },
     {
