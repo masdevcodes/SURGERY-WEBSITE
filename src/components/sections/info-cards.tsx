@@ -29,7 +29,7 @@ export function InfoCards() {
   ];
 
   // Define the desired order of clinics
-  const clinicOrder = ['trauma', 'stoma', 'breast']; // Change this array to reorder
+  const clinicOrder = ['breast','stoma','trauma']; // Change this array to reorder
 
   function openModal(key: string) {
     setModalContent(key);
