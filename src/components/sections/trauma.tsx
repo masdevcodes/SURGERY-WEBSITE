@@ -316,21 +316,7 @@ export function Trauma() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 
                 {/* Emergency Contact Overlay */}
-                <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-lg max-w-md">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-lg font-bold text-blue-950">Emergency Hotline</p>
-                      <p className="text-2xl font-bold text-red-600">(555) 123-HELP</p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-gray-600">
-                   Available 24/7 for trauma emergencies. Our team is ready to coordinate 
-                    transport and prepare for your arrival.
-                  </p>
-                </div>
+               
               </div>
               
               {/* Floating Elements */}
