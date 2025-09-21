@@ -293,9 +293,7 @@ export function Providers() {
                 />
               </div>
               <p className="text-gray-700  text-teal-600 font-bold text-lg">
-                <strong>Prof & Unit Incharge: </strong> //
-                  <p className="font-medium text-blue-950 text-center"> </p>
-                
+                <strong>Prof & Unit Incharge: </strong> 
                 {selectedProvider.details.incharge}
               </p>
             </div>
