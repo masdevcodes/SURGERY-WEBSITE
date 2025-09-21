@@ -60,7 +60,7 @@ export function Providers() {
       name: 'Dr. Prem Singla',
       unit: 'UNIT 2',
       department: 'Unit 2, Floor 2',
-      email: 'j.bowman@gmcpatiala.edu',
+      email: '',
       description: 'Expert in respiratory medicine and critical care with extensive experience in treating lung diseases and sleep disorders.',
       color: 'blue',
       image: '/images/ho.png',
