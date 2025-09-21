@@ -187,7 +187,7 @@ export function Providers() {
       email: 'd.kumar@gmcpatiala.edu',
       description: 'Neurosurgeon specializing in brain and spine surgery with expertise in complex neurological procedures.',
       color: 'indigo',
-      image: '/images/provider6.jpg',
+      image: '/images/doctors,vikas_goyal.jpg',
       details: {
         incharge: 'Dr. Vikas Goyal',
         associateProfessors: [],
