@@ -91,7 +91,7 @@ export function Providers() {
       email: '',
       description: 'Leading urologist specializing in minimally invasive procedures and robotic surgery for uological conditions.',
       color: 'purple',
-      image: '/images/rekhi.jpg',
+      image: '/images/h.srekhi.jpg',
       details: {
         incharge: 'Dr. H.S Rekhi',
         inchargeTitle: 'Prof & Incharge',
