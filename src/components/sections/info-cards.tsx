@@ -1,208 +1,345 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
-import { 
-  Heart, 
-  Brain, 
-  Shield, 
-  Scissors, 
-  Baby, 
-  Activity,
-  ArrowRight,
-  X
-} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { useState, MouseEvent, useEffect } from 'react';
 
-interface Speciality {
-  id: number;
-  name: string;
-  icon: React.ReactNode;
-  description: string;
-  detailedDescription: string;
-  color: string;
-  image: string;
-  services: string[];
-}
+export function InfoCards() {
+  const [modalContent, setModalContent] = useState<string | null>(null);
+  const [stomaImageIndex, setStomaImageIndex] = useState(0);
+  const [breastImageIndex, setBreastImageIndex] = useState(0);
+  const [traumaImageIndex, setTraumaImageIndex] = useState(0);
 
-export function SuperSpeciality() {
-  const [selectedSpeciality, setSelectedSpeciality] = useState<Speciality | null>(null);
-  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
-
-  const handleImageError = (id: number) => {
-    setImageErrors(prev => ({ ...prev, [id]: true }));
-  };
-
-  const specialities: Speciality[] = [
-    // ... (specialities array remains the same)
+  // Sample image arrays - replace with your actual image paths
+  const stomaImages = [
+    '/stomay.png',
+    '/sto2.jpg',
+    '/sto3.jpeg',
+    '/stom5.png',
+  ];
+  
+  const breastImages = [
+    '/brep.png',
+    '/bre5.png',
+    '/bre1.jpeg',
   ];
 
-  const closeModal = () => setSelectedSpeciality(null);
+  const traumaImages = [
+    '/emer.png',
+  ];
+
+  // Define the desired order of clinics
+  const clinicOrder = ['breast','stoma','trauma']; // Change this array to reorder
+
+  function openModal(key: string) {
+    setModalContent(key);
+  }
+
+  function closeModal() {
+    setModalContent(null);
+  }
+
+  function stopPropagation(e: MouseEvent<HTMLDivElement>) {
+    e.stopPropagation();
+  }
+
+  // Set up auto-changing image sliders
+  useEffect(() => {
+    const stomaInterval = setInterval(() => {
+      setStomaImageIndex((prevIndex) => 
+        prevIndex === stomaImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000); // Change image every 3 seconds
+
+    const breastInterval = setInterval(() => {
+      setBreastImageIndex((prevIndex) => 
+        prevIndex === breastImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3500); // Slightly offset timing for visual interest
+
+    const traumaInterval = setInterval(() => {
+      setTraumaImageIndex((prevIndex) => 
+        prevIndex === traumaImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3200); // Different timing for trauma images
+
+    return () => {
+      clearInterval(stomaInterval);
+      clearInterval(breastInterval);
+      clearInterval(traumaInterval);
+    };
+  }, [stomaImages.length, breastImages.length, traumaImages.length]);
+
+  // ✅ Reusable modal
+  const Modal = ({
+    children,
+    onClose,
+  }: {
+    children: React.ReactNode;
+    onClose: () => void;
+  }) => (
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto p-8 relative"
+        onClick={stopPropagation}
+      >
+        <button
+          type="button"
+          aria-label="Close modal"
+          className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 font-bold text-2xl"
+          onClick={onClose}
+        >
+          ×
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+
+  function getModalContent(key: string) {
+    switch (key) {
+      case 'stoma':
+        return (
+          <div className="flex flex-col justify-center items-center text-center">
+            {/* Banner Image for Stoma Clinic */}
+            <div className="w-full mb-6">
+              <Image
+                src="/sto2.jpg"
+                alt="Stoma Clinic Banner"
+                width={1200}
+                height={400}
+                className="rounded-lg object-cover w-full h-64"
+              />
+            </div>
+
+            <h2 className="text-3xl font-bold mb-6">Stoma Clinic Details</h2>
+            <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
+              The Stoma Clinic at GMC Patiala functions as a dedicated service
+              within the Department of General Surgery, designed to address the
+              unique needs of patients living with stomas. It serves as a
+              one-stop facility where patients receive holistic care—covering
+              surgical follow-up, stoma site evaluation, and personalized advice
+              for daily management. Special attention is given to ensuring that
+              each patient is fitted with the most suitable appliance, thereby
+              minimizing discomfort and improving confidence in social and
+              personal life. The clinic also plays a vital role in identifying
+              and treating common stoma-related complications such as
+              infections, skin excoriations, or mechanical problems. Beyond the
+              physical aspects, the clinic recognizes the psychological and
+              social challenges faced by patients and provides supportive
+              counselling to ease their transition into a new lifestyle.
+              Nutrition counselling, lifestyle modification strategies, and
+              reintegration into normal routines are also emphasized to ensure
+              overall well-being. Regular review visits help maintain long-term
+              stoma health while allowing patients to seek solutions to any
+              difficulties they encounter. The clinic further acts as a teaching
+              platform for medical students and residents, highlighting the
+              principles of stoma care and patient rehabilitation. Through this
+              multidisciplinary and compassionate approach, the Stoma Clinic at
+              GMC Patiala ensures that every patient is cared for with dignity,
+              empathy, and expertise.
+            </p>
+          </div>
+        );
+
+      case 'breast':
+        return (
+          <div className="flex flex-col justify-center items-center text-center">
+            {/* Banner Image for Breast Clinic */}
+            <div className="w-full mb-6">
+              <Image
+                src="/bre1.jpeg"
+                alt="Breast Clinic Banner"
+                width={1200}
+                height={400}
+                className="rounded-lg object-cover w-full h-64"
+              />
+            </div>
+
+            <h2 className="text-3xl font-bold mb-6">Breast Clinic Details</h2>
+            <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
+              The Breast Clinic at GMC Patiala, under the Department of General
+              Surgery, is a dedicated service aimed at providing comprehensive
+              care for patients with breast diseases. It caters to a wide
+              spectrum of conditions including benign breast disorders,
+              infections, fibroadenomas, and breast malignancies. A strong
+              emphasis is placed on early detection of breast cancer through
+              clinical breast examination, mammography, ultrasound, and guided
+              biopsies. The clinic provides a structured diagnostic pathway
+              ensuring accurate evaluation and timely intervention. Patients
+              receive individualized treatment plans, whether surgical, medical,
+              or combined, based on their diagnosis and stage of disease.
+              Counselling sessions are conducted to help patients understand
+              their condition, available treatment options, and expected
+              outcomes. Preventive strategies such as breast self-examination
+              training and awareness programs are also integrated into the
+              clinic's routine. Postoperative follow-up and rehabilitation,
+              including wound care and lymphedema management, are actively
+              supported. The clinic also provides psychological and emotional
+              support, recognizing the significant impact breast diseases can
+              have on self-image and quality of life. By combining advanced
+              diagnostic tools, multidisciplinary treatment, and patient-focused
+              counselling, the Breast Clinic at GMC Patiala strives to deliver
+              holistic care with compassion and excellence.
+            </p>
+          </div>
+        );
+
+      case 'trauma':
+        return (
+          <div className="flex flex-col justify-center items-center text-center">
+            {/* Banner Image for Trauma Clinic */}
+            <div className="w-full mb-6">
+              <Image
+                src="/emer.png"
+                alt="Trauma Clinic Banner"
+                width={1200}
+                height={400}
+                className="rounded-lg object-cover w-full h-64"
+              />
+            </div>
+
+            <h2 className="text-3xl font-bold mb-6">Trauma & Emergency Surgery Clinic Details</h2>
+            <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
+              The Trauma & Emergency Surgery Clinic at GMC Patiala provides
+              round-the-clock comprehensive care for patients with acute surgical
+              conditions and traumatic injuries. Our dedicated team of trauma
+              surgeons, emergency physicians, and support staff are trained to
+              handle a wide spectrum of emergencies including road traffic accidents,
+              falls, penetrating injuries, and acute abdominal conditions. The clinic
+              follows advanced trauma life support protocols to ensure rapid assessment,
+              resuscitation, and definitive management of critically injured patients.
+              We are equipped with state-of-the-art facilities for diagnostic imaging,
+              emergency operations, and postoperative critical care. Our multidisciplinary
+              approach involves close collaboration with orthopedics, neurosurgery,
+              radiology, and anesthesia departments to provide integrated care for
+              polytrauma patients. Beyond immediate surgical intervention, the clinic
+              focuses on rehabilitation and long-term recovery, helping patients regain
+              function and return to their normal lives. We also emphasize prevention
+              through community awareness programs about road safety and injury prevention.
+              The Trauma & Emergency Surgery Clinic is committed to delivering timely
+              expert care when every second counts, saving lives and reducing disability
+              through evidence-based practices and compassionate service.
+            </p>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  }
+
+  // Clinic card data - makes it easier to reorder
+  const clinicCards = {
+    stoma: {
+      title: "Stoma Clinic",
+      description: "Our Stoma Clinic offers expert care for patients with colostomies, ileostomies, and urostomies. Our services include assessment, fitting of appropriate appliances, and prompt management of stoma-related complications. We emphasize patient education, lifestyle counselling, and emotional support to empower individuals in managing their stoma with confidence. Our goal is to restore dignity, comfort, and the highest quality of life for all patients under our care.",
+      images: stomaImages,
+      imageIndex: stomaImageIndex,
+      setImageIndex: setStomaImageIndex
+    },
+    breast: {
+      title: "Breast Clinic",
+      description: "Our Breast Clinic provides specialized care for women presenting with breast-related complaints such as lumps, pain, discharge, or infections. The clinic offers early detection services for breast cancer, including clinical breast examination, imaging guidance, and biopsy facilities. Along with diagnosis and treatment, it emphasizes patient counselling, awareness, and follow-up care to ensure comprehensive management of breast health.",
+      images: breastImages,
+      imageIndex: breastImageIndex,
+      setImageIndex: setBreastImageIndex
+    },
+    trauma: {
+      title: "Trauma & Emergency Surgery",
+      description: "Our Trauma & Emergency Surgery Clinic provides 24/7 comprehensive care for patients with acute surgical conditions and traumatic injuries. Our expert team is trained in advanced trauma life support and manages everything from road traffic accidents to acute abdominal emergencies. We emphasize rapid assessment, resuscitation, and definitive surgical management to save lives and reduce disability.",
+      images: traumaImages,
+      imageIndex: traumaImageIndex,
+      setImageIndex: setTraumaImageIndex
+    }
+  };
+
+  // Render a single clinic card
+  const renderClinicCard = (key: string) => {
+    const clinic = clinicCards[key as keyof typeof clinicCards];
+    
+    return (
+      <div key={key} className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+        <div className="relative overflow-hidden">
+          {/* Image Container with Fixed Aspect Ratio and Zoom Effect */}
+          <div className="w-full h-64 relative overflow-hidden">
+            <Image
+              src={clinic.images[clinic.imageIndex]}
+              alt={`${clinic.title} image`}
+              fill
+              className="object-cover transition-all duration-700 ease-in-out group-hover:scale-110"
+              quality={85}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="lazy"
+            />
+          </div>
+          
+          {/* Image Indicators */}
+          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+            {clinic.images.map((_, index) => (
+              <div
+                key={index}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === clinic.imageIndex ? 'bg-white scale-125' : 'bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+        
+        <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
+          <div>
+            <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
+              {clinic.title}
+            </h3>
+            <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
+              {clinic.description}
+            </p>
+          </div>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              openModal(key);
+            }}
+            className="font-bold text-teal-500 flex items-center gap-2 justify-center hover:text-teal-600 transition-colors duration-300"
+          >
+            READ MORE <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    );
+  };
 
   return (
-    <section id="super-speciality" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-20">
+    <section
+      id="info"
+      className="pb-24 bg-gradient-to-b from-white via-white/0 to-white relative"
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0 opacity-30">
         <Image
           src="/111.png"
-          alt="Abstract background pattern"
+          alt="Abstract background"
           fill
           className="object-cover"
         />
       </div>
 
-      <div className="container mx-auto relative">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="w-16 h-1 bg-teal-500"></div>
-            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
-              Advanced Medical Care
-            </span>
-            <div className="w-16 h-1 bg-teal-500"></div>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-950 font-headline leading-tight mb-4">
-            Super Speciality Wings
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
-            Specialized surgical departments offering advanced care across multiple medical disciplines at GMC Patiala
-          </p>
-        </div>
-
-        {/* Specialities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {specialities.map((speciality) => (
-            <div
-              key={speciality.id}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden"
-            >
-              {/* Image - Increased height from h-48 to h-60 */}
-              <div className="relative h-60 overflow-hidden">
-                {imageErrors[speciality.id] ? (
-                  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                    <div className={speciality.color}>{speciality.icon}</div>
-                  </div>
-                ) : (
-                  <Image
-                    src={speciality.image}
-                    alt={speciality.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    quality={85}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    loading="lazy"
-                    onError={() => handleImageError(speciality.id)}
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                
-                {/* Icon Overlay */}
-                <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 rounded-xl flex items-center justify-center shadow-lg">
-                  <div className={speciality.color}>{speciality.icon}</div>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-blue-950 mb-3 group-hover:text-teal-600 transition-colors duration-300">
-                  {speciality.name}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                  {speciality.description}
-                </p>
-                
-                {/* Learn More Button */}
-                <button
-                  onClick={() => setSelectedSpeciality(speciality)}
-                  className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
-                >
-                  LEARN MORE
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Stats Section with Zoom Effect */}
-        <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="transform transition-all duration-500 hover:scale-110 cursor-pointer">
-              <div className="text-3xl font-bold text-teal-600 mb-2">6</div>
-              <div className="text-gray-600 text-sm">Super Specialities</div>
-            </div>
-            <div className="transform transition-all duration-500 hover:scale-110 cursor-pointer">
-              <div className="text-3xl font-bold text-teal-600 mb-2">27+</div>
-              <div className="text-gray-600 text-sm">Specialist Doctors</div>
-            </div>
-            <div className="transform transition-all duration-500 hover:scale-110 cursor-pointer">
-              <div className="text-3xl font-bold text-teal-600 mb-2">1000+</div>
-              <div className="text-gray-600 text-sm">Complex Surgeries/Year</div>
-            </div>
-            <div className="transform transition-all duration-500 hover:scale-110 cursor-pointer">
-              <div className="text-3xl font-bold text-teal-600 mb-2">24/7</div>
-              <div className="text-gray-600 text-sm">Emergency Care</div>
-            </div>
-          </div>
+      {/* Container */}
+      <div className="container mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          {/* Render cards in the specified order */}
+          {clinicOrder.map(key => renderClinicCard(key))}
         </div>
       </div>
 
-      {/* Modal for Speciality Details */}
-      {selectedSpeciality && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
-              aria-label="Close modal"
-            >
-              <X className="w-6 h-6 text-gray-800" />
-            </button>
-            
-            {/* Modal Header Image - Increased height from h-64 to h-80 */}
-            <div className="relative h-80 overflow-hidden rounded-t-2xl">
-              {imageErrors[selectedSpeciality.id] ? (
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                  <div className={selectedSpeciality.color}>{selectedSpeciality.icon}</div>
-                </div>
-              ) : (
-                <Image
-                  src={selectedSpeciality.image}
-                  alt={selectedSpeciality.name}
-                  fill
-                  className="object-cover"
-                  onError={() => handleImageError(selectedSpeciality.id)}
-                />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                    {selectedSpeciality.icon}
-                  </div>
-                  <h3 className="text-3xl font-bold">{selectedSpeciality.name}</h3>
-                </div>
-              </div>
-            </div>
-            
-            {/* Modal Content */}
-            <div className="p-8">
-              <p className="text-gray-700 leading-relaxed mb-6 text-justify">
-                {selectedSpeciality.detailedDescription}
-              </p>
-              
-              <h4 className="text-xl font-bold text-blue-950 mb-4">Our Services Include:</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {selectedSpeciality.services.map((service, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
-                    <span className="text-gray-700">{service}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Modal */}
+      {modalContent && (
+        <Modal onClose={closeModal}>{getModalContent(modalContent)}</Modal>
       )}
     </section>
   );
