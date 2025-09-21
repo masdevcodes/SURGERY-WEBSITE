@@ -425,7 +425,7 @@ export function Trauma() {
                   onClick={closeModal}
                   className="mt-8 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
                 >
-                  Close
+                  Close.
                 </button>
               </div>
             </div>
