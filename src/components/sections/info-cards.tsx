@@ -226,8 +226,8 @@ export function InfoCards() {
       setImageIndex: setBreastImageIndex
     },
     slider: {
-      title: "Gallery",
-      description: "Explore our medical facility through our gallery showcasing state-of-the-art equipment, dedicated staff, and patient care environments. Our images highlight the advanced technology and compassionate care that define our approach to healthcare.",
+      title: "Medical Gallery",
+      description: "Explore our state-of-the-art medical facilities and advanced equipment through our comprehensive gallery showcasing our commitment to excellence in healthcare.",
       images: sliderImages,
       imageIndex: sliderImageIndex,
       setImageIndex: setSliderImageIndex
@@ -241,22 +241,33 @@ export function InfoCards() {
     if (key === 'slider') {
       return (
         <div key={key} className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out">
-          <div className="relative overflow-hidden">
-            {/* Image Container with Fixed Aspect Ratio and Zoom Effect */}
-            <div className="w-full h-64 relative overflow-hidden">
+          <div className="relative overflow-hidden flex-grow">
+            {/* Full card image slider */}
+            <div className="w-full h-full relative">
               <Image
                 src={clinic.images[clinic.imageIndex]}
-                alt={`Gallery image ${clinic.imageIndex + 1}`}
+                alt={`Medical facility image ${clinic.imageIndex + 1}`}
                 fill
-                className="object-cover transition-all duration-700 ease-in-out"
-                quality={85}
+                className="object-cover"
+                quality={90}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 loading="lazy"
               />
               
+              {/* Semi-transparent overlay with title and description */}
+              <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">{clinic.title}</h3>
+                <p className="text-sm mb-4 max-w-md">{clinic.description}</p>
+                
+                {/* Image counter */}
+                <div className="text-xs opacity-80 mb-2">
+                  Image {clinic.imageIndex + 1} of {clinic.images.length}
+                </div>
+              </div>
+              
               {/* Navigation Arrows */}
               <button 
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full transition-all shadow-md"
                 onClick={(e) => {
                   e.stopPropagation();
                   changeSliderImage('prev');
@@ -266,7 +277,7 @@ export function InfoCards() {
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button 
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full transition-all shadow-md"
                 onClick={(e) => {
                   e.stopPropagation();
                   changeSliderImage('next');
@@ -275,37 +286,23 @@ export function InfoCards() {
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
-            </div>
-            
-            {/* Image Indicators */}
-            <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
-              {clinic.images.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === clinic.imageIndex ? 'bg-white scale-125' : 'bg-white/50'
-                  }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    clinic.setImageIndex(index);
-                  }}
-                  aria-label={`View image ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-          
-          <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
-            <div>
-              <h3 className="text-3xl font-bold font-body text-blue-950 mb-4">
-                {clinic.title}
-              </h3>
-              <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
-                {clinic.description}
-              </p>
-            </div>
-            <div className="text-xs text-zinc-400 mt-2">
-              Image {clinic.imageIndex + 1} of {clinic.images.length}
+              
+              {/* Image Indicators */}
+              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+                {clinic.images.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === clinic.imageIndex ? 'bg-white scale-125' : 'bg-white/50'
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      clinic.setImageIndex(index);
+                    }}
+                    aria-label={`View image ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
