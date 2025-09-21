@@ -14,7 +14,7 @@ interface Provider {
   image: string;
   details: {
     incharge: string;
-    associateProfessors: string[]; // Added this field
+    associateProfessors: string[];
     assistantProfessors: string[];
     seniorResidents: string[];
     juniorResidents: string[];
@@ -48,12 +48,13 @@ export function Providers() {
     if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/pri.png';
     if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/sur.png';
     
-    // Use first name instead of last name for image path
-    const nameParts = cleanName.split(' ');
-    const firstName = nameParts[0]; // Changed from nameParts[nameParts.length - 1] to nameParts[0]
-    return `/images/doctors/${firstName}.jpg`;
+    // Use full name for image path to avoid conflicts
+    const fullName = cleanName.replace(/\s+/g, '_');
+    return `/images/doctors/${fullName}.jpg`;
   };
 
+  // ... rest of the code remains the same
+}
   const providers: Provider[] = [
     {
       id: 1,
