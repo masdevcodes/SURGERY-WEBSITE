@@ -195,7 +195,7 @@ export function Providers() {
       image: '/images/doctors/vikas_goyal.jpg',
       details: {
         incharge: 'Dr. Vikas Goyal',
-        inchargeTitle: 'Prof & Unit Incharge',
+        inchargeTitle: 'Associate Prof & Unit Incharge',
         associateProfessors: [],
         assistantProfessors: ['Dr. Karamjot Singh Sandhu'],
         seniorResidents: ['Dr. Manjeet Rait'],
