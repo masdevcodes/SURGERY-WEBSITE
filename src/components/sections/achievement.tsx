@@ -170,46 +170,7 @@ export function Achievements() {
         </div>
       ),
     },
-    {
-      id: 4,
-      icon: <TrendingUp className="w-8 h-8" />,
-      title: 'Research Publications',
-      description: 'Contributing to surgical advancements through research',
-      year: '85 Papers',
-      stats: '12 International Studies',
-      color: 'text-purple-500',
-      popupContent: (
-        <div>
-          <h3 className="font-bold text-2xl mb-4">Research & Innovation</h3>
-          <p className="text-gray-700 leading-relaxed text-justify mb-4">
-            Our surgeons are actively engaged in research that advances the field of surgery. 
-            With 85 publications in peer-reviewed journals and participation in 12 international 
-            multi-center studies, we contribute to the global knowledge base of surgical best practices.
-          </p>
-          <div className="mt-6">
-            <h4 className="font-semibold text-lg mb-3">Notable Research Areas</h4>
-            <ul className="space-y-2">
-              <li className="flex items-center gap-2">
-                <Scissors className="w-5 h-5 text-purple-500" />
-                <span>Minimally invasive surgical techniques</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <HeartPulse className="w-5 h-5 text-purple-500" />
-                <span>Surgical outcomes in high-risk patients</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-purple-500" />
-                <span>Enhanced recovery protocols</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Star className="w-5 h-5 text-purple-500" />
-                <span>Surgical technology innovations</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      ),
-    },
+      
   ];
 
   // Left side stats cards data with popup content
