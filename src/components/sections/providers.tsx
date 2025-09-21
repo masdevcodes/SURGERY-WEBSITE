@@ -292,7 +292,7 @@ export function Providers() {
                 />
               </div>
               <p className="text-gray-700 font-bold text-lg">
-                <strong>Professors & Unit Incharge:</strong> {selectedProvider.details.incharge}
+                <strong>Prof & Unit Incharge:</strong> {selectedProvider.details.incharge}
               </p>
             </div>
 
