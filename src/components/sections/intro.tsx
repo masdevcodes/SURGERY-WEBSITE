@@ -135,11 +135,11 @@ export function Intro() {
                       {unit: 'Unit 6', days: 'Wed & Sat', room: 'Room 7'},
                       {unit: 'Unit 7', days: 'Mon & Thu', room: 'Room 3'},
                     ].map((item, index) => (
-                      <div
+                      <div 
                         key={index}
                         className="p-2 rounded-lg bg-white/15 hover:bg-white/20 transition-colors flex justify-between items-center"
                       >
-                        <span className="font-semibold text-sm">{item.unit}</span>
+                        <span className="font-semibold text-lg">{item.unit}</span>
                         <div className="text-right">
                           <div className="text-base font-semibold">{item.days}</div>
                           <div className="text-teal-100 text-base font-semibold">{item.room}</div>
