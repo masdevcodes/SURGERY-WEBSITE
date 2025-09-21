@@ -344,15 +344,7 @@ export function Providers() {
             >
               ×
             </button>
-            <div className="relative w-80 h-80 md:w-96 md:h-96">
-              <Image
-                src={zoomedImage}
-                alt="Zoomed profile"
-                width={384}
-                height={384}
-                className="object-contain rounded-lg"
-              />
-            </div>
+            
           </div>
         </div>
       )}
