@@ -192,7 +192,7 @@ export function Providers() {
       email: '',
       description: 'Neurosurgeon specializing in brain and spine surgery with expertise in complex neurological procedures.',
       color: 'indigo',
-      image: '/images/doctors/vikas_goyal.jpg',
+      image: '/images/vikas_.png',
       details: {
         incharge: 'Dr. Vikas Goyal',
         inchargeTitle: 'Associate Prof & Unit Incharge',
