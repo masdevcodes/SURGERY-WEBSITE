@@ -80,7 +80,7 @@ export function Providers() {
       email: 'a.hwang@gmcpatiala.edu',
       description: 'Leading urologist specializing in minimally invasive procedures and robotic surgery for uological conditions.',
       color: 'purple',
-      image: '/images/rehi.png',
+      image: '/images/rekhi.png',
       details: {
         incharge: 'Dr. H.S Rekhi',
         associateProfessors: [ ], // No  associate professors
