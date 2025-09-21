@@ -226,7 +226,7 @@ export function InfoCards() {
       setImageIndex: setBreastImageIndex
     },
     slider: {
-      title: "Medical Gallery",
+      title: "",
       description: "",
       images: sliderImages,
       imageIndex: sliderImageIndex,
