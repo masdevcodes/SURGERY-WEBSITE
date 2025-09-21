@@ -187,7 +187,7 @@ export function MedicalSpecialties() {
                   </div>
                 </div>
 
-                {/* Senior Residents */}
+                {/* Senior Residents  */}
                 <div>
                   <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">
                     Senior Residents
