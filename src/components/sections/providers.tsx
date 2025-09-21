@@ -352,7 +352,7 @@ export function Providers() {
             </h2>
 
             <div className="mb-8 flex flex-col items-center">
-              <div className="relative w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-gray-300 group">
+              <div className="relative w-36 h-36 rounded-full overflow-hidden mb-4 border-2 border-gray-300 group">
                 <Image
                   src={getImagePath(selectedProvider.details.incharge)}
                   alt={selectedProvider.details.incharge}
