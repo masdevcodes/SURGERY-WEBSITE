@@ -287,7 +287,8 @@ export function Providers() {
                 <Image
                   src={getImagePath(selectedProvider.details.incharge)}
                   alt={selectedProvider.details.incharge}
-                  fill
+                  width={128}
+                  height={128}
                   className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
@@ -347,7 +348,8 @@ export function Providers() {
               <Image
                 src={zoomedImage}
                 alt="Zoomed profile"
-                fill
+                width={384}
+                height={384}
                 className="object-contain rounded-lg"
               />
             </div>
