@@ -83,10 +83,10 @@ export function Providers() {
       image: '/images/rekhi.png',
       details: {
         incharge: 'Dr. H.S Rekhi',
-        associateProfessors: ['Dr. A'], // No  associate professors
-        assistantProfessors: ['Dr. G', 'Dr. H', 'Dr. I'],
-        seniorResidents: ['Dr. J', 'Dr. K'],
-        juniorResidents: ['Dr. L', 'Dr. M', 'Dr. N'],
+        associateProfessors: ['Dr.'], // No  associate professors
+        assistantProfessors: ['Dr. Sudesh Parthap Singh', 'Dr. Malkiat Singh'],
+        seniorResidents: ['Dr. Simran Deep Singh', 'Dr. Baljeet Kaur'],
+        juniorResidents: ['Dr. Rajat Talresa', 'Dr. Samrat Singh Sra', 'Dr. Mohit Pareekh','Dr. Akhil Remesh','Dr. Ge'],
       },
     },
     {
