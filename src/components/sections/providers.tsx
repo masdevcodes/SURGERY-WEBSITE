@@ -85,7 +85,7 @@ export function Providers() {
         incharge: 'Dr. H.S Rekhi',
         associateProfessors: [ ], // No  associate professors
         assistantProfessors: ['Dr. Sudesh Parthaph Singh', 'Dr. Malkiat Singh'],
-        seniorResidents: ['Dr. Smran Deep Singh', 'Dr. Baljeet Kaur'],
+        seniorResidents: ['Dr. Simran Deep Singh', 'Dr. Baljeet Kaur'],
         juniorResidents: ['Dr. Rajat Talresa', 'Dr. Samrat Singh Sra', 'Dr. Mohit Pareekh','Dr. Akhil Remesh','Dr. Geetanjli chopra','Dr. Shubham Chhabra','Dr. Bachittar Singh','Dr. Rishu Garg','Dr. Pardeep Bansal'],
       },
     },
