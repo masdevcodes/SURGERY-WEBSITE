@@ -25,9 +25,9 @@ export function InfoCards() {
   ];
 
   const sliderImages = [
-    '/brep.jpg',
-    '/brep5.jpg',
-    '/brep.jpg',
+    '/brep.png',
+    '/brep5.png',
+    '/brep.png',
   
   ];
 
