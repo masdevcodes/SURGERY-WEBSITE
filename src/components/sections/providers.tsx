@@ -337,15 +337,7 @@ export function Providers() {
           className="fixed inset-0 bg-black/90 flex items-center justify-center z-[60] p-4"
           onClick={() => setZoomedImage(null)}
         >
-          <div className="relative max-w-4xl max-h-full">
-            <button
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 text-3xl font-bold"
-              onClick={() => setZoomedImage(null)}
-            >
-              ×
-            </button>
-            
-          </div>
+          
         </div>
       )}
     </section>
