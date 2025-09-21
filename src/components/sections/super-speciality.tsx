@@ -197,7 +197,7 @@ export function SuperSpeciality() {
                 </div>
               </div>
 
-              {/* Conte nt */}
+              {/* Content */}
               <div className="p-6">
                 <h3 className="text-xl font-bold text-blue-950 mb-3 group-hover:text-teal-600 transition-colors duration-300">
                   {speciality.name}
