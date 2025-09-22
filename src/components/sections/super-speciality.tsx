@@ -63,11 +63,7 @@ export function SuperSpeciality() {
           designation: 'Senior Consultant Pediatric Surgeon',
           image: '/images/doctors/dr-priya-sharma.jpg'
         },
-        { 
-          name: 'Dr. Rohit Patel', 
-          designation: 'Consultant Pediatric Surgeon',
-          image: '/images/doctors/dr-rohit-patel.jpg'
-        }
+      
       ]
     },
     {
@@ -149,11 +145,6 @@ export function SuperSpeciality() {
           name: 'Dr. Vikas Goyal', 
           designation: 'Head of CVTS Department',
           image: '/images/doctors/dr-vikas-goyal.jpg'
-        },
-        { 
-          name: 'Dr. Dinesh Kumar', 
-          designation: 'Senior Consultant, CVTS',
-          image: '/images/doctors/dr-dinesh-kumar.jpg'
         }
       ]
     },
@@ -207,11 +198,6 @@ export function SuperSpeciality() {
           name: 'Dr. Jaswinder Singh', 
           designation: 'Consultant Plastic Surgeon',
           image: '/images/doctors/dr-jaswinder-singh.jpg'
-        },
-        { 
-          name: 'Dr. Navneeth Kaur', 
-          designation: 'Plastic Surgeon',
-          image: '/images/doctors/dr-navneeth-kaur.jpg'
         }
       ]
     }
@@ -352,12 +338,12 @@ export function SuperSpeciality() {
 
             {/* Doctors Section with Images */}
             <div className="p-6 border-b border-gray-100">
-              <h4 className="text-xl font-bold text-blue-950 mb-4">Our Specialist Doctors</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <h4 className="text-xl font-bold text-blue-950 mb-6">Our Specialist Doctors</h4>
+              <div className={`grid gap-8 ${selectedSpeciality.doctors.length === 1 ? 'grid-cols-1 justify-items-center' : 'grid-cols-1 md:grid-cols-2'}`}>
                 {selectedSpeciality.doctors.map((doctor, index) => (
-                  <div key={index} className="flex items-start gap-4 bg-blue-50 rounded-xl p-4 border border-blue-100">
-                    {/* Doctor Image Container - Square with Zoom Effect */}
-                    <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden rounded-lg shadow-md group">
+                  <div key={index} className={`flex flex-col items-center text-center ${selectedSpeciality.doctors.length === 1 ? 'max-w-sm' : ''}`}>
+                    {/* Doctor Image Container - Larger Square with Zoom Effect */}
+                    <div className="relative w-48 h-48 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg mb-4 group">
                       {doctor.image ? (
                         <Image
                           src={doctor.image}
@@ -381,10 +367,10 @@ export function SuperSpeciality() {
                       )}
                     </div>
                     
-                    {/* Doctor Details */}
+                    {/* Doctor Details Below Photo */}
                     <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-blue-900 text-lg mb-1">{doctor.name}</div>
-                      <div className="text-sm text-gray-700">{doctor.designation}</div>
+                      <div className="font-bold text-blue-900 text-lg mb-1">{doctor.name}</div>
+                      <div className="text-sm text-gray-700 leading-tight">{doctor.designation}</div>
                     </div>
                   </div>
                 ))}
