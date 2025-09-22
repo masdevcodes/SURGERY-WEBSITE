@@ -333,7 +333,7 @@ export function SuperSpeciality() {
             <div className="px-6 pb-6">
               {/* Doctors Section */}
               <div className="mb-6">
-                <h4 className="text-xl font-bold text-blue-950 mb-4">Our Specialists:</h4>
+                <h4 className="text-xl font-bold text-blue-950 mb-4"></h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {selectedSpeciality.doctors.map((doctor, index) => (
                     <div key={index} className="bg-blue-50 rounded-xl p-4 border border-blue-100">
