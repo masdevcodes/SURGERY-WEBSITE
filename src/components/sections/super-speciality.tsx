@@ -233,8 +233,7 @@ export function SuperSpeciality() {
           {specialities.map((speciality) => (
             <div
               key={speciality.id}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden cursor-pointer"
-              onClick={() => setSelectedSpeciality(speciality)}
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden"
             >
               {/* Image */}
               <div className="relative h-80 overflow-hidden">
@@ -325,8 +324,14 @@ export function SuperSpeciality() {
 
       {/* Modal for Speciality Details */}
       {selectedSpeciality && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
+        <div 
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+          onClick={closeModal}
+        >
+          <div 
+            className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
