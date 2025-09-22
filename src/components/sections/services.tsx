@@ -17,15 +17,15 @@ export function Services() {
   const services = [
     {
       icon: <PersonStanding className="w-8 h-8" />,
-      title: 'Laparoscopic Cholecystectomy with CBD Exploration in a patient with  Situs Inversus Totalis',
+      title: 'Laparoscopic Cholecystectomy With CBD Exploration In A Patient With  Situs Inversus Totalis',
       description:
-        'Laparoscopic cholecystectomy with common bile duct (CBD) exploration in a patient with situs inversus totalis presents unique anatomical and technical challenges due to the mirror-image reversal of abdominal organs',
+        '',
       color: 'text-teal-500',
       banner:
         '/images/ser1.jpg',
       popupContent: (
         <div>
-          <h3 className="font-bold text-2xl mb-4">Laparoscopic Cholecystectomy with CBD Exploration in a patient with Situs Inversus Totalis</h3>
+          <h3 className="font-bold text-2xl mb-4">Laparoscopic Cholecystectomy With CBD Exploration In A Patient With  Situs Inversus Totalis</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
             Historic Surgical Milestone at GMC Patiala
 
@@ -44,74 +44,95 @@ This milestone marks a proud moment for GMC Patiala, establishing it as a pionee
     
     {
       icon: <Eye className="w-8 h-8" />,
-      title: 'Ophthalmology',
-      description: 'Sed vel odio sapien. Vivamus feugiat faucibus enim dapibus.',
+      title: 'Endoscopic Thyroid Surgery via Axilla',
+      description: '',
       color: 'text-teal-500',
       banner:
-        'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        '/images/thyroid.png',
       popupContent: (
         <div>
-          <h3 className="font-bold text-2xl mb-4">Ophthalmology Services</h3>
+          <h3 className="font-bold text-2xl mb-4">Endoscopic Thyroid Surgery via Axilla</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
-            Information about comprehensive eye care, cataract surgeries,
-            retinal services, LASIK, and vision rehabilitation facilities.
+            The Department of General Surgery at Government Medical College and Rajindra Hospital, Patiala, recently conducted a Continuing Medical Education (CME) session showcasing Endoscopic Thyroid Surgery via the Axilla — a minimally invasive procedure that allows thyroid removal through an incision in the armpit, leaving the neck scar-free.
+
+The live demonstration highlighted the advanced endoscopic techniques, precise dissection, and cosmetic advantages of this approach. Participants observed the meticulous steps of the surgery, emphasizing patient safety, reduced postoperative discomfort, and excellent aesthetic outcomes.
+
+Speaking during the CME, Prof. Dr. Ashwani Kumar, Head of the Department of General Surgery, said:
+“This session provided a unique opportunity for surgeons and trainees to witness cutting-edge minimally invasive thyroid surgery. Techniques like the axillary approach represent the future of patient-friendly surgical care, combining safety with superior cosmetic results.”
+
+The event reinforced GMC Patiala’s commitment to surgical innovation, education, and excellence in patient care, offering hands-on learning to medical professionals across the region.
           </p>
         </div>
       ),
     },
     {
       icon: <Bone className="w-8 h-8" />,
-      title: 'Rheumatology',
+      title: 'Laparoscopic Adrenelectomy',
       description:
-        'Fusce ac nulla diam. Nulla facilisi. Donec accumsan est nec laoreet.',
+        '',
       color: 'text-teal-500',
       banner:
-        'https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        '/images/adrene.jpg',
       popupContent: (
         <div>
-          <h3 className="font-bold text-2xl mb-4">Rheumatology Services</h3>
+          <h3 className="font-bold text-2xl mb-4">Laparoscopic Adrenelectomy</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
-            Details about autoimmune disease care, arthritis management,
-            biologics, physical therapy, and multidisciplinary rehabilitation
-            approaches.
+           The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, under the leadership of Dr. Ashwani Kumar, Head of Department, successfully performed a Laparoscopic Adrenalectomy in the elective OT, with collaborative support from the Department of Medicine.
+
+This minimally invasive procedure involved the precise removal of the adrenal gland, providing significant benefits such as reduced postoperative pain, shorter hospital stay, faster recovery, and minimal scarring. The surgery showcased meticulous preoperative planning, advanced laparoscopic expertise, and a strong focus on patient safety.
+
+Dr. Ashwani Kumar commented:
+“Laparoscopic adrenalectomy is a significant step forward in endocrine surgery, allowing safe and effective management of adrenal tumors with minimal discomfort to the patient. Our team, in close coordination with the Medicine department, is proud to perform this procedure successfully, reinforcing our commitment to excellence in surgical care.”
+
+This achievement highlights the Department of Surgery’s expertise in advanced minimally invasive procedures and strengthens GMC Patiala’s position as a leading center for surgical innovation.
           </p>
         </div>
       ),
     },
     {
       icon: <Brain className="w-8 h-8" />,
-      title: 'Neurology',
+      title: 'Laparoscopic Hysterectomy',
       description:
-        'Etiam augue leo, ultrices. Suspendisse magna nisl, varius ut aliquet nunc.',
+        '',
       color: 'text-teal-500',
       banner:
-        'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        '/images/lah.jpeg',
       popupContent: (
         <div>
-          <h3 className="font-bold text-2xl mb-4">Neurology Services</h3>
+          <h3 className="font-bold text-2xl mb-4">Laparoscopic Hysterectomy</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
-            Descriptions of neurological disorder treatments, stroke care,
-            epilepsy monitoring, neuro-rehabilitation, and expert consultation
-            availability.
+            The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, led by Dr. Ashwani Kumar, Head of Department, successfully carried out a Laparoscopic Hysterectomy.
+
+This minimally invasive procedure, performed using advanced laparoscopic techniques, enables the safe removal of the uterus with smaller incisions, reduced postoperative pain, faster recovery, and minimal scarring. The surgery highlighted meticulous planning, precision, and a strong emphasis on patient safety.
+
+Dr. Ashwani Kumar said:
+“Laparoscopic hysterectomy is a significant step forward in gynecological surgery. It allows for effective management of uterine conditions while ensuring patient comfort and quicker recovery. Our team takes pride in performing this procedure successfully, reflecting our commitment to excellence in surgical care.”
+
+This milestone showcases the Department of Surgery’s expertise in minimally invasive procedures and reinforces GMC Patiala’s position as a center of surgical innovation and patient-centered care.
           </p>
         </div>
       ),
     },
     {
       icon: <Activity className="w-8 h-8" />,
-      title: 'Urology',
+      title: 'Radio Frequency Ablation In Varicose Veins',
       description:
-        'Etiam metus, tempor quis, sollicitudin sit amet magna cursus vehicula.',
+        '',
       color: 'text-teal-500',
       banner:
-        'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        '/images/veins.png',
       popupContent: (
         <div>
-          <h3 className="font-bold text-2xl mb-4">Urology Services</h3>
+          <h3 className="font-bold text-2xl mb-4">Radio Frequency Ablation In Varicose Veins</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
-            Information on kidney stone treatment, prostate care, minimally
-            invasive surgeries, dialysis services, and comprehensive men's
-            health.
+            The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, under the leadership of Dr. Ashwani Kumar, Head of Department and Unit In-Charge, successfully performed Radio Frequency Ablation (RFA) for Varicose Veins.
+
+This minimally invasive procedure involves using radiofrequency energy to close diseased veins, providing an effective alternative to conventional vein surgery. The technique offers benefits such as minimal pain, faster recovery, reduced hospital stay, and excellent cosmetic results. The surgery demonstrated meticulous planning, precise execution, and a strong focus on patient safety.
+
+Dr. Ashwani Kumar stated:
+“Radio Frequency Ablation is a significant advancement in the management of varicose veins. It allows patients to recover quickly while minimizing discomfort and scarring. Our team is proud to offer this state-of-the-art procedure at GMC Patiala, reflecting our commitment to modern, patient-centered surgical care.”
+
+This achievement highlights the Department of Surgery’s expertise in advanced minimally invasive procedures and reinforces GMC Patiala’s position as a center of excellence in innovative surgical treatments.
           </p>
         </div>
       ),
@@ -234,7 +255,8 @@ This milestone marks a proud moment for GMC Patiala, establishing it as a pionee
               {services.map((service, index) => (
                 <div
                   key={index}
-                  className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4"
+                  className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4 cursor-pointer"
+                  onClick={() => setSelectedService(service)}
                 >
                   {/* Icon */}
                   <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -251,7 +273,10 @@ This milestone marks a proud moment for GMC Patiala, establishing it as a pionee
                     </p>
                     {/* Read More Link */}
                     <button
-                      onClick={() => setSelectedService(service)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedService(service);
+                      }}
                       className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
                     >
                       READ MORE
