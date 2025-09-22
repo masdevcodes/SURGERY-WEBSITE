@@ -2,16 +2,22 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { 
-  Heart, 
-  Brain, 
-  Shield, 
-  Scissors, 
-  Baby, 
+import {
+  Heart,
+  Brain,
+  Shield,
+  Scissors,
+  Baby,
   Activity,
   ArrowRight,
   X
 } from 'lucide-react';
+
+interface Doctor {
+  name: string;
+  designation: string;
+  image?: string;
+}
 
 interface Speciality {
   id: number;
@@ -21,7 +27,9 @@ interface Speciality {
   detailedDescription: string;
   color: string;
   image: string;
+  modalImage?: string; // This field is for the modal image (can be different from the card image)
   services: string[];
+  doctors: Doctor[];
 }
 
 export function SuperSpeciality() {
@@ -41,12 +49,17 @@ export function SuperSpeciality() {
       detailedDescription: 'The Department of Pediatric Surgery at Government Medical College & Rajindra Hospital, Patiala provides specialized surgical care for infants, children, and adolescents. Our experienced team of surgeons and faculty manage a wide range of conditions including congenital anomalies, neonatal surgical emergencies, pediatric trauma, and tumors.The department runs regular OPD and emergency services, along with specialized clinics for newborn care, epilepsy, asthma, cerebral palsy, nephrotic syndrome, and more. With modern facilities and a compassionate approach, the unit is dedicated to ensuring the best outcomes for young patients while also serving as a center for medical education and training.',
       color: 'text-pink-600',
       image: '/images/pediatric-surgery.jpg',
+      modalImage: '/images/pediatric-surgery.jpg', // Add modal image here (can be different from card image)
       services: [
         'Congenital anomaly corrections',
         'Pediatric trauma surgery',
         'Minimally invasive procedures',
         'Neonatal surgery',
         'Pediatric oncology surgery'
+      ],
+      doctors: [
+        { name: 'Dr. Priya Sharma', designation: 'Senior Consultant Pediatric Surgeon' },
+        { name: 'Dr. Rohit Patel', designation: 'Consultant Pediatric Surgeon' }
       ]
     },
     {
@@ -57,12 +70,17 @@ export function SuperSpeciality() {
       detailedDescription: 'The Department of Neurosurgery at Government Medical College & Rajindra Hospital, Patiala is dedicated to delivering advanced surgical care for disorders of the brain, spinal cord, peripheral nerves, and skull. Our experts handle a wide spectrum of neurosurgical conditions — including head and spinal trauma, congenital anomalies, brain tumors, hydrocephalus, spinal disorders, neurovascular conditions, and critical neurological emergencies.Equipped with modern operation theatres and diagnostic imaging support, the department combines precise surgical skills with compassionate, patient-centered care. We strive not only for excellent surgical outcomes but also for teaching, research, and community health, serving southern Punjab and beyond with accessible neurosurgical services.',
       color: 'text-purple-600',
       image: '/images/neuro-surgery.jpg',
+      modalImage: '/images/neuro-surgery.jpg', // Add modal image here
       services: [
         'Brain tumor surgery',
         'Spinal surgery',
         'Trauma neurosurgery',
         'Vascular neurosurgery',
         'Stereotactic procedures'
+      ],
+      doctors: [
+        { name: 'Dr. Sanjeev Gupta', designation: 'Head of Neurosurgery Department' },
+        { name: 'Dr. Neha Kaur', designation: 'Consultant Neurosurgeon' }
       ]
     },
     {
@@ -73,12 +91,17 @@ export function SuperSpeciality() {
       detailedDescription: 'The Department of Surgical Oncology at GMC & Rajindra Hospital, Patiala is committed to providing comprehensive surgical care in the diagnosis, treatment, and management of cancer. Our skilled surgical oncologists perform complex operations for a wide variety of tumors, including breast, gastrointestinal, head & neck, skin, soft tissue, and other malignancies.With access to modern operating theatres, multidisciplinary collaboration (with medical oncology, radiation oncology, radiology, pathology), and a patient-centric approach, the department aims to deliver the best possible outcomes while ensuring compassionate care. We also serve as a center for cancer surgery training and research, helping advance oncological surgical practices in the region.',
       color: 'text-green-600',
       image: '/images/surgical-oncology.jpg',
+      modalImage: '/images/surgical-oncology.jpg', // Add modal image here
       services: [
         'Complex tumor resections',
         'Oncoplastic surgery',
         'Minimally invasive cancer surgery',
         'Reconstructive oncology',
         'Palliative surgery'
+      ],
+      doctors: [
+        { name: 'Dr. Harbhupinder Singh', designation: 'Chief Surgical Oncologist' },
+        { name: 'Dr. Aseem Kumar', designation: 'Surgical Oncologist' }
       ]
     },
     {
@@ -89,12 +112,17 @@ export function SuperSpeciality() {
       detailedDescription: 'The CVTS (Cardio-Vascular & Thoracic Surgery)Department at Government Medical College & Rajindra Hospital, Patiala delivers high-end surgical care for diseases of the heart, blood vessels, lungs, and chest structures. Our team of cardiovascular & thoracic surgeons is experienced in treating congenital and acquired cardiac conditions, performing open-heart surgeries, valve replacements and repairs, coronary artery bypass grafting (CABG), thoracic tumor resections, lung surgeries, and interventions for trauma and other chest emergencies.Equipped with modern operating theatres, advanced imaging, post-operative intensive care, and multidisciplinary collaboration (including cardiology, anesthesiology, critical care), the department strives for the highest standards of safety, precision, and compassionate patient care. We are committed not only to excellent surgical outcomes but also to training the next generation of surgeons and bringing accessible cardiac & thoracic care to the region.',
       color: 'text-red-600',
       image: '/images/ctvs.png',
+      modalImage: '/images/ctvs.png', // Add modal image here
       services: [
         'Cardiac surgery',
         'Thoracic surgery',
         'Vascular surgery',
         'Minimally invasive cardiac procedures',
         'Emergency cardiac interventions'
+      ],
+      doctors: [
+        { name: 'Dr. Vikas Goyal', designation: 'Head of CVTS Department' },
+        { name: 'Dr. Dinesh Kumar', designation: 'Senior Consultant, CVTS' }
       ]
     },
     {
@@ -105,12 +133,17 @@ export function SuperSpeciality() {
       detailedDescription: 'The Urology Department at GMC & Rajindra Hospital, Patiala offers expert surgical and medical care for disorders of the urinary tract and male reproductive system. Under the leadership of accomplished faculty such as Dr. Harjinder Singh (Professor & Principal) and Dr. Harbhupinder Singh (Professor), the department handles a wide range of conditions — kidney stones, enlarged prostate, urinary incontinence, urinary tract infections, urethral strictures, male infertility, and urinary cancers.Drawing on advanced diagnostics and therapies, including minimally invasive and endoscopic surgery, the department emphasizes personalised, compassionate treatment plans. We strive for high standards in patient-care, research, and medical teaching, serving the health needs of Patiala and the surrounding region.',
       color: 'text-blue-600',
       image: '/images/urology.png',
+      modalImage: '/images/urology.png', // Add modal image here
       services: [
         'Kidney stone treatment',
         'Prostate surgery',
         'Bladder procedures',
         'Minimally invasive urology',
         'Reconstructive urology'
+      ],
+      doctors: [
+        { name: 'Dr. Harjinder Singh', designation: 'Professor & Principal' },
+        { name: 'Dr. Harbhupinder Singh', designation: 'Professor, Urology' }
       ]
     },
     {
@@ -121,12 +154,17 @@ export function SuperSpeciality() {
       detailedDescription: 'The Plastic Surgery Department at GMC & Rajindra Hospital, Patiala offers both aesthetic and reconstructive surgical care using up-to-date techniques and compassionate, patient-centred service. The team handles a broad spectrum of procedures—cosmetic surgery like rhinoplasty, breast procedures, liposuction, body contouring; reconstructive surgery including hand surgery, burn care, microsurgery, treatment of congenital deformities, trauma reconstruction, and post-cancer reconstructive work.Equipped with modern operating theatres and supported by diagnostic imaging and anaesthesia services, the department strives to deliver high standards of safety, functional restoration, and improved appearance. Whether restoring health and function after injury, surgery or congenital condition, or helping patients with cosmetic concerns, we are committed to excellence in surgical technique, research, and teaching.',
       color: 'text-orange-600',
       image: '/images/plastic-surgery.png',
+      modalImage: '/images/plastic-surgery.png', // Add modal image here
       services: [
         'Reconstructive surgery',
         'Burn surgery',
         'Hand surgery',
         'Microsurgery',
         'Aesthetic procedures'
+      ],
+      doctors: [
+        { name: 'Dr. Jaswinder Singh', designation: 'Consultant Plastic Surgeon' },
+        { name: 'Dr. Navneeth Kaur', designation: 'Plastic Surgeon' }
       ]
     }
   ];
@@ -171,8 +209,7 @@ export function SuperSpeciality() {
               key={speciality.id}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden"
             >
-              {/* Image - Increased height from h-48 to h-60, The sizes attribute is set to "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" */}
-              
+              {/* Image - Increased height from h-48 to h-60 */}
               <div className="relative h-80 overflow-hidden">
                 {imageErrors[speciality.id] ? (
                   <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -255,46 +292,72 @@ export function SuperSpeciality() {
               <X className="w-6 h-6 text-gray-800" />
             </button>
             
-            {/* Modal Header Image - Increased height from h-64 to h-80 */}
-            <div className="relative h-80 overflow-hidden rounded-t-2xl">
-              {imageErrors[selectedSpeciality.id] ? (
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                  <div className={selectedSpeciality.color}>{selectedSpeciality.icon}</div>
+            {/* New Modal Header Layout with Square Image on Left */}
+            <div className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                {/* Square Image Container */}
+                <div className="relative aspect-square overflow-hidden rounded-xl shadow-lg">
+                  {imageErrors[selectedSpeciality.id] ? (
+                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                      <div className={selectedSpeciality.color}>{selectedSpeciality.icon}</div>
+                    </div>
+                  ) : (
+                    <Image
+                      src={selectedSpeciality.modalImage || selectedSpeciality.image}
+                      alt={`${selectedSpeciality.name} (Modal)`}
+                      fill
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                      onError={() => handleImageError(selectedSpeciality.id)}
+                    />
+                  )}
                 </div>
-              ) : (
-                <Image
-                  src={selectedSpeciality.image}
-                  alt={selectedSpeciality.name}
-                  fill
-                  className="object-cover"
-                  onError={() => handleImageError(selectedSpeciality.id)}
-                />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                    {selectedSpeciality.icon}
+                
+                {/* Content on the Right of Image */}
+                <div className="md:col-span-2 flex flex-col justify-center">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md border-2 border-transparent ${selectedSpeciality.color.replace('text-', 'border-')}`}>
+                      <div className={selectedSpeciality.color}>{selectedSpeciality.icon}</div>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-blue-950">{selectedSpeciality.name}</h3>
                   </div>
-                  <h3 className="text-3xl font-bold">{selectedSpeciality.name}</h3>
+                  <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
+                    <p className="text-sm text-gray-700 italic">
+                      {selectedSpeciality.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
             
-            {/* Modal Content */}
-            <div className="p-8">
-              <p className="text-gray-700 leading-relaxed mb-6 text-justify">
-                {selectedSpeciality.detailedDescription}
-              </p>
+            {/* Content Below the Image-Content Row */}
+            <div className="px-6 pb-6">
+              {/* Doctors Section */}
+              <div className="mb-6">
+                <h4 className="text-xl font-bold text-blue-950 mb-4">Our Specialists:</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {selectedSpeciality.doctors.map((doctor, index) => (
+                    <div key={index} className="bg-blue-50 rounded-xl p-4 border border-blue-100">
+                      <div className="font-semibold text-blue-900 mb-1">{doctor.name}</div>
+                      <div className="text-sm text-gray-700">{doctor.designation}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
               
-              <h4 className="text-xl font-bold text-blue-950 mb-4">Our Services Include:</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {selectedSpeciality.services.map((service, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
-                    <span className="text-gray-700">{service}</span>
-                  </div>
-                ))}
+              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                <p className="text-gray-700 leading-relaxed mb-6 text-justify">
+                  {selectedSpeciality.detailedDescription}
+                </p>
+                
+                <h4 className="text-xl font-bold text-blue-950 mb-4">Our Services Include:</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {selectedSpeciality.services.map((service, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
+                      <span className="text-gray-700">{service}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
