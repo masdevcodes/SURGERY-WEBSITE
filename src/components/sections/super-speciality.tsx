@@ -249,7 +249,7 @@ export function SuperSpeciality() {
                   onClick={() => setSelectedSpeciality(speciality)}
                   className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
                 >
-                  LEARN MORE
+                  VIEW MORE DETAILS
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
               </div>
