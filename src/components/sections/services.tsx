@@ -15,19 +15,26 @@ export function Services() {
   const services = [
     {
       icon: <Heart className="w-8 h-8" />,
-      title: 'Cardiology',
+      title: 'Laparoscopic Cholecystectomy with CBD Exploration in a patient with  Situs Inversus Totalis',
       description:
-        'Nam at varius ut dignissim lorem, in condimentum leo. Vestibulum eget.',
+        'Laparoscopic cholecystectomy with common bile duct (CBD) exploration in a patient with situs inversus totalis presents unique anatomical and technical challenges due to the mirror-image reversal of abdominal organs',
       color: 'text-teal-500',
       banner:
-        'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        '/images/ser1.jpg',
       popupContent: (
         <div>
-          <h3 className="font-bold text-2xl mb-4">Cardiology Services</h3>
+          <h3 className="font-bold text-2xl mb-4">Laparoscopic Cholecystectomy with CBD Exploration in a patient with Situs Inversus Totalis</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
-            Detailed description and information about Cardiology services go
-            here. Explain procedures, specialists, diagnostic tools, and
-            patient-focused care models for cardiac health.
+            Historic Surgical Milestone at GMC Patiala
+
+The Department of General Surgery at Government Medical College and Rajindra Hospital, Patiala, has achieved a remarkable feat by successfully performing Laparoscopic Cholecystectomy with Common Bile Duct (CBD) Exploration in a patient diagnosed with Situs Inversus Totalis a rare congenital condition where all internal organs are arranged in a mirror-image position.
+
+This landmark surgery, conducted for the first time in Punjab, posed significant challenges due to the reversed anatomy, requiring precise preoperative planning, modified port placement, and advanced laparoscopic expertise. Despite the complexity, the procedure was carried out smoothly, with excellent patient recovery.
+
+Speaking about this achievement, Prof. Dr. Ashwani Kumar, Head of the Department of General Surgery and lead surgeon for the case, said:
+“Performing this rare and technically demanding surgery for the first time in Punjab is a matter of immense pride for our department and institution. The mirror-image anatomy of situs inversus presented unique challenges, but with meticulous planning and teamwork, we were able to achieve an excellent outcome. This success reflects our commitment to innovation and excellence in surgical care.”
+
+This milestone marks a proud moment for GMC Patiala, establishing it as a pioneer in advanced minimally invasive surgery and setting new standards of excellence in the state.
           </p>
         </div>
       ),
@@ -213,7 +220,7 @@ export function Services() {
                 </span>
               </div>
               <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
-                Our Services
+                Our Milestones In Surgey...
               </h2>
               <p className="text-xl text-gray-600 font-medium">
                 Delivering world class medical care
