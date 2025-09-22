@@ -10,7 +10,7 @@ export function InfoCards() {
   const [breastImageIndex, setBreastImageIndex] = useState(0);
   const [sliderImageIndex, setSliderImageIndex] = useState(0);
 
-  // Sample image arrays - replace with your actual image paths
+  // Sample image arrays - replace with your actual image paths,(256px height) while maintaining its aspect ratio. The sizes attribute confirms this responsive behavior with (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw .
   const stomaImages = [
     '/stomay.png',
     '/sto2.jpg',
