@@ -291,46 +291,28 @@ export function SuperSpeciality() {
           ))}
         </div>
 
-        {/* Stats Section */}
-       <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-    <div className="group transform transition-all duration-300 hover:scale-110 hover:-translate-y-1">
-      <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-        6
+        {/* Stats  Section */}
+        <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">6</div>
+              <div className="text-gray-600 text-sm">Super Specialities</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">27+</div>
+              <div className="text-gray-600 text-sm">Specialist Doctors</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">1000+</div>
+              <div className="text-gray-600 text-sm">Complex Surgeries/Year</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">24/7</div>
+              <div className="text-gray-600 text-sm">Emergency Care</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
-        Super Specialities
-      </div>
-    </div>
-    
-    <div className="group transform transition-all duration-300 hover:scale-110 hover:-translate-y-1">
-      <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-green-600 transition-colors duration-300">
-        27+
-      </div>
-      <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
-        Specialist Doctors
-      </div>
-    </div>
-    
-    <div className="group transform transition-all duration-300 hover:scale-110 hover:-translate-y-1">
-      <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-purple-600 transition-colors duration-300">
-        1000+
-      </div>
-      <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
-        Complex Surgeries/Year
-      </div>
-    </div>
-    
-    <div className="group transform transition-all duration-300 hover:scale-110 hover:-translate-y-1">
-      <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-orange-600 transition-colors duration-300">
-        24/7
-      </div>
-      <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
-        Emergency Care
-      </div>
-    </div>
-  </div>
-</div>
 
       {/* Modal for Speciality Details */}
       {selectedSpeciality && (
