@@ -9,12 +9,14 @@ import {
   Bone,
   Brain,
   Activity,
+  Scissors,
+  PersonStanding,
 } from 'lucide-react';
 
 export function Services() {
   const services = [
     {
-      icon: <Heart className="w-8 h-8" />,
+      icon: <PersonStanding className="w-8 h-8" />,
       title: 'Laparoscopic Cholecystectomy with CBD Exploration in a patient with  Situs Inversus Totalis',
       description:
         'Laparoscopic cholecystectomy with common bile duct (CBD) exploration in a patient with situs inversus totalis presents unique anatomical and technical challenges due to the mirror-image reversal of abdominal organs',
