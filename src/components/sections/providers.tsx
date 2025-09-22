@@ -297,7 +297,7 @@ export function Providers() {
                 key={provider.id}
                 className="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
               >
-                {/* Changed height from h-80 to h-96 for taller image */}
+                {/* Changed height from h-80 to  h-96 for taller image */}
                 <div className="relative overflow-hidden h-[26rem]">  {/*card image size*/}
                   <Image
                     src={provider.image}
