@@ -139,7 +139,7 @@ export function MedicalSpecialties() {
                     <div className="flex flex-col items-center">
                       <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
-                          src="/images/hod.png"
+                          src="/images/unit1/hod.png"
                           alt="Dr. Ashwani Kumar"
                           width={160}
                           height={160}
