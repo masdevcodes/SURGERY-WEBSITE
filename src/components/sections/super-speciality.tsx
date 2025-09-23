@@ -59,14 +59,14 @@ export function SuperSpeciality() {
       ],
       doctors: [
         { 
-          name: 'Dr. Priya Sharma', 
+          name: 'Dr. Ravi Garg', 
           designation: 'Senior Consultant Pediatric Surgeon',
           image: '/images/doctors/dr-priya-sharma.jpg'
         },
         { 
-          name: 'Dr. Rohit Patel', 
+          name: 'Dr. Teg Rabab', 
           designation: 'Consultant Pediatric Surgeon',
-          image: '/images/doctors/dr-rohit-patel.jpg'
+          image: '/images/ss/teg_rabab.jpg'
         }
       ]
     },
@@ -87,15 +87,11 @@ export function SuperSpeciality() {
       ],
       doctors: [
         { 
-          name: 'Dr. Sanjeev Gupta', 
-          designation: 'Head of Neurosurgery Department',
+          name: 'Dr. Harish Kumar', 
+          designation: 'Associate Professors',
           image: '/images/doctors/dr-sanjeev-gupta.jpg'
         },
-        { 
-          name: 'Dr. Neha Kaur', 
-          designation: 'Consultant Neurosurgeon',
-          image: '/images/doctors/dr-neha-kaur.jpg'
-        }
+        
       ]
     },
     {
@@ -115,15 +111,11 @@ export function SuperSpeciality() {
       ],
       doctors: [
         { 
-          name: 'Dr. Harbhupinder Singh', 
-          designation: 'Chief Surgical Oncologist',
+          name: 'Dr. Anubha Garg', 
+          designation: 'Assistant Professor',
           image: '/images/doctors/dr-harbhupinder-singh.jpg'
         },
-        { 
-          name: 'Dr. Aseem Kumar', 
-          designation: 'Surgical Oncologist',
-          image: '/images/doctors/dr-aseem-kumar.jpg'
-        }
+        
       ]
     },
     {
@@ -143,7 +135,7 @@ export function SuperSpeciality() {
       ],
       doctors: [
         { 
-          name: 'Dr. Vikas Goyal', 
+          name: 'Dr. Anumeet Bagga', 
           designation: 'Head of CVTS Department',
           image: '/images/doctors/dr-vikas-goyal.jpg'
         }
@@ -166,15 +158,11 @@ export function SuperSpeciality() {
       ],
       doctors: [
         { 
-          name: 'Dr. Harjinder Singh', 
+          name: 'Dr. Harbhupinder Sandhu', 
           designation: 'Professor & Principal',
           image: '/images/doctors/dr-harjinder-singh.jpg'
-        },
-        { 
-          name: 'Dr. Harbhupinder Singh', 
-          designation: 'Professor, Urology',
-          image: '/images/doctors/dr-harbhupinder-singh-urology.jpg'
         }
+      
       ]
     },
     {
@@ -194,7 +182,7 @@ export function SuperSpeciality() {
       ],
       doctors: [
         { 
-          name: 'Dr. Jaswinder Singh', 
+          name: 'Dr. Ojaswi', 
           designation: 'Consultant Plastic Surgeon',
           image: '/images/doctors/dr-jaswinder-singh.jpg'
         }
@@ -471,7 +459,7 @@ export function SuperSpeciality() {
               
               {/* Services Section */}
               <div>
-                <h4 className="text-xl font-bold text-blue-950 mb-4">Our Services Include: </h4>
+                <h4 className="text-xl font-bold text-blue-950 mb-4">Our Services Include:</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {selectedSpeciality.services.map((service, index) => (
                     <div key={index} className="flex items-center gap-3">
