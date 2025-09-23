@@ -251,7 +251,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
             </div>
             
             {/* Services List */}
-            <div className="space-y-4 max-h-[calc(100%-180px)] overflow-y-auto pr-2">
+            <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-4">
               {services.map((service, index) => (
                 <div
                   key={index}
