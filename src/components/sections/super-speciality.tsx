@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Heart,
   Brain,
@@ -36,6 +36,29 @@ export function SuperSpeciality() {
   const [selectedSpeciality, setSelectedSpeciality] = useState<Speciality | null>(null);
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
   const [currentDoctorIndex, setCurrentDoctorIndex] = useState<Record<number, number>>({});
+
+  // Set up auto-sliding for departments with multiple doctors
+  useEffect(() => {
+    const intervalIds: NodeJS.Timeout[] = [];
+    
+    specialities.forEach(speciality => {
+      if (speciality.doctors.length > 1) {
+        const intervalId = setInterval(() => {
+          setCurrentDoctorIndex(prev => ({
+            ...prev,
+            [speciality.id]: ((prev[speciality.id] || 0) + 1) % speciality.doctors.length
+          }));
+        }, 3000); // Slide every 3 seconds
+        
+        intervalIds.push(intervalId);
+      }
+    });
+
+    // Clean up intervals on component unmount
+    return () => {
+      intervalIds.forEach(id => clearInterval(id));
+    };
+  }, []);
 
   const handleImageError = (id: number) => {
     setImageErrors(prev => ({ ...prev, [id]: true }));
@@ -77,7 +100,7 @@ export function SuperSpeciality() {
       description: 'Advanced neurosurgical procedures for brain, spine, and peripheral nervous system disorders.',
       detailedDescription: 'The Department of Neurosurgery at Government Medical College & Rajindra Hospital, Patiala is dedicated to delivering advanced surgical care for disorders of the brain, spinal cord, peripheral nerves, and skull. Our experts handle a wide spectrum of neurosurgical conditions — including head and spinal trauma, congenital anomalies, brain tumors, hydrocephalus, spinal disorders, neurovascular conditions, and critical neurological emergencies. Equipped with modern operation theatres and diagnostic imaging support, the department combines precise surgical skills with compassionate, patient-centered care.',
       color: 'text-purple-600',
-      image: '/images/ss/harish_kumar.jpg',
+      image: '',
       services: [
         'Brain tumor surgery',
         'Spinal surgery',
@@ -89,7 +112,7 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Harish Kumar', 
           designation: 'Associate Professors',
-          image: ''
+          image: '/images/ss/harish_kumar.jpg'
         },
         
       ]
@@ -225,8 +248,8 @@ export function SuperSpeciality() {
             >
               {/* Content First */}
               <div className="p-6">
-                {/* Department Name */}
-                <h3 className="text-xl font-bold text-blue-950 mb-4 group-hover:text-teal-600 transition-colors duration-300">
+                {/* Department Name - Centered */}
+                <h3 className="text-xl font-bold text-blue-950 mb-4 group-hover:text-teal-600 transition-colors duration-300 text-center">
                   {speciality.name}
                 </h3>
 
@@ -241,16 +264,16 @@ export function SuperSpeciality() {
                       >
                         {speciality.doctors.map((doctor, doctorIndex) => (
                           <div key={doctorIndex} className="min-w-full flex flex-col items-center">
-                            {/* Doctor Image - Maximum Size */}
-                            <div className="w-full h-56 md:h-64 rounded-xl overflow-hidden shadow-lg mb-4">
+                            {/* Doctor Image - Square and Larger Size */}
+                            <div className="w-full h-64 md:h-80 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                               <Image
-                                src={doctor.image || speciality.image}
-                                alt={doctor.name}
-                                width={256}
-                                height={256}
-                                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                                onError={() => handleImageError(doctorIndex)}
-                              />
+                                  src={doctor.image || speciality.image || '/placeholder-doctor.svg'}
+                                  alt={doctor.name}
+                                  width={320}
+                                  height={320}
+                                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                                  onError={() => handleImageError(doctorIndex)}
+                                />
                             </div>
                             {/* Doctor Name and Designation - Below Image */}
                             <div className="text-center">
@@ -308,16 +331,16 @@ export function SuperSpeciality() {
                   </div>
                 ) : (
                   <div className="flex flex-col items-center mb-6">
-                    {/* Doctor Image - Maximum Size */}
-                    <div className="w-full h-56 md:h-64 rounded-xl overflow-hidden shadow-lg mb-4">
+                    {/* Doctor Image - Square and Larger Size */}
+                    <div className="w-full h-64 md:h-80 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                       <Image
-                        src={speciality.doctors[0].image || speciality.image}
-                        alt={speciality.doctors[0].name}
-                        width={256}
-                        height={256}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                        onError={() => handleImageError(0)}
-                      />
+                          src={speciality.doctors[0].image || speciality.image || '/placeholder-doctor.svg'}
+                          alt={speciality.doctors[0].name}
+                          width={320}
+                          height={320}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                          onError={() => handleImageError(0)}
+                        />
                     </div>
                     {/* Doctor Name and Designation - Below Image */}
                     <div className="text-center">
