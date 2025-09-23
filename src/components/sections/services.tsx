@@ -423,7 +423,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
                         }}
                         className="mt-3 inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
                       >
-                        View Details
+                        ViewDetails
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                       </button>
                     </div>
