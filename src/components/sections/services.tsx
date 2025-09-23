@@ -251,7 +251,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
             </div>
             
             {/* Services List */}
-            <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-4">
+            <div className="space-y-4 max-h-[calc(100%-180px)] overflow-y-auto pr-2">
               {services.map((service, index) => (
                 <div
                   key={index}
@@ -310,7 +310,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
                 <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
               </div>
 
-              {/* Close Button */}
+              {/* Close  Button */}
               <button
                 onClick={closeModal}
                 className="absolute top-4 right-4 text-white hover:text-gray-200 text-3xl font-bold z-10"
