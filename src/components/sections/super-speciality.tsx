@@ -10,6 +10,7 @@ import {
   Baby,
   Activity,
   ArrowRight,
+  ArrowLeft,
   X
 } from 'lucide-react';
 
@@ -34,6 +35,7 @@ interface Speciality {
 export function SuperSpeciality() {
   const [selectedSpeciality, setSelectedSpeciality] = useState<Speciality | null>(null);
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
+  const [currentDoctorIndex, setCurrentDoctorIndex] = useState<Record<number, number>>({});
 
   const handleImageError = (id: number) => {
     setImageErrors(prev => ({ ...prev, [id]: true }));
@@ -204,10 +206,8 @@ export function SuperSpeciality() {
 
   return (
     <section id="super-speciality" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="w-full h-full bg-gradient-to-br from-blue-50 to-teal-50" />
-      </div>
+      {/* Background Image with 30% opacity */}
+      <div className="absolute inset-0 opacity-30 bg-cover bg-center" style={{ backgroundImage: 'url(/111.png)' }}></div>
 
       <div className="container mx-auto px-4 relative">
         {/* Header */}
@@ -235,35 +235,112 @@ export function SuperSpeciality() {
               key={speciality.id}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden"
             >
-              {/* Image */}
-              <div className="relative h-80 overflow-hidden">
-                {imageErrors[speciality.id] ? (
-                  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                    <div className={speciality.color}>{speciality.icon}</div>
-                  </div>
-                ) : (
-                  <Image
-                    src={speciality.image}
-                    alt={speciality.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    onError={() => handleImageError(speciality.id)}
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                
-                {/* Icon Overlay */}
-                <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 rounded-xl flex items-center justify-center shadow-lg">
-                  <div className={speciality.color}>{speciality.icon}</div>
-                </div>
-              </div>
-
-              {/* Content */}
+              {/* Content First */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-blue-950 mb-3 group-hover:text-teal-600 transition-colors duration-300">
+                {/* Department Name */}
+                <h3 className="text-xl font-bold text-blue-950 mb-4 group-hover:text-teal-600 transition-colors duration-300">
                   {speciality.name}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+
+                {/* Doctors - with slider for 2+ doctors */}
+                {speciality.doctors.length > 1 ? (
+                  <div className="relative mb-6">
+                    {/* Slider Container */}
+                    <div className="overflow-hidden">
+                      <div 
+                        className="flex transition-transform duration-500 ease-in-out"
+                        style={{ transform: `translateX(-${(currentDoctorIndex[speciality.id] || 0) * 100}%)` }}
+                      >
+                        {speciality.doctors.map((doctor, doctorIndex) => (
+                          <div key={doctorIndex} className="min-w-full flex flex-col items-center">
+                            {/* Doctor Image - Maximum Size */}
+                            <div className="w-full h-56 md:h-64 rounded-xl overflow-hidden shadow-lg mb-4">
+                              <Image
+                                src={doctor.image || speciality.image}
+                                alt={doctor.name}
+                                width={256}
+                                height={256}
+                                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                                onError={() => handleImageError(doctorIndex)}
+                              />
+                            </div>
+                            {/* Doctor Name and Designation - Below Image */}
+                            <div className="text-center">
+                              <p className="font-semibold text-blue-900 text-lg">{doctor.name}</p>
+                              <p className="text-sm text-gray-600">{doctor.designation}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Navigation Buttons */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentDoctorIndex(prev => ({
+                          ...prev,
+                          [speciality.id]: ((prev[speciality.id] || 0) - 1 + speciality.doctors.length) % speciality.doctors.length
+                        }));
+                      }}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-teal-50 transition-colors border border-gray-100"
+                    >
+                      <ArrowLeft className="w-5 h-5 text-teal-600" />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentDoctorIndex(prev => ({
+                          ...prev,
+                          [speciality.id]: ((prev[speciality.id] || 0) + 1) % speciality.doctors.length
+                        }));
+                      }}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-teal-50 transition-colors border border-gray-100"
+                    >
+                      <ArrowRight className="w-5 h-5 text-teal-600" />
+                    </button>
+                    
+                    {/* Slider Indicators */}
+                    <div className="flex justify-center gap-2 mt-4">
+                      {speciality.doctors.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentDoctorIndex(prev => ({
+                              ...prev,
+                              [speciality.id]: idx
+                            }));
+                          }}
+                          className={`w-2 h-2 rounded-full transition-all ${idx === (currentDoctorIndex[speciality.id] || 0) ? 'w-6 bg-teal-500' : 'bg-gray-300'}`}
+                          aria-label={`View doctor ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center mb-6">
+                    {/* Doctor Image - Maximum Size */}
+                    <div className="w-full h-56 md:h-64 rounded-xl overflow-hidden shadow-lg mb-4">
+                      <Image
+                        src={speciality.doctors[0].image || speciality.image}
+                        alt={speciality.doctors[0].name}
+                        width={256}
+                        height={256}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        onError={() => handleImageError(0)}
+                      />
+                    </div>
+                    {/* Doctor Name and Designation - Below Image */}
+                    <div className="text-center">
+                      <p className="font-semibold text-blue-900 text-lg">{speciality.doctors[0].name}</p>
+                      <p className="text-sm text-gray-600">{speciality.doctors[0].designation}</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Small Description */}
+                <p className="text-sm text-gray-600 leading-relaxed mb-6">
                   {speciality.description}
                 </p>
                 
