@@ -232,6 +232,9 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
           alt="Surgical team in operating room"
           fill
           className="object-cover"
+          loading="lazy"
+          quality={80}
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-transparent to-teal-950/20"></div>
       </div>
@@ -334,6 +337,9 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
                   alt={`${selectedService.title} Banner`}
                   fill
                   className="object-cover rounded-t-lg"
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
                 />
                 <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
               </div>
@@ -392,6 +398,9 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
                         alt={service.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                        quality={85}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
