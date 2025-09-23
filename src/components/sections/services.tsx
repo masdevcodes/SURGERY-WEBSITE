@@ -12,7 +12,8 @@ import {
   Scissors,
   PersonStanding,
   PlusCircle,
-  X
+  X,
+  ChevronDown
 } from 'lucide-react';
 
 // Service Card Component
@@ -293,15 +294,23 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
               </p>
             </div>
             
-            {/* Services List */}
-            <div className="space-y-4 max-h-[650px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-teal-200 scrollbar-track-gray-100">
-              {services.map((service, index) => (
-                <ServiceCard 
-                  key={index} 
-                  service={service} 
-                  onSelect={setSelectedService} 
-                />
-              ))}
+            {/* Services List with scroll indicator */}
+            <div className="relative">
+              <div className="space-y-4 max-h-[650px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-teal-200 scrollbar-track-gray-100 scroll-smooth">
+                {services.map((service, index) => (
+                  <ServiceCard 
+                    key={index} 
+                    service={service} 
+                    onSelect={setSelectedService} 
+                  />
+                ))}
+              </div>
+              {/* Scroll indicator */}
+              <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
+                <div className="animate-bounce text-teal-500">
+                  <ChevronDown className="w-6 h-6" />
+                </div>
+              </div>
             </div>
             
             {/* Show All Button */}
