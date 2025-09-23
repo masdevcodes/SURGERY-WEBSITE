@@ -59,7 +59,7 @@ export function SuperSpeciality() {
       ],
       doctors: [
         { 
-          name: 'Dr. Ravi Garg', 
+          name: 'Dr. Ravi Kumar Garg', 
           designation: 'Senior Consultant Pediatric Surgeon',
           image: '/images/doctors/dr-priya-sharma.jpg'
         },
