@@ -42,10 +42,13 @@ function ServiceCard({ service, onSelect }: { service: any; onSelect: (service: 
             e.stopPropagation();
             onSelect(service);
           }}
-          className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
+          className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:text-teal-600 transition-all duration-300 group"
         >
-          READ MORE
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+          <span className="relative">
+            READ MORE
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
+          </span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-300" />
         </button>
       </div>
     </div>
