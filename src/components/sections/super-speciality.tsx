@@ -61,7 +61,7 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Ravi Kumar Garg', 
           designation: 'Associate Professors & Head',
-          image: '/images/doctors/dr-priya-sharma.jpg'
+          image: '/images/ss/ravi_kumar.jpg'
         },
         { 
           name: 'Dr. Teg Rabab', 
@@ -77,7 +77,7 @@ export function SuperSpeciality() {
       description: 'Advanced neurosurgical procedures for brain, spine, and peripheral nervous system disorders.',
       detailedDescription: 'The Department of Neurosurgery at Government Medical College & Rajindra Hospital, Patiala is dedicated to delivering advanced surgical care for disorders of the brain, spinal cord, peripheral nerves, and skull. Our experts handle a wide spectrum of neurosurgical conditions — including head and spinal trauma, congenital anomalies, brain tumors, hydrocephalus, spinal disorders, neurovascular conditions, and critical neurological emergencies. Equipped with modern operation theatres and diagnostic imaging support, the department combines precise surgical skills with compassionate, patient-centered care.',
       color: 'text-purple-600',
-      image: '/images/neuro-surgery.jpg',
+      image: '',
       services: [
         'Brain tumor surgery',
         'Spinal surgery',
@@ -89,7 +89,7 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Harish Kumar', 
           designation: 'Associate Professors',
-          image: '/images/doctors/dr-sanjeev-gupta.jpg'
+          image: ''
         },
         
       ]
@@ -101,7 +101,7 @@ export function SuperSpeciality() {
       description: 'Comprehensive cancer surgery with multidisciplinary approach for optimal patient outcomes.',
       detailedDescription: 'The Department of Surgical Oncology at GMC & Rajindra Hospital, Patiala is committed to providing comprehensive surgical care in the diagnosis, treatment, and management of cancer. Our skilled surgical oncologists perform complex operations for a wide variety of tumors, including breast, gastrointestinal, head & neck, skin, soft tissue, and other malignancies. With access to modern operating theatres, multidisciplinary collaboration and a patient-centric approach, the department aims to deliver the best possible outcomes while ensuring compassionate care.',
       color: 'text-green-600',
-      image: '/images/surgical-oncology.jpg',
+      image: '',
       services: [
         'Complex tumor resections',
         'Oncoplastic surgery',
@@ -113,7 +113,7 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Anubha Garg', 
           designation: 'Assistant Professor',
-          image: '/images/doctors/dr-harbhupinder-singh.jpg'
+          image: ''
         },
         
       ]
@@ -137,7 +137,7 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Anumeet Bagga', 
           designation: 'Head of CVTS Department',
-          image: '/images/doctors/dr-vikas-goyal.jpg'
+          image: ''
         }
       ]
     },
@@ -160,7 +160,7 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Harbhupinder Sandhu', 
           designation: 'Professor & Principal',
-          image: '/images/doctors/dr-harjinder-singh.jpg'
+          image: ''
         }
       
       ]
@@ -184,7 +184,7 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Ojaswi', 
           designation: 'Consultant Plastic Surgeon',
-          image: '/images/doctors/dr-jaswinder-singh.jpg'
+          image: ''
         }
       ]
     }
