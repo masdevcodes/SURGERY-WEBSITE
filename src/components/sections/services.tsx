@@ -11,7 +11,45 @@ import {
   Activity,
   Scissors,
   PersonStanding,
+  PlusCircle,
+  X
 } from 'lucide-react';
+
+// Service Card Component
+function ServiceCard({ service, onSelect }: { service: any; onSelect: (service: any) => void }) {
+  return (
+    <div
+      className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4 cursor-pointer"
+      onClick={() => onSelect(service)}
+    >
+      {/* Icon */}
+      <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+        <div className={service.color}>{service.icon}</div>
+      </div>
+      
+      {/* Content */}
+      <div className="flex-1 min-w-0">
+        <h3 className="text-lg font-bold text-blue-950 mb-2 group-hover:text-teal-600 transition-colors duration-300 line-clamp-2">
+          {service.title}
+        </h3>
+        <p className="text-sm text-gray-600 leading-relaxed mb-3">
+          {service.description}
+        </p>
+        {/* Read More Link */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelect(service);
+          }}
+          className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
+        >
+          READ MORE
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function Services() {
   const services = [
@@ -140,6 +178,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
   ];
 
   const [selectedService, setSelectedService] = useState<any>(null);
+  const [showAllModal, setShowAllModal] = useState(false);
   const rightSideRef = useRef<HTMLDivElement>(null);
   const [rightSideHeight, setRightSideHeight] = useState(0);
 
@@ -177,8 +216,9 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
     return () => clearInterval(interval);
   }, []);
 
-  // Close modal
+  // Close modals
   const closeModal = () => setSelectedService(null);
+  const closeShowAllModal = () => setShowAllModal(false);
 
   return (
     <section
@@ -251,40 +291,28 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
             </div>
             
             {/* Services List */}
-            <div className="space-y-4 max-h-[calc(100%-180px)] overflow-y-auto pr-2">
+            <div className="space-y-4 max-h-[650px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-teal-200 scrollbar-track-gray-100">
               {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4 cursor-pointer"
-                  onClick={() => setSelectedService(service)}
-                >
-                  {/* Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <div className={service.color}>{service.icon}</div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold text-blue-950 mb-2 group-hover:text-teal-600 transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                      {service.description}
-                    </p>
-                    {/* Read More Link */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedService(service);
-                      }}
-                      className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
-                    >
-                      READ MORE
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </button>
-                  </div>
-                </div>
+                <ServiceCard 
+                  key={index} 
+                  service={service} 
+                  onSelect={setSelectedService} 
+                />
               ))}
+            </div>
+            
+            {/* Show All Button */}
+            <div className="flex justify-center pt-6">
+              <button
+                onClick={() => setShowAllModal(true)}
+                className="group relative flex items-center gap-3 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-lg"
+              >
+                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 blur-md opacity-70 group-hover:opacity-100 transition-opacity duration-500"></span>
+                <span className="relative z-10 flex items-center gap-3">
+                  <PlusCircle className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                  Show All Milestones
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -292,7 +320,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
         {/* Modal Popup */}
         {selectedService && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] p-4"
             onClick={closeModal}
           >
             <div
@@ -310,7 +338,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
                 <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
               </div>
 
-              {/* Close  Button */}
+              {/* Close Button */}
               <button
                 onClick={closeModal}
                 className="absolute top-4 right-4 text-white hover:text-gray-200 text-3xl font-bold z-10"
@@ -321,6 +349,78 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
 
               {/* Popup Content */}
               <div className="p-8">{selectedService.popupContent}</div>
+            </div>
+          </div>
+        )}
+
+        {/* Show All Modal */}
+        {showAllModal && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[50] p-4 overflow-auto"
+            onClick={closeShowAllModal}
+          >
+            <div
+              className="bg-white rounded-xl w-full max-w-6xl max-h-[90vh] overflow-y-auto shadow-2xl relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm p-6 border-b border-gray-100 flex justify-between items-center">
+                <h2 className="text-3xl font-bold text-blue-950">All Surgical Milestones</h2>
+                <button
+                  onClick={closeShowAllModal}
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5 text-gray-700" />
+                </button>
+              </div>
+
+              {/* Services Grid */}
+              <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {services.map((service, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 cursor-pointer group"
+                    onClick={() => {
+                      setSelectedService(service);
+                    }}
+                  >
+                    {/* Banner Image */}
+                    <div className="h-48 relative overflow-hidden">
+                      <Image
+                        src={service.banner}
+                        alt={service.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="p-5">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <div className={service.color}>{service.icon}</div>
+                        </div>
+                        <h3 className="text-base font-bold text-blue-950 line-clamp-2">
+                          {service.title}
+                        </h3>
+                      </div>
+                      
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedService(service);
+                        }}
+                        className="mt-3 inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
+                      >
+                        View Details
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
