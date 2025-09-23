@@ -65,7 +65,7 @@ export function SuperSpeciality() {
         },
         { 
           name: 'Dr. Teg Rabab', 
-          designation: 'Consultant Pediatric Surgeon',
+          designation: 'Assistant Professors',
           image: '/images/ss/teg_rabab.jpg'
         }
       ]
