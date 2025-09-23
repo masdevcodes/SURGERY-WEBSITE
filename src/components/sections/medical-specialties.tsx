@@ -83,7 +83,7 @@ export function MedicalSpecialties() {
 
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition"
+                className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
               >
                 View Unit 1 Details
               </button>
@@ -139,7 +139,7 @@ export function MedicalSpecialties() {
                     <div className="flex flex-col items-center">
                       <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
-                          src="/images/unit1/hodn.png"
+                          src="/images/unit1/ashwini.png"
                           alt="Dr. Ashwani Kumar"
                           width={160}
                           height={160}
