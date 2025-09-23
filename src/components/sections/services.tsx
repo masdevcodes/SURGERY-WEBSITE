@@ -22,7 +22,7 @@ export function Services() {
         '',
       color: 'text-teal-500',
       banner:
-        '/images/ser1.jpg',
+        '/images/super/ser1.jpg',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Cholecystectomy With CBD Exploration In A Patient With  Situs Inversus Totalis</h3>
@@ -48,7 +48,7 @@ This milestone marks a proud moment for GMC Patiala, establishing it as a pionee
       description: '',
       color: 'text-teal-500',
       banner:
-        '/images/thyroid.png',
+        '/images/super/thyroid.png',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Endoscopic Thyroid Surgery via Axilla</h3>
@@ -72,7 +72,7 @@ The event reinforced GMC Patiala’s commitment to surgical innovation, educatio
         '',
       color: 'text-teal-500',
       banner:
-        '/images/adrene.jpg',
+        '/images/super/adrene.jpg',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Adrenelectomy</h3>
@@ -96,7 +96,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
         '',
       color: 'text-teal-500',
       banner:
-        '/images/lah.jpeg',
+        '/images/super/lah.jpeg',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Hysterectomy</h3>
@@ -120,7 +120,7 @@ This milestone showcases the Department of Surgery’s expertise in minimally in
         '',
       color: 'text-teal-500',
       banner:
-        '/images/veins.png',
+        '/images/super/veins.png',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Radio Frequency Ablation In Varicose Veins</h3>
