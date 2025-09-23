@@ -123,7 +123,7 @@ This milestone showcases the Department of Surgery’s expertise in minimally in
         '/images/super/veins.png',
       popupContent: (
         <div>
-          <h3 className="font-bold text-2xl mb-4">Radio  Frequency Ablation In Varicose Veins</h3>
+          <h3 className="font-bold text-2xl mb-4">Radio Frequency Ablation In Varicose Veins</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
             The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, under the leadership of Dr. Ashwani Kumar, Head of Department and Unit In-Charge, successfully performed Radio Frequency Ablation (RFA) for Varicose Veins.
 
