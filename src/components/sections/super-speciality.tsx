@@ -264,7 +264,7 @@ export function SuperSpeciality() {
                                 sizes="(max-width: 768px) 100vw, 33vw"
                                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                                 onError={() => handleImageError(doctorIndex)}
-                                loading="lazy"
+                                loading="priority"
                                 priority={idx < 2} // First 2 departments load faster
                               />
                             </div>
