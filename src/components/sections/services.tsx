@@ -64,7 +64,7 @@ export function Services() {
         '',
       color: 'text-teal-500',
       banner:
-        '/images/super/ser1.jpg',
+        '/images/super/ser1.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Cholecystectomy With CBD Exploration In A Patient With  Situs Inversus Totalis</h3>
