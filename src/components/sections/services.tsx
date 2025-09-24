@@ -16,100 +16,8 @@ import {
   ChevronDown
 } from 'lucide-react';
 
-// Types
-interface Service {
-  icon: JSX.Element;
-  title: string;
-  description: string;
-  color: string;
-  banner: string;
-  popupContent: JSX.Element;
-}
-
-interface OptimizedImageProps {
-  src: string;
-  alt: string;
-  fill?: boolean;
-  sizes?: string;
-  quality?: number;
-  priority?: boolean;
-  className?: string;
-  onLoad?: () => void;
-  onError?: () => void;
-  style?: React.CSSProperties;
-}
-
-// Optimized Image Component
-const OptimizedImage = ({ 
-  src, 
-  alt, 
-  fill = false, 
-  sizes = "100vw",
-  quality = 75,
-  priority = false,
-  className = "",
-  onLoad,
-  onError,
-  style,
-  ...props 
-}: OptimizedImageProps) => {
-  const [imageSrc, setImageSrc] = useState(src);
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-
-  const handleError = () => {
-    console.warn(`Image failed to load: ${src}`);
-    setHasError(true);
-    setImageSrc('/images/placeholder-medical.jpg');
-    onError?.();
-  };
-
-  const handleLoad = () => {
-    setIsLoading(false);
-    onLoad?.();
-  };
-
-  // Reset state when src changes
-  useEffect(() => {
-    setImageSrc(src);
-    setIsLoading(true);
-    setHasError(false);
-  }, [src]);
-
-  if (hasError && imageSrc === '/images/placeholder-medical.jpg') {
-    return (
-      <div 
-        className={`relative bg-gray-200 flex items-center justify-center ${className}`}
-        style={style}
-      >
-        <div className="text-gray-400 text-sm">Image not available</div>
-      </div>
-    );
-  }
-
-  return (
-    <div className={`relative ${isLoading ? 'bg-gray-200 animate-pulse' : ''}`} style={style}>
-      <Image
-        src={imageSrc}
-        alt={alt}
-        fill={fill}
-        sizes={sizes}
-        quality={quality}
-        priority={priority}
-        className={`${className} transition-opacity duration-300 ${
-          isLoading ? 'opacity-0' : 'opacity-100'
-        }`}
-        onLoad={handleLoad}
-        onError={handleError}
-        loading={priority ? "eager" : "lazy"}
-        {...props}
-      />
-    </div>
-  );
-};
-
 // Service Card Component
-function ServiceCard({ service, onSelect }: { service: Service; onSelect: (service: Service) => void }) {
+function ServiceCard({ service, onSelect }: { service: any; onSelect: (service: any) => void }) {
   return (
     <div
       className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4 cursor-pointer"
@@ -126,7 +34,7 @@ function ServiceCard({ service, onSelect }: { service: Service; onSelect: (servi
           {service.title}
         </h3>
         <p className="text-sm text-gray-600 leading-relaxed mb-3">
-          {service.description || 'Advanced surgical procedure performed with precision and care.'}
+          {service.description}
         </p>
         {/* Read More Link */}
         <button
@@ -148,67 +56,53 @@ function ServiceCard({ service, onSelect }: { service: Service; onSelect: (servi
 }
 
 export function Services() {
-  const services: Service[] = [
+  const services = [
     {
       icon: <PersonStanding className="w-8 h-8" />,
-      title: 'Laparoscopic Cholecystectomy With CBD Exploration In A Patient With Situs Inversus Totalis',
-      description: 'Advanced minimally invasive surgery for rare anatomical conditions with mirror-image organ placement',
+      title: 'Laparoscopic Cholecystectomy With CBD Exploration In A Patient With  Situs Inversus Totalis',
+      description:
+        '',
       color: 'text-teal-500',
-      banner: '/images/super/ser1.jpg',
+      banner:
+        '/images/super/ser1.jpg',
       popupContent: (
-        <div className="space-y-4">
-          <h3 className="font-bold text-2xl mb-4 text-blue-950">Laparoscopic Cholecystectomy With CBD Exploration In A Patient With Situs Inversus Totalis</h3>
-          <div className="relative w-full h-64 rounded-lg overflow-hidden mb-4">
-            <OptimizedImage
-              src="/images/super/ser1.jpg"
-              alt="Situs Inversus Totalis Surgery"
-              fill
-              className="object-cover"
-              quality={85}
-            />
-          </div>
+        <div>
+          <h3 className="font-bold text-2xl mb-4">Laparoscopic Cholecystectomy With CBD Exploration In A Patient With  Situs Inversus Totalis</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
             Historic Surgical Milestone at GMC Patiala
 
-            The Department of General Surgery at Government Medical College and Rajindra Hospital, Patiala, has achieved a remarkable feat by successfully performing Laparoscopic Cholecystectomy with Common Bile Duct (CBD) Exploration in a patient diagnosed with Situs Inversus Totalis a rare congenital condition where all internal organs are arranged in a mirror-image position.
+The Department of General Surgery at Government Medical College and Rajindra Hospital, Patiala, has achieved a remarkable feat by successfully performing Laparoscopic Cholecystectomy with Common Bile Duct (CBD) Exploration in a patient diagnosed with Situs Inversus Totalis a rare congenital condition where all internal organs are arranged in a mirror-image position.
 
-            This landmark surgery, conducted for the first time in Punjab, posed significant challenges due to the reversed anatomy, requiring precise preoperative planning, modified port placement, and advanced laparoscopic expertise. Despite the complexity, the procedure was carried out smoothly, with excellent patient recovery.
+This landmark surgery, conducted for the first time in Punjab, posed significant challenges due to the reversed anatomy, requiring precise preoperative planning, modified port placement, and advanced laparoscopic expertise. Despite the complexity, the procedure was carried out smoothly, with excellent patient recovery.
 
-            Speaking about this achievement, Prof. Dr. Ashwani Kumar, Head of the Department of General Surgery and lead surgeon for the case, said:
-            "Performing this rare and technically demanding surgery for the first time in Punjab is a matter of immense pride for our department and institution. The mirror-image anatomy of situs inversus presented unique challenges, but with meticulous planning and teamwork, we were able to achieve an excellent outcome. This success reflects our commitment to innovation and excellence in surgical care."
+Speaking about this achievement, Prof. Dr. Ashwani Kumar, Head of the Department of General Surgery and lead surgeon for the case, said:
+“Performing this rare and technically demanding surgery for the first time in Punjab is a matter of immense pride for our department and institution. The mirror-image anatomy of situs inversus presented unique challenges, but with meticulous planning and teamwork, we were able to achieve an excellent outcome. This success reflects our commitment to innovation and excellence in surgical care.”
 
-            This milestone marks a proud moment for GMC Patiala, establishing it as a pioneer in advanced minimally invasive surgery and setting new standards of excellence in the state.
+This milestone marks a proud moment for GMC Patiala, establishing it as a pioneer in advanced minimally invasive surgery and setting new standards of excellence in the state.
           </p>
         </div>
       ),
     },
+    
     {
       icon: <Eye className="w-8 h-8" />,
       title: 'Endoscopic Thyroid Surgery via Axilla',
-      description: 'Minimally invasive thyroid removal through armpit incision for scar-free results',
+      description: '',
       color: 'text-teal-500',
-      banner: '/images/super/thyroid.png',
+      banner:
+        '/images/super/thyroid.png',
       popupContent: (
-        <div className="space-y-4">
-          <h3 className="font-bold text-2xl mb-4 text-blue-950">Endoscopic Thyroid Surgery via Axilla</h3>
-          <div className="relative w-full h-64 rounded-lg overflow-hidden mb-4">
-            <OptimizedImage
-              src="/images/super/thyroid.png"
-              alt="Endoscopic Thyroid Surgery"
-              fill
-              className="object-cover"
-              quality={85}
-            />
-          </div>
+        <div>
+          <h3 className="font-bold text-2xl mb-4">Endoscopic Thyroid Surgery via Axilla</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
             The Department of General Surgery at Government Medical College and Rajindra Hospital, Patiala, recently conducted a Continuing Medical Education (CME) session showcasing Endoscopic Thyroid Surgery via the Axilla — a minimally invasive procedure that allows thyroid removal through an incision in the armpit, leaving the neck scar-free.
 
-            The live demonstration highlighted the advanced endoscopic techniques, precise dissection, and cosmetic advantages of this approach. Participants observed the meticulous steps of the surgery, emphasizing patient safety, reduced postoperative discomfort, and excellent aesthetic outcomes.
+The live demonstration highlighted the advanced endoscopic techniques, precise dissection, and cosmetic advantages of this approach. Participants observed the meticulous steps of the surgery, emphasizing patient safety, reduced postoperative discomfort, and excellent aesthetic outcomes.
 
-            Speaking during the CME, Prof. Dr. Ashwani Kumar, Head of the Department of General Surgery, said:
-            "This session provided a unique opportunity for surgeons and trainees to witness cutting-edge minimally invasive thyroid surgery. Techniques like the axillary approach represent the future of patient-friendly surgical care, combining safety with superior cosmetic results."
+Speaking during the CME, Prof. Dr. Ashwani Kumar, Head of the Department of General Surgery, said:
+“This session provided a unique opportunity for surgeons and trainees to witness cutting-edge minimally invasive thyroid surgery. Techniques like the axillary approach represent the future of patient-friendly surgical care, combining safety with superior cosmetic results.”
 
-            The event reinforced GMC Patiala's commitment to surgical innovation, education, and excellence in patient care, offering hands-on learning to medical professionals across the region.
+The event reinforced GMC Patiala’s commitment to surgical innovation, education, and excellence in patient care, offering hands-on learning to medical professionals across the region.
           </p>
         </div>
       ),
@@ -216,30 +110,23 @@ export function Services() {
     {
       icon: <Bone className="w-8 h-8" />,
       title: 'Laparoscopic Adrenelectomy',
-      description: 'Minimally invasive adrenal gland removal with faster recovery and minimal scarring',
+      description:
+        '',
       color: 'text-teal-500',
-      banner: '/images/super/adrene.jpg',
+      banner:
+        '/images/super/adrene.jpg',
       popupContent: (
-        <div className="space-y-4">
-          <h3 className="font-bold text-2xl mb-4 text-blue-950">Laparoscopic Adrenelectomy</h3>
-          <div className="relative w-full h-64 rounded-lg overflow-hidden mb-4">
-            <OptimizedImage
-              src="/images/super/adrene.jpg"
-              alt="Laparoscopic Adrenelectomy"
-              fill
-              className="object-cover"
-              quality={85}
-            />
-          </div>
+        <div>
+          <h3 className="font-bold text-2xl mb-4">Laparoscopic Adrenelectomy</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
-            The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, under the leadership of Dr. Ashwani Kumar, Head of Department, successfully performed a Laparoscopic Adrenalectomy in the elective OT, with collaborative support from the Department of Medicine.
+           The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, under the leadership of Dr. Ashwani Kumar, Head of Department, successfully performed a Laparoscopic Adrenalectomy in the elective OT, with collaborative support from the Department of Medicine.
 
-            This minimally invasive procedure involved the precise removal of the adrenal gland, providing significant benefits such as reduced postoperative pain, shorter hospital stay, faster recovery, and minimal scarring. The surgery showcased meticulous preoperative planning, advanced laparoscopic expertise, and a strong focus on patient safety.
+This minimally invasive procedure involved the precise removal of the adrenal gland, providing significant benefits such as reduced postoperative pain, shorter hospital stay, faster recovery, and minimal scarring. The surgery showcased meticulous preoperative planning, advanced laparoscopic expertise, and a strong focus on patient safety.
 
-            Dr. Ashwani Kumar commented:
-            "Laparoscopic adrenalectomy is a significant step forward in endocrine surgery, allowing safe and effective management of adrenal tumors with minimal discomfort to the patient. Our team, in close coordination with the Medicine department, is proud to perform this procedure successfully, reinforcing our commitment to excellence in surgical care."
+Dr. Ashwani Kumar commented:
+“Laparoscopic adrenalectomy is a significant step forward in endocrine surgery, allowing safe and effective management of adrenal tumors with minimal discomfort to the patient. Our team, in close coordination with the Medicine department, is proud to perform this procedure successfully, reinforcing our commitment to excellence in surgical care.”
 
-            This achievement highlights the Department of Surgery's expertise in advanced minimally invasive procedures and strengthens GMC Patiala's position as a leading center for surgical innovation.
+This achievement highlights the Department of Surgery’s expertise in advanced minimally invasive procedures and strengthens GMC Patiala’s position as a leading center for surgical innovation.
           </p>
         </div>
       ),
@@ -247,30 +134,23 @@ export function Services() {
     {
       icon: <Brain className="w-8 h-8" />,
       title: 'Laparoscopic Hysterectomy',
-      description: 'Advanced minimally invasive uterus removal with quick recovery and minimal pain',
+      description:
+        '',
       color: 'text-teal-500',
-      banner: '/images/super/lah.jpeg',
+      banner:
+        '/images/super/lah.jpeg',
       popupContent: (
-        <div className="space-y-4">
-          <h3 className="font-bold text-2xl mb-4 text-blue-950">Laparoscopic Hysterectomy</h3>
-          <div className="relative w-full h-64 rounded-lg overflow-hidden mb-4">
-            <OptimizedImage
-              src="/images/super/lah.jpeg"
-              alt="Laparoscopic Hysterectomy"
-              fill
-              className="object-cover"
-              quality={85}
-            />
-          </div>
+        <div>
+          <h3 className="font-bold text-2xl mb-4">Laparoscopic Hysterectomy</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
             The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, led by Dr. Ashwani Kumar, Head of Department, successfully carried out a Laparoscopic Hysterectomy.
 
-            This minimally invasive procedure, performed using advanced laparoscopic techniques, enables the safe removal of the uterus with smaller incisions, reduced postoperative pain, faster recovery, and minimal scarring. The surgery highlighted meticulous planning, precision, and a strong emphasis on patient safety.
+This minimally invasive procedure, performed using advanced laparoscopic techniques, enables the safe removal of the uterus with smaller incisions, reduced postoperative pain, faster recovery, and minimal scarring. The surgery highlighted meticulous planning, precision, and a strong emphasis on patient safety.
 
-            Dr. Ashwani Kumar said:
-            "Laparoscopic hysterectomy is a significant step forward in gynecological surgery. It allows for effective management of uterine conditions while ensuring patient comfort and quicker recovery. Our team takes pride in performing this procedure successfully, reflecting our commitment to excellence in surgical care."
+Dr. Ashwani Kumar said:
+“Laparoscopic hysterectomy is a significant step forward in gynecological surgery. It allows for effective management of uterine conditions while ensuring patient comfort and quicker recovery. Our team takes pride in performing this procedure successfully, reflecting our commitment to excellence in surgical care.”
 
-            This milestone showcases the Department of Surgery's expertise in minimally invasive procedures and reinforces GMC Patiala's position as a center of surgical innovation and patient-centered care.
+This milestone showcases the Department of Surgery’s expertise in minimally invasive procedures and reinforces GMC Patiala’s position as a center of surgical innovation and patient-centered care.
           </p>
         </div>
       ),
@@ -278,90 +158,48 @@ export function Services() {
     {
       icon: <Activity className="w-8 h-8" />,
       title: 'Radio Frequency Ablation In Varicose Veins',
-      description: 'Modern vein treatment using radiofrequency energy for minimal discomfort and quick recovery',
+      description:
+        '',
       color: 'text-teal-500',
-      banner: '/images/super/veins.png',
+      banner:
+        '/images/super/veins.png',
       popupContent: (
-        <div className="space-y-4">
-          <h3 className="font-bold text-2xl mb-4 text-blue-950">Radio Frequency Ablation In Varicose Veins</h3>
-          <div className="relative w-full h-64 rounded-lg overflow-hidden mb-4">
-            <OptimizedImage
-              src="/images/super/veins.png"
-              alt="Radio Frequency Ablation"
-              fill
-              className="object-cover"
-              quality={85}
-            />
-          </div>
+        <div>
+          <h3 className="font-bold text-2xl mb-4">Radio Frequency Ablation In Varicose Veins</h3>
           <p className="text-gray-700 leading-relaxed text-justify">
             The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, under the leadership of Dr. Ashwani Kumar, Head of Department and Unit In-Charge, successfully performed Radio Frequency Ablation (RFA) for Varicose Veins.
 
-            This minimally invasive procedure involves using radiofrequency energy to close diseased veins, providing an effective alternative to conventional vein surgery. The technique offers benefits such as minimal pain, faster recovery, reduced hospital stay, and excellent cosmetic results. The surgery demonstrated meticulous planning, precise execution, and a strong focus on patient safety.
+This minimally invasive procedure involves using radiofrequency energy to close diseased veins, providing an effective alternative to conventional vein surgery. The technique offers benefits such as minimal pain, faster recovery, reduced hospital stay, and excellent cosmetic results. The surgery demonstrated meticulous planning, precise execution, and a strong focus on patient safety.
 
-            Dr. Ashwani Kumar stated:
-            "Radio Frequency Ablation is a significant advancement in the management of varicose veins. It allows patients to recover quickly while minimizing discomfort and scarring. Our team is proud to offer this state-of-the-art procedure at GMC Patiala, reflecting our commitment to modern, patient-centered surgical care."
+Dr. Ashwani Kumar stated:
+“Radio Frequency Ablation is a significant advancement in the management of varicose veins. It allows patients to recover quickly while minimizing discomfort and scarring. Our team is proud to offer this state-of-the-art procedure at GMC Patiala, reflecting our commitment to modern, patient-centered surgical care.”
 
-            This achievement highlights the Department of Surgery's expertise in advanced minimally invasive procedures and reinforces GMC Patiala's position as a center of excellence in innovative surgical treatments.
+This achievement highlights the Department of Surgery’s expertise in advanced minimally invasive procedures and reinforces GMC Patiala’s position as a center of excellence in innovative surgical treatments.
           </p>
         </div>
       ),
     },
   ];
 
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [selectedService, setSelectedService] = useState<any>(null);
   const [showAllModal, setShowAllModal] = useState(false);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const rightSideRef = useRef<HTMLDivElement>(null);
   const [rightSideHeight, setRightSideHeight] = useState(0);
 
   // Left-side carousel images
   const carouselImages = [
-    '/images/service11.png',
-    '/images/service12.png',
-    '/images/service13.png',
+    '/service11.png',
+    '/service12.png',
+    '/service13.png',
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Preload images for faster transitions
+  // Preload carousel images for faster transitions
   useEffect(() => {
-    const preloadImages = async () => {
-      const allImages = [
-        ...carouselImages,
-        ...services.map(service => service.banner),
-        '/images/111.png',
-        '/images/placeholder-medical.jpg'
-      ].filter(src => src);
-
-      const imagePromises = allImages.map((src) => {
-        return new Promise((resolve, reject) => {
-          // Skip if already loaded
-          if (loadedImages.has(src)) {
-            resolve(src);
-            return;
-          }
-
-          const img = new Image();
-          img.src = src;
-          img.onload = () => {
-            setLoadedImages(prev => new Set([...prev, src]));
-            resolve(src);
-          };
-          img.onerror = () => {
-            console.warn(`Failed to preload image: ${src}`);
-            reject(src);
-          };
-        });
-      });
-
-      try {
-        await Promise.allSettled(imagePromises);
-        console.log('Image preloading completed');
-      } catch (error) {
-        console.warn('Some images failed to preload:', error);
-      }
-    };
-
-    preloadImages();
+    carouselImages.forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+    });
   }, []);
 
   // Update right side height on resize and after initial render
@@ -388,7 +226,7 @@ export function Services() {
       setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [carouselImages.length]);
+  }, []);
 
   // Close modals
   const closeModal = () => setSelectedService(null);
@@ -401,19 +239,20 @@ export function Services() {
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
-        <OptimizedImage
-          src="/images/111.png"
+        <Image
+          src="/111.png"
           alt="Surgical team in operating room"
           fill
           className="object-cover"
-          quality={40}
+          loading="lazy"
+          quality={60}
           sizes="100vw"
           priority={false}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-transparent to-teal-950/20"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative">
+      <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Side - Doctor Patient Carousel */}
           <div className="relative">
@@ -421,19 +260,16 @@ export function Services() {
               className="relative rounded-2xl overflow-hidden shadow-2xl group"
               style={{ height: `${rightSideHeight}px` }}
             >
-              {!loadedImages.has(carouselImages[currentImageIndex]) && (
-                <div className="absolute inset-0 bg-gray-200 animate-pulse z-10 flex items-center justify-center">
-                  <div className="text-gray-400">Loading image...</div>
-                </div>
-              )}
-              <OptimizedImage
+              <Image
                 src={carouselImages[currentImageIndex]}
-                alt={`Medical procedure ${currentImageIndex + 1}`}
+                alt={`Doctor consulting with patient ${currentImageIndex + 1}`}
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                quality={70}
+                quality={75}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                 priority={true}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
@@ -465,7 +301,7 @@ export function Services() {
                 </span>
               </div>
               <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
-                Our Milestones In Surgery...
+                Our Milestones In Surgey...
               </h2>
               <p className="text-xl text-gray-600 font-medium">
                 Delivering world class medical care
@@ -519,17 +355,13 @@ export function Services() {
             >
               {/* Banner */}
               <div className="w-full h-64 relative">
-                {!loadedImages.has(selectedService.banner) && (
-                  <div className="absolute inset-0 bg-gray-200 animate-pulse z-10 flex items-center justify-center">
-                    <div className="text-gray-400">Loading image...</div>
-                  </div>
-                )}
-                <OptimizedImage
+                <Image
                   src={selectedService.banner}
                   alt={`${selectedService.title} Banner`}
                   fill
                   className="object-cover rounded-t-lg"
-                  quality={80}
+                  loading="eager"
+                  quality={70}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
                   priority={true}
                 />
@@ -539,10 +371,10 @@ export function Services() {
               {/* Close Button */}
               <button
                 onClick={closeModal}
-                className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors z-10"
+                className="absolute top-4 right-4 text-white hover:text-gray-200 text-3xl font-bold z-10"
                 aria-label="Close modal"
               >
-                <X className="w-5 h-5" />
+                &times;
               </button>
 
               {/* Popup Content */}
@@ -581,23 +413,20 @@ export function Services() {
                     className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 cursor-pointer group"
                     onClick={() => {
                       setSelectedService(service);
-                      setShowAllModal(false);
                     }}
                   >
                     {/* Banner Image */}
                     <div className="h-48 relative overflow-hidden">
-                      {!loadedImages.has(service.banner) && (
-                        <div className="absolute inset-0 bg-gray-200 animate-pulse z-10 flex items-center justify-center">
-                          <div className="text-gray-400">Loading...</div>
-                        </div>
-                      )}
-                      <OptimizedImage
+                      <Image
                         src={service.banner}
                         alt={service.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
                         quality={65}
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
@@ -612,14 +441,11 @@ export function Services() {
                           {service.title}
                         </h3>
                       </div>
-                      <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                        {service.description}
-                      </p>
+                      
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           setSelectedService(service);
-                          setShowAllModal(false);
                         }}
                         className="mt-3 inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
                       >
