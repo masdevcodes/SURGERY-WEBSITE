@@ -257,16 +257,15 @@ export function SuperSpeciality() {
                           <div key={doctorIndex} className="min-w-full flex flex-col items-center">
                             <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                               <Image
-                                src={doctor.image || speciality.image || '/placeholder-doctor.svg'}
-                                alt={doctor.name}
-                                width={320}
-                                height={320}
-                                sizes="(max-width: 768px) 100vw, 33vw"
-                                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                                onError={() => handleImageError(doctorIndex)}
-                                loading="lazy"
-                                priority={idx < 2} // First 2 departments load faster
-                              />
+                                  src={doctor.image || speciality.image || '/placeholder-doctor.svg'}
+                                  alt={doctor.name}
+                                  width={320}
+                                  height={320}
+                                  sizes="(max-width: 768px) 100vw, 33vw"
+                                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                                  onError={() => handleImageError(doctorIndex)}
+                                  {...(idx < 2 ? { priority: true } : { loading: 'lazy' })}
+                                />
                             </div>
                             <div className="text-center">
                               <p className="font-semibold text-blue-900 text-lg">{doctor.name}</p>
@@ -276,21 +275,64 @@ export function SuperSpeciality() {
                         ))}
                       </div>
                     </div>
+
+                    {/* Nav Buttons */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentDoctorIndex(prev => ({
+                          ...prev,
+                          [speciality.id]: ((prev[speciality.id] || 0) - 1 + speciality.doctors.length) % speciality.doctors.length
+                        }));
+                      }}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-teal-50 transition-colors border border-gray-100"
+                    >
+                      <ArrowLeft className="w-5 h-5 text-teal-600" />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentDoctorIndex(prev => ({
+                          ...prev,
+                          [speciality.id]: ((prev[speciality.id] || 0) + 1) % speciality.doctors.length
+                        }));
+                      }}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-teal-50 transition-colors border border-gray-100"
+                    >
+                      <ArrowRight className="w-5 h-5 text-teal-600" />
+                    </button>
+
+                    {/* Slider Indicators */}
+                    <div className="flex justify-center gap-2 mt-4">
+                      {speciality.doctors.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentDoctorIndex(prev => ({
+                              ...prev,
+                              [speciality.id]: idx
+                            }));
+                          }}
+                          className={`w-2 h-2 rounded-full transition-all ${idx === (currentDoctorIndex[speciality.id] || 0) ? 'w-6 bg-teal-500' : 'bg-gray-300'}`}
+                          aria-label={`View doctor ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   <div className="flex flex-col items-center mb-6">
-                    <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
+                      <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                       <Image
-  src={doctor.image || speciality.image || ''}
-  alt={doctor.name}
-  width={320}
-  height={320}
-  sizes="(max-width: 768px) 100vw, 33vw"
-  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-  onError={() => handleImageError(doctorIndex)}
-  {...(idx < 2 ? { priority: true } : { loading: 'lazy' })} // priority for first 2 departments, lazy for others
-/>
-
+                          src={speciality.doctors[0].image || speciality.image || '/placeholder-doctor.svg'}
+                          alt={speciality.doctors[0].name}
+                          width={320}
+                          height={320}
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                          onError={() => handleImageError(0)}
+                          {...(idx < 2 ? { priority: true } : { loading: 'lazy' })}
+                        />
                     </div>
                     <div className="text-center">
                       <p className="font-semibold text-blue-900 text-lg">{speciality.doctors[0].name}</p>
@@ -299,6 +341,7 @@ export function SuperSpeciality() {
                   </div>
                 )}
 
+                {/* Description */}
                 <div className="flex flex-col flex-grow">
                   <p className="text-sm text-gray-600 leading-relaxed mb-4">
                     {speciality.description}
@@ -316,6 +359,47 @@ export function SuperSpeciality() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Stats */}
+        <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="group transform transition-all duration-300 hover:scale-110">
+              <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                6
+              </div>
+              <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
+                Super Specialities
+              </div>
+            </div>
+            
+            <div className="group transform transition-all duration-300 hover:scale-110">
+              <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-green-600 transition-colors duration-300">
+                27+
+              </div>
+              <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
+                Specialist Doctors
+              </div>
+            </div>
+            
+            <div className="group transform transition-all duration-300 hover:scale-110">
+              <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-purple-600 transition-colors duration-300">
+                1000+
+              </div>
+              <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
+                Complex Surgeries/Year
+              </div>
+            </div>
+            
+            <div className="group transform transition-all duration-300 hover:scale-110">
+              <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-orange-600 transition-colors duration-300">
+                24/7
+              </div>
+              <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
+                Emergency Care
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -335,7 +419,7 @@ export function SuperSpeciality() {
             >
               <X className="w-6 h-6 text-gray-800" />
             </button>
-            
+
             <div className="p-6 border-b border-gray-100">
               <div className="flex items-center gap-3">
                 <div className={`w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md border-2 ${selectedSpeciality.color.replace('text-', 'border-')}`}>
@@ -345,20 +429,20 @@ export function SuperSpeciality() {
               </div>
             </div>
 
-            {/* Doctors Section */}
+            {/* Modal Doctors */}
             <div className="p-6 border-b border-gray-100">
               <h4 className="text-xl font-bold text-blue-950 mb-6">Our Specialist Doctors</h4>
               <div className={`grid gap-8 ${selectedSpeciality.doctors.length === 1 ? 'grid-cols-1 justify-items-center' : 'grid-cols-1 md:grid-cols-2'}`}>
                 {selectedSpeciality.doctors.map((doctor, index) => (
-                  <div key={index} className="flex flex-col items-center text-center">
+                  <div key={index} className={`flex flex-col items-center text-center ${selectedSpeciality.doctors.length === 1 ? 'max-w-sm' : ''}`}>
                     <div className="relative w-48 h-48 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg mb-4 group">
                       <Image
                         src={doctor.image || selectedSpeciality.image || '/placeholder-doctor.svg'}
                         alt={doctor.name}
                         fill
-                        sizes="200px"
+                        sizes="(max-width: 768px) 100vw, 24vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        loading="lazy"
+                        {...(idx < 2 ? { priority: true } : { loading: 'lazy' })}
                       />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -370,19 +454,16 @@ export function SuperSpeciality() {
               </div>
             </div>
 
-            {/* Details */}
             <div className="p-6">
               <div className="bg-blue-50 rounded-xl p-4 border border-blue-100 mb-6">
-                <p className="text-sm text-gray-700 italic">
-                  {selectedSpeciality.description}
-                </p>
+                <p className="text-sm text-gray-700 italic">{selectedSpeciality.description}</p>
               </div>
+
               <div className="mb-6">
                 <h4 className="text-xl font-bold text-blue-950 mb-4">About {selectedSpeciality.name}</h4>
-                <p className="text-gray-700 leading-relaxed text-justify">
-                  {selectedSpeciality.detailedDescription}
-                </p>
+                <p className="text-gray-700 leading-relaxed text-justify">{selectedSpeciality.detailedDescription}</p>
               </div>
+
               <div>
                 <h4 className="text-xl font-bold text-blue-950 mb-4">Our Services Include:</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
