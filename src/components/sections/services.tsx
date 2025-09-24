@@ -114,7 +114,7 @@ The event reinforced GMC Patiala’s commitment to surgical innovation, educatio
         '',
       color: 'text-teal-500',
       banner:
-        '/images/super/adrene.jpg',
+        '/images/super/adrene.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Adrenelectomy</h3>
@@ -138,7 +138,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
         '',
       color: 'text-teal-500',
       banner:
-        '/images/super/lah.jpeg',
+        '/images/super/lah.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Hysterectomy</h3>
@@ -162,7 +162,7 @@ This milestone showcases the Department of Surgery’s expertise in minimally in
         '',
       color: 'text-teal-500',
       banner:
-        '/images/super/veins.png',
+        '/images/super/veins.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Radio Frequency Ablation In Varicose Veins</h3>
