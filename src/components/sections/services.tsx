@@ -60,11 +60,9 @@ export function Services() {
     {
       icon: <PersonStanding className="w-8 h-8" />,
       title: 'Laparoscopic Cholecystectomy With CBD Exploration In A Patient With  Situs Inversus Totalis',
-      description:
-        '',
+      description: '',
       color: 'text-teal-500',
-      banner:
-        '/images/super/ser1.webp',
+      banner: '/images/super/ser1.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Cholecystectomy With CBD Exploration In A Patient With  Situs Inversus Totalis</h3>
@@ -89,8 +87,7 @@ This milestone marks a proud moment for GMC Patiala, establishing it as a pionee
       title: 'Endoscopic Thyroid Surgery via Axilla',
       description: '',
       color: 'text-teal-500',
-      banner:
-        '/images/super/thyroid.webp',
+      banner: '/images/super/thyroid.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Endoscopic Thyroid Surgery via Axilla</h3>
@@ -110,11 +107,9 @@ The event reinforced GMC Patiala’s commitment to surgical innovation, educatio
     {
       icon: <Bone className="w-8 h-8" />,
       title: 'Laparoscopic Adrenelectomy',
-      description:
-        '',
+      description: '',
       color: 'text-teal-500',
-      banner:
-        '/images/super/adrene.webp',
+      banner: '/images/super/adrene.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Adrenelectomy</h3>
@@ -134,11 +129,9 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
     {
       icon: <Brain className="w-8 h-8" />,
       title: 'Laparoscopic Hysterectomy',
-      description:
-        '',
+      description: '',
       color: 'text-teal-500',
-      banner:
-        '/images/super/lah.webp',
+      banner: '/images/super/lah.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Hysterectomy</h3>
@@ -158,11 +151,9 @@ This milestone showcases the Department of Surgery’s expertise in minimally in
     {
       icon: <Activity className="w-8 h-8" />,
       title: 'Radio Frequency Ablation In Varicose Veins',
-      description:
-        '',
+      description: '',
       color: 'text-teal-500',
-      banner:
-        '/images/super/veins.webp',
+      banner: '/images/super/veins.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Radio Frequency Ablation In Varicose Veins</h3>
@@ -187,11 +178,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
   const [rightSideHeight, setRightSideHeight] = useState(0);
 
   // Left-side carousel images
-  const carouselImages = [
-    '/service11.png',
-    '/service12.png',
-    '/service13.png',
-  ];
+  const carouselImages = ['/service11.png', '/service12.png', '/service13.png'];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Preload carousel images for faster transitions
@@ -210,13 +197,8 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
       }
     };
 
-    // Initial height calculation
     updateHeight();
-
-    // Add resize listener
     window.addEventListener('resize', updateHeight);
-
-    // Cleanup
     return () => window.removeEventListener('resize', updateHeight);
   }, []);
 
@@ -233,10 +215,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
   const closeShowAllModal = () => setShowAllModal(false);
 
   return (
-    <section
-      id="services"
-      className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden"
-    >
+    <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
         <Image
@@ -244,10 +223,9 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
           alt="Surgical team in operating room"
           fill
           className="object-cover"
-          loading="lazy"
           quality={60}
           sizes="100vw"
-          priority={false}
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-transparent to-teal-950/20"></div>
       </div>
@@ -256,7 +234,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Side - Doctor Patient Carousel */}
           <div className="relative">
-            <div 
+            <div
               className="relative rounded-2xl overflow-hidden shadow-2xl group"
               style={{ height: `${rightSideHeight}px` }}
             >
@@ -267,16 +245,12 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 quality={75}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                priority={true}
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
-            {/* Floating Elements */}
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-teal-500/20 rounded-full blur-xl animate-pulse"></div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
-            {/* Stats Card */}
             <div className="absolute bottom-8 left-8 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-lg">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center">
@@ -292,7 +266,6 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
 
           {/* Right Side - Services List */}
           <div ref={rightSideRef} className="space-y-8">
-            {/* Header */}
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-1 bg-teal-500"></div>
@@ -303,31 +276,22 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
               <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
                 Our Milestones In Surgey...
               </h2>
-              <p className="text-xl text-gray-600 font-medium">
-                Delivering world class medical care
-              </p>
+              <p className="text-xl text-gray-600 font-medium">Delivering world class medical care</p>
             </div>
-            
-            {/* Services List with scroll indicator */}
+
             <div className="relative">
               <div className="space-y-4 max-h-[650px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-teal-200 scrollbar-track-gray-100 scroll-smooth">
                 {services.map((service, index) => (
-                  <ServiceCard 
-                    key={index} 
-                    service={service} 
-                    onSelect={setSelectedService} 
-                  />
+                  <ServiceCard key={index} service={service} onSelect={setSelectedService} />
                 ))}
               </div>
-              {/* Scroll indicator */}
               <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
                 <div className="animate-bounce text-teal-500">
                   <ChevronDown className="w-6 h-6" />
                 </div>
               </div>
             </div>
-            
-            {/* Show All Button */}
+
             <div className="flex justify-center pt-6">
               <button
                 onClick={() => setShowAllModal(true)}
@@ -353,22 +317,18 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
               className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-lg relative"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Banner */}
               <div className="w-full h-64 relative">
                 <Image
                   src={selectedService.banner}
                   alt={`${selectedService.title} Banner`}
                   fill
                   className="object-cover rounded-t-lg"
-                  loading="eager"
                   quality={70}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
-                  priority={true}
+                  priority
                 />
                 <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
               </div>
-
-              {/* Close Button */}
               <button
                 onClick={closeModal}
                 className="absolute top-4 right-4 text-white hover:text-gray-200 text-3xl font-bold z-10"
@@ -376,8 +336,6 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
               >
                 &times;
               </button>
-
-              {/* Popup Content */}
               <div className="p-8">{selectedService.popupContent}</div>
             </div>
           </div>
@@ -393,64 +351,44 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
               className="bg-white rounded-xl w-full max-w-6xl max-h-[90vh] overflow-y-auto shadow-2xl relative"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header */}
               <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm p-6 border-b border-gray-100 flex justify-between items-center">
-                <h2 className="text-3xl font-bold text-blue-950">All Surgical Milestones</h2>
+                <h3 className="text-2xl font-bold text-blue-950">All Milestones</h3>
                 <button
                   onClick={closeShowAllModal}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                  aria-label="Close modal"
+                  className="text-gray-600 hover:text-gray-900 transition-colors"
                 >
-                  <X className="w-5 h-5 text-gray-700" />
+                  <X className="w-6 h-6" />
                 </button>
               </div>
-
-              {/* Services Grid */}
-              <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                 {services.map((service, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 cursor-pointer group"
-                    onClick={() => {
-                      setSelectedService(service);
-                    }}
+                    className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-teal-200 cursor-pointer flex flex-col"
+                    onClick={() => setSelectedService(service)}
                   >
-                    {/* Banner Image */}
-                    <div className="h-48 relative overflow-hidden">
+                    <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4">
                       <Image
                         src={service.banner}
                         alt={service.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        loading="lazy"
                         quality={65}
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        placeholder="blur"
-                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                        loading="lazy"
+                        placeholder="empty"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    
-                    {/* Content */}
-                    <div className="p-5">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <div className={service.color}>{service.icon}</div>
-                        </div>
-                        <h3 className="text-base font-bold text-blue-950 line-clamp-2">
-                          {service.title}
-                        </h3>
-                      </div>
-                      
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedService(service);
-                        }}
-                        className="mt-3 inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
-                      >
-                        View Details
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-blue-950 mb-3 line-clamp-2 group-hover:text-teal-600 transition-colors">
+                        {service.title}
+                      </h3>
+                      <button className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:text-teal-600 transition-all duration-300">
+                        <span className="relative">
+                          READ MORE
+                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-300" />
                       </button>
                     </div>
                   </div>
