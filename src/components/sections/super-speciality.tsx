@@ -37,7 +37,7 @@ export function SuperSpeciality() {
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
   const [currentDoctorIndex, setCurrentDoctorIndex] = useState<Record<number, number>>({});
 
-  // Set up auto-sliding for departments with multiple doctors
+  // Auto-sliding for doctors
   useEffect(() => {
     const intervalIds: NodeJS.Timeout[] = [];
     
@@ -48,13 +48,11 @@ export function SuperSpeciality() {
             ...prev,
             [speciality.id]: ((prev[speciality.id] || 0) + 1) % speciality.doctors.length
           }));
-        }, 3000); // Slide every 3 seconds
-        
+        }, 3000);
         intervalIds.push(intervalId);
       }
     });
 
-    // Clean up intervals on component unmount
     return () => {
       intervalIds.forEach(id => clearInterval(id));
     };
@@ -100,7 +98,7 @@ export function SuperSpeciality() {
       description: 'Advanced neurosurgical procedures for brain, spine, and peripheral nervous system disorders.',
       detailedDescription: 'The Department of Neurosurgery at Government Medical College & Rajindra Hospital, Patiala is dedicated to delivering advanced surgical care for disorders of the brain, spinal cord, peripheral nerves, and skull. Our experts handle a wide spectrum of neurosurgical conditions — including head and spinal trauma, congenital anomalies, brain tumors, hydrocephalus, spinal disorders, neurovascular conditions, and critical neurological emergencies. Equipped with modern operation theatres and diagnostic imaging support, the department combines precise surgical skills with compassionate, patient-centered care.',
       color: 'text-purple-600',
-      image: '',
+      image: '/images/neuro-surgery.jpg',
       services: [
         'Brain tumor surgery',
         'Spinal surgery',
@@ -114,7 +112,6 @@ export function SuperSpeciality() {
           designation: 'Associate Professors',
           image: '/images/ss/harish_kumar.jpg'
         },
-        
       ]
     },
     {
@@ -124,7 +121,7 @@ export function SuperSpeciality() {
       description: 'Comprehensive cancer surgery with multidisciplinary approach for optimal patient outcomes.',
       detailedDescription: 'The Department of Surgical Oncology at GMC & Rajindra Hospital, Patiala is committed to providing comprehensive surgical care in the diagnosis, treatment, and management of cancer. Our skilled surgical oncologists perform complex operations for a wide variety of tumors, including breast, gastrointestinal, head & neck, skin, soft tissue, and other malignancies. With access to modern operating theatres, multidisciplinary collaboration and a patient-centric approach, the department aims to deliver the best possible outcomes while ensuring compassionate care.',
       color: 'text-green-600',
-      image: '',
+      image: '/images/surgical-oncology.jpg',
       services: [
         'Complex tumor resections',
         'Oncoplastic surgery',
@@ -138,7 +135,6 @@ export function SuperSpeciality() {
           designation: 'Assistant Professor',
           image: '/images/surgical-oncology.jpg'
         },
-        
       ]
     },
     {
@@ -160,7 +156,7 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Anumeet Bagga', 
           designation: 'Assistant Professor',
-          image: ''
+          image: '/images/ss/anumeet_bagga.jpg'
         }
       ]
     },
@@ -183,9 +179,8 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Harbhupinder Sandhu', 
           designation: 'Assistant Professor',
-          image: ''
+          image: '/images/ss/harbhupinder.jpg'
         }
-      
       ]
     },
     {
@@ -207,7 +202,7 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Ojaswi', 
           designation: 'Assistant Professor',
-          image: ''
+          image: '/images/ss/ojaswi.jpg'
         }
       ]
     }
@@ -217,7 +212,7 @@ export function SuperSpeciality() {
 
   return (
     <section id="super-speciality" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-      {/* Background Image with 30% opacity */}
+      {/* Background Image */}
       <div className="absolute inset-0 opacity-30 bg-cover bg-center" style={{ backgroundImage: 'url(/111.png)' }}></div>
 
       <div className="container mx-auto px-4 relative">
@@ -230,7 +225,6 @@ export function SuperSpeciality() {
             </span>
             <div className="w-16 h-1 bg-teal-500"></div>
           </div>
-          
           <h2 className="text-4xl md:text-5xl font-bold text-blue-950 leading-tight mb-4">
             Super Speciality Wings
           </h2>
@@ -241,22 +235,19 @@ export function SuperSpeciality() {
 
         {/* Specialities Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {specialities.map((speciality) => (
+          {specialities.map((speciality, idx) => (
             <div
               key={speciality.id}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden"
             >
-              {/* Content First */}
               <div className="p-6">
-                {/* Department Name - Centered */}
                 <h3 className="text-xl font-bold text-blue-950 mb-4 group-hover:text-teal-600 transition-colors duration-300 text-center uppercase">
                   {speciality.name}
                 </h3>
 
-                {/* Doctors - with slider for 2+ doctors */}
+                {/* Doctors */}
                 {speciality.doctors.length > 1 ? (
                   <div className="relative mb-6">
-                    {/* Slider Container */}
                     <div className="overflow-hidden">
                       <div 
                         className="flex transition-transform duration-500 ease-in-out"
@@ -264,18 +255,19 @@ export function SuperSpeciality() {
                       >
                         {speciality.doctors.map((doctor, doctorIndex) => (
                           <div key={doctorIndex} className="min-w-full flex flex-col items-center">
-                            {/* Doctor Image - Increased Vertical Height */}
                             <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                               <Image
-                                  src={doctor.image || speciality.image || '/placeholder-doctor.svg'}
-                                  alt={doctor.name}
-                                  width={320}
-                                  height={320}
-                                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                                  onError={() => handleImageError(doctorIndex)}
-                                />
+                                src={doctor.image || speciality.image || '/placeholder-doctor.svg'}
+                                alt={doctor.name}
+                                width={320}
+                                height={320}
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                                onError={() => handleImageError(doctorIndex)}
+                                loading="lazy"
+                                priority={idx < 2} // First 2 departments load faster
+                              />
                             </div>
-                            {/* Doctor Name and Designation - Below Image */}
                             <div className="text-center">
                               <p className="font-semibold text-blue-900 text-lg">{doctor.name}</p>
                               <p className="text-sm text-gray-600">{doctor.designation}</p>
@@ -284,65 +276,22 @@ export function SuperSpeciality() {
                         ))}
                       </div>
                     </div>
-                    
-                    {/* Navigation Buttons */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setCurrentDoctorIndex(prev => ({
-                          ...prev,
-                          [speciality.id]: ((prev[speciality.id] || 0) - 1 + speciality.doctors.length) % speciality.doctors.length
-                        }));
-                      }}
-                      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-teal-50 transition-colors border border-gray-100"
-                    >
-                      <ArrowLeft className="w-5 h-5 text-teal-600" />
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setCurrentDoctorIndex(prev => ({
-                          ...prev,
-                          [speciality.id]: ((prev[speciality.id] || 0) + 1) % speciality.doctors.length
-                        }));
-                      }}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-teal-50 transition-colors border border-gray-100"
-                    >
-                      <ArrowRight className="w-5 h-5 text-teal-600" />
-                    </button>
-                    
-                    {/* Slider Indicators */}
-                    <div className="flex justify-center gap-2 mt-4">
-                      {speciality.doctors.map((_, idx) => (
-                        <button
-                          key={idx}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setCurrentDoctorIndex(prev => ({
-                              ...prev,
-                              [speciality.id]: idx
-                            }));
-                          }}
-                          className={`w-2 h-2 rounded-full transition-all ${idx === (currentDoctorIndex[speciality.id] || 0) ? 'w-6 bg-teal-500' : 'bg-gray-300'}`}
-                          aria-label={`View doctor ${idx + 1}`}
-                        />
-                      ))}
-                    </div>
                   </div>
                 ) : (
                   <div className="flex flex-col items-center mb-6">
-                    {/* Doctor Image - Increased Vertical Height */}
-                      <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
+                    <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                       <Image
-                          src={speciality.doctors[0].image || speciality.image || '/placeholder-doctor.svg'}
-                          alt={speciality.doctors[0].name}
-                          width={320}
-                          height={320}
-                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                          onError={() => handleImageError(0)}
-                        />
+                        src={speciality.doctors[0].image || speciality.image || '/placeholder-doctor.svg'}
+                        alt={speciality.doctors[0].name}
+                        width={320}
+                        height={320}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        onError={() => handleImageError(0)}
+                        loading="lazy"
+                        priority={idx < 2}
+                      />
                     </div>
-                    {/* Doctor Name and Designation - Below Image */}
                     <div className="text-center">
                       <p className="font-semibold text-blue-900 text-lg">{speciality.doctors[0].name}</p>
                       <p className="text-sm text-gray-600">{speciality.doctors[0].designation}</p>
@@ -350,17 +299,13 @@ export function SuperSpeciality() {
                   </div>
                 )}
 
-                {/* Description with Flex Spacer to align buttons */}
                 <div className="flex flex-col flex-grow">
                   <p className="text-sm text-gray-600 leading-relaxed mb-4">
                     {speciality.description}
                   </p>
-                  
-                  {/* Spacer to push button to bottom */}
                   <div className="flex-grow"></div>
                 </div>
-                
-                {/* Learn More Button - Ensured same level across all cards */}
+
                 <button
                   onClick={() => setSelectedSpeciality(speciality)}
                   className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
@@ -372,50 +317,9 @@ export function SuperSpeciality() {
             </div>
           ))}
         </div>
-
-        {/* Stats Section with Zoom and Color Effects */}
-        <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="group transform transition-all duration-300 hover:scale-110">
-              <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                6
-              </div>
-              <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
-                Super Specialities
-              </div>
-            </div>
-            
-            <div className="group transform transition-all duration-300 hover:scale-110">
-              <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-green-600 transition-colors duration-300">
-                27+
-              </div>
-              <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
-                Specialist Doctors
-              </div>
-            </div>
-            
-            <div className="group transform transition-all duration-300 hover:scale-110">
-              <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-purple-600 transition-colors duration-300">
-                1000+
-              </div>
-              <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
-                Complex Surgeries/Year
-              </div>
-            </div>
-            
-            <div className="group transform transition-all duration-300 hover:scale-110">
-              <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-orange-600 transition-colors duration-300">
-                24/7
-              </div>
-              <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">
-                Emergency Care
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
-      {/* Modal for Speciality Details */}
+      {/* Modal */}
       {selectedSpeciality && (
         <div 
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -432,7 +336,6 @@ export function SuperSpeciality() {
               <X className="w-6 h-6 text-gray-800" />
             </button>
             
-            {/* Modal Header with Speciality Name */}
             <div className="p-6 border-b border-gray-100">
               <div className="flex items-center gap-3">
                 <div className={`w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md border-2 ${selectedSpeciality.color.replace('text-', 'border-')}`}>
@@ -442,23 +345,22 @@ export function SuperSpeciality() {
               </div>
             </div>
 
-            {/* Doctors Section with Larger Photos */}
+            {/* Doctors Section */}
             <div className="p-6 border-b border-gray-100">
               <h4 className="text-xl font-bold text-blue-950 mb-6">Our Specialist Doctors</h4>
               <div className={`grid gap-8 ${selectedSpeciality.doctors.length === 1 ? 'grid-cols-1 justify-items-center' : 'grid-cols-1 md:grid-cols-2'}`}>
                 {selectedSpeciality.doctors.map((doctor, index) => (
-                  <div key={index} className={`flex flex-col items-center text-center ${selectedSpeciality.doctors.length === 1 ? 'max-w-sm' : ''}`}>
-                    {/* Doctor Image Container - Large Size with Zoom Effect */}
+                  <div key={index} className="flex flex-col items-center text-center">
                     <div className="relative w-48 h-48 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg mb-4 group">
                       <Image
-                        src={doctor.image || selectedSpeciality.image}
+                        src={doctor.image || selectedSpeciality.image || '/placeholder-doctor.svg'}
                         alt={doctor.name}
                         fill
+                        sizes="200px"
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
                       />
                     </div>
-                    
-                    {/* Doctor Details Below Photo */}
                     <div className="flex-1 min-w-0">
                       <div className="font-bold text-blue-900 text-lg mb-1">{doctor.name}</div>
                       <div className="text-sm text-gray-700 leading-tight">{doctor.designation}</div>
@@ -468,24 +370,19 @@ export function SuperSpeciality() {
               </div>
             </div>
 
-            {/* Content Section */}
+            {/* Details */}
             <div className="p-6">
-              {/* Brief Description */}
               <div className="bg-blue-50 rounded-xl p-4 border border-blue-100 mb-6">
                 <p className="text-sm text-gray-700 italic">
                   {selectedSpeciality.description}
                 </p>
               </div>
-
-              {/* Detailed Description */}
               <div className="mb-6">
                 <h4 className="text-xl font-bold text-blue-950 mb-4">About {selectedSpeciality.name}</h4>
                 <p className="text-gray-700 leading-relaxed text-justify">
                   {selectedSpeciality.detailedDescription}
                 </p>
               </div>
-              
-              {/* Services Section */}
               <div>
                 <h4 className="text-xl font-bold text-blue-950 mb-4">Our Services Include:</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
