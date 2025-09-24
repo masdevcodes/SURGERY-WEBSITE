@@ -124,7 +124,7 @@ export function SuperSpeciality() {
       description: 'Comprehensive cancer surgery with multidisciplinary approach for optimal patient outcomes.',
       detailedDescription: 'The Department of Surgical Oncology at GMC & Rajindra Hospital, Patiala is committed to providing comprehensive surgical care in the diagnosis, treatment, and management of cancer. Our skilled surgical oncologists perform complex operations for a wide variety of tumors, including breast, gastrointestinal, head & neck, skin, soft tissue, and other malignancies. With access to modern operating theatres, multidisciplinary collaboration and a patient-centric approach, the department aims to deliver the best possible outcomes while ensuring compassionate care.',
       color: 'text-green-600',
-      image: '/images/ss/teg_rabab.jpg/',
+      image: '',
       services: [
         'Complex tumor resections',
         'Oncoplastic surgery',
@@ -136,7 +136,7 @@ export function SuperSpeciality() {
         { 
           name: 'Dr. Anubha Garg', 
           designation: 'Assistant Professor',
-          image: ''
+          image: '/images/surgical-oncology.jpg'
         },
         
       ]
@@ -159,7 +159,7 @@ export function SuperSpeciality() {
       doctors: [
         { 
           name: 'Dr. Anumeet Bagga', 
-          designation: 'Head of CVTS Department',
+          designation: 'Assistant Professor',
           image: ''
         }
       ]
@@ -182,7 +182,7 @@ export function SuperSpeciality() {
       doctors: [
         { 
           name: 'Dr. Harbhupinder Sandhu', 
-          designation: 'Professor & Principal',
+          designation: 'Assistant Professor',
           image: ''
         }
       
@@ -206,7 +206,7 @@ export function SuperSpeciality() {
       doctors: [
         { 
           name: 'Dr. Ojaswi', 
-          designation: 'Consultant Plastic Surgeon',
+          designation: 'Assistant Professor',
           image: ''
         }
       ]
@@ -244,17 +244,14 @@ export function SuperSpeciality() {
           {specialities.map((speciality) => (
             <div
               key={speciality.id}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden flex flex-col"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden"
             >
               {/* Content First */}
-              <div className="p-6 flex flex-col flex-grow">
+              <div className="p-6">
                 {/* Department Name - Centered */}
                 <h3 className="text-xl font-bold text-blue-950 mb-4 group-hover:text-teal-600 transition-colors duration-300 text-center">
                   {speciality.name}
                 </h3>
-                
-                {/* Flex container for all content except button */}
-                <div className="flex flex-col flex-grow">
 
                 {/* Doctors - with slider for 2+ doctors */}
                 {speciality.doctors.length > 1 ? (
@@ -270,7 +267,7 @@ export function SuperSpeciality() {
                             {/* Doctor Image - Increased Vertical Height */}
                             <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                               <Image
-                                  src={doctor.image || speciality.image || ''}
+                                  src={doctor.image || speciality.image || '/placeholder-doctor.svg'}
                                   alt={doctor.name}
                                   width={320}
                                   height={320}
@@ -337,7 +334,7 @@ export function SuperSpeciality() {
                     {/* Doctor Image - Increased Vertical Height */}
                       <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                       <Image
-                          src={speciality.doctors[0].image || speciality.image || ''}
+                          src={speciality.doctors[0].image || speciality.image || '/placeholder-doctor.svg'}
                           alt={speciality.doctors[0].name}
                           width={320}
                           height={320}
@@ -353,14 +350,14 @@ export function SuperSpeciality() {
                   </div>
                 )}
 
-                {/* Description */}
-                <div className="mt-auto">
+                {/* Description with Flex Spacer to align buttons */}
+                <div className="flex flex-col flex-grow">
                   <p className="text-sm text-gray-600 leading-relaxed mb-4">
                     {speciality.description}
                   </p>
-                </div>
-              
-                {/* Closing div for content container */}
+                  
+                  {/* Spacer to push button to bottom */}
+                  <div className="flex-grow"></div>
                 </div>
                 
                 {/* Learn More Button - Ensured same level across all cards */}
