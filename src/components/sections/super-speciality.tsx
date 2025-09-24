@@ -264,7 +264,7 @@ export function SuperSpeciality() {
                                 sizes="(max-width: 768px) 100vw, 33vw"
                                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                                 onError={() => handleImageError(doctorIndex)}
-                                loading="priority"
+                                loading="lazy"
                                 priority={idx < 2} // First 2 departments load faster
                               />
                             </div>
@@ -281,16 +281,16 @@ export function SuperSpeciality() {
                   <div className="flex flex-col items-center mb-6">
                     <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                       <Image
-                        src={speciality.doctors[0].image || speciality.image || '/placeholder-doctor.svg'}
-                        alt={speciality.doctors[0].name}
-                        width={320}
-                        height={320}
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                        onError={() => handleImageError(0)}
-                        loading="lazy"
-                        priority={idx < 2}
-                      />
+  src={doctor.image || speciality.image || '/placeholder-doctor.svg'}
+  alt={doctor.name}
+  width={320}
+  height={320}
+  sizes="(max-width: 768px) 100vw, 33vw"
+  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+  onError={() => handleImageError(doctorIndex)}
+  {...(idx < 2 ? { priority: true } : { loading: 'lazy' })} // priority for first 2 departments, lazy for others
+/>
+
                     </div>
                     <div className="text-center">
                       <p className="font-semibold text-blue-900 text-lg">{speciality.doctors[0].name}</p>
