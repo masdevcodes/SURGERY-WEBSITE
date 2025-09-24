@@ -14,7 +14,6 @@ import { History } from '@/components/sections/history';
 import { Events } from '@/components/sections/events';
 import { Contact } from '@/components/sections/contact';
 import { Footer } from '@/components/sections/footer';
-import { Visitors } from '@/components/sections/visitors';
 
 export default function Home() {
   return (
@@ -34,7 +33,6 @@ export default function Home() {
         <Achievements />
         <Events />
         <Testimonial />
-        <Visitors />
         <Contact />
       </main>
       <Footer />
