@@ -115,9 +115,9 @@ export function Testimonial() {
           </a>
         </div>
 
-        {/* NOTE: Latest Videos section is disabled for testing - enable during website launch */}
-        {/* Uncomment  the following section when ready to launch the website */}
-        {
+        {/* NOTE: Latest Videos  section is disabled for testing - enable during website launch */}
+        {/* Uncomment the following section when ready to launch the website */}
+        {/*
         {videos.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12">
             {videos.map((video) => (
