@@ -55,45 +55,6 @@ function ServiceCard({ service, onSelect }: { service: any; onSelect: (service: 
   );
 }
 
-// Optimized Image Component
-const OptimizedImage = ({ 
-  src, 
-  alt, 
-  fill = false, 
-  sizes = "100vw",
-  quality = 75,
-  priority = false,
-  className = "",
-  ...props 
-}: any) => {
-  const [imageSrc, setImageSrc] = useState(src);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const handleError = () => {
-    setImageSrc('/images/placeholder-medical.jpg');
-  };
-
-  return (
-    <div className={`relative ${isLoading ? 'bg-gray-200 animate-pulse' : ''}`}>
-      <Image
-        src={imageSrc}
-        alt={alt}
-        fill={fill}
-        sizes={sizes}
-        quality={quality}
-        priority={priority}
-        className={`${className} transition-opacity duration-300 ${
-          isLoading ? 'opacity-0' : 'opacity-100'
-        }`}
-        onLoad={() => setIsLoading(false)}
-        onError={handleError}
-        loading={priority ? "eager" : "lazy"}
-        {...props}
-      />
-    </div>
-  );
-};
-
 export function Services() {
   const services = [
     {
@@ -115,7 +76,7 @@ The Department of General Surgery at Government Medical College and Rajindra Hos
 This landmark surgery, conducted for the first time in Punjab, posed significant challenges due to the reversed anatomy, requiring precise preoperative planning, modified port placement, and advanced laparoscopic expertise. Despite the complexity, the procedure was carried out smoothly, with excellent patient recovery.
 
 Speaking about this achievement, Prof. Dr. Ashwani Kumar, Head of the Department of General Surgery and lead surgeon for the case, said:
-"Performing this rare and technically demanding surgery for the first time in Punjab is a matter of immense pride for our department and institution. The mirror-image anatomy of situs inversus presented unique challenges, but with meticulous planning and teamwork, we were able to achieve an excellent outcome. This success reflects our commitment to innovation and excellence in surgical care."
+“Performing this rare and technically demanding surgery for the first time in Punjab is a matter of immense pride for our department and institution. The mirror-image anatomy of situs inversus presented unique challenges, but with meticulous planning and teamwork, we were able to achieve an excellent outcome. This success reflects our commitment to innovation and excellence in surgical care.”
 
 This milestone marks a proud moment for GMC Patiala, establishing it as a pioneer in advanced minimally invasive surgery and setting new standards of excellence in the state.
           </p>
@@ -139,9 +100,9 @@ This milestone marks a proud moment for GMC Patiala, establishing it as a pionee
 The live demonstration highlighted the advanced endoscopic techniques, precise dissection, and cosmetic advantages of this approach. Participants observed the meticulous steps of the surgery, emphasizing patient safety, reduced postoperative discomfort, and excellent aesthetic outcomes.
 
 Speaking during the CME, Prof. Dr. Ashwani Kumar, Head of the Department of General Surgery, said:
-"This session provided a unique opportunity for surgeons and trainees to witness cutting-edge minimally invasive thyroid surgery. Techniques like the axillary approach represent the future of patient-friendly surgical care, combining safety with superior cosmetic results."
+“This session provided a unique opportunity for surgeons and trainees to witness cutting-edge minimally invasive thyroid surgery. Techniques like the axillary approach represent the future of patient-friendly surgical care, combining safety with superior cosmetic results.”
 
-The event reinforced GMC Patiala's commitment to surgical innovation, education, and excellence in patient care, offering hands-on learning to medical professionals across the region.
+The event reinforced GMC Patiala’s commitment to surgical innovation, education, and excellence in patient care, offering hands-on learning to medical professionals across the region.
           </p>
         </div>
       ),
@@ -163,9 +124,9 @@ The event reinforced GMC Patiala's commitment to surgical innovation, education,
 This minimally invasive procedure involved the precise removal of the adrenal gland, providing significant benefits such as reduced postoperative pain, shorter hospital stay, faster recovery, and minimal scarring. The surgery showcased meticulous preoperative planning, advanced laparoscopic expertise, and a strong focus on patient safety.
 
 Dr. Ashwani Kumar commented:
-"Laparoscopic adrenalectomy is a significant step forward in endocrine surgery, allowing safe and effective management of adrenal tumors with minimal discomfort to the patient. Our team, in close coordination with the Medicine department, is proud to perform this procedure successfully, reinforcing our commitment to excellence in surgical care."
+“Laparoscopic adrenalectomy is a significant step forward in endocrine surgery, allowing safe and effective management of adrenal tumors with minimal discomfort to the patient. Our team, in close coordination with the Medicine department, is proud to perform this procedure successfully, reinforcing our commitment to excellence in surgical care.”
 
-This achievement highlights the Department of Surgery's expertise in advanced minimally invasive procedures and strengthens GMC Patiala's position as a leading center for surgical innovation.
+This achievement highlights the Department of Surgery’s expertise in advanced minimally invasive procedures and strengthens GMC Patiala’s position as a leading center for surgical innovation.
           </p>
         </div>
       ),
@@ -187,9 +148,9 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
 This minimally invasive procedure, performed using advanced laparoscopic techniques, enables the safe removal of the uterus with smaller incisions, reduced postoperative pain, faster recovery, and minimal scarring. The surgery highlighted meticulous planning, precision, and a strong emphasis on patient safety.
 
 Dr. Ashwani Kumar said:
-"Laparoscopic hysterectomy is a significant step forward in gynecological surgery. It allows for effective management of uterine conditions while ensuring patient comfort and quicker recovery. Our team takes pride in performing this procedure successfully, reflecting our commitment to excellence in surgical care."
+“Laparoscopic hysterectomy is a significant step forward in gynecological surgery. It allows for effective management of uterine conditions while ensuring patient comfort and quicker recovery. Our team takes pride in performing this procedure successfully, reflecting our commitment to excellence in surgical care.”
 
-This milestone showcases the Department of Surgery's expertise in minimally invasive procedures and reinforces GMC Patiala's position as a center of surgical innovation and patient-centered care.
+This milestone showcases the Department of Surgery’s expertise in minimally invasive procedures and reinforces GMC Patiala’s position as a center of surgical innovation and patient-centered care.
           </p>
         </div>
       ),
@@ -211,9 +172,9 @@ This milestone showcases the Department of Surgery's expertise in minimally inva
 This minimally invasive procedure involves using radiofrequency energy to close diseased veins, providing an effective alternative to conventional vein surgery. The technique offers benefits such as minimal pain, faster recovery, reduced hospital stay, and excellent cosmetic results. The surgery demonstrated meticulous planning, precise execution, and a strong focus on patient safety.
 
 Dr. Ashwani Kumar stated:
-"Radio Frequency Ablation is a significant advancement in the management of varicose veins. It allows patients to recover quickly while minimizing discomfort and scarring. Our team is proud to offer this state-of-the-art procedure at GMC Patiala, reflecting our commitment to modern, patient-centered surgical care."
+“Radio Frequency Ablation is a significant advancement in the management of varicose veins. It allows patients to recover quickly while minimizing discomfort and scarring. Our team is proud to offer this state-of-the-art procedure at GMC Patiala, reflecting our commitment to modern, patient-centered surgical care.”
 
-This achievement highlights the Department of Surgery's expertise in advanced minimally invasive procedures and reinforces GMC Patiala's position as a center of excellence in innovative surgical treatments.
+This achievement highlights the Department of Surgery’s expertise in advanced minimally invasive procedures and reinforces GMC Patiala’s position as a center of excellence in innovative surgical treatments.
           </p>
         </div>
       ),
@@ -222,7 +183,6 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
 
   const [selectedService, setSelectedService] = useState<any>(null);
   const [showAllModal, setShowAllModal] = useState(false);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const rightSideRef = useRef<HTMLDivElement>(null);
   const [rightSideHeight, setRightSideHeight] = useState(0);
 
@@ -234,35 +194,12 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Preload images for faster transitions
+  // Preload carousel images for faster transitions
   useEffect(() => {
-    const preloadImages = async () => {
-      const allImages = [
-        ...carouselImages,
-        ...services.map(service => service.banner),
-        '/111.png'
-      ].filter(src => src);
-
-      const imagePromises = allImages.map((src) => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.src = src;
-          img.onload = () => {
-            setLoadedImages(prev => new Set(prev.add(src)));
-            resolve(src);
-          };
-          img.onerror = reject;
-        });
-      });
-
-      try {
-        await Promise.all(imagePromises);
-      } catch (error) {
-        console.warn('Some images failed to preload:', error);
-      }
-    };
-
-    preloadImages();
+    carouselImages.forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+    });
   }, []);
 
   // Update right side height on resize and after initial render
@@ -302,12 +239,13 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
-        <OptimizedImage
+        <Image
           src="/111.png"
           alt="Surgical team in operating room"
           fill
           className="object-cover"
-          quality={40}
+          loading="lazy"
+          quality={60}
           sizes="100vw"
           priority={false}
         />
@@ -322,14 +260,16 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
               className="relative rounded-2xl overflow-hidden shadow-2xl group"
               style={{ height: `${rightSideHeight}px` }}
             >
-              <OptimizedImage
+              <Image
                 src={carouselImages[currentImageIndex]}
                 alt={`Doctor consulting with patient ${currentImageIndex + 1}`}
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                quality={70}
+                quality={75}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                 priority={true}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
@@ -415,12 +355,13 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
             >
               {/* Banner */}
               <div className="w-full h-64 relative">
-                <OptimizedImage
+                <Image
                   src={selectedService.banner}
                   alt={`${selectedService.title} Banner`}
                   fill
                   className="object-cover rounded-t-lg"
-                  quality={80}
+                  loading="eager"
+                  quality={70}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
                   priority={true}
                 />
@@ -476,13 +417,16 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
                   >
                     {/* Banner Image */}
                     <div className="h-48 relative overflow-hidden">
-                      <OptimizedImage
+                      <Image
                         src={service.banner}
                         alt={service.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
                         quality={65}
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
