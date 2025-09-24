@@ -31,7 +31,7 @@ export function Testimonial() {
         if (res.ok && data.channelStats) {
           setChannelStats(data.channelStats);
           // NOTE: Video preview is disabled for testing - enable during website launch
-          // setVideos(data.latestVideos || []);
+          setVideos(data.latestVideos || []);
         } else {
           throw new Error("API error");
         }
@@ -44,11 +44,11 @@ export function Testimonial() {
         });
         // NOTE: Video preview is disabled for testing - enable during website launch
         // setVideos([
-        { id: "abc1", title: "Surgical Procedures Overview", thumbnail: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-          { id: "abc2", title: "Patient Care Excellence", thumbnail: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-          { id: "abc3", title: "Advanced Medical Technology", thumbnail: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-          { id: "abc4", title: "Department Tour", thumbnail: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-         ]);
+         { id: "abc1", title: "Surgical Procedures Overview", thumbnail: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+        { id: "abc2", title: "Patient Care Excellence", thumbnail: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+        { id: "abc3", title: "Advanced Medical Technology", thumbnail: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+        { id: "abc4", title: "Department Tour", thumbnail: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+        ]);
       } finally {
         setLoading(false);
       }
@@ -115,7 +115,7 @@ export function Testimonial() {
           </a>
         </div>
 
-        {/* NOTE: Latest Videos  section is disabled for testing - enable during website launch */}
+        {/* NOTE: Latest Videos section is disabled for testing - enable during website launch */}
         {/* Uncomment the following section when ready to launch the website */}
         {/*
         {videos.length > 0 && (
