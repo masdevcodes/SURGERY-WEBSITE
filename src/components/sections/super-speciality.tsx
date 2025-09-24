@@ -244,14 +244,17 @@ export function SuperSpeciality() {
           {specialities.map((speciality) => (
             <div
               key={speciality.id}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-200 overflow-hidden flex flex-col"
             >
               {/* Content First */}
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 {/* Department Name - Centered */}
                 <h3 className="text-xl font-bold text-blue-950 mb-4 group-hover:text-teal-600 transition-colors duration-300 text-center">
                   {speciality.name}
                 </h3>
+                
+                {/* Flex container for all content except button */}
+                <div className="flex flex-col flex-grow">
 
                 {/* Doctors - with slider for 2+ doctors */}
                 {speciality.doctors.length > 1 ? (
@@ -264,8 +267,8 @@ export function SuperSpeciality() {
                       >
                         {speciality.doctors.map((doctor, doctorIndex) => (
                           <div key={doctorIndex} className="min-w-full flex flex-col items-center">
-                            {/* Doctor Image - Square and Larger Size */}
-                            <div className="w-full h-64 md:h-80 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
+                            {/* Doctor Image - Increased Vertical Height */}
+                            <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                               <Image
                                   src={doctor.image || speciality.image || '/placeholder-doctor.svg'}
                                   alt={doctor.name}
@@ -331,8 +334,8 @@ export function SuperSpeciality() {
                   </div>
                 ) : (
                   <div className="flex flex-col items-center mb-6">
-                    {/* Doctor Image - Square and Larger Size */}
-                    <div className="w-full h-64 md:h-80 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
+                    {/* Doctor Image - Increased Vertical Height */}
+                      <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                       <Image
                           src={speciality.doctors[0].image || speciality.image || '/placeholder-doctor.svg'}
                           alt={speciality.doctors[0].name}
@@ -350,12 +353,17 @@ export function SuperSpeciality() {
                   </div>
                 )}
 
-                {/* Small Description */}
-                <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                  {speciality.description}
-                </p>
+                {/* Description */}
+                <div className="mt-auto">
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    {speciality.description}
+                  </p>
+                </div>
+              
+                {/* Closing div for content container */}
+                </div>
                 
-                {/* Learn More Button */}
+                {/* Learn More Button - Ensured same level across all cards */}
                 <button
                   onClick={() => setSelectedSpeciality(speciality)}
                   className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
