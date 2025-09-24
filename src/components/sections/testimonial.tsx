@@ -24,12 +24,14 @@ export function Testimonial() {
   useEffect(() => {
     const fetchYouTubeData = async () => {
       try {
+        // TESTING: Fetch YouTube channel stats only
         const res = await fetch('/api/youtube');
         const data = await res.json();
 
         if (res.ok && data.channelStats) {
           setChannelStats(data.channelStats);
-          setVideos(data.latestVideos || []);
+          // NOTE: Video preview is disabled for testing - enable during website launch
+          // setVideos(data.latestVideos || []);
         } else {
           throw new Error("API error");
         }
@@ -40,12 +42,13 @@ export function Testimonial() {
           videoCount: "50+",
           viewCount: "250K",
         });
-        setVideos([
-          { id: "abc1", title: "Surgical Procedures Overview", thumbnail: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-          { id: "abc2", title: "Patient Care Excellence", thumbnail: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-          { id: "abc3", title: "Advanced Medical Technology", thumbnail: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-          { id: "abc4", title: "Department Tour", thumbnail: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-        ]);
+        // NOTE: Video preview is disabled for testing - enable during website launch
+        // setVideos([
+        //   { id: "abc1", title: "Surgical Procedures Overview", thumbnail: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+        //   { id: "abc2", title: "Patient Care Excellence", thumbnail: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+        //   { id: "abc3", title: "Advanced Medical Technology", thumbnail: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+        //   { id: "abc4", title: "Department Tour", thumbnail: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+        // ]);
       } finally {
         setLoading(false);
       }
@@ -112,7 +115,9 @@ export function Testimonial() {
           </a>
         </div>
 
-        {/* Latest Videos */}
+        {/* NOTE: Latest Videos section is disabled for testing - enable during website launch */}
+        {/* Uncomment the following section when ready to launch the website */}
+        {/*
         {videos.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12">
             {videos.map((video) => (
@@ -131,9 +136,10 @@ export function Testimonial() {
             ))}
           </div>
         )}
+        */}
       </div>
 
-      {/* Video Popup Modal */}
+      {/* Video Popup Modal - Keep functional but hidden since videos are disabled */}
       {selectedVideo && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
           <div className="relative bg-black rounded-xl max-w-4xl w-full aspect-video">
