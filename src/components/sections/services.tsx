@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image/super';
+import Image from 'next/image';
 import {
   ArrowRight,
   Heart,
