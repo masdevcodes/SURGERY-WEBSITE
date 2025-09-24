@@ -270,7 +270,7 @@ export function SuperSpeciality() {
                             {/* Doctor Image - Increased Vertical Height */}
                             <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                               <Image
-                                  src={doctor.image || speciality.image || '/placeholder-doctor.svg'}
+                                  src={doctor.image || speciality.image || ''}
                                   alt={doctor.name}
                                   width={320}
                                   height={320}
@@ -337,7 +337,7 @@ export function SuperSpeciality() {
                     {/* Doctor Image - Increased Vertical Height */}
                       <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                       <Image
-                          src={speciality.doctors[0].image || speciality.image || '/placeholder-doctor.svg'}
+                          src={speciality.doctors[0].image || speciality.image || ''}
                           alt={speciality.doctors[0].name}
                           width={320}
                           height={320}
