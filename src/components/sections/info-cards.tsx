@@ -85,129 +85,138 @@ export function InfoCards() {
       );
     }
   };
-
-  // ✅ Reusable modal
-  const Modal = ({
-    children,
-    onClose,
-  }: {
-    children: React.ReactNode;
-    onClose: () => void;
-  }) => (
+// ✅ Reusable modal with optimized image loading
+const Modal = ({
+  children,
+  onClose,
+}: {
+  children: React.ReactNode;
+  onClose: () => void;
+}) => (
+  <div
+    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+    onClick={onClose}
+  >
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-      onClick={onClose}
+      className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto p-8 relative"
+      onClick={stopPropagation}
     >
-      <div
-        className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto p-8 relative"
-        onClick={stopPropagation}
+      <button
+        type="button"
+        aria-label="Close modal"
+        className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 font-bold text-2xl"
+        onClick={onClose}
       >
-        <button
-          type="button"
-          aria-label="Close modal"
-          className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 font-bold text-2xl"
-          onClick={onClose}
-        >
-          ×
-        </button>
-        {children}
-      </div>
+        ×
+      </button>
+      {children}
     </div>
-  );
+  </div>
+);
 
-  function getModalContent(key: string) {
-    switch (key) {
-      case 'stoma':
-        return (
-          <div className="flex flex-col justify-center items-center text-center">
-            {/* Banner Image for Stoma Clinic */}
-            <div className="w-full mb-6">
-              <Image
-                src="/sto2.jpg"
-                alt="Stoma Clinic Banner"
-                width={1200}
-                height={400}
-                className="rounded-lg object-cover w-full h-64"
-              />
-            </div>
-
-            <h2 className="text-3xl font-bold mb-6">Stoma Clinic Details</h2>
-            <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
-              The Stoma Clinic at GMC Patiala functions as a dedicated service
-              within the Department of General Surgery, designed to address the
-              unique needs of patients living with stomas. It serves as a
-              one-stop facility where patients receive holistic care—covering
-              surgical follow-up, stoma site evaluation, and personalized advice
-              for daily management. Special attention is given to ensuring that
-              each patient is fitted with the most suitable appliance, thereby
-              minimizing discomfort and improving confidence in social and
-              personal life. The clinic also plays a vital role in identifying
-              and treating common stoma-related complications such as
-              infections, skin excoriations, or mechanical problems. Beyond the
-              physical aspects, the clinic recognizes the psychological and
-              social challenges faced by patients and provides supportive
-              counselling to ease their transition into a new lifestyle.
-              Nutrition counselling, lifestyle modification strategies, and
-              reintegration into normal routines are also emphasized to ensure
-              overall well-being. Regular review visits help maintain long-term
-              stoma health while allowing patients to seek solutions to any
-              difficulties they encounter. The clinic further acts as a teaching
-              platform for medical students and residents, highlighting the
-              principles of stoma care and patient rehabilitation. Through this
-              multidisciplinary and compassionate approach, the Stoma Clinic at
-              GMC Patiala ensures that every patient is cared for with dignity,
-              empathy, and expertise.
-            </p>
+function getModalContent(key: string) {
+  switch (key) {
+    case 'stoma':
+      return (
+        <div className="flex flex-col justify-center items-center text-center">
+          {/* Optimized Banner Image for Stoma Clinic */}
+          <div className="w-full mb-6">
+            <Image
+              src="/sto2.jpg"
+              alt="Stoma Clinic Banner"
+              width={1200}
+              height={400}
+              className="rounded-lg object-cover w-full h-64"
+              priority // Preload important image
+              quality={75} // Reduce quality for faster loading
+              placeholder="blur" // Add blur placeholder
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMkO0L2Q//9k="
+            />
           </div>
-        );
 
-      case 'breast':
-        return (
-          <div className="flex flex-col justify-center items-center text-center">
-            {/* Banner Image for Breast Clinic */}
-            <div className="w-full mb-6">
-              <Image
-                src="/bre1.jpeg"
-                alt="Breast Clinic Banner"
-                width={1200}
-                height={400}
-                className="rounded-lg object-cover w-full h-64"
-              />
-            </div>
+          <h2 className="text-3xl font-bold mb-6">Stoma Clinic Details</h2>
+          <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
+            The Stoma Clinic at GMC Patiala functions as a dedicated service
+            within the Department of General Surgery, designed to address the
+            unique needs of patients living with stomas. It serves as a
+            one-stop facility where patients receive holistic care—covering
+            surgical follow-up, stoma site evaluation, and personalized advice
+            for daily management. Special attention is given to ensuring that
+            each patient is fitted with the most suitable appliance, thereby
+            minimizing discomfort and improving confidence in social and
+            personal life. The clinic also plays a vital role in identifying
+            and treating common stoma-related complications such as
+            infections, skin excoriations, or mechanical problems. Beyond the
+            physical aspects, the clinic recognizes the psychological and
+            social challenges faced by patients and provides supportive
+            counselling to ease their transition into a new lifestyle.
+            Nutrition counselling, lifestyle modification strategies, and
+            reintegration into normal routines are also emphasized to ensure
+            overall well-being. Regular review visits help maintain long-term
+            stoma health while allowing patients to seek solutions to any
+            difficulties they encounter. The clinic further acts as a teaching
+            platform for medical students and residents, highlighting the
+            principles of stoma care and patient rehabilitation. Through this
+            multidisciplinary and compassionate approach, the Stoma Clinic at
+            GMC Patiala ensures that every patient is cared for with dignity,
+            empathy, and expertise.
+          </p>
+        </div>
+      );
 
-            <h2 className="text-3xl font-bold mb-6">Breast Clinic Details</h2>
-            <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
-              The Breast Clinic at GMC Patiala, under the Department of General
-              Surgery, is a dedicated service aimed at providing comprehensive
-              care for patients with breast diseases. It caters to a wide
-              spectrum of conditions including benign breast disorders,
-              infections, fibroadenomas, and breast malignancies. A strong
-              emphasis is placed on early detection of breast cancer through
-              clinical breast examination, mammography, ultrasound, and guided
-              biopsies. The clinic provides a structured diagnostic pathway
-              ensuring accurate evaluation and timely intervention. Patients
-              receive individualized treatment plans, whether surgical, medical,
-              or combined, based on their diagnosis and stage of disease.
-              Counselling sessions are conducted to help patients understand
-              their condition, available treatment options, and expected
-              outcomes. Preventive strategies such as breast self-examination
-              training and awareness programs are also integrated into the
-              clinic's routine. Postoperative follow-up and rehabilitation,
-              including wound care and lymphedema management, are actively
-              supported. The clinic also provides psychological and emotional
-              support, recognizing the significant impact breast diseases can
-              have on self-image and quality of life. By combining advanced
-              diagnostic tools, multidisciplinary treatment, and patient-focused
-              counselling, the Breast Clinic at GMC Patiala strives to deliver
-              holistic care with compassion and excellence.
-            </p>
+    case 'breast':
+      return (
+        <div className="flex flex-col justify-center items-center text-center">
+          {/* Optimized Banner Image for Breast Clinic */}
+          <div className="w-full mb-6">
+            <Image
+              src="/bre1.jpeg"
+              alt="Breast Clinic Banner"
+              width={1200}
+              height={400}
+              className="rounded-lg object-cover w-full h-64"
+              priority // Preload important image
+              quality={75} // Reduce quality for faster loading
+              placeholder="blur" // Add blur placeholder
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMkO0L2Q//9k="
+            />
           </div>
-        );
 
-      default:
-        return null;
-    }
+          <h2 className="text-3xl font-bold mb-6">Breast Clinic Details</h2>
+          <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
+            The Breast Clinic at GMC Patiala, under the Department of General
+            Surgery, is a dedicated service aimed at providing comprehensive
+            care for patients with breast diseases. It caters to a wide
+            spectrum of conditions including benign breast disorders,
+            infections, fibroadenomas, and breast malignancies. A strong
+            emphasis is placed on early detection of breast cancer through
+            clinical breast examination, mammography, ultrasound, and guided
+            biopsies. The clinic provides a structured diagnostic pathway
+            ensuring accurate evaluation and timely intervention. Patients
+            receive individualized treatment plans, whether surgical, medical,
+            or combined, based on their diagnosis and stage of disease.
+            Counselling sessions are conducted to help patients understand
+            their condition, available treatment options, and expected
+            outcomes. Preventive strategies such as breast self-examination
+            training and awareness programs are also integrated into the
+            clinic's routine. Postoperative follow-up and rehabilitation,
+            including wound care and lymphedema management, are actively
+            supported. The clinic also provides psychological and emotional
+            support, recognizing the significant impact breast diseases can
+            have on self-image and quality of life. By combining advanced
+            diagnostic tools, multidisciplinary treatment, and patient-focused
+            counselling, the Breast Clinic at GMC Patiala strives to deliver
+            holistic care with compassion and excellence.
+          </p>
+        </div>
+      );
+
+    default:
+      return null;
   }
+}
+  
+  
 
   // Clinic card data - makes it easier to reorder
   const clinicCards = {
