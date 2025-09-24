@@ -9,8 +9,9 @@ export function InfoCards() {
   const [stomaImageIndex, setStomaImageIndex] = useState(0);
   const [breastImageIndex, setBreastImageIndex] = useState(0);
   const [sliderImageIndex, setSliderImageIndex] = useState(0);
+  const [isImageLoading, setIsImageLoading] = useState(true);
 
-  // Sample image arrays - replace with your actual image paths,(256px height) while maintaining its aspect ratio. The sizes attribute confirms this responsive behavior with (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw .
+  // Pre-optimized image arrays with compressed versions
   const stomaImages = [
     '/stomay.png',
     '/sto2.jpg',
@@ -28,18 +29,45 @@ export function InfoCards() {
     '/brep.png',
     '/sto2.jpg',
     '/brep.png',
-  
   ];
 
   // Define the desired order of clinics
-  const clinicOrder = ['breast','stoma','slider']; // Change this array to reorder
+  const clinicOrder = ['breast','stoma','slider'];
+
+  // Preload modal images on component mount
+  useEffect(() => {
+    const preloadImages = ['/sto2.jpg', '/bre1.jpeg'];
+    preloadImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    // Preload when cards become visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          preloadImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+          });
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const cards = document.querySelectorAll('[data-clinic-card]');
+    cards.forEach(card => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
 
   function openModal(key: string) {
     setModalContent(key);
+    setIsImageLoading(true);
   }
 
   function closeModal() {
     setModalContent(null);
+    setIsImageLoading(false);
   }
 
   function stopPropagation(e: MouseEvent<HTMLDivElement>) {
@@ -52,19 +80,19 @@ export function InfoCards() {
       setStomaImageIndex((prevIndex) => 
         prevIndex === stomaImages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Change image every 3 seconds
+    }, 3000);
 
     const breastInterval = setInterval(() => {
       setBreastImageIndex((prevIndex) => 
         prevIndex === breastImages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3500); // Slightly offset timing for visual interest
+    }, 3500);
 
     const sliderInterval = setInterval(() => {
       setSliderImageIndex((prevIndex) => 
         prevIndex === sliderImages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3200); // Different timing for slider images
+    }, 3200);
 
     return () => {
       clearInterval(stomaInterval);
@@ -86,7 +114,7 @@ export function InfoCards() {
     }
   };
 
-  // ✅ Reusable modal
+  // ✅ Optimized Modal Component
   const Modal = ({
     children,
     onClose,
@@ -99,13 +127,13 @@ export function InfoCards() {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto p-8 relative"
+        className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 relative"
         onClick={stopPropagation}
       >
         <button
           type="button"
           aria-label="Close modal"
-          className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 font-bold text-2xl"
+          className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 font-bold text-2xl z-10"
           onClick={onClose}
         >
           ×
@@ -115,21 +143,44 @@ export function InfoCards() {
     </div>
   );
 
+  // ✅ Optimized Modal Image Component
+  const ModalImage = ({ src, alt }: { src: string; alt: string }) => {
+    const [imageLoading, setImageLoading] = useState(true);
+
+    return (
+      <div className="w-full mb-6 relative">
+        {imageLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-lg">
+            <div className="animate-pulse bg-gray-300 w-full h-full rounded-lg"></div>
+          </div>
+        )}
+        <Image
+          src={src}
+          alt={alt}
+          width={800}
+          height={300}
+          className={`rounded-lg object-cover w-full h-48 md:h-64 transition-opacity duration-300 ${
+            imageLoading ? 'opacity-0' : 'opacity-100'
+          }`}
+          quality={75}
+          priority={false}
+          onLoad={() => setImageLoading(false)}
+          onLoadStart={() => setImageLoading(true)}
+        />
+      </div>
+    );
+  };
+
   function getModalContent(key: string) {
     switch (key) {
       case 'stoma':
         return (
           <div className="flex flex-col justify-center items-center text-center">
-            {/* Banner Image for Stoma Clinic */}
-            <div className="w-full mb-6">
-              <Image
-                src="/sto2.jpg"
-                alt="Stoma Clinic Banner"
-                width={1200}
-                height={400}
-                className="rounded-lg object-cover w-full h-64"
-              />
-            </div>
+            {/* Optimized Banner Image */}
+            <ModalImage 
+              src="/sto2.jpg" 
+              alt="Stoma Clinic Banner" 
+            />
 
             <h2 className="text-3xl font-bold mb-6">Stoma Clinic Details</h2>
             <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
@@ -164,16 +215,11 @@ export function InfoCards() {
       case 'breast':
         return (
           <div className="flex flex-col justify-center items-center text-center">
-            {/* Banner Image for Breast Clinic */}
-            <div className="w-full mb-6">
-              <Image
-                src="/bre1.jpeg"
-                alt="Breast Clinic Banner"
-                width={1200}
-                height={400}
-                className="rounded-lg object-cover w-full h-64"
-              />
-            </div>
+            {/* Optimized Banner Image */}
+            <ModalImage 
+              src="/bre1.jpeg" 
+              alt="Breast Clinic Banner" 
+            />
 
             <h2 className="text-3xl font-bold mb-6">Breast Clinic Details</h2>
             <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
@@ -209,7 +255,50 @@ export function InfoCards() {
     }
   }
 
-  // Clinic card data - makes it easier to reorder
+  // ✅ Optimized Image Component for Cards
+  const CardImage = ({ 
+    src, 
+    alt, 
+    className = "",
+    onImageLoad 
+  }: { 
+    src: string; 
+    alt: string; 
+    className?: string;
+    onImageLoad?: () => void;
+  }) => {
+    const [imageLoading, setImageLoading] = useState(true);
+
+    const handleLoad = () => {
+      setImageLoading(false);
+      onImageLoad?.();
+    };
+
+    return (
+      <div className={`relative overflow-hidden ${className}`}>
+        {imageLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+            <div className="animate-pulse bg-gray-300 w-full h-full"></div>
+          </div>
+        )}
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className={`object-cover transition-all duration-700 ease-in-out group-hover:scale-110 ${
+            imageLoading ? 'opacity-0' : 'opacity-100'
+          }`}
+          quality={75}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          loading="lazy"
+          onLoad={handleLoad}
+          onLoadStart={() => setImageLoading(true)}
+        />
+      </div>
+    );
+  };
+
+  // Clinic card data
   const clinicCards = {
     stoma: {
       title: "Stoma Clinic",
@@ -240,18 +329,17 @@ export function InfoCards() {
     
     if (key === 'slider') {
       return (
-        <div key={key} className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out">
+        <div 
+          key={key} 
+          data-clinic-card
+          className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out"
+        >
           <div className="relative overflow-hidden flex-grow">
-            {/* Full card image slider */}
             <div className="w-full h-full relative">
-              <Image
+              <CardImage
                 src={clinic.images[clinic.imageIndex]}
                 alt={`Medical facility image ${clinic.imageIndex + 1}`}
-                fill
-                className="object-cover"
-                quality={90}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                loading="lazy"
+                className="w-full h-full"
               />
               
               {/* Semi-transparent overlay with title and description */}
@@ -267,7 +355,7 @@ export function InfoCards() {
               
               {/* Navigation Arrows */}
               <button 
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full transition-all shadow-md"
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full transition-all shadow-md z-20"
                 onClick={(e) => {
                   e.stopPropagation();
                   changeSliderImage('prev');
@@ -277,7 +365,7 @@ export function InfoCards() {
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button 
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full transition-all shadow-md"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full transition-all shadow-md z-20"
                 onClick={(e) => {
                   e.stopPropagation();
                   changeSliderImage('next');
@@ -288,7 +376,7 @@ export function InfoCards() {
               </button>
               
               {/* Image Indicators */}
-              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-20">
                 {clinic.images.map((_, index) => (
                   <button
                     key={index}
@@ -310,23 +398,23 @@ export function InfoCards() {
     }
     
     return (
-      <div key={key} className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+      <div 
+        key={key} 
+        data-clinic-card
+        className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full group hover:shadow-xl transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+      >
         <div className="relative overflow-hidden">
           {/* Image Container with Fixed Aspect Ratio and Zoom Effect */}
-          <div className="w-full h-64 relative overflow-hidden">
-            <Image
+          <div className="w-full h-64 relative">
+            <CardImage
               src={clinic.images[clinic.imageIndex]}
               alt={`${clinic.title} image`}
-              fill
-              className="object-cover transition-all duration-700 ease-in-out group-hover:scale-110"
-              quality={85}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              loading="lazy"
+              className="w-full h-64"
             />
           </div>
           
           {/* Image Indicators */}
-          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-10">
             {clinic.images.map((_, index) => (
               <div
                 key={index}
@@ -338,12 +426,12 @@ export function InfoCards() {
           </div>
         </div>
         
-        <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
+        <div className="p-6 bg-white flex-grow flex flex-col justify-between text-center"> {/* Reduced padding */}
           <div>
-            <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
+            <h3 className="text-2xl font-bold font-body text-blue-950 mb-3 group-hover:text-teal-500 transition-colors duration-500"> {/* Smaller text */}
               {clinic.title}
             </h3>
-            <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
+            <p className="text-zinc-500 leading-relaxed mb-4 max-w-md mx-auto text-sm"> {/* Smaller text */}
               {clinic.description}
             </p>
           </div>
@@ -353,7 +441,7 @@ export function InfoCards() {
               e.preventDefault();
               openModal(key);
             }}
-            className="font-bold text-teal-500 flex items-center gap-2 justify-center hover:text-teal-600 transition-colors duration-300"
+            className="font-bold text-teal-500 flex items-center gap-2 justify-center hover:text-teal-600 transition-colors duration-300 text-sm" {/* Smaller text */}
           >
             READ MORE <ArrowRight className="w-4 h-4" />
           </a>
@@ -374,12 +462,14 @@ export function InfoCards() {
           alt="Abstract background"
           fill
           className="object-cover"
+          quality={50} // Lower quality for background
+          priority={false}
         />
       </div>
 
       {/* Container */}
       <div className="container mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch"> {/* Reduced gap */}
           {/* Render cards in the specified order */}
           {clinicOrder.map(key => renderClinicCard(key))}
         </div>
