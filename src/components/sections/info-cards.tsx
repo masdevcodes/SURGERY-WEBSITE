@@ -206,7 +206,7 @@ function getModalContent(key: string) {
             have on self-image and quality of life. By combining advanced
             diagnostic tools, multidisciplinary treatment, and patient-focused
             counselling, the Breast Clinic at GMC Patiala strives to deliver
-            holistic care with compassion and excellence.
+            holistic care with compassion and excellence. 
           </p>
         </div>
       );
