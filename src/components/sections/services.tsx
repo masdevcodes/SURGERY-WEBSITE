@@ -90,7 +90,7 @@ This milestone marks a proud moment for GMC Patiala, establishing it as a pionee
       description: '',
       color: 'text-teal-500',
       banner:
-        '/images/super/thyroid.png',
+        '/images/super/thyroid.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Endoscopic Thyroid Surgery via Axilla</h3>
