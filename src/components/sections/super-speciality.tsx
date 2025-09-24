@@ -249,7 +249,7 @@ export function SuperSpeciality() {
               {/* Content First */}
               <div className="p-6">
                 {/* Department Name - Centered */}
-                <h3 className="text-xl font-bold text-blue-950 mb-4 group-hover:text-teal-600 transition-colors duration-300 text-center">
+                <h3 className="text-xl font-bold text-blue-950 mb-4 group-hover:text-teal-600 transition-colors duration-300 text-center uppercase">
                   {speciality.name}
                 </h3>
 
