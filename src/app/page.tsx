@@ -1,7 +1,6 @@
 import { Header } from '@/components/sections/header';
 import { Hero } from '@/components/sections/hero';
 import { Intro } from '@/components/sections/intro';
-
 import { About } from '@/components/sections/about';
 import { MedicalSpecialties } from '@/components/sections/medical-specialties';
 import { Providers } from '@/components/sections/providers';
