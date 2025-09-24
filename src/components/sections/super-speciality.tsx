@@ -281,7 +281,7 @@ export function SuperSpeciality() {
                   <div className="flex flex-col items-center mb-6">
                     <div className="w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-lg mb-4 flex items-center justify-center">
                       <Image
-  src={doctor.image || speciality.image || '/placeholder-doctor.svg'}
+  src={doctor.image || speciality.image || ''}
   alt={doctor.name}
   width={320}
   height={320}
