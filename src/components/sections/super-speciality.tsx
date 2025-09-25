@@ -134,7 +134,7 @@ export function SuperSpeciality() {
         'Stereotactic procedures'
       ],
       doctors: [
-        { name: 'Dr. Harish Kumar', designation: 'Associate Professors', image: '/images/ss/harish_kumar.jpg' },
+        { name: 'Dr. Harish Kumar', designation: 'Associate Professors', image: '/images/ss/harish_kumar.webp' },
       ]
     },
     {
