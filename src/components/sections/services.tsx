@@ -395,7 +395,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
                       </h3>
                       <button className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:text-teal-600 transition-all duration-300">
                         <span className="relative">
-                          READ MORE.
+                          READ MORE
                           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
                         </span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-300" />
