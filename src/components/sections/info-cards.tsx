@@ -10,7 +10,7 @@ export function InfoCards() {
   const [breastImageIndex, setBreastImageIndex] = useState(0);
   const [sliderImageIndex, setSliderImageIndex] = useState(0);
 
-  // Sample image arrays - replace with your actual image paths,(256px height) while maintaining its aspect ratio. The sizes attribute confirms this responsive behavior with (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw .
+  // Sample image arrays - replace with your actual image paths
   const stomaImages = [
     '/images/infocard/stomay.webp',
     '/images/infocard/sto2.webp',
@@ -28,7 +28,6 @@ export function InfoCards() {
     '/images/infocard/brep.webp',
     '/images/infocard/sto2.webp',
     '/images/infocard/brep.webp',
-  
   ];
 
   // Define the desired order of clinics
@@ -372,10 +371,17 @@ function getModalContent(key: string) {
   };
 
   return (
-    <section
-      id="info"
-      className="pb-24 bg-gradient-to-b from-white via-white/0 to-white relative"
-    >
+    <>
+      {/* Preload all modal images for faster loading */}
+      <div style={{ display: 'none' }}>
+        <Image src="/images/infocard/sto2.webp" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/infocard/bre1.webp" alt="Preload" width={1} height={1} priority />
+      </div>
+      
+      <section
+        id="info"
+        className="pb-24 bg-gradient-to-b from-white via-white/0 to-white relative"
+      >
       {/* Background Image */}
       <div className="absolute inset-0 opacity-30">
         <Image
@@ -399,5 +405,6 @@ function getModalContent(key: string) {
         <Modal onClose={closeModal}>{getModalContent(modalContent)}</Modal>
       )}
     </section>
+    </>
   );
 }
