@@ -11,7 +11,7 @@ export function MedicalSpecialties() {
       {/* Background Pattern */}
       <div className="absolute inset-0">
         <Image
-          src="/hod.png"
+          src="/hod.webp"
           alt="Abstract geometric background"
           fill
           className="object-cover opacity-10"
