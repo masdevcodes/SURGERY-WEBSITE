@@ -10,7 +10,7 @@ export function Header() {
         {/* Logo container resized to fit smaller header */}
         <div className="h-12 w-12 mr-auto flex items-center">
           <Image
-            src="/GMClogo.jpg"
+            src="/GMClogo.webp"
             alt="GMC Patiala Logo"
             width={48}
             height={48}
