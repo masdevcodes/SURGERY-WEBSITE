@@ -139,7 +139,7 @@ export function MedicalSpecialties() {
                     <div className="flex flex-col items-center">
                       <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
-                          src="/images/unit1/ashwini.png"
+                          src="/images/unit1/ashwini.webp"
                           alt="Dr. Ashwani Kumar"
                           width={160}
                           height={160}
@@ -175,7 +175,7 @@ export function MedicalSpecialties() {
                     <div className="flex flex-col items-center">
                       <div className="w-36 h-36 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
-                          src="/images/unit1/dineshkumar.png"
+                          src="/images/unit1/dineshkumar.webp"
                           alt="Dr. Dinesh Kumar Passi"
                           width={144}
                           height={144}
@@ -196,7 +196,7 @@ export function MedicalSpecialties() {
                     <div className="flex flex-col items-center">
                       <div className="w-32 h-32 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
-                          src="/images/unit1/parth.png"
+                          src="/images/unit1/parth.webp"
                           alt="Dr. Parth Dhamija"
                           width={128}
                           height={128}
@@ -208,7 +208,7 @@ export function MedicalSpecialties() {
                     <div className="flex flex-col items-center">
                       <div className="w-32 h-32 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image
-                          src="/images/unit1/thalib.png"
+                          src="/images/unit1/thalib.webp"
                           alt="Dr. Talib Khan"
                           width={128}
                           height={128}
@@ -227,15 +227,15 @@ export function MedicalSpecialties() {
                   </h4>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 justify-items-center">
                     {[
-                      { name: "Dr. Dinesh", img: "/images/unit1/dinesh.png" },
-                      { name: "Dr. Navneeth Shankar", img: "/images/unit1/navneeth.png" },
-                      { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.png" },
-                      { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.png" },
-                      { name: "Dr. Soumya A", img: "/images/unit1/soumya.png" },
+                      { name: "Dr. Dinesh", img: "/images/unit1/dinesh.webp" },
+                      { name: "Dr. Navneeth Shankar", img: "/images/unit1/navneeth.webp" },
+                      { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.webp" },
+                      { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.webp" },
+                      { name: "Dr. Soumya A", img: "/images/unit1/soumya.webp" },
                       { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.webp" },
-                      { name: "Dr. Yogyatha", img: "/images/unit1/yog.png" },
-                      { name: "Dr. Priyanka", img: "/images/unit1/pri.png" },
-                      { name: "Dr. Sooraj", img: "/images/unit1/sur.png" },
+                      { name: "Dr. Yogyatha", img: "/images/unit1/yog.webp" },
+                      { name: "Dr. Priyanka", img: "/images/unit1/pri.webp" },
+                      { name: "Dr. Sooraj", img: "/images/unit1/sur.webp" },
                     ].map((jr) => (
                       <div key={jr.name} className="flex flex-col items-center">
                         <div className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group">
