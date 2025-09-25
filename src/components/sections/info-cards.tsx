@@ -275,26 +275,6 @@ function getModalContent(key: string) {
               </div>
               
               {/* Navigation Arrows */}
-              <button 
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full transition-all shadow-md"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  changeSliderImage('prev');
-                }}
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button 
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full transition-all shadow-md"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  changeSliderImage('next');
-                }}
-                aria-label="Next image"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
               
               {/* Image Indicators */}
               <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
