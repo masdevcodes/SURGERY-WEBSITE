@@ -94,7 +94,7 @@ export function MedicalSpecialties() {
           <div className="relative">
             <div className="relative w-full h-[750px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
-                src="/hod.png"
+                src="/hod.webp"
                 alt="Head of Surgery - Dr. Ashwani Kumar"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
@@ -232,7 +232,7 @@ export function MedicalSpecialties() {
                       { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.png" },
                       { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.png" },
                       { name: "Dr. Soumya A", img: "/images/unit1/soumya.png" },
-                      { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.png" },
+                      { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.webp" },
                       { name: "Dr. Yogyatha", img: "/images/unit1/yog.png" },
                       { name: "Dr. Priyanka", img: "/images/unit1/pri.png" },
                       { name: "Dr. Sooraj", img: "/images/unit1/sur.png" },
