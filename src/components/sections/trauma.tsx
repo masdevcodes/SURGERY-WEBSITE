@@ -181,9 +181,9 @@ export function Trauma() {
 
   // Left-side carousel images
   const carouselImages = [
-    '/trauma1.jpg',
-    '/emerup2.png',
-    '/z.png',
+    '/images/trauma/trauma1.webp',
+    '/images/trauma//emerup2.png',
+    '/images/trauma//z.png',
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
