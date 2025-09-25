@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/images/infocard';
+import Image from 'next/image';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, MouseEvent, useEffect } from 'react';
 
