@@ -1,10 +1,52 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Collect all doctor images for preloading
+  const getAllDoctorImages = () => {
+    const allImages: string[] = [];
+    
+    // Unit Incharge
+    allImages.push("/images/unit1/ashwini.png");
+    
+    // Associate Professors
+    allImages.push("/images/unit1/jaswinder.png");
+    allImages.push("/images/unit1/dineshkumar.png");
+    
+    // Senior Residents
+    allImages.push("/images/unit1/parth.png");
+    allImages.push("/images/unit1/thalib.png");
+    
+    // Junior Residents
+    const juniorResidents = [
+      "/images/unit1/dinesh.png",
+      "/images/unit1/navneeth.png",
+      "/images/unit1/vineeth.png",
+      "/images/unit1/aseem.png",
+      "/images/unit1/soumya.png",
+      "/images/unit1/naveen.webp",
+      "/images/unit1/yog.png",
+      "/images/unit1/pri.png",
+      "/images/unit1/sur.png"
+    ];
+    allImages.push(...juniorResidents);
+    
+    return [...new Set(allImages)];
+  };
+
+  // Image preloading effect
+  useEffect(() => {
+    const imagesToPreload = getAllDoctorImages();
+
+    imagesToPreload.forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+    });
+  }, []);
 
   return (
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
@@ -259,4 +301,4 @@ export function MedicalSpecialties() {
       )}
     </section>
   );
-} 
+}
