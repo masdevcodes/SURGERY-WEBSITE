@@ -266,7 +266,21 @@ export function SuperSpeciality() {
   };
 
   return (
-    <section id="super-speciality" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+    <>
+      {/* Preload all speciality and doctor images for faster modal loading */}
+      <div style={{ display: 'none' }}>
+        <Image src="/images/pediatric-surgery.jpg" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/ctvs.png" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/urology.png" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/plastic-surgery.png" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/surgical-oncology.jpg" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/ss/ravi_kumar.webp" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/ss/teg_rabab.webp" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/ss/harish_kumar.webp" alt="Preload" width={1} height={1} priority />
+        <Image src="/placeholder-doctor.svg" alt="Preload" width={1} height={1} priority />
+      </div>
+      
+      <section id="super-speciality" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Background Image with 30% opacity */}
       <div className="absolute inset-0 opacity-30 bg-cover bg-center" style={{ backgroundImage: 'url(/111.png)' }}></div>
       
@@ -520,5 +534,6 @@ export function SuperSpeciality() {
         </div>
       )}
     </section>
+    </>
   );
 }
