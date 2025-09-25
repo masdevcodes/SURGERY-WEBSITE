@@ -13,21 +13,21 @@ export function InfoCards() {
   // Sample image arrays - replace with your actual image paths,(256px height) while maintaining its aspect ratio. The sizes attribute confirms this responsive behavior with (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw .
   const stomaImages = [
     '/images/infocard/stomay.webp',
-    '/sto2.webp',
-    '/sto3.webp',
-    '/stom5.webp',
+    '/images/infocard/sto2.webp',
+    '/images/infocard/sto3.webp',
+    '/images/infocard/stom5.webp',
   ];
   
   const breastImages = [
-    '/brep.webp',
-    '/bre5.webp',
-    '/bre1.webp',
+    '/images/infocard/brep.webp',
+    '/images/infocard/bre5.webp',
+    '/images/infocard/bre1.webp',
   ];
 
   const sliderImages = [
-    '/brep.webp',
-    '/sto2.webp',
-    '/brep.webp',
+    '/images/infocard/brep.webp',
+    '/images/infocard/sto2.webp',
+    '/images/infocard/brep.webp',
   
   ];
 
@@ -122,7 +122,7 @@ function getModalContent(key: string) {
           {/* Optimized Banner Image for Stoma Clinic */}
           <div className="w-full mb-6">
             <Image
-              src="/sto2.webp"
+              src="/images/infocard/sto2.webp"
               alt="Stoma Clinic Banner"
               width={1200}
               height={400}
@@ -170,7 +170,7 @@ function getModalContent(key: string) {
           {/* Optimized Banner Image for Breast Clinic */}
           <div className="w-full mb-6">
             <Image
-              src="/bre1.webp"
+              src="/images/infocard/bre1.webp"
               alt="Breast Clinic Banner"
               width={1200}
               height={400}
