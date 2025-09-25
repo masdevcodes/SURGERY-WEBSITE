@@ -16,7 +16,7 @@ export function About() {
           <div className="lg:col-span-2">
             <div className="relative overflow-hidden rounded-lg">
               <Image
-                src="/kun.png"
+                src="/kun.webp"
                 alt="Doctors consulting with patient in hospital"
                 width={512}
                 height={1102}
