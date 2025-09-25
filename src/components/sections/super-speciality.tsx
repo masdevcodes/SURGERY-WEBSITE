@@ -114,8 +114,8 @@ export function SuperSpeciality() {
         'Pediatric oncology surgery'
       ],
       doctors: [
-        { name: 'Dr. Ravi Kumar Garg', designation: 'Associate Professors & Head', image: '/images/ss/ravi_kumar.jpg' },
-        { name: 'Dr. Teg Rabab', designation: 'Assistant Professors', image: '/images/ss/teg_rabab.jpg' }
+        { name: 'Dr. Ravi Kumar Garg', designation: 'Associate Professors & Head', image: '/images/ss/ravi_kumar.webp' },
+        { name: 'Dr. Teg Rabab', designation: 'Assistant Professors', image: '/images/ss/teg_rabab.webp' }
       ]
     },
     {
