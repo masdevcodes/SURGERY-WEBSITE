@@ -215,7 +215,17 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
   const closeShowAllModal = () => setShowAllModal(false);
 
   return (
-    <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+    <>
+      {/* Preload all service banner images for faster modal loading */}
+      <div style={{ display: 'none' }}>
+        <Image src="/images/super/ser1.webp" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/super/thyroid.webp" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/super/adrene.webp" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/super/lah.webp" alt="Preload" width={1} height={1} priority />
+        <Image src="/images/super/veins.webp" alt="Preload" width={1} height={1} priority />
+      </div>
+      
+      <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
         <Image
@@ -399,5 +409,6 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
         )}
       </div>
     </section>
+    </>
   );
 }
