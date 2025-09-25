@@ -178,7 +178,7 @@ This achievement highlights the Department of Surgery’s expertise in advanced 
   const [rightSideHeight, setRightSideHeight] = useState(0);
 
   // Left-side carousel images
-  const carouselImages = ['/service11.png', '/service12.png', '/service13.png'];
+  const carouselImages = ['/service11.webp', '/service12.webp', '/service13.webp'];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Preload carousel images for faster transitions
