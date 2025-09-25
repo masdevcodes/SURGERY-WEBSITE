@@ -26,6 +26,19 @@ export function Providers() {
   const [selectedProvider, setSelectedProvider] = useState<Provider | null>(null);
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
+  // Collect all doctor names for preloading
+  const getAllDoctorNames = () => {
+    const allNames: string[] = [];
+    providers.forEach(provider => {
+      allNames.push(provider.details.incharge);
+      allNames.push(...provider.details.associateProfessors);
+      allNames.push(...provider.details.assistantProfessors);
+      allNames.push(...provider.details.seniorResidents);
+      allNames.push(...provider.details.juniorResidents.map(jr => jr.name));
+    });
+    return [...new Set(allNames)]; // Remove duplicates
+  };
+
   const colorMap: Record<string, { text: string; bg: string; from: string; to: string }> = {
     blue: { text: 'text-blue-600', bg: 'bg-blue-500', from: 'from-blue-400', to: 'to-blue-600' },
     purple: { text: 'text-purple-600', bg: 'bg-purple-500', from: 'from-purple-400', to: 'to-purple-600' },
@@ -274,7 +287,22 @@ export function Providers() {
   };
 
   return (
-    <section id="providers" className="py-24 bg-gradient-to-br from-gray-50 to-white relative">
+    <>
+      {/* Preload modal images for faster loading */}
+      <div className="hidden">
+        {getAllDoctorNames().map((doctorName, index) => (
+          <Image
+            key={index}
+            src={getImagePath(doctorName)}
+            alt="Preload"
+            width={112}
+            height={112}
+            priority
+          />
+        ))}
+      </div>
+
+      <section id="providers" className="py-24 bg-gradient-to-br from-gray-50 to-white relative">
       <div className="absolute inset-0 opacity-50">
         <Image
           src="/111 copy copy.png"
@@ -429,6 +457,7 @@ export function Providers() {
           </div>
         </div>
       )}
-    </section>
+      </section>
+    </>
   );
 }
