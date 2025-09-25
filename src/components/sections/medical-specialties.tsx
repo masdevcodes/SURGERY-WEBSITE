@@ -1,108 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
-
-  // Preload images when component mounts
-  useEffect(() => {
-    const preloadImages = async () => {
-      const imagePaths = getAllUnitImagePaths();
-      const loadPromises = imagePaths.map(path => {
-        return new Promise((resolve) => {
-          const img = new Image();
-          img.src = path;
-          img.onload = () => {
-            setLoadedImages(prev => new Set(prev).add(path));
-            resolve(path);
-          };
-          img.onerror = () => resolve(null);
-        });
-      });
-      
-      await Promise.all(loadPromises);
-    };
-
-    preloadImages();
-  }, []);
-
-  // Collect all unit image paths for preloading
-  const getAllUnitImagePaths = () => {
-    const imagePaths = [
-      '/images/unit1/ashwini.webp',
-      '/images/unit1/jaswinder.png',
-      '/images/unit1/dineshkumar.webp',
-      '/images/unit1/parth.webp',
-      '/images/unit1/thalib.webp',
-      '/images/unit1/dinesh.webp',
-      '/images/unit1/navneeth.webp',
-      '/images/unit1/vineeth.webp',
-      '/images/unit1/aseem.webp',
-      '/images/unit1/soumya.webp',
-      '/images/unit1/naveen.webp',
-      '/images/unit1/yog.webp',
-      '/images/unit1/pri.webp',
-      '/images/unit1/sur.webp'
-    ];
-    return [...new Set(imagePaths)]; // Remove duplicates
-  };
-
-  // Optimized image component with loading state
-  const OptimizedImage = ({ src, alt, width, height, className }: { 
-    src: string; 
-    alt: string; 
-    width: number; 
-    height: number; 
-    className?: string;
-  }) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const isPreloaded = loadedImages.has(src);
-
-    return (
-      <div className={`relative ${className}`}>
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-200 rounded-xl">
-            <div className="w-6 h-6 border-2 border-teal-600 border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        )}
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'} ${className}`}
-          onLoad={() => setIsLoading(false)}
-          loading={isPreloaded ? "eager" : "lazy"}
-          priority={isPreloaded}
-        />
-      </div>
-    );
-  };
-
-  // Helper function to render team members with optimized images
-  const renderTeamMembers = (members: { name: string; img: string }[], imageSize: number, gridCols: string) => {
-    return (
-      <div className={`grid ${gridCols} gap-6 md:gap-8 justify-items-center`}>
-        {members.map((member) => (
-          <div key={member.name} className="flex flex-col items-center">
-            <div className={`w-${imageSize} h-${imageSize} rounded-xl overflow-hidden shadow-md mb-3 group`}>
-              <OptimizedImage
-                src={member.img}
-                alt={member.name}
-                width={imageSize}
-                height={imageSize}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-              />
-            </div>
-            <p className="font-medium text-blue-950 text-sm text-center">{member.name}</p>
-          </div>
-        ))}
-      </div>
-    );
-  };
 
   return (
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
@@ -113,22 +15,7 @@ export function MedicalSpecialties() {
           alt="Abstract geometric background"
           fill
           className="object-cover opacity-10"
-          priority
         />
-      </div>
-
-      {/* Preload all unit images in background */}
-      <div className="hidden">
-        {getAllUnitImagePaths().map((imagePath, index) => (
-          <Image
-            key={index}
-            src={imagePath}
-            alt="Preload"
-            width={100}
-            height={100}
-            priority
-          />
-        ))}
       </div>
 
       <div className="container mx-auto relative">
@@ -207,11 +94,10 @@ export function MedicalSpecialties() {
           <div className="relative">
             <div className="relative w-full h-[750px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
-                src="/hod.webp"
+                src="/hod.png"
                 alt="Head of Surgery - Dr. Ashwani Kumar"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
@@ -219,7 +105,7 @@ export function MedicalSpecialties() {
         </div>
       </div>
 
-      {/* ✅ Popup Modal - OPTIMIZED */}
+      {/* ✅ Popup  Modal - UPDATED */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -252,8 +138,8 @@ export function MedicalSpecialties() {
                   <div className="flex justify-center">
                     <div className="flex flex-col items-center">
                       <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
-                        <OptimizedImage
-                          src="/images/unit1/ashwini.webp"
+                        <Image
+                          src="/images/unit1/ashwini.png"
                           alt="Dr. Ashwani Kumar"
                           width={160}
                           height={160}
@@ -268,7 +154,7 @@ export function MedicalSpecialties() {
                   </div>
                 </div>
 
-                {/* Associate Professors */}
+                {/* Assistant Professors */}
                 <div>
                   <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">
                     Associate Professors
@@ -276,7 +162,7 @@ export function MedicalSpecialties() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center">
                     <div className="flex flex-col items-center">
                       <div className="w-36 h-36 rounded-xl overflow-hidden shadow-md mb-4 group">
-                        <OptimizedImage
+                        <Image
                           src="/images/unit1/jaswinder.png"
                           alt="Dr. Jaswinder Singh"
                           width={144}
@@ -288,8 +174,8 @@ export function MedicalSpecialties() {
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="w-36 h-36 rounded-xl overflow-hidden shadow-md mb-4 group">
-                        <OptimizedImage
-                          src="/images/unit1/dineshkumar.webp"
+                        <Image
+                          src="/images/unit1/dineshkumar.png"
                           alt="Dr. Dinesh Kumar Passi"
                           width={144}
                           height={144}
@@ -301,7 +187,7 @@ export function MedicalSpecialties() {
                   </div>
                 </div>
 
-                {/* Senior Residents */}
+                {/* Senior Residents  */}
                 <div>
                   <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">
                     Senior Residents
@@ -309,8 +195,8 @@ export function MedicalSpecialties() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center">
                     <div className="flex flex-col items-center">
                       <div className="w-32 h-32 rounded-xl overflow-hidden shadow-md mb-4 group">
-                        <OptimizedImage
-                          src="/images/unit1/parth.webp"
+                        <Image
+                          src="/images/unit1/parth.png"
                           alt="Dr. Parth Dhamija"
                           width={128}
                           height={128}
@@ -321,8 +207,8 @@ export function MedicalSpecialties() {
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="w-32 h-32 rounded-xl overflow-hidden shadow-md mb-4 group">
-                        <OptimizedImage
-                          src="/images/unit1/thalib.webp"
+                        <Image
+                          src="/images/unit1/thalib.png"
                           alt="Dr. Talib Khan"
                           width={128}
                           height={128}
@@ -339,17 +225,32 @@ export function MedicalSpecialties() {
                   <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">
                     Junior Residents
                   </h4>
-                  {renderTeamMembers([
-                    { name: "Dr. Dinesh", img: "/images/unit1/dinesh.webp" },
-                    { name: "Dr. Navneeth Shankar", img: "/images/unit1/navneeth.webp" },
-                    { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.webp" },
-                    { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.webp" },
-                    { name: "Dr. Soumya A", img: "/images/unit1/soumya.webp" },
-                    { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.webp" },
-                    { name: "Dr. Yogyatha", img: "/images/unit1/yog.webp" },
-                    { name: "Dr. Priyanka", img: "/images/unit1/pri.webp" },
-                    { name: "Dr. Sooraj", img: "/images/unit1/sur.webp" },
-                  ], 28, "grid-cols-2 md:grid-cols-3")}
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 justify-items-center">
+                    {[
+                      { name: "Dr. Dinesh", img: "/images/unit1/dinesh.png" },
+                      { name: "Dr. Navneeth Shankar", img: "/images/unit1/navneeth.png" },
+                      { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.png" },
+                      { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.png" },
+                      { name: "Dr. Soumya A", img: "/images/unit1/soumya.png" },
+                      { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.png" },
+                      { name: "Dr. Yogyatha", img: "/images/unit1/yog.png" },
+                      { name: "Dr. Priyanka", img: "/images/unit1/pri.png" },
+                      { name: "Dr. Sooraj", img: "/images/unit1/sur.png" },
+                    ].map((jr) => (
+                      <div key={jr.name} className="flex flex-col items-center">
+                        <div className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group">
+                          <Image
+                            src={jr.img}
+                            alt={jr.name}
+                            width={112}
+                            height={112}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                          />
+                        </div>
+                        <p className="font-medium text-blue-950 text-sm text-center">{jr.name}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -358,4 +259,4 @@ export function MedicalSpecialties() {
       )}
     </section>
   );
-}
+} 
