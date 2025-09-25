@@ -78,7 +78,7 @@ export function History() {
             {/* First Image Holder */}
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl group">
               <Image
-                src="/gmcll.jpg"
+                src="/gmcll.webp"
                 alt="Historical view of Rajindra Hospital"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -96,7 +96,7 @@ export function History() {
             {/* Second Image Holder */}
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl group">
               <Image
-                src="/gmc1.jpg"
+                src="/gmc1.webp"
                 alt="Government Medical College Patiala historical building"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -113,7 +113,7 @@ export function History() {
  {/* Third Image Holder */}
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl group">
               <Image
-                src="/gmc3.png"
+                src="/gmc3.webp"
                 alt="Government Medical College Patiala historical building"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
