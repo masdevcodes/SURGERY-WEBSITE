@@ -12,7 +12,7 @@ export function InfoCards() {
 
   // Sample image arrays - replace with your actual image paths,(256px height) while maintaining its aspect ratio. The sizes attribute confirms this responsive behavior with (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw .
   const stomaImages = [
-    '/stomay.webp',
+    '/images/infocard/stomay.webp',
     '/sto2.webp',
     '/sto3.webp',
     '/stom5.webp',
