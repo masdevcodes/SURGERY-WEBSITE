@@ -51,7 +51,7 @@ export function Providers() {
     
     // Use full name for image path to avoid conflicts
     const fullName = cleanName.replace(/\s+/g, '_');
-    return `/images/doctors/${fullName}.jpg`;
+    return `/images/doctors/${fullName}.webp`;
   };
 // image size for cards Recommended: 800px × 704px
   const providers: Provider[] = [
