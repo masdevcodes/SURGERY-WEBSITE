@@ -38,15 +38,7 @@ export function MedicalSpecialties() {
     return [...new Set(allImages)];
   };
 
-  // Image preloading effect
-  useEffect(() => {
-    const imagesToPreload = getAllDoctorImages();
-
-    imagesToPreload.forEach((src) => {
-      const img = new window.Image();
-      img.src = src;
-    });
-  }, []);
+ 
 
   return (
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
