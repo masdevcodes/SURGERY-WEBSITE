@@ -25,9 +25,10 @@ export function InfoCards() {
   ];
 
   const sliderImages = [
-    '/images/infocard/brep.webp',
-    '/images/infocard/sto2.webp',
-    '/images/infocard/brep.webp',
+    '/images/infocard/opd/opd1.jpg',
+    '/images/infocard/opd/opd3.jpg',
+    '/images/infocard/opd/opd2.jpg',
+     '/images/infocard/opd/opd4.jpg',
   ];
 
   // Define the desired order of clinics
