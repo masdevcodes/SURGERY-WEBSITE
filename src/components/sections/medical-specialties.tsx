@@ -232,7 +232,7 @@ export function MedicalSpecialties() {
                       { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.png" },
                       { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.png" },
                       { name: "Dr. Soumya A", img: "/images/unit1/soumya.png" },
-                      { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.png" },
+                      { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.webp" },
                       { name: "Dr. Yogyatha", img: "/images/unit1/yog.png" },
                       { name: "Dr. Priyanka", img: "/images/unit1/pri.png" },
                       { name: "Dr. Sooraj", img: "/images/unit1/sur.png" },
