@@ -286,7 +286,7 @@ export function InfoCards() {
             <h2 className="text-3xl font-bold mb-6">
               Stoma Clinic Details
               {modalImagesPreloaded && (
-                <span className="ml-2 text-lg text-green-600">✓</span>
+                <span className="ml-2 text-lg text-green-600"></span>
               )}
             </h2>
             <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
@@ -345,7 +345,7 @@ export function InfoCards() {
             <h2 className="text-3xl font-bold mb-6">
               Breast Clinic Details
               {modalImagesPreloaded && (
-                <span className="ml-2 text-lg text-green-600">✓</span>
+                <span className="ml-2 text-lg text-green-600"></span>
               )}
             </h2>
             <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
