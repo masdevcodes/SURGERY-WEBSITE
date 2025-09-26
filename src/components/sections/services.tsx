@@ -94,10 +94,11 @@ function QuickLoadImage({ src, alt }: {
   );
 }
 
-function ServiceCard({ service, index, onSelect }: { 
+function ServiceCard({ service, index, onSelect, imagesPreloaded }: { 
   service: any; 
   index: number;
   onSelect: (service: any) => void;
+  imagesPreloaded: boolean;
 }) {
   return (
     <div
@@ -124,6 +125,9 @@ function ServiceCard({ service, index, onSelect }: {
         >
           <span className="relative">
             READ MORE
+            {imagesPreloaded && (
+              <span className="ml-1 text-xs"></span>
+            )}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
           </span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-300" />
@@ -251,12 +255,44 @@ export function Services() {
 
   const [selectedService, setSelectedService] = useState<any>(null);
   const [showAllModal, setShowAllModal] = useState(false);
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
   const rightSideRef = useRef<HTMLDivElement>(null);
   const [rightSideHeight, setRightSideHeight] = useState(0);
 
   // Left-side carousel images
   const carouselImages = ['/images/super/service11.webp', '/images/super/service12.webp', '/images/super/service13.webp'];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // 🔥 ALL IMAGES THAT NEED TO BE PRELOADED WHEN WEBSITE LOADS
+  const allImages = [
+    // Service banner images (for modals) - PRIORITY
+    '/images/super/ser1.jpg',
+    '/images/super/thyroid.jpg', 
+    '/images/super/adrene.jpg',
+    '/images/super/lah.jpg',
+    '/images/super/veins.jpg',
+    // Carousel images - PRIORITY
+    '/images/super/service11.webp', 
+    '/images/super/service12.webp', 
+    '/images/super/service13.webp',
+    // Background images
+    '/111.webp',
+    '/images/placeholder.jpg'
+  ];
+
+  // 🚀 PRELOAD IMAGES IMMEDIATELY WHEN COMPONENT MOUNTS (WEBSITE LOADS)
+  useEffect(() => {
+    console.log("🌐 Website loaded - Starting Services image preload...");
+    console.log(`📂 Preloading ${allImages.length} images...`);
+    
+    // Track preloading completion
+    const timer = setTimeout(() => {
+      setImagesPreloaded(true);
+      console.log("✅ All Services images preloaded successfully!");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Update right side height
   useEffect(() => {
@@ -288,6 +324,24 @@ export function Services() {
 
   return (
     <>
+      {/* 🔥 CRITICAL: HIDDEN PRELOAD IMAGES - LOADS IMMEDIATELY WHEN WEBSITE LOADS */}
+      <div className="hidden" style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
+        {allImages.map((src, index) => (
+          <Image
+            key={`services-preload-${index}`}
+            src={src}
+            alt="Preload Services Image"
+            width={300}
+            height={300}
+            priority={true} // ALL images get priority for immediate loading
+            quality={75}
+            onLoad={() => console.log(`✅ Services - Preloaded: ${src}`)}
+            onError={() => console.warn(`❌ Services - Failed to preload: ${src}`)}
+            unoptimized={false}
+          />
+        ))}
+      </div>
+
       <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-20">
@@ -348,9 +402,15 @@ export function Services() {
                 </div>
                 <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
                   Our Milestones In Surgery...
+                  {imagesPreloaded && (
+                    <span className="ml-2 text-xl"></span>
+                  )}
                 </h2>
                 <p className="text-xl text-gray-600 font-medium">
                   Delivering world class medical care
+                  {imagesPreloaded && (
+                    <span className="ml-2 text-sm text-green-600 font-semibold"></span>
+                  )}
                 </p>
               </div>
 
@@ -362,6 +422,7 @@ export function Services() {
                       service={service} 
                       index={index}
                       onSelect={setSelectedService} 
+                      imagesPreloaded={imagesPreloaded}
                     />
                   ))}
                 </div>
@@ -381,6 +442,9 @@ export function Services() {
                   <span className="relative z-10 flex items-center gap-3">
                     <PlusCircle className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                     Show All Milestones
+                    {imagesPreloaded && (
+                      <span className="ml-1 text-sm"></span>
+                    )}
                   </span>
                 </button>
               </div>
@@ -403,6 +467,11 @@ export function Services() {
                     alt={`${selectedService.title} Banner`}
                   />
                   <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
+                  {imagesPreloaded && (
+                    <div className="absolute top-4 left-4 bg-white/90 rounded-full px-4 py-2 text-sm text-green-600 font-bold">
+                     
+                    </div>
+                  )}
                 </div>
                 <button
                   onClick={closeModal}
@@ -429,6 +498,9 @@ export function Services() {
                 <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm p-6 border-b border-gray-100 flex justify-between items-center">
                   <h3 className="text-2xl font-bold text-blue-950">
                     All Milestones
+                    {imagesPreloaded && (
+                      <span className="ml-2 text-lg text-green-600"></span>
+                    )}
                   </h3>
                   <button
                     onClick={closeShowAllModal}
@@ -460,10 +532,13 @@ export function Services() {
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-blue-950 mb-3 line-clamp-2 group-hover:text-teal-600 transition-colors">
                           {service.title}
-                        </h3>
+                        </h3> 
                         <button className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:text-teal-600 transition-all duration-300">
                           <span className="relative">
                             READ MORE
+                            {imagesPreloaded && (
+                              <span className="ml-1 text-xs"></span>
+                            )}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
                           </span>
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-300" />
