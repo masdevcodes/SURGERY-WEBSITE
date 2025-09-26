@@ -44,7 +44,7 @@ export function MedicalSpecialties() {
     if (cleanName.includes('vineeth') || cleanName.includes('sunaria')) return '/images/unit1/vineeth.png';
     if (cleanName.includes('aseem') || cleanName.includes('anand')) return '/images/unit1/aseem.png';
     if (cleanName.includes('soumya')) return '/images/unit1/soumya.png';
-    if (cleanName.includes('naveen') || cleanName.includes('mangla')) return '/images/unit1/naveen.png';
+    if (cleanName.includes('naveen') || cleanName.includes('mangla')) return '/images/unit1/naveen.webp';
     if (cleanName.includes('yogyatha') || cleanName.includes('yog')) return '/images/unit1/yog.png';
     if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/unit1/pri.png';
     if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/unit1/unit1/sur.png';
