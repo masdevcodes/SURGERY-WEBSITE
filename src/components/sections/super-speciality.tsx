@@ -244,7 +244,6 @@ export function SuperSpeciality() {
           </div>
         )}
         {isModalImage && modalImagesPreloaded && (
-          
         )}
         <Image
           src={imgSrc}
