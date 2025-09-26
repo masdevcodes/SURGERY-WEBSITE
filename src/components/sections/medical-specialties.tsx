@@ -179,7 +179,7 @@ export function MedicalSpecialties() {
               <h3 className="text-2xl font-bold text-blue-950 mb-6 text-center">
                 Unit 1 Team Details
                 {imagesPreloaded && (
-                  
+                  <span className="ml-2 text-sm text-green-600"></span>
                 )}
               </h3>
 
