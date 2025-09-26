@@ -501,7 +501,7 @@ export function Services() {
                   <h3 className="text-2xl font-bold text-blue-950">
                     All Milestones
                     {imagesPreloaded && (
-                      <span className="ml-2 text-lg text-green-600">✓</span>
+                      <span className="ml-2 text-lg text-green-600"></span>
                     )}
                   </h3>
                   <button
