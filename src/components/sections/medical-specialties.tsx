@@ -3,37 +3,38 @@
 import { useState } from "react";
 import Image from "next/image";
 
-// Data for Unit 1 Team - now using names only (like providers.tsx)
+// Data for Unit 1 Team - keeping direct paths for main section
 const unit1Data = {
   incharge: {
     name: "Dr. Ashwani Kumar",
     title: "Prof & Head of Surgery Department",
+    img: "/images/unit1/ashwini.png", // Direct path for main section
   },
   associateProfessors: [
-    { name: "Dr. Jaswinder Singh" },
-    { name: "Dr. Dinesh Kumar Passi" },
+    { name: "Dr. Jaswinder Singh", img: "/images/unit1/jaswinder.png" },
+    { name: "Dr. Dinesh Kumar Passi", img: "/images/unit1/dineshkumar.png" },
   ],
   seniorResidents: [
-    { name: "Dr. Parth Dhamija" },
-    { name: "Dr. Talib Khan" },
+    { name: "Dr. Parth Dhamija", img: "/images/unit1/parth.png" },
+    { name: "Dr. Talib Khan", img: "/images/unit1/thalib.png" },
   ],
   juniorResidents: [
-    { name: "Dr. Dinesh" },
-    { name: "Dr. Navneeth Shankar" },
-    { name: "Dr. Vineeth Sunaria" },
-    { name: "Dr. Aseem Anand" },
-    { name: "Dr. Soumya A" },
-    { name: "Dr. Naveen Mangla" },
-    { name: "Dr. Yogyatha" },
-    { name: "Dr. Priyanka" },
-    { name: "Dr. Sooraj" },
+    { name: "Dr. Dinesh", img: "/images/unit1/dinesh.png" },
+    { name: "Dr. Navneeth Shankar", img: "/images/unit1/navneeth.png" },
+    { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.png" },
+    { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.png" },
+    { name: "Dr. Soumya A", img: "/images/unit1/soumya.png" },
+    { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.webp" },
+    { name: "Dr. Yogyatha", img: "/images/unit1/yog.png" },
+    { name: "Dr. Priyanka", img: "/images/unit1/pri.png" },
+    { name: "Dr. Sooraj", img: "/images/unit1/sur.png" },
   ],
 };
 
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Dynamic image path function (same as providers.tsx)
+  // Dynamic image path function ONLY for modal (same as providers.tsx)
   const getImagePath = (name: string) => {
     const cleanName = name.replace('Dr. ', '').toLowerCase();
     
@@ -56,11 +57,11 @@ export function MedicalSpecialties() {
     
     // Use full name for image path to avoid conflicts
     const fullName = cleanName.replace(/\s+/g, '_');
-    return `/images/unit1/${fullName}.webp`;
+    return `/images/doctors/${fullName}.webp`;
   };
 
-  // Function to collect all doctor names for preloading
-  const getAllDoctorNames = () => {
+  // Function to collect all doctor names for modal preloading
+  const getAllDoctorNamesForModal = () => {
     const allNames: string[] = [];
     
     // Add incharge
@@ -78,8 +79,8 @@ export function MedicalSpecialties() {
     return [...new Set(allNames)]; // Remove duplicates
   };
 
-  // Function to render lists with images (similar to providers.tsx)
-  const renderListWithImages = (items: { name: string }[], centerIfFew = false) => {
+  // Function to render modal lists with dynamic images
+  const renderModalListWithImages = (items: { name: string; img: string }[], centerIfFew = false) => {
     if (items.length === 0) return null;
     
     // Determine grid columns based on number of items
@@ -96,7 +97,7 @@ export function MedicalSpecialties() {
           <div key={idx} className="flex flex-col items-center">
             <div className="w-28 h-28 rounded-full overflow-hidden shadow-md mb-3 group">
               <Image
-                src={getImagePath(item.name)}
+                src={getImagePath(item.name)} // Using dynamic path for modal
                 alt={item.name}
                 width={112}
                 height={112}
@@ -110,15 +111,15 @@ export function MedicalSpecialties() {
     );
   };
 
-  const allDoctorNames = getAllDoctorNames();
+  const allModalDoctorNames = getAllDoctorNamesForModal();
 
   return (
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
-      {/* HIDDEN PRELOAD IMAGES - Now using dynamic paths */}
+      {/* HIDDEN PRELOAD IMAGES - Only for modal, using dynamic paths */}
       <div className="hidden">
-        {allDoctorNames.map((doctorName, index) => (
+        {allModalDoctorNames.map((doctorName, index) => (
           <Image
-            key={`preload-${index}`}
+            key={`modal-preload-${index}`}
             src={getImagePath(doctorName)}
             alt="Preload"
             width={200}
@@ -140,7 +141,7 @@ export function MedicalSpecialties() {
 
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Side - unchanged */}
+          {/* Left Side - UNCHANGED (using direct paths) */}
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex items-center gap-4 mb-6">
@@ -197,11 +198,11 @@ export function MedicalSpecialties() {
             </div>
           </div>
           
-          {/* Right Side - unchanged */}
+          {/* Right Side - UNCHANGED (using direct paths) */}
           <div className="relative">
             <div className="relative w-full h-[750px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
-                src="/hod.webp"
+                src="/hod.webp" // Direct path
                 alt="Head of Surgery - Dr. Ashwani Kumar"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
@@ -212,7 +213,7 @@ export function MedicalSpecialties() {
         </div>
       </div>
       
-      {/* Popup Modal - Updated to use dynamic image paths */}
+      {/* Popup Modal - USING DYNAMIC PATHS */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -235,14 +236,14 @@ export function MedicalSpecialties() {
                 Unit 1 Team Details
               </h3>
               <div className="space-y-10">
-                {/* Incharge */}
+                {/* Incharge - Using dynamic path */}
                 <div className="text-center">
                   <h4 className="text-xl font-semibold text-teal-600 mb-6">Unit Incharge</h4>
                   <div className="flex justify-center">
                     <div className="flex flex-col items-center">
                       <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image 
-                          src={getImagePath(unit1Data.incharge.name)} 
+                          src={getImagePath(unit1Data.incharge.name)} // Dynamic path
                           alt={unit1Data.incharge.name} 
                           width={160} 
                           height={160} 
@@ -255,27 +256,27 @@ export function MedicalSpecialties() {
                   </div>
                 </div>
                 
-                {/* Associate Professors */}
+                {/* Associate Professors - Using dynamic paths */}
                 {unit1Data.associateProfessors.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Associate Professors</h4>
-                    {renderListWithImages(unit1Data.associateProfessors, true)}
+                    {renderModalListWithImages(unit1Data.associateProfessors, true)}
                   </div>
                 )}
                 
-                {/* Senior Residents */}
+                {/* Senior Residents - Using dynamic paths */}
                 {unit1Data.seniorResidents.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Senior Residents</h4>
-                    {renderListWithImages(unit1Data.seniorResidents, true)}
+                    {renderModalListWithImages(unit1Data.seniorResidents, true)}
                   </div>
                 )}
                 
-                {/* Junior Residents */}
+                {/* Junior Residents - Using dynamic paths */}
                 {unit1Data.juniorResidents.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Junior Residents</h4>
-                    {renderListWithImages(unit1Data.juniorResidents, true)}
+                    {renderModalListWithImages(unit1Data.juniorResidents, true)}
                   </div>
                 )}
               </div>
