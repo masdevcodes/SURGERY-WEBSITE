@@ -8,7 +8,7 @@ const unit1Data = {
   incharge: {
     name: "Dr. Ashwani Kumar",
     title: "Prof & Head of Surgery Department",
-    img: "/images/unit1/ashwini.png", // Direct path for main section
+    img: "/images/unit1/ashwini.webp", // Direct path for main section
   },
   associateProfessors: [
     { name: "Dr. Jaswinder Singh", img: "/images/unit1/jaswinder.png" },
