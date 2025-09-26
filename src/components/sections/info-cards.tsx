@@ -277,7 +277,7 @@ function getModalContent(key: string) {
           <h2 className="text-3xl font-bold mb-6">
             Stoma Clinic Details
             {imagesPreloaded && (
-              <span className="ml-2 text-lg text-green-600">⚡</span>
+              <span className="ml-2 text-lg text-green-600"></span>
             )}
           </h2>
           <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
@@ -331,7 +331,7 @@ function getModalContent(key: string) {
           <h2 className="text-3xl font-bold mb-6">
             Breast Clinic Details
             {imagesPreloaded && (
-              <span className="ml-2 text-lg text-green-600">⚡</span>
+              <span className="ml-2 text-lg text-green-600"></span>
             )}
           </h2>
           <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
@@ -476,7 +476,7 @@ function getModalContent(key: string) {
             <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
               {clinic.title}
               {imagesPreloaded && (
-                <span className="ml-2 text-sm text-green-600">⚡</span>
+                <span className="ml-2 text-sm text-green-600"></span>
               )}
             </h3>
             <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
@@ -493,7 +493,7 @@ function getModalContent(key: string) {
           >
             READ MORE 
             {imagesPreloaded && (
-              <span className="ml-1 text-xs">⚡</span>
+              <span className="ml-1 text-xs"></span>
             )}
             <ArrowRight className="w-4 h-4" />
           </a>
