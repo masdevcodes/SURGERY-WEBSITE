@@ -128,7 +128,7 @@ export function SuperSpeciality() {
       name: 'Plastic Surgery', 
       icon: <Scissors className="w-8 h-8" />,
       description: 'Reconstructive and aesthetic surgery for trauma, congenital defects, and cosmetic enhancement.',
-      detailedDescription: 'The Plastic Surgery Department at GMC & Rajindra Hospital, Patiala offers both aesthetic and reconstructive surgical care using up-to-date techniques and compassionate, patient-centred service...',
+      detailedDescription: 'The Plastic Surgery Department at GMC & Rajindra Hospital, Patiala offers both aesthetic and reconstructive surgical care using up-to-date techniques and compassionate, patient-centred service. The team handles a broad spectrum of procedures—cosmetic surgery like rhinoplasty, breast procedures, liposuction, body contouring; reconstructive surgery including hand surgery, burn care, microsurgery, treatment of congenital deformities, trauma reconstruction, and post-cancer reconstructive work.',
       color: 'text-orange-600',
       image: '/images/plastic-surgery.png',
       services: [
