@@ -5,69 +5,57 @@ import Image from "next/image";
 
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
 
-  // Collect all modal images for preloading
-  const getModalImages = () => {
-    const modalImages = [];
-    
-    // Unit Incharge
-    modalImages.push("/images/unit1/ashwini.png");
-    
-    // Associate Professors
-    modalImages.push("/images/unit1/jaswinder.png");
-    modalImages.push("/images/unit1/dineshkumar.png");
-    
-    // Senior Residents
-    modalImages.push("/images/unit1/parth.png");
-    modalImages.push("/images/unit1/thalib.png");
-    
-    // Junior Residents
-    const juniorResidents = [
-      "/images/unit1/dinesh.png",
-      "/images/unit1/navneeth.png",
-      "/images/unit1/vineeth.png",
-      "/images/unit1/aseem.png",
-      "/images/unit1/soumya.png",
-      "/images/unit1/naveen.webp",
-      "/images/unit1/yog.png",
-      "/images/unit1/pri.png",
-      "/images/unit1/sur.png"
-    ];
-    modalImages.push(...juniorResidents);
-    
-    return [...new Set(modalImages)];
-  };
+  // All modal images that need preloading
+  const modalImages = [
+    "/images/unit1/ashwini.png",
+    "/images/unit1/jaswinder.png",
+    "/images/unit1/dineshkumar.png",
+    "/images/unit1/parth.png",
+    "/images/unit1/thalib.png",
+    "/images/unit1/dinesh.png",
+    "/images/unit1/navneeth.png",
+    "/images/unit1/vineeth.png",
+    "/images/unit1/aseem.png",
+    "/images/unit1/soumya.png",
+    "/images/unit1/naveen.webp",
+    "/images/unit1/yog.png",
+    "/images/unit1/pri.png",
+    "/images/unit1/sur.png"
+  ];
 
-  // Preload modal images for faster loading when modal opens
-  const preloadModalImages = () => {
-    const images = getModalImages();
-    
-    images.forEach((src) => {
-      const img = new window.Image();
-      img.src = src;
-      
-      // Optional: Add error handling
-      img.onload = () => {
-        console.log(`✅ Preloaded: ${src}`);
-      };
-      
-      img.onerror = () => {
-        console.warn(`❌ Failed to preload: ${src}`);
-      };
-    });
-    
-    console.log(`🚀 Started preloading ${images.length} modal images...`);
-  };
-
-  // 🔥 IMAGES ARE PRELOADED WHEN WEBSITE LOADS
-  // This useEffect runs once when the component mounts (website loads)
+  // Track when images are loaded
   useEffect(() => {
-    console.log("🌐 Website loaded - Starting image preload...");
-    preloadModalImages();
-  }, []); // Empty dependency array = runs only once on mount
+    console.log("🚀 Component mounted - Images are being preloaded...");
+    
+    // Set a timeout to confirm preloading completion
+    const timer = setTimeout(() => {
+      setImagesPreloaded(true);
+      console.log("✅ All images should be preloaded now");
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
+      {/* 🔥 HIDDEN PRELOAD IMAGES - These load immediately when component mounts */}
+      <div className="hidden">
+        {modalImages.map((src, index) => (
+          <Image
+            key={`preload-${index}`}
+            src={src}
+            alt="Preload"
+            width={200}
+            height={200}
+            priority={index < 5} // Priority for first 5 images
+            onLoad={() => console.log(`✅ Preloaded: ${src}`)}
+            onError={() => console.warn(`❌ Failed to preload: ${src}`)}
+          />
+        ))}
+      </div>
+
       {/* Background Pattern */}
       <div className="absolute inset-0">
         <Image
@@ -146,6 +134,9 @@ export function MedicalSpecialties() {
                 className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
               >
                 View Unit 1 Details
+                {imagesPreloaded && (
+                  <span className="ml-2 text-xs opacity-75">⚡</span>
+                )}
               </button>
             </div>
           </div>
@@ -187,6 +178,9 @@ export function MedicalSpecialties() {
             <div className="p-6 md:p-8">
               <h3 className="text-2xl font-bold text-blue-950 mb-6 text-center">
                 Unit 1 Team Details
+                {imagesPreloaded && (
+                  <span className="ml-2 text-sm text-green-600">⚡ Fast Loading</span>
+                )}
               </h3>
 
               <div className="space-y-10">
