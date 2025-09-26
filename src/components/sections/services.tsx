@@ -368,7 +368,7 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
         <OptimizedImage
-          src="/111.png"
+          src="/111.webp"
           alt="Surgical team in operating room"
           fill
           className="object-cover"
