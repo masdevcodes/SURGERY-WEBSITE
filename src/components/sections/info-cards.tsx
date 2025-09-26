@@ -193,7 +193,15 @@ export function InfoCards() {
       breast: {
         banner: '/images/infocard/popup/breppopup.jpg',
         title: 'Breast Clinic Details',
-        content: `The Breast Clinic at GMC Patiala, under the Department of General Surgery, is a dedicated service...`
+        content: `<p>
+                The Breast Clinic at GMC Patiala, under the Department of General Surgery, is a dedicated service aimed at providing comprehensive care for patients with breast diseases. It caters to a wide spectrum of conditions including benign breast disorders, infections, fibroadenomas, and breast malignancies. A strong emphasis is placed on early detection of breast cancer through clinical breast examination, mammography, ultrasound, and guided biopsies.
+              </p>
+              <p>
+                The clinic provides a structured diagnostic pathway ensuring accurate evaluation and timely intervention. Patients receive individualized treatment plans, whether surgical, medical, or combined, based on their diagnosis and stage of disease. Counselling sessions are conducted to help patients understand their condition, available treatment options, and expected outcomes. Preventive strategies such as breast self-examination training and awareness programs are also integrated into the clinic's routine.
+              </p>
+              <p>
+                Postoperative follow-up and rehabilitation, including wound care and lymphedema management, are actively supported. The clinic also provides psychological and emotional support, recognizing the significant impact breast diseases can have on self-image and quality of life. By combining advanced diagnostic tools, multidisciplinary treatment, and patient-focused counselling, the Breast Clinic at GMC Patiala strives to deliver holistic care with compassion and excellence.
+              </p>`
       }
     };
 
