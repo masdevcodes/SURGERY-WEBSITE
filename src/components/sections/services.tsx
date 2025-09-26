@@ -405,7 +405,7 @@ export function Services() {
                 <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
                   Our Milestones In Surgery...
                   {imagesPreloaded && (
-                   
+                    <span className="ml-2 text-xl"></span>
                   )}
                 </h2>
                 <p className="text-xl text-gray-600 font-medium">
