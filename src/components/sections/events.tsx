@@ -27,37 +27,7 @@ export function Events() {
   const [modalPrevBtnDisabled, setModalPrevBtnDisabled] = useState(true);
   const [modalNextBtnDisabled, setModalNextBtnDisabled] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [modalImagesPreloaded, setModalImagesPreloaded] = useState(false);
   const autoScrollIntervalRef = useRef(null);
-
-  // ✅ ADDED: Function to collect all modal images for preloading
-  const getModalImagePaths = useCallback(() => {
-    const paths = new Set<string>();
-    
-    // Add all images from all events that will appear in modals
-    events.forEach(event => {
-      event.images.forEach(img => {
-        paths.add(img);
-      });
-    });
-    
-    return Array.from(paths);
-  }, []);
-
-  const modalImages = getModalImagePaths();
-
-  // ✅ ADDED: Preload modal images specifically
-  useEffect(() => {
-    console.log("🚀 Preloading modal event images for faster popup loading...");
-    console.log(`📂 Preloading ${modalImages.length} modal images from ${events.length} events`);
-    
-    const preloadTimer = setTimeout(() => {
-      setModalImagesPreloaded(true);
-      console.log("✅ All modal event images preloaded successfully!");
-    }, 2000);
-
-    return () => clearTimeout(preloadTimer);
-  }, [modalImages.length]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -179,25 +149,6 @@ export function Events() {
     }
   }, [modalEmblaApi, onModalSelect, selectedEvent]);
 
-  // ✅ ADDED: Hidden preload section specifically for modal images
-  const ModalPreloadSection = () => (
-    <div className="hidden">
-      {modalImages.map((src, index) => (
-        <Image
-          key={`modal-preload-${index}`}
-          src={src}
-          alt="Modal event image preload"
-          width={800}
-          height={600}
-          priority
-          quality={85}
-          onLoad={() => console.log(`✅ Modal event preloaded: ${src}`)}
-          onError={() => console.warn(`❌ Modal event failed to preload: ${src}`)}
-        />
-      ))}
-    </div>
-  );
-
   // Function to parse date strings into Date objects for sorting
   const parseDate = (dateString) => {
     const [month, day, year] = dateString.split(' ')[1].split(',')[0].split('/');
@@ -300,9 +251,6 @@ export function Events() {
 
   return (
     <>
-      {/* ✅ ADDED: Hidden preload section specifically for modal images */}
-      <ModalPreloadSection />
-      
       <section id="events" className="py-16 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-20">
@@ -435,9 +383,6 @@ export function Events() {
             <div className="p-6 bg-white border-b">
               <h3 className="text-2xl font-bold text-blue-950 mb-2">
                 {selectedEvent.title}
-                {modalImagesPreloaded && (
-                  <span className="ml-2 text-sm text-green-600 font-semibold">✓ Fast Loading</span>
-                )}
               </h3>
               <div className="flex items-center text-gray-600">
                 <Calendar className="w-5 h-5 mr-2" />
@@ -456,14 +401,7 @@ export function Events() {
                         alt={`${selectedEvent.title} - Image ${index + 1}`}
                         fill
                         className="object-contain"
-                        priority={modalImagesPreloaded}
-                        quality={90}
                       />
-                      {modalImagesPreloaded && index === selectedIndex && (
-                        <div className="absolute top-2 left-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-semibold">
-                          Fast Loaded ✓
-                        </div>
-                      )}
                     </div>
                   ))}
                 </div>
