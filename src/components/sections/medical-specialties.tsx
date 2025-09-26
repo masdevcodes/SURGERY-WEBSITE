@@ -1,10 +1,56 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Collect all modal images for preloading
+  const getModalImages = () => {
+    const modalImages = [];
+    
+    // Unit Incharge
+    modalImages.push("/images/unit1/ashwini.png");
+    
+    // Associate Professors
+    modalImages.push("/images/unit1/jaswinder.png");
+    modalImages.push("/images/unit1/dineshkumar.png");
+    
+    // Senior Residents
+    modalImages.push("/images/unit1/parth.png");
+    modalImages.push("/images/unit1/thalib.png");
+    
+    // Junior Residents
+    const juniorResidents = [
+      "/images/unit1/dinesh.png",
+      "/images/unit1/navneeth.png",
+      "/images/unit1/vineeth.png",
+      "/images/unit1/aseem.png",
+      "/images/unit1/soumya.png",
+      "/images/unit1/naveen.webp",
+      "/images/unit1/yog.png",
+      "/images/unit1/pri.png",
+      "/images/unit1/sur.png"
+    ];
+    modalImages.push(...juniorResidents);
+    
+    return [...new Set(modalImages)];
+  };
+
+  // Preload modal images for faster loading
+  const preloadModalImages = () => {
+    const images = getModalImages();
+    images.forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+    });
+  };
+
+  // Preload images when component mounts
+  useEffect(() => {
+    preloadModalImages();
+  }, []);
 
   return (
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
