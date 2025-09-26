@@ -19,7 +19,7 @@ export function Contact() {
       <div className="relative container mx-auto h-full flex items-center">
         <div className="w-full md:w-1/3 bg-white rounded-lg shadow-lg p-8">
           <Image 
-            src="/gmcll.jpg"
+            src="/gmcll.webp"
             alt="GMC Patiala Hospital exterior" 
             width={376} 
             height={304} 
