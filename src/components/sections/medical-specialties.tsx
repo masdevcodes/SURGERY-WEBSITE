@@ -56,7 +56,7 @@ export function MedicalSpecialties() {
     
     // Use full name for image path to avoid conflicts
     const fullName = cleanName.replace(/\s+/g, '_');
-    return `/images/doctors/${fullName}.webp`;
+    return `/images/unit1/${fullName}.webp`;
   };
 
   // Function to collect all doctor names for preloading
