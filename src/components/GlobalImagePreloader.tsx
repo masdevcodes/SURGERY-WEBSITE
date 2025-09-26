@@ -11,11 +11,11 @@ function GlobalImagePreloader() {
     '/images/infocard/bre1.webp',
     
     // Services modal images  
-    '/images/super/ser1.jpg',
-    '/images/super/thyroid.jpg',
-    '/images/super/adrene.jpg',
-    '/images/super/lah.jpg',
-    '/images/super/veins.jpg',
+    '/images/super/ser1.webp',
+    '/images/super/thyroid.webp',
+    '/images/super/adrene.webp',
+    '/images/super/lah.webp',
+    '/images/super/veins.webp',
     
     // MedicalSpecialties modal images
     '/images/unit1/ashwini.png',
