@@ -403,7 +403,7 @@ export function Services() {
                 <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
                   Our Milestones In Surgery...
                   {imagesPreloaded && (
-                    <span className="ml-2 text-xl">⚡</span>
+                    <span className="ml-2 text-xl"></span>
                   )}
                 </h2>
                 <p className="text-xl text-gray-600 font-medium">
@@ -443,7 +443,7 @@ export function Services() {
                     <PlusCircle className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                     Show All Milestones
                     {imagesPreloaded && (
-                      <span className="ml-1 text-sm">⚡</span>
+                      <span className="ml-1 text-sm"></span>
                     )}
                   </span>
                 </button>
