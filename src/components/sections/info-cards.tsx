@@ -135,14 +135,24 @@ export function InfoCards() {
     '/images/infocard/opd/opd4.jpg',
   ];
 
-  // All images for preloading (including modal banner images)
+  // 🔥 ALL IMAGES THAT NEED TO BE PRELOADED WHEN WEBSITE LOADS
   const allImages = [
-    ...stomaImages,
-    ...breastImages,
-    ...sliderImages,
-    '/images/infocard/sto2.webp', // Modal banner for stoma
-    '/images/infocard/bre1.webp', // Modal banner for breast
-    '/111.png', // Background image
+    // Stoma clinic images - PRIORITY
+    '/images/infocard/stomay.webp',
+    '/images/infocard/sto2.webp',
+    '/images/infocard/sto3.webp',
+    '/images/infocard/stom5.webp',
+    // Breast clinic images - PRIORITY  
+    '/images/infocard/brep.webp',
+    '/images/infocard/bre5.webp',
+    '/images/infocard/bre1.webp',
+    // Slider images - PRIORITY
+    '/images/infocard/opd/opd1.jpg',
+    '/images/infocard/opd/opd2.jpg',
+    '/images/infocard/opd/opd3.jpg',
+    '/images/infocard/opd/opd4.jpg',
+    // Background image
+    '/111.png',
   ];
 
   // Define the desired order of clinics
@@ -159,6 +169,20 @@ export function InfoCards() {
   function stopPropagation(e: MouseEvent<HTMLDivElement>) {
     e.stopPropagation();
   }
+
+  // 🚀 PRELOAD IMAGES IMMEDIATELY WHEN COMPONENT MOUNTS (WEBSITE LOADS)
+  useEffect(() => {
+    console.log("🌐 Website loaded - Starting InfoCards image preload...");
+    console.log(`📂 Preloading ${allImages.length} InfoCards images...`);
+    
+    // Track preloading completion
+    const timer = setTimeout(() => {
+      setImagesPreloaded(true);
+      console.log("✅ All InfoCards images preloaded successfully!");
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Set up auto-changing image sliders
   useEffect(() => {
@@ -186,19 +210,6 @@ export function InfoCards() {
       clearInterval(sliderInterval);
     };
   }, [stomaImages.length, breastImages.length, sliderImages.length]);
-
-  // Track when images are loaded
-  useEffect(() => {
-    console.log("🚀 InfoCards Component mounted - Images are being preloaded...");
-    
-    // Set a timeout to confirm preloading completion
-    const timer = setTimeout(() => {
-      setImagesPreloaded(true);
-      console.log("✅ All InfoCards images should be preloaded now");
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   // Function to manually change slider image
   const changeSliderImage = (direction: 'next' | 'prev') => {
@@ -264,7 +275,7 @@ function getModalContent(key: string) {
           <h2 className="text-3xl font-bold mb-6">
             Stoma Clinic Details
             {imagesPreloaded && (
-              <span className="ml-2 text-sm text-green-600"></span>
+              <span className="ml-2 text-lg text-green-600">⚡</span>
             )}
           </h2>
           <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
@@ -316,7 +327,7 @@ function getModalContent(key: string) {
           <h2 className="text-3xl font-bold mb-6">
             Breast Clinic Details
             {imagesPreloaded && (
-              <span className="ml-2 text-sm text-green-600"></span>
+              <span className="ml-2 text-lg text-green-600">⚡</span>
             )}
           </h2>
           <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
@@ -407,6 +418,9 @@ function getModalContent(key: string) {
                 {/* Image counter */}
                 <div className="text-xs opacity-80 mb-2">
                   Image {clinic.imageIndex + 1} of {clinic.images.length}
+                  {imagesPreloaded && (
+                    <span className="ml-2">⚡</span>
+                  )}
                 </div>
               </div>
               
@@ -465,6 +479,9 @@ function getModalContent(key: string) {
           <div>
             <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
               {clinic.title}
+              {imagesPreloaded && (
+                <span className="ml-2 text-sm text-green-600">⚡</span>
+              )}
             </h3>
             <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
               {clinic.description}
@@ -480,7 +497,7 @@ function getModalContent(key: string) {
           >
             READ MORE
             {imagesPreloaded && (
-              <span className="ml-1 text-xs"></span>
+              <span className="ml-1 text-xs">⚡</span>
             )}
             <ArrowRight className="w-4 h-4" />
           </a>
@@ -491,18 +508,20 @@ function getModalContent(key: string) {
 
   return (
     <>
-      {/* 🔥 HIDDEN PRELOAD IMAGES - These load immediately when component mounts */}
-      <div className="hidden">
+      {/* 🔥 CRITICAL: HIDDEN PRELOAD IMAGES - LOADS IMMEDIATELY WHEN WEBSITE LOADS */}
+      <div className="hidden" style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
         {allImages.map((src, index) => (
           <Image
-            key={`preload-${index}`}
+            key={`infocards-preload-${index}`}
             src={src}
-            alt="Preload"
-            width={200}
-            height={200}
-            priority={index < 8} // Priority for first 8 images
-            onLoad={() => console.log(`✅ Preloaded: ${src}`)}
-            onError={() => console.warn(`❌ Failed to preload: ${src}`)}
+            alt="Preload InfoCards Image"
+            width={300}
+            height={300}
+            priority={true} // ALL images get priority for immediate loading
+            quality={75}
+            onLoad={() => console.log(`✅ InfoCards - Preloaded: ${src}`)}
+            onError={() => console.warn(`❌ InfoCards - Failed to preload: ${src}`)}
+            unoptimized={false}
           />
         ))}
       </div>
@@ -523,6 +542,14 @@ function getModalContent(key: string) {
 
       {/* Container */}
       <div className="container mx-auto relative z-10">
+        {imagesPreloaded && (
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+              ⚡ Images Loaded - Lightning Fast Experience!
+            </div>
+          </div>
+        )}
+        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {/* Render cards in the specified order */}
           {clinicOrder.map(key => renderClinicCard(key))}
@@ -531,7 +558,14 @@ function getModalContent(key: string) {
 
       {/* Modal */}
       {modalContent && (
-        <Modal onClose={closeModal}>{getModalContent(modalContent)}</Modal>
+        <Modal onClose={closeModal}>
+          {imagesPreloaded && (
+            <div className="absolute top-4 left-4 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">
+              ⚡ Lightning Fast
+            </div>
+          )}
+          {getModalContent(modalContent)}
+        </Modal>
       )}
     </section>
     </>
