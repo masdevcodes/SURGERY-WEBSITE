@@ -488,7 +488,7 @@ export function InfoCards() {
             <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
               {clinic.title}
             </h3>
-            <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
+            <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto text-justify">
               {clinic.description}
             </p>
           </div>
@@ -528,7 +528,7 @@ export function InfoCards() {
             fill
             className="object-cover"
           />
-        </div>  
+        </div> 
 
         {/* Container */}
         <div className="container mx-auto relative z-10">
