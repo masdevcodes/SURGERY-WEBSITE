@@ -305,7 +305,7 @@ export function Providers() {
       <section id="providers" className="py-24 bg-gradient-to-br from-gray-50 to-white relative">
       <div className="absolute inset-0 opacity-50">
         <Image
-          src="/111 copy copy.png"
+          src="/111.webp"
           alt="Geometric background pattern"
           fill
           className="object-cover"
