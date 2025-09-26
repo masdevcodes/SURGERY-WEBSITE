@@ -502,7 +502,7 @@ export function InfoCards() {
           >
             READ MORE 
             {modalImagesPreloaded && (
-              <span className="ml-1 text-xs text-green-600">⚡</span>
+              <span className="ml-1 text-xs text-green-600"></span>
             )}
             <ArrowRight className="w-4 h-4" />
           </a>
