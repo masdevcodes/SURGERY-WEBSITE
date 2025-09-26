@@ -161,7 +161,7 @@ export function Services() {
       title: 'Laparoscopic Cholecystectomy With CBD Exploration In A Patient With Situs Inversus Totalis',
       description: '',
       color: 'text-teal-500',
-      banner: '/images/super/ser1.jpg',
+      banner: '/images/super/ser1.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Cholecystectomy With CBD Exploration In A Patient With Situs Inversus Totalis</h3>
@@ -185,7 +185,7 @@ export function Services() {
       title: 'Endoscopic Thyroid Surgery via Axilla',
       description: '',
       color: 'text-teal-500',
-      banner: '/images/super/thyroid.jpg',
+      banner: '/images/super/thyroid.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Endoscopic Thyroid Surgery via Axilla</h3>
@@ -207,7 +207,7 @@ export function Services() {
       title: 'Laparoscopic Adrenelectomy',
       description: '',
       color: 'text-teal-500',
-      banner: '/images/super/adrene.jpg',
+      banner: '/images/super/adrene.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Adrenelectomy</h3>
@@ -229,7 +229,7 @@ export function Services() {
       title: 'Laparoscopic Hysterectomy',
       description: '',
       color: 'text-teal-500',
-      banner: '/images/super/lah.jpg',
+      banner: '/images/super/lah.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Laparoscopic Hysterectomy</h3>
