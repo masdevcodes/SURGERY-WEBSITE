@@ -32,6 +32,9 @@ function GlobalImagePreloader() {
     '/images/unit1/yog.png',
     '/images/unit1/pri.png',
     '/images/unit1/sur.png',
+    'images/ss/harish_kumar.webp',
+   '/images/ss/ravi_kumar.webp',
+    '/images/ss/teg_rabab.webp',
     
     // Add other modal images as needed
   ];
