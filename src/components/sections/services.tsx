@@ -445,7 +445,7 @@ export function Services() {
                     <PlusCircle className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                     Show All Milestones
                     {imagesPreloaded && (
-                      <span className="ml-1 text-sm">🚀</span>
+                      <span className="ml-1 text-sm"></span>
                     )}
                   </span>
                 </button>
