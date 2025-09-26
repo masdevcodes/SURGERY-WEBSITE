@@ -462,8 +462,18 @@ function getModalContent(key: string) {
             />
           </div>
           
-          {/* Image Indicators */}
-         
+          {/* Image Indicators */} 
+          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+            {clinic.images.map((_, index) => (
+              <div
+                key={index}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === clinic.imageIndex ? 'bg-white scale-125' : 'bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
         
         <div className="p-8 bg-white flex-grow flex flex-col justify-between text-center">
           <div>
