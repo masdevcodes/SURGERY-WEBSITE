@@ -106,18 +106,16 @@ export function MedicalSpecialties() {
     }
     
     return (
-      <div className={`${gridClass} ${centerIfFew ? 'justify-center' : ''}`}>
-        {items.map((item, idx) => (
-          <div key={idx} className="flex flex-col items-center">
-            <div className="w-28 h-28 rounded-full overflow-hidden shadow-md mb-3 group">
-              <Image
-                src={getImagePath(item.name)} // Using dynamic path for modal
-                alt={item.name}
-                width={112}
-                height={112}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-              />
-            </div>
+      // REPLACE with this square version:
+<div className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group"> {/* Changed rounded-full to rounded-xl */}
+  <Image
+    src={getImagePath(item.name)}
+    alt={item.name}
+    width={112}
+    height={112}
+    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+  />
+</div>
             <p className="font-medium text-blue-950 text-sm text-center">{item.name}</p>
           </div>
         ))}
