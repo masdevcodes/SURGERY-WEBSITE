@@ -247,7 +247,7 @@ export function MedicalSpecialties() {
             </button>
             <div className="p-6 md:p-8">
               <h3 className="text-2xl font-bold text-blue-950 mb-6 text-center">
-                Unit 1 Team Details
+                Unit 1
               </h3>
               <div className="space-y-10">
                 {/* Incharge - Using dynamic path */}
