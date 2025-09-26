@@ -442,7 +442,7 @@ export function SuperSpeciality() {
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold text-blue-950">{selectedSpeciality.name}</h3>
                   {modalImagesPreloaded && (
-                    <span className="ml-2 text-sm text-green-600 font-semibold">✓ Fast Loading</span>
+                    <span className="ml-2 text-sm text-green-600 font-semibold"></span>
                   )}
                 </div>
               </div>
