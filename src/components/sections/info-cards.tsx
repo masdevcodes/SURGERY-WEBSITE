@@ -436,7 +436,7 @@ function getModalContent(key: string) {
                       e.stopPropagation();
                       clinic.setImageIndex(index);
                     }}
-                    //aria-label={`View image ${index + 1}`}
+                    aria-label={`View image ${index + 1}`}
                   />
                 ))}
               </div>
