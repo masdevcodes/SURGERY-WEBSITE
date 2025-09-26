@@ -84,7 +84,7 @@ export function MedicalSpecialties() {
     return [...new Set(allNames)]; // Remove duplicates
   };
 
-  // Function to render modal lists with SQUARE images for AP, SR, JR
+  // Function to render modal lists with dynamic images
   const renderModalListWithImages = (items: { name: string; img: string }[], centerIfFew = false) => {
     if (items.length === 0) return null;
     
@@ -100,13 +100,12 @@ export function MedicalSpecialties() {
       <div className={`${gridClass} ${centerIfFew ? 'justify-center' : ''}`}>
         {items.map((item, idx) => (
           <div key={idx} className="flex flex-col items-center">
-            {/* SQUARE CONTAINER for AP, SR, JR */}
-            <div className="w-32 h-32 rounded-xl overflow-hidden shadow-md mb-3 group">
+            <div className="w-28 h-28 rounded-full overflow-hidden shadow-md mb-3 group">
               <Image
-                src={getImagePath(item.name)}
+                src={getImagePath(item.name)} // Using dynamic path for modal
                 alt={item.name}
-                width={128}
-                height={128}
+                width={112}
+                height={112}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
             </div>
@@ -219,7 +218,7 @@ export function MedicalSpecialties() {
         </div>
       </div>
       
-      {/* Popup Modal - USING SQUARE CONTAINERS for AP, SR, JR */}
+      {/* Popup Modal - USING DYNAMIC PATHS */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -242,14 +241,14 @@ export function MedicalSpecialties() {
                 Unit 1 Team Details
               </h3>
               <div className="space-y-10">
-                {/* Incharge - Still using rounded container */}
+                {/* Incharge - Using dynamic path */}
                 <div className="text-center">
                   <h4 className="text-xl font-semibold text-teal-600 mb-6">Unit Incharge</h4>
                   <div className="flex justify-center">
                     <div className="flex flex-col items-center">
                       <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image 
-                          src={getImagePath(unit1Data.incharge.name)}
+                          src={getImagePath(unit1Data.incharge.name)} // Dynamic path
                           alt={unit1Data.incharge.name} 
                           width={160} 
                           height={160} 
@@ -262,7 +261,7 @@ export function MedicalSpecialties() {
                   </div>
                 </div>
                 
-                {/* Associate Professors - SQUARE CONTAINERS */}
+                {/* Associate Professors - Using dynamic paths */}
                 {unit1Data.associateProfessors.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Associate Professors</h4>
@@ -270,7 +269,7 @@ export function MedicalSpecialties() {
                   </div>
                 )}
                 
-                {/* Senior Residents - SQUARE CONTAINERS */}
+                {/* Senior Residents - Using dynamic paths */}
                 {unit1Data.seniorResidents.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Senior Residents</h4>
@@ -278,7 +277,7 @@ export function MedicalSpecialties() {
                   </div>
                 )}
                 
-                {/* Junior Residents - SQUARE CONTAINERS */}
+                {/* Junior Residents - Using dynamic paths */}
                 {unit1Data.juniorResidents.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Junior Residents</h4>
