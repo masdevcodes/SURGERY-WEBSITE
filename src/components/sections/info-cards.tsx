@@ -232,14 +232,14 @@ export function InfoCards() {
   const clinicCards = {
     stoma: {
       title: "Stoma Clinic",
-      description: "Our Stoma Clinic offers expert care for patients with colostomies, ileostomies, and urostomies...",
+      description: "Our Stoma Clinic offers expert care for patients with colostomies, ileostomies, and urostomies. Our services include assessment, fitting of appropriate appliances, and prompt management of stoma-related complications. We emphasize patient education, lifestyle counselling, and emotional support to empower individuals in managing their stoma with confidence. Our goal is to restore dignity, comfort, and the highest quality of life for all patients under our care.",
       images: stomaImages,
       imageIndex: stomaImageIndex,
       setImageIndex: setStomaImageIndex
     },
     breast: {
       title: "Breast Clinic",
-      description: "Our Breast Clinic provides specialized care for women presenting with breast-related complaints...",
+      description: "Our Breast Clinic provides specialized care for women presenting with breast-related complaints such as lumps, pain, discharge, or infections. The clinic offers early detection services for breast cancer, including clinical breast examination, imaging guidance, and biopsy facilities. Along with diagnosis and treatment, it emphasizes patient counselling, awareness, and follow-up care to ensure comprehensive management of breast health.",
       images: breastImages,
       imageIndex: breastImageIndex,
       setImageIndex: setBreastImageIndex
