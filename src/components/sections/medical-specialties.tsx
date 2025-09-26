@@ -38,19 +38,33 @@ export function MedicalSpecialties() {
     return [...new Set(modalImages)];
   };
 
-  // Preload modal images for faster loading
+  // Preload modal images for faster loading when modal opens
   const preloadModalImages = () => {
     const images = getModalImages();
+    
     images.forEach((src) => {
       const img = new window.Image();
       img.src = src;
+      
+      // Optional: Add error handling
+      img.onload = () => {
+        console.log(`✅ Preloaded: ${src}`);
+      };
+      
+      img.onerror = () => {
+        console.warn(`❌ Failed to preload: ${src}`);
+      };
     });
+    
+    console.log(`🚀 Started preloading ${images.length} modal images...`);
   };
 
-  // Preload images when component mounts
+  // 🔥 IMAGES ARE PRELOADED WHEN WEBSITE LOADS
+  // This useEffect runs once when the component mounts (website loads)
   useEffect(() => {
+    console.log("🌐 Website loaded - Starting image preload...");
     preloadModalImages();
-  }, []);
+  }, []); // Empty dependency array = runs only once on mount
 
   return (
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
