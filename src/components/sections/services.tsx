@@ -409,7 +409,7 @@ export function Services() {
                 <p className="text-xl text-gray-600 font-medium">
                   Delivering world class medical care
                   {imagesPreloaded && (
-                    <span className="ml-2 text-sm text-green-600 font-semibold">(Images Ready!)</span>
+                    <span className="ml-2 text-sm text-green-600 font-semibold"></span>
                   )}
                 </p>
               </div>
