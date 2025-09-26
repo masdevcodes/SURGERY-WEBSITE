@@ -419,7 +419,7 @@ function getModalContent(key: string) {
                 <div className="text-xs opacity-80 mb-2">
                   Image {clinic.imageIndex + 1} of {clinic.images.length}
                   {imagesPreloaded && (
-                    <span className="ml-2">⚡</span>
+                    <span className="ml-2"></span>
                   )}
                 </div>
               </div>
