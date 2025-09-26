@@ -41,7 +41,7 @@ export function MedicalSpecialties() {
     // Map specific names to image paths - ORDER MATTERS (most specific first)
     if (cleanName === 'ashwani kumar') return '/images/unit1/ashwini.webp';
     if (cleanName === 'jaswinder singh') return '/images/unit1/jaswinder.png';
-    if (cleanName === 'dinesh kumar passi') return '/images/unit1/dineshkumar.png';
+    if (cleanName === 'dinesh kumar passi') return '/images/unit1/dinesh_kumar.png';
     if (cleanName === 'parth dhamija') return '/images/unit1/parth.png';
     if (cleanName === 'talib khan') return '/images/unit1/thalib.png';
     if (cleanName === 'navneeth shankar') return '/images/unit1/navneeth.png';
