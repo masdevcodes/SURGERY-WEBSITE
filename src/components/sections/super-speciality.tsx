@@ -101,7 +101,7 @@ export function SuperSpeciality() {
         'Emergency cardiac interventions'
       ],
       doctors: [
-        { name: 'Dr. Anumeet Bagga', designation: 'Assistant Professor', image: '' }
+        { name: 'Dr. Anumeet Bagga', designation: 'Assistant Professor', image:'/images/ctvs.webp' }
       ]
     },
     {
