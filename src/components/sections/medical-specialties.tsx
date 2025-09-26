@@ -39,7 +39,7 @@ export function MedicalSpecialties() {
     const cleanName = name.replace('Dr. ', '').toLowerCase();
     
     // Map specific names to image paths
-    if (cleanName.includes('dinesh')) return '/images/unit1/dinesh.webp';
+    if (cleanName.includes('dinesh')) return '/images/unit1/dinesh_kumar_passi.webp';
     if (cleanName.includes('navneeth') || cleanName.includes('shankar')) return '/images/unit1/navneeth.webp';
     if (cleanName.includes('vineeth') || cleanName.includes('sunaria')) return '/images/unit1/vineeth.webp';
     if (cleanName.includes('aseem') || cleanName.includes('anand')) return '/images/unit1/aseem.webp';
