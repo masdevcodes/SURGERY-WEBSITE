@@ -162,11 +162,11 @@ export function Events() {
       title: "SPARK 2025-Workshop on Robotic Laparoscopic Surgery",
       date: "February 28, 2024",
       images: [
-        "/images/event/spark/sp4.jpg",
-        "/images/event/spark/sp1.jpg",
-        "/images/event/spark/sp.jpg",
-        "/images/event/spark/sp2.jpg",
-        "/images/event/spark/sp3.jpg",
+        "/images/event/spark/sp4.webp",
+        "/images/event/spark/sp1.webp",
+        "/images/event/spark/sp.webp",
+        "/images/event/spark/sp2.webp",
+        "/images/event/spark/sp3.webp",
       ],
     },
     {
