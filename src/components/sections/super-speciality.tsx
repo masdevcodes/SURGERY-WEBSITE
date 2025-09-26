@@ -109,7 +109,7 @@ export function SuperSpeciality() {
       name: 'Urology',
       icon: <Activity className="w-8 h-8" />,
       description: 'Advanced urological procedures for kidney, bladder, prostate, and reproductive system disorders.',
-      detailedDescription: 'The Urology Department at GMC & Rajindra Hospital, Patiala offers expert surgical and medical care for disorders of the urinary tract and male reproductive system...',
+      detailedDescription: 'The Urology Department at GMC & Rajindra Hospital, Patiala offers expert surgical and medical care for disorders of the urinary tract and male reproductive system. Under the leadership of accomplished faculty, the department handles a wide range of conditions — kidney stones, enlarged prostate, urinary incontinence, urinary tract infections, urethral strictures, male infertility, and urinary cancers. Drawing on advanced diagnostics and therapies, including minimally invasive and endoscopic surgery, the department emphasizes personalised, compassionate treatment plans.',
       color: 'text-blue-600',
       image: '/images/urology.png',
       services: [
