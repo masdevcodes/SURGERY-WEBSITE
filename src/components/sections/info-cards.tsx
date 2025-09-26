@@ -170,7 +170,7 @@ function getModalContent(key: string) {
           {/* Optimized Banner Image for Breast Clinic */}
           <div className="w-full mb-6">
             <Image
-              src="/images/infocard/bre1.webp"
+              src="/images/infocard/popup/breppopup.jpg"
               alt="Breast Clinic Banner"
               width={1200}
               height={400}
