@@ -16,7 +16,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 
-// Optimized Image Component
+// Simplified Image Component
 function OptimizedImage({ 
   src, 
   alt, 
@@ -74,11 +74,9 @@ function OptimizedImage({
   );
 }
 
-// Quick Load Modal Image Component
-function QuickLoadImage({ src, alt, isPreloaded }: { 
+function QuickLoadImage({ src, alt }: { 
   src: string; 
   alt: string; 
-  isPreloaded: boolean;
 }) {
   const [hasError, setHasError] = useState(false);
 
@@ -90,45 +88,27 @@ function QuickLoadImage({ src, alt, isPreloaded }: {
         fill
         className="object-cover"
         quality={80}
-        priority={isPreloaded}
-        loading={isPreloaded ? "eager" : "lazy"}
         onError={() => setHasError(true)}
       />
     </div>
   );
 }
 
-// Service Card Component
-function ServiceCard({ service, index, onSelect }: { 
+function ServiceCard({ service, index, onSelect, imagesPreloaded }: { 
   service: any; 
   index: number;
   onSelect: (service: any) => void;
+  imagesPreloaded: boolean;
 }) {
-  const [isImagePreloaded, setIsImagePreloaded] = useState(index < 2); // Preload first 2 images
-
-  const handleHover = () => {
-    if (!isImagePreloaded) {
-      // Use window.Image to avoid conflict with Next.js Image component
-      const img = new window.Image();
-      img.src = service.banner;
-      img.onload = () => setIsImagePreloaded(true);
-      img.onerror = () => setIsImagePreloaded(true); // Mark as loaded even on error
-    }
-  };
-
   return (
     <div
       className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4 cursor-pointer"
       onClick={() => onSelect(service)}
-      onMouseEnter={handleHover}
-      onTouchStart={handleHover}
     >
-      {/* Icon */}
       <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
         <div className={service.color}>{service.icon}</div>
       </div>
       
-      {/* Content */}
       <div className="flex-1 min-w-0">
         <h3 className="text-lg font-bold text-blue-950 mb-2 group-hover:text-teal-600 transition-colors duration-300 line-clamp-2">
           {service.title}
@@ -136,7 +116,6 @@ function ServiceCard({ service, index, onSelect }: {
         <p className="text-sm text-gray-600 leading-relaxed mb-3">
           {service.description}
         </p>
-        {/* Read More Link */}
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -146,6 +125,9 @@ function ServiceCard({ service, index, onSelect }: {
         >
           <span className="relative">
             READ MORE
+            {imagesPreloaded && (
+              <span className="ml-1 text-xs">⚡</span>
+            )}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
           </span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-300" />
@@ -273,9 +255,7 @@ export function Services() {
 
   const [selectedService, setSelectedService] = useState<any>(null);
   const [showAllModal, setShowAllModal] = useState(false);
-  const [preloadedImages, setPreloadedImages] = useState<Set<string>>(
-    new Set(services.slice(0, 2).map(s => s.banner)) // Preload first 2 images immediately
-  );
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
   const rightSideRef = useRef<HTMLDivElement>(null);
   const [rightSideHeight, setRightSideHeight] = useState(0);
 
@@ -283,31 +263,38 @@ export function Services() {
   const carouselImages = ['/images/super/service11.webp', '/images/super/service12.webp', '/images/super/service13.webp'];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Preload critical images on component mount
+  // 🔥 ALL IMAGES THAT NEED TO BE PRELOADED WHEN WEBSITE LOADS
+  const allImages = [
+    // Service banner images (for modals) - PRIORITY
+    '/images/super/ser1.jpg',
+    '/images/super/thyroid.jpg', 
+    '/images/super/adrene.jpg',
+    '/images/super/lah.jpg',
+    '/images/super/veins.jpg',
+    // Carousel images - PRIORITY
+    '/images/super/service11.webp', 
+    '/images/super/service12.webp', 
+    '/images/super/service13.webp',
+    // Background images
+    '/111.webp',
+    '/images/placeholder.jpg'
+  ];
+
+  // 🚀 PRELOAD IMAGES IMMEDIATELY WHEN COMPONENT MOUNTS (WEBSITE LOADS)
   useEffect(() => {
-    // Preload first 2 service images, carousel images, and background
-    const criticalImages = [
-      ...services.slice(0, 2).map(service => service.banner),
-      ...carouselImages,
-      '/111.png'
-    ];
+    console.log("🌐 Website loaded - Starting Services image preload...");
+    console.log(`📂 Preloading ${allImages.length} images...`);
+    
+    // Track preloading completion
+    const timer = setTimeout(() => {
+      setImagesPreloaded(true);
+      console.log("✅ All Services images preloaded successfully!");
+    }, 3000);
 
-    criticalImages.forEach(url => {
-      if (!preloadedImages.has(url)) {
-        // Use window.Image to avoid conflict with Next.js Image component
-        const img = new window.Image();
-        img.src = url;
-        img.onload = () => {
-          setPreloadedImages(prev => new Set(prev).add(url));
-        };
-        img.onerror = () => {
-          setPreloadedImages(prev => new Set(prev).add(url)); // Still add to preloaded to avoid retries
-        };
-      }
-    });
-  }, [preloadedImages]); // Add preloadedImages as dependency
+    return () => clearTimeout(timer);
+  }, []);
 
-  // Update right side height on resize and after initial render
+  // Update right side height
   useEffect(() => {
     const updateHeight = () => {
       if (rightSideRef.current) {
@@ -315,7 +302,6 @@ export function Services() {
       }
     };
 
-    // Initial height calculation after DOM is ready
     const timer = setTimeout(updateHeight, 100);
     window.addEventListener('resize', updateHeight);
     
@@ -325,7 +311,7 @@ export function Services() {
     };
   }, []);
 
-  // Auto-change carousel images every 3 seconds
+  // Auto-change carousel images
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
@@ -338,6 +324,24 @@ export function Services() {
 
   return (
     <>
+      {/* 🔥 CRITICAL: HIDDEN PRELOAD IMAGES - LOADS IMMEDIATELY WHEN WEBSITE LOADS */}
+      <div className="hidden" style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
+        {allImages.map((src, index) => (
+          <Image
+            key={`services-preload-${index}`}
+            src={src}
+            alt="Preload Services Image"
+            width={300}
+            height={300}
+            priority={true} // ALL images get priority for immediate loading
+            quality={75}
+            onLoad={() => console.log(`✅ Services - Preloaded: ${src}`)}
+            onError={() => console.warn(`❌ Services - Failed to preload: ${src}`)}
+            unoptimized={false}
+          />
+        ))}
+      </div>
+
       <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-20">
@@ -398,8 +402,16 @@ export function Services() {
                 </div>
                 <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
                   Our Milestones In Surgery...
+                  {imagesPreloaded && (
+                    <span className="ml-2 text-xl">⚡</span>
+                  )}
                 </h2>
-                <p className="text-xl text-gray-600 font-medium">Delivering world class medical care</p>
+                <p className="text-xl text-gray-600 font-medium">
+                  Delivering world class medical care
+                  {imagesPreloaded && (
+                    <span className="ml-2 text-sm text-green-600 font-semibold">(Images Ready!)</span>
+                  )}
+                </p>
               </div>
 
               <div className="relative">
@@ -410,6 +422,7 @@ export function Services() {
                       service={service} 
                       index={index}
                       onSelect={setSelectedService} 
+                      imagesPreloaded={imagesPreloaded}
                     />
                   ))}
                 </div>
@@ -429,6 +442,9 @@ export function Services() {
                   <span className="relative z-10 flex items-center gap-3">
                     <PlusCircle className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                     Show All Milestones
+                    {imagesPreloaded && (
+                      <span className="ml-1 text-sm">⚡</span>
+                    )}
                   </span>
                 </button>
               </div>
@@ -449,9 +465,13 @@ export function Services() {
                   <QuickLoadImage
                     src={selectedService.banner}
                     alt={`${selectedService.title} Banner`}
-                    isPreloaded={preloadedImages.has(selectedService.banner)}
                   />
                   <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
+                  {imagesPreloaded && (
+                    <div className="absolute top-4 left-4 bg-white/90 rounded-full px-4 py-2 text-sm text-green-600 font-bold">
+                      ⚡ Lightning Fast
+                    </div>
+                  )}
                 </div>
                 <button
                   onClick={closeModal}
@@ -476,7 +496,12 @@ export function Services() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm p-6 border-b border-gray-100 flex justify-between items-center">
-                  <h3 className="text-2xl font-bold text-blue-950">All Milestones</h3>
+                  <h3 className="text-2xl font-bold text-blue-950">
+                    All Milestones
+                    {imagesPreloaded && (
+                      <span className="ml-2 text-lg text-green-600">⚡ Ready!</span>
+                    )}
+                  </h3>
                   <button
                     onClick={closeShowAllModal}
                     className="text-gray-600 hover:text-gray-900 transition-colors"
@@ -511,6 +536,9 @@ export function Services() {
                         <button className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:text-teal-600 transition-all duration-300">
                           <span className="relative">
                             READ MORE
+                            {imagesPreloaded && (
+                              <span className="ml-1 text-xs">⚡</span>
+                            )}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
                           </span>
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-300" />
