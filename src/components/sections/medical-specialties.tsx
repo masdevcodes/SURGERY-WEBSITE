@@ -135,7 +135,7 @@ export function MedicalSpecialties() {
               >
                 View Unit 1 Details
                 {imagesPreloaded && (
-                  <span className="ml-2 text-xs opacity-75">⚡</span>
+                  <span className="ml-2 text-xs opacity-75"></span>
                 )}
               </button>
             </div>
