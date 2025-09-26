@@ -40,14 +40,14 @@ export function MedicalSpecialties() {
     
     // Map specific names to image paths
     if (cleanName.includes('dinesh')) return '/images/unit1/dinesh.png';
-    if (cleanName.includes('navneeth') || cleanName.includes('shankar')) return '/images/navneeth.png';
-    if (cleanName.includes('vineeth') || cleanName.includes('sunaria')) return '/images/vineeth.png';
-    if (cleanName.includes('aseem') || cleanName.includes('anand')) return '/images/aseem.png';
-    if (cleanName.includes('soumya')) return '/images/soumya.png';
-    if (cleanName.includes('naveen') || cleanName.includes('mangla')) return '/images/naveen.png';
-    if (cleanName.includes('yogyatha') || cleanName.includes('yog')) return '/images/yog.png';
-    if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/pri.png';
-    if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/sur.png';
+    if (cleanName.includes('navneeth') || cleanName.includes('shankar')) return '/images/unit1/navneeth.png';
+    if (cleanName.includes('vineeth') || cleanName.includes('sunaria')) return '/images/unit1/vineeth.png';
+    if (cleanName.includes('aseem') || cleanName.includes('anand')) return '/images/unit1/aseem.png';
+    if (cleanName.includes('soumya')) return '/images/unit1/soumya.png';
+    if (cleanName.includes('naveen') || cleanName.includes('mangla')) return '/images/unit1/naveen.png';
+    if (cleanName.includes('yogyatha') || cleanName.includes('yog')) return '/images/unit1/yog.png';
+    if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/unit1/pri.png';
+    if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/unit1/unit1/sur.png';
     
     // Special mapping for unit1 specific doctors
     if (cleanName.includes('ashwani') || cleanName.includes('kumar')) return '/images/unit1/ashwini.png';
