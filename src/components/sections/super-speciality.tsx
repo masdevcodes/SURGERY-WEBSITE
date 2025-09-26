@@ -31,7 +31,7 @@ export function SuperSpeciality() {
       name: 'Pediatric Surgery',
       icon: <Baby className="w-8 h-8" />,
       description: 'Specialized surgical care for infants, children, and adolescents with congenital and acquired conditions.',
-      detailedDescription: 'The Department of Pediatric Surgery at Government Medical College & Rajindra Hospital, Patiala provides specialized surgical care for infants, children, and adolescents...',
+      detailedDescription: 'The Department of Pediatric Surgery at Government Medical College & Rajindra Hospital, Patiala provides specialized surgical care for infants, children, and adolescents. Our experienced team of surgeons and faculty manage a wide range of conditions including congenital anomalies, neonatal surgical emergencies, pediatric trauma, and tumors. The department runs regular OPD and emergency services, along with specialized clinics for newborn care, epilepsy, asthma, cerebral palsy, nephrotic syndrome, and more. With modern facilities and a compassionate approach, the unit is dedicated to ensuring the best outcomes for young patients while also serving as a center for medical education and training.',
       color: 'text-pink-600',
       image: '/images/pediatric-surgery.jpg',
       services: [
