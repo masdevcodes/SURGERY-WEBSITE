@@ -480,7 +480,7 @@ function getModalContent(key: string) {
             <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
               {clinic.title}
               {imagesPreloaded && (
-                <span className="ml-2 text-sm text-green-600"></span>
+                <span className="ml-2 text-sm text-green-600">⚡</span>
               )}
             </h3>
             <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
@@ -495,7 +495,7 @@ function getModalContent(key: string) {
             }}
             className="font-bold text-teal-500 flex items-center gap-2 justify-center hover:text-teal-600 transition-colors duration-300"
           >
-            READ MORE
+            READ MORE 
             {imagesPreloaded && (
               <span className="ml-1 text-xs"></span>
             )}
@@ -560,7 +560,7 @@ function getModalContent(key: string) {
         <Modal onClose={closeModal}>
           {imagesPreloaded && (
             <div className="absolute top-4 left-4 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">
-            
+              ⚡ Lightning Fast
             </div>
           )}
           {getModalContent(modalContent)}
