@@ -12,7 +12,7 @@ const unit1Data = {
   },
   associateProfessors: [
     { name: "Dr. Jaswinder Singh", img: "/images/unit1/jaswinder.webp" },
-    { name: "Dr. Dinesh Kumar Passi", img: "/images/unit1/dineshkumar.webp" },
+    { name: "Dr. Dinesh Kumar Passi", img: "/images/unit1/dinesh_kumar_passi.webp" },
   ],
   seniorResidents: [
     { name: "Dr. Parth Dhamija", img: "/images/unit1/parth.webp" },
