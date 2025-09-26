@@ -50,10 +50,10 @@ export function MedicalSpecialties() {
     if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/unit1/sur.webp';
     
     // Special mapping for unit1 specific doctors
-    if (cleanName.includes('ashwani') || cleanName.includes('kumar')) return '/images/unit1/ashwini.png';
-    if (cleanName.includes('jaswinder')) return '/images/unit1/jaswinder.png';
-    if (cleanName.includes('parth')) return '/images/unit1/parth.png';
-    if (cleanName.includes('talib')) return '/images/unit1/thalib.png';
+    if (cleanName.includes('ashwani') || cleanName.includes('kumar')) return '/images/unit1/ashwini.webp';
+    if (cleanName.includes('jaswinder')) return '/images/unit1/jaswinder.webp';
+    if (cleanName.includes('parth')) return '/images/unit1/parth.webp';
+    if (cleanName.includes('talib')) return '/images/unit1/thalib.webp';
     
     // Use full name for image path to avoid conflicts
     const fullName = cleanName.replace(/\s+/g, '_');
