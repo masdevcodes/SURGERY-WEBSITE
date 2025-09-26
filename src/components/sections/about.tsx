@@ -37,7 +37,7 @@ export function About() {
               <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg hover:bg-white/15 hover:scale-105 transition-all duration-300 flex flex-col items-center text-center md:text-left md:items-start md:col-span-1">
                 <Stethoscope className="w-10 h-10 text-teal-500 mb-4" />
                 <h4 className="text-blue-950 font-bold font-body text-xl mb-2">Our Approach</h4>
-                <p className="text-sm text-center text-blue-950/80">
+                <p className="text-sm text-center text-blue-950/80 text-justify">
                 We are committed to providing care that meets your needs, whether it’s routine check-ups or critical treatments. Our team works with compassion and expertise to ensure the best outcomes for every patient.You can rely on us to keep you and your loved ones safe, healthy and supported at every step.
                 </p>
               </div>
@@ -54,21 +54,21 @@ export function About() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
               <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg hover:bg-white/15 hover:scale-105 transition-all duration-300">
                 <Globe className="w-10 h-10 text-teal-500 mb-4" />
-                <h4 className="font-bold text-blue-950 font-body text-base mb-2">Our Vision</h4>
-                <p className="text-sm text-center text-blue-950/80">
-                  A community in which our vision is to establish all people achieve their full potential for health and well-being across complexity the lifespan.
+                <h4 className="font-bold text-blue-950 font-body text-justify text-base mb-2">Our Vision</h4>
+                <p className="text-sm text-center text-blue-950/80 text-justify">
+                 A community committed to ensuring all individuals achieve their full potential for health and well-being, addressing the complexities they face across their lifespan.
                 </p>
               </div>
               <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg hover:bg-white/15 hover:scale-105 transition-all duration-300">
                 <Heart className="w-10 h-10 text-teal-500 mb-4" />
-                <h4 className="font-bold text-blue-950 font-body text-base mb-2">Our Values</h4>
-                <p className="text-sm text-center text-blue-950/80">
+                <h4 className="font-bold text-blue-950 font-body  text-base mb-2">Our Values</h4>
+                <p className="text-sm text-center text-blue-950/80 text-justify">
                   We care for the whole person, see the complexity of each person's life, and believe that addressing a broad range of human needs is the best.
                 </p>
               </div>
               <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg hover:bg-white/15 hover:scale-105 transition-all duration-300">
                 <Users className="w-10 h-10 text-teal-500 mb-4" />
-                <h4 className="font-bold text-blue-950 font-body text-base mb-2">Our Team</h4>
+                <h4 className="font-bold text-blue-950 text-justify font-body text-base mb-2">Our Team</h4>
                 <p className="text-sm text-blue-950/80">
                   Provide patient-centered healthcare with excellence in quality, service, and access. A community in which all people to provide our patients.
                 </p>
