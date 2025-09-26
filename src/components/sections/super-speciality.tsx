@@ -51,7 +51,7 @@ export function SuperSpeciality() {
       name: 'Neuro Surgery',
       icon: <Brain className="w-8 h-8" />,
       description: 'Advanced neurosurgical procedures for brain, spine, and peripheral nervous system disorders.',
-      detailedDescription: 'The Department of Neurosurgery at Government Medical College & Rajindra Hospital, Patiala is dedicated to delivering advanced surgical care for disorders of the brain, spinal cord, peripheral nerves, and skull...',
+      detailedDescription: 'The Department of Neurosurgery at Government Medical College & Rajindra Hospital, Patiala is dedicated to delivering advanced surgical care for disorders of the brain, spinal cord, peripheral nerves, and skull. Our experts handle a wide spectrum of neurosurgical conditions — including head and spinal trauma, congenital anomalies, brain tumors, hydrocephalus, spinal disorders, neurovascular conditions, and critical neurological emergencies. Equipped with modern operation theatres and diagnostic imaging support, the department combines precise surgical skills with compassionate, patient-centered care.',
       color: 'text-purple-600',
       image: '',
       services: [
