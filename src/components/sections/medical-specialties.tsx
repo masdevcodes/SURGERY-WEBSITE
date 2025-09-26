@@ -51,7 +51,7 @@ export function MedicalSpecialties() {
     
     // Special mapping for unit1 specific doctors
     if (cleanName.includes('ashwani') || cleanName.includes('kumar')) return '/images/unit1/ashwini.png';
-    if (cleanName.includes('dinesh') || cleanName.includes('kumar') || cleanName.includes('passi')) return '/images/unit1/dinesh_kumar_passi.webp';
+    if (cleanName.includes('dinesh') || cleanName.includes('kumar') '/images/unit1/dinesh_kumar_passi.webp';
     if (cleanName.includes('jaswinder')) return '/images/unit1/jaswinder.webp';
     if (cleanName.includes('parth')) return '/images/unit1/parth.webp';
     if (cleanName.includes('talib')) return '/images/unit1/thalib.webp';
