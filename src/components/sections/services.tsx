@@ -108,7 +108,8 @@ function ServiceCard({ service, index, onSelect }: {
 
   const handleHover = () => {
     if (!isImagePreloaded) {
-      const img = new Image();
+      // Use window.Image to avoid conflict with Next.js Image component
+      const img = new window.Image();
       img.src = service.banner;
       img.onload = () => setIsImagePreloaded(true);
       img.onerror = () => setIsImagePreloaded(true); // Mark as loaded even on error
@@ -293,16 +294,20 @@ export function Services() {
 
     criticalImages.forEach(url => {
       if (!preloadedImages.has(url)) {
-        const img = new Image();
+        // Use window.Image to avoid conflict with Next.js Image component
+        const img = new window.Image();
         img.src = url;
         img.onload = () => {
           setPreloadedImages(prev => new Set(prev).add(url));
         };
+        img.onerror = () => {
+          setPreloadedImages(prev => new Set(prev).add(url)); // Still add to preloaded to avoid retries
+        };
       }
     });
-  }, []);
+  }, [preloadedImages]); // Add preloadedImages as dependency
 
-  // Update right side height on resize
+  // Update right side height on resize and after initial render
   useEffect(() => {
     const updateHeight = () => {
       if (rightSideRef.current) {
@@ -310,9 +315,14 @@ export function Services() {
       }
     };
 
-    updateHeight();
+    // Initial height calculation after DOM is ready
+    const timer = setTimeout(updateHeight, 100);
     window.addEventListener('resize', updateHeight);
-    return () => window.removeEventListener('resize', updateHeight);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', updateHeight);
+    };
   }, []);
 
   // Auto-change carousel images every 3 seconds
@@ -321,12 +331,7 @@ export function Services() {
       setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
-
-  // Track image preloads for modal
-  const handleImagePreload = (url: string) => {
-    setPreloadedImages(prev => new Set(prev).add(url));
-  };
+  }, [carouselImages.length]);
 
   const closeModal = () => setSelectedService(null);
   const closeShowAllModal = () => setShowAllModal(false);
