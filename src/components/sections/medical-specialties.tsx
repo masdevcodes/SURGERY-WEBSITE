@@ -19,7 +19,7 @@ const unit1Data = {
     { name: "Dr. Talib Khan", img: "/images/unit1/thalib.png" },
   ],
   juniorResidents: [
-    { name: "Dr. Dinesh", img: "/images/unit1/dinesh.png" },
+    { name: "Dr. Dinesh", img: "/images/unit1/dinesh.webp" },
     { name: "Dr. Navneeth Shankar", img: "/images/unit1/navneeth.png" },
     { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.png" },
     { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.png" },
