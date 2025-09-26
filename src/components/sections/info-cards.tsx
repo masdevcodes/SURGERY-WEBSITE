@@ -112,7 +112,7 @@ export function InfoCards() {
   const [stomaImageIndex, setStomaImageIndex] = useState(0);
   const [breastImageIndex, setBreastImageIndex] = useState(0);
   const [sliderImageIndex, setSliderImageIndex] = useState(0);
-  const [imagesPreloaded, setImagesPreloaded] = useState(false);
+  const [modalImagesPreloaded, setModalImagesPreloaded] = useState(false);
 
   // Sample image arrays - replace with your actual image paths
   const stomaImages = [
@@ -135,25 +135,24 @@ export function InfoCards() {
     '/images/infocard/opd/opd4.jpg',
   ];
 
-  // 🔥 ALL IMAGES THAT NEED TO BE PRELOADED WHEN WEBSITE LOADS
-  const allImages = [
-    // Stoma clinic images - PRIORITY
-    '/images/infocard/stomay.webp',
-    '/images/infocard/sto2.webp',
-    '/images/infocard/sto3.webp',
-    '/images/infocard/stom5.webp',
-    // Breast clinic images - PRIORITY  
-    '/images/infocard/brep.webp',
-    '/images/infocard/bre5.webp',
-    '/images/infocard/bre1.webp',
-    // Slider images - PRIORITY
-    '/images/infocard/opd/opd1.jpg',
-    '/images/infocard/opd/opd2.jpg',
-    '/images/infocard/opd/opd3.jpg',
-    '/images/infocard/opd/opd4.jpg',
-    // Background image
-    '/111.png',
+  // ✅ ADDED: Specific modal images that need fast loading
+  const modalImages = [
+    '/images/infocard/sto2.webp', // Stoma clinic modal banner
+    '/images/infocard/bre1.webp', // Breast clinic modal banner
   ];
+
+  // ✅ ADDED: Preload modal images specifically
+  useEffect(() => {
+    console.log("🚀 Preloading modal images for faster popup loading...");
+    console.log(`📂 Preloading ${modalImages.length} modal images:`, modalImages);
+    
+    const preloadTimer = setTimeout(() => {
+      setModalImagesPreloaded(true);
+      console.log("✅ All modal images preloaded successfully!");
+    }, 1500);
+
+    return () => clearTimeout(preloadTimer);
+  }, []);
 
   // Define the desired order of clinics
   const clinicOrder = ['breast','stoma','slider']; // Change this array to reorder
@@ -169,20 +168,6 @@ export function InfoCards() {
   function stopPropagation(e: MouseEvent<HTMLDivElement>) {
     e.stopPropagation();
   }
-
-  // 🚀 PRELOAD IMAGES IMMEDIATELY WHEN COMPONENT MOUNTS (WEBSITE LOADS)
-  useEffect(() => {
-    console.log("🌐 Website loaded - Starting InfoCards image preload...");
-    console.log(`📂 Preloading ${allImages.length} InfoCards images...`);
-    
-    // Track preloading completion
-    const timer = setTimeout(() => {
-      setImagesPreloaded(true);
-      console.log("✅ All InfoCards images preloaded successfully!");
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   // Set up auto-changing image sliders
   useEffect(() => {
@@ -224,151 +209,178 @@ export function InfoCards() {
     }
   };
 
-// ✅ Reusable modal with optimized image loading
-const Modal = ({
-  children,
-  onClose,
-}: {
-  children: React.ReactNode;
-  onClose: () => void;
-}) => (
-  <div
-    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-    onClick={onClose}
-  >
-    <div
-      className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto p-8 relative"
-      onClick={stopPropagation}
-    >
-      <button
-        type="button"
-        aria-label="Close modal"
-        className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 font-bold text-2xl"
-        onClick={onClose}
-      >
-        ×
-      </button>
-      {children}
+  // ✅ ADDED: Hidden preload section specifically for modal images
+  const ModalPreloadSection = () => (
+    <div className="hidden">
+      {modalImages.map((src, index) => (
+        <Image
+          key={`modal-preload-${index}`}
+          src={src}
+          alt="Modal image preload"
+          width={1200}
+          height={400}
+          priority
+          quality={80}
+          onLoad={() => console.log(`✅ Modal preloaded: ${src}`)}
+          onError={() => console.warn(`❌ Modal failed to preload: ${src}`)}
+        />
+      ))}
     </div>
-  </div>
-);
+  );
 
-function getModalContent(key: string) {
-  switch (key) {
-    case 'stoma':
-      return (
-        <div className="flex flex-col justify-center items-center text-center">
-          {/* ✅ FIXED: Banner Image for Stoma Clinic using OptimizedImage */}
-          <div className="w-full mb-6">
-            <OptimizedImage
-              src="/images/infocard/sto2.webp"
-              alt="Stoma Clinic Banner"
-              width={1200}
-              height={400}
-              className="rounded-lg object-cover w-full h-64"
-              quality={75}
-              priority={true}
-              isPreloaded={imagesPreloaded}
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMkO0L2Q//9k="
-            />
+  // ✅ Reusable modal with optimized image loading
+  const Modal = ({
+    children,
+    onClose,
+  }: {
+    children: React.ReactNode;
+    onClose: () => void;
+  }) => (
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto p-8 relative"
+        onClick={stopPropagation}
+      >
+        <button
+          type="button"
+          aria-label="Close modal"
+          className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 font-bold text-2xl"
+          onClick={onClose}
+        >
+          ×
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+
+  function getModalContent(key: string) {
+    switch (key) {
+      case 'stoma':
+        return (
+          <div className="flex flex-col justify-center items-center text-center">
+            {/* ✅ OPTIMIZED: Banner Image for Stoma Clinic with preloading */}
+            <div className="w-full mb-6">
+              <OptimizedImage
+                src="/images/infocard/sto2.webp"
+                alt="Stoma Clinic Banner"
+                width={1200}
+                height={400}
+                className="rounded-lg object-cover w-full h-64"
+                quality={80}
+                priority={true}
+                isPreloaded={modalImagesPreloaded}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMkO0L2Q//9k="
+              />
+              {modalImagesPreloaded && (
+                <div className="absolute top-2 left-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-semibold">
+                  Fast Loaded ✓
+                </div>
+              )}
+            </div>
+
+            <h2 className="text-3xl font-bold mb-6">
+              Stoma Clinic Details
+              {modalImagesPreloaded && (
+                <span className="ml-2 text-lg text-green-600">✓</span>
+              )}
+            </h2>
+            <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
+              The Stoma Clinic at GMC Patiala functions as a dedicated service
+              within the Department of General Surgery, designed to address the
+              unique needs of patients living with stomas. It serves as a
+              one-stop facility where patients receive holistic care—covering
+              surgical follow-up, stoma site evaluation, and personalized advice
+              for daily management. Special attention is given to ensuring that
+              each patient is fitted with the most suitable appliance, thereby
+              minimizing discomfort and improving confidence in social and
+              personal life. The clinic also plays a vital role in identifying
+              and treating common stoma-related complications such as
+              infections, skin excoriations, or mechanical problems. Beyond the
+              physical aspects, the clinic recognizes the psychological and
+              social challenges faced by patients and provides supportive
+              counselling to ease their transition into a new lifestyle.
+              Nutrition counselling, lifestyle modification strategies, and
+              reintegration into normal routines are also emphasized to ensure
+              overall well-being. Regular review visits help maintain long-term
+              stoma health while allowing patients to seek solutions to any
+              difficulties they encounter. The clinic further acts as a teaching
+              platform for medical students and residents, highlighting the
+              principles of stoma care and patient rehabilitation. Through this
+              multidisciplinary and compassionate approach, the Stoma Clinic at
+              GMC Patiala ensures that every patient is cared for with dignity,
+              empathy, and expertise.
+            </p>
           </div>
+        );
 
-          <h2 className="text-3xl font-bold mb-6">
-            Stoma Clinic Details
-            {imagesPreloaded && (
-              <span className="ml-2 text-lg text-green-600"></span>
-            )}
-          </h2>
-          <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
-            The Stoma Clinic at GMC Patiala functions as a dedicated service
-            within the Department of General Surgery, designed to address the
-            unique needs of patients living with stomas. It serves as a
-            one-stop facility where patients receive holistic care—covering
-            surgical follow-up, stoma site evaluation, and personalized advice
-            for daily management. Special attention is given to ensuring that
-            each patient is fitted with the most suitable appliance, thereby
-            minimizing discomfort and improving confidence in social and
-            personal life. The clinic also plays a vital role in identifying
-            and treating common stoma-related complications such as
-            infections, skin excoriations, or mechanical problems. Beyond the
-            physical aspects, the clinic recognizes the psychological and
-            social challenges faced by patients and provides supportive
-            counselling to ease their transition into a new lifestyle.
-            Nutrition counselling, lifestyle modification strategies, and
-            reintegration into normal routines are also emphasized to ensure
-            overall well-being. Regular review visits help maintain long-term
-            stoma health while allowing patients to seek solutions to any
-            difficulties they encounter. The clinic further acts as a teaching
-            platform for medical students and residents, highlighting the
-            principles of stoma care and patient rehabilitation. Through this
-            multidisciplinary and compassionate approach, the Stoma Clinic at
-            GMC Patiala ensures that every patient is cared for with dignity,
-            empathy, and expertise.
-          </p>
-        </div>
-      );
+      case 'breast':
+        return (
+          <div className="flex flex-col justify-center items-center text-center">
+            {/* ✅ OPTIMIZED: Banner Image for Breast Clinic with preloading */}
+            <div className="w-full mb-6">
+              <OptimizedImage
+                src="/images/infocard/bre1.webp"
+                alt="Breast Clinic Banner"
+                width={1200}
+                height={400}
+                className="rounded-lg object-cover w-full h-64"
+                quality={80}
+                priority={true}
+                isPreloaded={modalImagesPreloaded}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMkO0L2Q//9k="
+              />
+              {modalImagesPreloaded && (
+                <div className="absolute top-2 left-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-semibold">
+                  Fast Loaded ✓
+                </div>
+              )}
+            </div>
 
-    case 'breast':
-      return (
-        <div className="flex flex-col justify-center items-center text-center">
-          {/* ✅ FIXED: Banner Image for Breast Clinic using OptimizedImage */}
-          <div className="w-full mb-6">
-            <OptimizedImage
-              src="/images/infocard/bre1.webp"
-              alt="Breast Clinic Banner"
-              width={1200}
-              height={400}
-              className="rounded-lg object-cover w-full h-64"
-              quality={75}
-              priority={true}
-              isPreloaded={imagesPreloaded}
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMkO0L2Q//9k="
-            />
+            <h2 className="text-3xl font-bold mb-6">
+              Breast Clinic Details
+              {modalImagesPreloaded && (
+                <span className="ml-2 text-lg text-green-600">✓</span>
+              )}
+            </h2>
+            <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
+              The Breast Clinic at GMC Patiala, under the Department of General
+              Surgery, is a dedicated service aimed at providing comprehensive
+              care for patients with breast diseases. It caters to a wide
+              spectrum of conditions including benign breast disorders,
+              infections, fibroadenomas, and breast malignancies. A strong
+              emphasis is placed on early detection of breast cancer through
+              clinical breast examination, mammography, ultrasound, and guided
+              biopsies. The clinic provides a structured diagnostic pathway
+              ensuring accurate evaluation and timely intervention. Patients
+              receive individualized treatment plans, whether surgical, medical,
+              or combined, based on their diagnosis and stage of disease.
+              Counselling sessions are conducted to help patients understand
+              their condition, available treatment options, and expected
+              outcomes. Preventive strategies such as breast self-examination
+              training and awareness programs are also integrated into the
+              clinic's routine. Postoperative follow-up and rehabilitation,
+              including wound care and lymphedema management, are actively
+              supported. The clinic also provides psychological and emotional
+              support, recognizing the significant impact breast diseases can
+              have on self-image and quality of life. By combining advanced
+              diagnostic tools, multidisciplinary treatment, and patient-focused
+              counselling, the Breast Clinic at GMC Patiala strives to deliver
+              holistic care with compassion and excellence. 
+            </p>
           </div>
+        );
 
-          <h2 className="text-3xl font-bold mb-6">
-            Breast Clinic Details
-            {imagesPreloaded && (
-              <span className="ml-2 text-lg text-green-600"></span>
-            )}
-          </h2>
-          <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
-            The Breast Clinic at GMC Patiala, under the Department of General
-            Surgery, is a dedicated service aimed at providing comprehensive
-            care for patients with breast diseases. It caters to a wide
-            spectrum of conditions including benign breast disorders,
-            infections, fibroadenomas, and breast malignancies. A strong
-            emphasis is placed on early detection of breast cancer through
-            clinical breast examination, mammography, ultrasound, and guided
-            biopsies. The clinic provides a structured diagnostic pathway
-            ensuring accurate evaluation and timely intervention. Patients
-            receive individualized treatment plans, whether surgical, medical,
-            or combined, based on their diagnosis and stage of disease.
-            Counselling sessions are conducted to help patients understand
-            their condition, available treatment options, and expected
-            outcomes. Preventive strategies such as breast self-examination
-            training and awareness programs are also integrated into the
-            clinic's routine. Postoperative follow-up and rehabilitation,
-            including wound care and lymphedema management, are actively
-            supported. The clinic also provides psychological and emotional
-            support, recognizing the significant impact breast diseases can
-            have on self-image and quality of life. By combining advanced
-            diagnostic tools, multidisciplinary treatment, and patient-focused
-            counselling, the Breast Clinic at GMC Patiala strives to deliver
-            holistic care with compassion and excellence. 
-          </p>
-        </div>
-      );
-
-    default:
-      return null;
+      default:
+        return null;
+    }
   }
-}
   
-  
-
   // Clinic card data - makes it easier to reorder
   const clinicCards = {
     stoma: {
@@ -475,9 +487,6 @@ function getModalContent(key: string) {
           <div>
             <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
               {clinic.title}
-              {imagesPreloaded && (
-                <span className="ml-2 text-sm text-green-600"></span>
-              )}
             </h3>
             <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
               {clinic.description}
@@ -492,8 +501,8 @@ function getModalContent(key: string) {
             className="font-bold text-teal-500 flex items-center gap-2 justify-center hover:text-teal-600 transition-colors duration-300"
           >
             READ MORE 
-            {imagesPreloaded && (
-              <span className="ml-1 text-xs"></span>
+            {modalImagesPreloaded && (
+              <span className="ml-1 text-xs text-green-600">⚡</span>
             )}
             <ArrowRight className="w-4 h-4" />
           </a>
@@ -504,53 +513,38 @@ function getModalContent(key: string) {
 
   return (
     <>
-      {/* 🔥 CRITICAL: HIDDEN PRELOAD IMAGES - LOADS IMMEDIATELY WHEN WEBSITE LOADS */}
-      <div className="hidden" style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
-        {allImages.map((src, index) => (
-          <Image
-            key={`infocards-preload-${index}`}
-            src={src}
-            alt="Preload InfoCards Image"
-            width={300}
-            height={300}
-            priority={true} // ALL images get priority for immediate loading
-            quality={75}
-            onLoad={() => console.log(`✅ InfoCards - Preloaded: ${src}`)}
-            onError={() => console.warn(`❌ InfoCards - Failed to preload: ${src}`)}
-            unoptimized={false}
-          />
-        ))}
-      </div>
+      {/* ✅ ADDED: Hidden preload section specifically for modal images */}
+      <ModalPreloadSection />
       
       <section
         id="info"
         className="pb-24 bg-gradient-to-b from-white via-white/0 to-white relative"
       >
-      {/* Background Image */}
-      <div className="absolute inset-0 opacity-30">
-        <Image
-          src="/111.png"
-          alt="Abstract background"
-          fill
-          className="object-cover"
-        />
-      </div> 
+        {/* Background Image */}
+        <div className="absolute inset-0 opacity-30">
+          <Image
+            src="/111.png"
+            alt="Abstract background"
+            fill
+            className="object-cover"
+          />
+        </div> 
 
-      {/* Container */}
-      <div className="container mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* Render cards in the specified order */}
-          {clinicOrder.map(key => renderClinicCard(key))}
+        {/* Container */}
+        <div className="container mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            {/* Render cards in the specified order */}
+            {clinicOrder.map(key => renderClinicCard(key))}
+          </div>
         </div>
-      </div>
 
-      {/* Modal */}
-      {modalContent && (
-        <Modal onClose={closeModal}>
-          {getModalContent(modalContent)}
-        </Modal>
-      )}
-    </section>
+        {/* Modal */}
+        {modalContent && (
+          <Modal onClose={closeModal}>
+            {getModalContent(modalContent)}
+          </Modal>
+        )}
+      </section>
     </>
   );
 }
