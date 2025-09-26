@@ -89,7 +89,8 @@ export function SuperSpeciality() {
       name: 'CVTS',
       icon: <Heart className="w-8 h-8" />,
       description: 'Cardiothoracic and Vascular Surgery for heart, lung, and vascular system conditions.',
-      detailedDescription: 'The CVTS (Cardio-Vascular & Thoracic Surgery) Department at Government Medical College & Rajindra Hospital, Patiala delivers high-end surgical care for diseases of the heart, blood vessels, lungs, and chest structures...',
+      detailedDescription: 'Cardiothoracic and Vascular Surgery for heart, lung, and vascular system conditions.',
+      detailedDescription: 'The CVTS (Cardio-Vascular & Thoracic Surgery) Department at Government Medical College & Rajindra Hospital, Patiala delivers high-end surgical care for diseases of the heart, blood vessels, lungs, and chest structures. Our team of cardiovascular & thoracic surgeons is experienced in treating congenital and acquired cardiac conditions, performing open-heart surgeries, valve replacements and repairs, coronary artery bypass grafting (CABG), thoracic tumor resections, lung surgeries, and interventions for trauma and other chest emergencies.',
       color: 'text-red-600',
       image: '/images/ctvs.png',
       services: [
