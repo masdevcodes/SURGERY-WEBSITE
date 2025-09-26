@@ -415,13 +415,13 @@ function getModalContent(key: string) {
                 <h3 className="text-2xl font-bold mb-2">{clinic.title}</h3>
                 <p className="text-sm mb-4 max-w-md">{clinic.description}</p>
                 
-                {/* Image counter */}
+                {/* Image counter 
                 <div className="text-xs opacity-80 mb-2">
                   Image {clinic.imageIndex + 1} of {clinic.images.length}
                   {imagesPreloaded && (
                     <span className="ml-2"></span>
                   )}
-                </div>
+                </div> */}
               </div>
               
               {/* Image Indicators */}
