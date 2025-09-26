@@ -528,7 +528,7 @@ export function InfoCards() {
             fill
             className="object-cover"
           />
-        </div> 
+        </div>  
 
         {/* Container */}
         <div className="container mx-auto relative z-10">
