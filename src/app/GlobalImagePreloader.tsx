@@ -6,7 +6,7 @@ import Image from 'next/image';
 // 🔥 GLOBAL MODAL IMAGES PRELOADER COMPONENT
 function GlobalImagePreloader() {
   const allModalImages = [
-    // InfoCards modal images
+    // InfoCards modal images 
     '/images/infocard/sto2.webp',
     '/images/infocard/bre1.webp',
     
