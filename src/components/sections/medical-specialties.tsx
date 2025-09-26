@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import Image from "next/image";
 
 // Data for Unit 1 Team. This could be fetched from a database or CMS in a real application.
 const unit1Data = {
@@ -39,7 +38,6 @@ export default function MedicalSpecialtiesPage() {
     const cleanName = name.replace('Dr. ', '').toLowerCase();
    
     // Specific mappings for names to ensure correct image paths.
-    // Note: Image files should be in the `public/images/unit1/` directory.
     if (cleanName.includes('ashwani')) return '/images/unit1/ashwini.png';
     if (cleanName.includes('jaswinder')) return '/images/unit1/jaswinder.png';
     if (cleanName.includes('dinesh kumar')) return '/images/unit1/dineshkumar.png';
@@ -74,17 +72,15 @@ export default function MedicalSpecialtiesPage() {
 
   return (
     <main>
-      {/* Preloading images that will be shown in the modal. 
-          The `priority` prop tells Next.js to load them early. */}
+      {/* Preloading images that will be shown in the modal. */}
       <div className="hidden">
         {allDoctorNamesForPreload.map((name, index) => (
-          <Image
+          <img
             key={`preload-${index}`}
             src={getImagePath(name)}
             alt="Preload"
-            width={200}
-            height={200}
-            priority
+            width="200"
+            height="200"
           />
         ))}
       </div>
@@ -92,12 +88,10 @@ export default function MedicalSpecialtiesPage() {
       <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0">
-          <Image
+          <img
             src="/hod.webp"
             alt="Abstract geometric background"
-            fill
-            className="object-cover opacity-10"
-            quality={75}
+            className="w-full h-full object-cover opacity-10"
           />
         </div>
 
@@ -146,13 +140,10 @@ export default function MedicalSpecialtiesPage() {
             {/* Right Side Image */}
             <div className="relative">
               <div className="relative w-full h-[750px] rounded-2xl overflow-hidden shadow-2xl group">
-                <Image 
+                <img 
                   src="/hod.webp" 
                   alt="Head of Surgery - Dr. Ashwani Kumar" 
-                  fill
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  quality={80}
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
@@ -177,8 +168,8 @@ export default function MedicalSpecialtiesPage() {
                     <h4 className="text-xl font-semibold text-teal-600 mb-6">Unit Incharge</h4>
                     <div className="flex justify-center">
                       <div className="flex flex-col items-center">
-                        <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group relative">
-                          <Image src={getImagePath(unit1Data.incharge.name)} alt={unit1Data.incharge.name} fill className="object-cover transition-transform duration-300 group-hover:scale-110"/>
+                        <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
+                          <img src={getImagePath(unit1Data.incharge.name)} alt={unit1Data.incharge.name} width="160" height="160" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
                         </div>
                         <p className="font-bold text-blue-950 text-lg">{unit1Data.incharge.name}</p>
                         <p className="text-gray-600">{unit1Data.incharge.title}</p>
@@ -191,8 +182,8 @@ export default function MedicalSpecialtiesPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center">
                       {unit1Data.associateProfessors.map((prof) => (
                         <div key={prof.name} className="flex flex-col items-center">
-                          <div className="w-36 h-36 rounded-xl overflow-hidden shadow-md mb-4 group relative">
-                            <Image src={getImagePath(prof.name)} alt={prof.name} fill className="object-cover transition-transform duration-300 group-hover:scale-110"/>
+                          <div className="w-36 h-36 rounded-xl overflow-hidden shadow-md mb-4 group">
+                            <img src={getImagePath(prof.name)} alt={prof.name} width="144" height="144" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
                           </div>
                           <p className="font-bold text-blue-950 text-center">{prof.name}</p>
                         </div>
@@ -205,8 +196,8 @@ export default function MedicalSpecialtiesPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center">
                       {unit1Data.seniorResidents.map((sr) => (
                         <div key={sr.name} className="flex flex-col items-center">
-                          <div className="w-32 h-32 rounded-xl overflow-hidden shadow-md mb-4 group relative">
-                            <Image src={getImagePath(sr.name)} alt={sr.name} fill className="object-cover transition-transform duration-300 group-hover:scale-110"/>
+                          <div className="w-32 h-32 rounded-xl overflow-hidden shadow-md mb-4 group">
+                            <img src={getImagePath(sr.name)} alt={sr.name} width="128" height="128" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
                           </div>
                           <p className="font-medium text-blue-950 text-center">{sr.name}</p>
                         </div>
@@ -219,8 +210,8 @@ export default function MedicalSpecialtiesPage() {
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 justify-items-center">
                       {unit1Data.juniorResidents.map((jr) => (
                         <div key={jr.name} className="flex flex-col items-center">
-                          <div className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group relative">
-                            <Image src={getImagePath(jr.name)} alt={jr.name} fill className="object-cover transition-transform duration-300 group-hover:scale-110"/>
+                          <div className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group">
+                            <img src={getImagePath(jr.name)} alt={jr.name} width="112" height="112" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
                           </div>
                           <p className="font-medium text-blue-950 text-sm text-center">{jr.name}</p>
                         </div>
@@ -236,3 +227,4 @@ export default function MedicalSpecialtiesPage() {
     </main>
   );
 }
+
