@@ -499,7 +499,7 @@ export function Services() {
                   <h3 className="text-2xl font-bold text-blue-950">
                     All Milestones
                     {imagesPreloaded && (
-                      <span className="ml-2 text-lg text-green-600">⚡ Ready!</span>
+                      <span className="ml-2 text-lg text-green-600">Ready!</span>
                     )}
                   </h3>
                   <button
@@ -537,7 +537,7 @@ export function Services() {
                           <span className="relative">
                             READ MORE
                             {imagesPreloaded && (
-                              <span className="ml-1 text-xs">⚡</span>
+                              <span className="ml-1 text-xs"></span>
                             )}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
                           </span>
