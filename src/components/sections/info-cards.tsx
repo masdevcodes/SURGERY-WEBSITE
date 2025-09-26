@@ -480,7 +480,7 @@ function getModalContent(key: string) {
           >
             READ MORE
             {imagesPreloaded && (
-              <span className="ml-1 text-xs">⚡</span>
+              <span className="ml-1 text-xs"></span>
             )}
             <ArrowRight className="w-4 h-4" />
           </a>
