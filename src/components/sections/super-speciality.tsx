@@ -380,7 +380,7 @@ export function SuperSpeciality() {
                     <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">Super Specialities</div>
                 </div>
                 <div className="group transform transition-all duration-300 hover:scale-110">
-                    <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-green-600 transition-colors duration-300">27+</div>
+                    <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-green-600 transition-colors duration-300">10+</div>
                     <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">Specialist Doctors</div>
                 </div>
                 <div className="group transform transition-all duration-300 hover:scale-110">
