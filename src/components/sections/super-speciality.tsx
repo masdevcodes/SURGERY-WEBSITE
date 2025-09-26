@@ -242,7 +242,10 @@ export function SuperSpeciality() {
           <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg flex items-center justify-center">
             <div className="w-8 h-8 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
           </div>
-       
+        )}
+        {isModalImage && modalImagesPreloaded && (
+          
+        )}
         <Image
           src={imgSrc}
           alt={alt}
