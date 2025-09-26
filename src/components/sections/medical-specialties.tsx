@@ -273,11 +273,9 @@ export function MedicalSpecialties() {
                 {/* Associate Professors - Using dynamic paths */}
                 {unit1Data.associateProfessors.length > 0 && (
                   <div>
-                    <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Associate Professors</h4>
-                     <div className="w-30 h-30 rounded-xl overflow-hidden shadow-md mb-4 group">
+                    <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Associate Professors</h4> 
                     {renderModalListWithImages(unit1Data.associateProfessors, true)}
                   </div>
-                      </div>
                 )}
                 
                 {/* Senior Residents - Using dynamic paths */}
