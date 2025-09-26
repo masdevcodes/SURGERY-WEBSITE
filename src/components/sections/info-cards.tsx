@@ -560,7 +560,7 @@ function getModalContent(key: string) {
         <Modal onClose={closeModal}>
           {imagesPreloaded && (
             <div className="absolute top-4 left-4 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">
-              ⚡ Lightning Fast
+             
             </div>
           )}
           {getModalContent(modalContent)}
