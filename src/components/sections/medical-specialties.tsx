@@ -100,9 +100,7 @@ export function MedicalSpecialties() {
             </div>
             {/* Testimony Text */}
             <blockquote className="text-lg leading-relaxed text-justify text-gray-700 italic">
-              "As the Head of the Department of Surgery, I am proud of the
-              commitment and dedication shown by our team in providing the
-              highest standard of surgical care..."
+              "As the Head of the Department of Surgery, I am proud of the commitment and dedication shown by our team in providing the highest standard of surgical care. Our department combines advanced clinical expertise with compassion, ensuring that every patient receives personalized treatment tailored to their needs. We place a strong emphasis on continuous learning, innovation, and research to keep pace with the latest developments in the field. It is our mission to not only treat patients but also to guide and support them through every step of their surgical journey. I am confident that with our skilled doctors, modern facilities, and patient-centered approach, we will continue to deliver excellence in surgical care."
             </blockquote>
             {/* Doctor Info + Button */}
             <div className="pt-6 border-t border-gray-200 flex items-center justify-between">
