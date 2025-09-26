@@ -480,7 +480,7 @@ function getModalContent(key: string) {
             <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
               {clinic.title}
               {imagesPreloaded && (
-                <span className="ml-2 text-sm text-green-600">⚡</span>
+                <span className="ml-2 text-sm text-green-600"></span>
               )}
             </h3>
             <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
