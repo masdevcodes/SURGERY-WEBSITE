@@ -188,7 +188,9 @@ export function InfoCards() {
       stoma: {
         banner: '/images/infocard/popup/stomaypopup.jpg',
         title: 'Stoma Clinic Details',
-        content: `The Stoma Clinic at GMC Patiala functions as a dedicated service within the Department of General Surgery...`
+        content: `The Stoma Clinic at GMC Patiala functions as a dedicated service within the Department of General Surgery, designed to address the unique needs of patients living with stomas. It serves as a one-stop facility where patients receive holistic care—covering surgical follow-up, stoma site evaluation, and personalized advice for daily management. Special attention is given to ensuring that each patient is fitted with the most suitable appliance, thereby minimizing discomfort and improving confidence in social and personal life.
+                The clinic also plays a vital role in identifying and treating common stoma-related complications such as infections, skin excoriations, or mechanical problems. Beyond the physical aspects, the clinic recognizes the psychological and social challenges faced by patients and provides supportive counselling to ease their transition into a new lifestyle. Nutrition counselling, lifestyle modification strategies, and reintegration into normal routines are also emphasized to ensure overall well-being.
+                Regular review visits help maintain long-term stoma health while allowing patients to seek solutions to any difficulties they encounter. The clinic further acts as a teaching platform for medical students and residents, highlighting the principles of stoma care and patient rehabilitation. Through this multidisciplinary and compassionate approach, the Stoma Clinic at GMC Patiala ensures that every patient is cared for with dignity, empathy, and expertise.`
       },
       breast: {
         banner: '/images/infocard/popup/breppopup.jpg',
