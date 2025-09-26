@@ -469,7 +469,7 @@ export function Services() {
                   <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
                   {imagesPreloaded && (
                     <div className="absolute top-4 left-4 bg-white/90 rounded-full px-4 py-2 text-sm text-green-600 font-bold">
-                      ⚡ Lightning Fast
+                     
                     </div>
                   )}
                 </div>
