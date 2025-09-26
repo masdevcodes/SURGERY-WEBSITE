@@ -126,7 +126,7 @@ function ServiceCard({ service, index, onSelect, imagesPreloaded }: {
           <span className="relative">
             READ MORE
             {imagesPreloaded && (
-              <span className="ml-1 text-xs">⚡</span>
+              <span className="ml-1 text-xs"></span>
             )}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
           </span>
