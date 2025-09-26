@@ -251,7 +251,7 @@ export function Services() {
       title: 'Radio Frequency Ablation In Varicose Veins',
       description: '',
       color: 'text-teal-500',
-      banner: '/images/super/veins.webp', 
+      banner: '/images/super/veins.webp',
       popupContent: (
         <div>
           <h3 className="font-bold text-2xl mb-4">Radio Frequency Ablation In Varicose Veins</h3>
