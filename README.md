@@ -12,7 +12,7 @@ To enable live YouTube data fetching:
    - Go to [Google Cloud Console](https://console.cloud.google.com/)
    - Create a new project or select an existing one
    - Enable the YouTube Data API v3
-   - Create credentials (API Key)
+   - Create credentials (API Key) 
    - Restrict the API key to YouTube Data API v3 for security
 
 2. **Get Your Channel ID:**
