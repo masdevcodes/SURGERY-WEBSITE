@@ -8,7 +8,7 @@ const unit1Data = {
   incharge: {
     name: "Dr. Ashwani Kumar",
     title: "Prof & Head of Surgery Department",
-    img: "/images/unit1/ashwini.png", // Direct path for main section
+    img: "/images/unit1/ashwini.webp",
   },
   associateProfessors: [
     { name: "Dr. Jaswinder Singh", img: "/images/unit1/jaswinder.webp" },
@@ -16,47 +16,51 @@ const unit1Data = {
   ],
   seniorResidents: [
     { name: "Dr. Parth Dhamija", img: "/images/unit1/parth.webp" },
-    { name: "Dr. Talib Khan", img: "/images/unit1/thalib.png" },
+    { name: "Dr. Talib Khan", img: "/images/unit1/thalib.webp" },
   ],
   juniorResidents: [
     { name: "Dr. Dinesh", img: "/images/unit1/dinesh.webp" },
-    { name: "Dr. Navneeth Shankar", img: "/images/unit1/navneeth.png" },
-    { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.png" },
-    { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.png" },
-    { name: "Dr. Soumya A", img: "/images/unit1/soumya.png" },
+    { name: "Dr. Navneeth Shankar", img: "/images/unit1/navneeth.webp" },
+    { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.webp" },
+    { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.webp" },
+    { name: "Dr. Soumya A", img: "/images/unit1/soumya.webp" },
     { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.webp" },
-    { name: "Dr. Yogyatha", img: "/images/unit1/yog.png" },
-    { name: "Dr. Priyanka", img: "/images/unit1/pri.png" },
-    { name: "Dr. Sooraj", img: "/images/unit1/sur.png" },
+    { name: "Dr. Yogyatha", img: "/images/unit1/yog.webp" },
+    { name: "Dr. Priyanka", img: "/images/unit1/pri.webp" },
+    { name: "Dr. Sooraj", img: "/images/unit1/sur.webp" },
   ],
 };
 
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Dynamic image path function ONLY for modal (same as providers.tsx)
+  // Dynamic image path function with exact matching to avoid conflicts
   const getImagePath = (name: string) => {
+    // Exact name matching to avoid conflicts - MOST RELIABLE APPROACH
+    const exactMappings: Record<string, string> = {
+      'Dr. Ashwani Kumar': '/images/unit1/ashwini.webp',
+      'Dr. Jaswinder Singh': '/images/unit1/jaswinder.webp',
+      'Dr. Dinesh Kumar Passi': '/images/unit1/dinesh_kumar_passi.webp',
+      'Dr. Parth Dhamija': '/images/unit1/parth.webp',
+      'Dr. Talib Khan': '/images/unit1/thalib.webp',
+      'Dr. Dinesh': '/images/unit1/dinesh.webp',
+      'Dr. Navneeth Shankar': '/images/unit1/navneeth.webp',
+      'Dr. Vineeth Sunaria': '/images/unit1/vineeth.webp',
+      'Dr. Aseem Anand': '/images/unit1/aseem.webp',
+      'Dr. Soumya A': '/images/unit1/soumya.webp',
+      'Dr. Naveen Mangla': '/images/unit1/naveen.webp',
+      'Dr. Yogyatha': '/images/unit1/yog.webp',
+      'Dr. Priyanka': '/images/unit1/pri.webp',
+      'Dr. Sooraj': '/images/unit1/sur.webp',
+    };
+    
+    // Return exact match if found
+    if (exactMappings[name]) {
+      return exactMappings[name];
+    }
+    
+    // Fallback for any unexpected names
     const cleanName = name.replace('Dr. ', '').toLowerCase();
-    
-    // Map specific names to image paths
-    if (cleanName.includes('dinesh')) return '/images/unit1/dinesh_kumar_passi.webp';
-    if (cleanName.includes('navneeth') || cleanName.includes('shankar')) return '/images/unit1/navneeth.webp';
-    if (cleanName.includes('vineeth') || cleanName.includes('sunaria')) return '/images/unit1/vineeth.webp';
-    if (cleanName.includes('aseem') || cleanName.includes('anand')) return '/images/unit1/aseem.webp';
-    if (cleanName.includes('soumya')) return '/images/unit1/soumya.webp';
-    if (cleanName.includes('naveen') || cleanName.includes('mangla')) return '/images/unit1/naveen.webp';
-    if (cleanName.includes('yogyatha') || cleanName.includes('yog')) return '/images/unit1/yog.webp';
-    if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/unit1/pri.webp';
-    if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/unit1/sur.webp';
-    
-    // Special mapping for unit1 specific doctors
-    if (cleanName.includes('ashwani') || cleanName.includes('kumar')) return '/images/unit1/ashwini.webp';
-    if (cleanName.includes('jaswinder')) return '/images/unit1/jaswinder.webp';
-    if (cleanName.includes('dineshkumar')) return '/images/unit1/dinesh_kumar_passi.webp';
-    if (cleanName.includes('parth')) return '/images/unit1/parth.webp';
-    if (cleanName.includes('talib')) return '/images/unit1/thalib.webp';
-    
-    // Use full name for image path to avoid conflicts
     const fullName = cleanName.replace(/\s+/g, '_');
     return `/images/unit1/${fullName}.webp`;
   };
