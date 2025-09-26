@@ -258,15 +258,17 @@ function getModalContent(key: string) {
     case 'stoma':
       return (
         <div className="flex flex-col justify-center items-center text-center">
-          {/* Banner Image for Stoma Clinic */}
+          {/* ✅ FIXED: Banner Image for Stoma Clinic using OptimizedImage */}
           <div className="w-full mb-6">
-            <Image
+            <OptimizedImage
               src="/images/infocard/sto2.webp"
               alt="Stoma Clinic Banner"
               width={1200}
               height={400}
               className="rounded-lg object-cover w-full h-64"
               quality={75}
+              priority={true}
+              isPreloaded={imagesPreloaded}
               placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMkO0L2Q//9k="
             />
@@ -275,7 +277,7 @@ function getModalContent(key: string) {
           <h2 className="text-3xl font-bold mb-6">
             Stoma Clinic Details
             {imagesPreloaded && (
-              <span className="ml-2 text-lg text-green-600"></span>
+              <span className="ml-2 text-lg text-green-600">⚡</span>
             )}
           </h2>
           <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
@@ -310,15 +312,17 @@ function getModalContent(key: string) {
     case 'breast':
       return (
         <div className="flex flex-col justify-center items-center text-center">
-          {/* Banner Image for Breast Clinic */}
+          {/* ✅ FIXED: Banner Image for Breast Clinic using OptimizedImage */}
           <div className="w-full mb-6">
-            <Image
+            <OptimizedImage
               src="/images/infocard/bre1.webp"
               alt="Breast Clinic Banner"
               width={1200}
               height={400}
               className="rounded-lg object-cover w-full h-64"
               quality={75}
+              priority={true}
+              isPreloaded={imagesPreloaded}
               placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMkO0L2Q//9k="
             />
@@ -327,7 +331,7 @@ function getModalContent(key: string) {
           <h2 className="text-3xl font-bold mb-6">
             Breast Clinic Details
             {imagesPreloaded && (
-              <span className="ml-2 text-lg text-green-600"></span>
+              <span className="ml-2 text-lg text-green-600">⚡</span>
             )}
           </h2>
           <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
@@ -414,14 +418,6 @@ function getModalContent(key: string) {
               <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-6 text-white">
                 <h3 className="text-2xl font-bold mb-2">{clinic.title}</h3>
                 <p className="text-sm mb-4 max-w-md">{clinic.description}</p>
-                
-                {/* Image counter 
-                <div className="text-xs opacity-80 mb-2">
-                  Image {clinic.imageIndex + 1} of {clinic.images.length}
-                  {imagesPreloaded && (
-                    <span className="ml-2"></span>
-                  )}
-                </div> */}
               </div>
               
               {/* Image Indicators */}
@@ -480,7 +476,7 @@ function getModalContent(key: string) {
             <h3 className="text-3xl font-bold font-body text-blue-950 mb-4 group-hover:text-teal-500 transition-colors duration-500">
               {clinic.title}
               {imagesPreloaded && (
-                <span className="ml-2 text-sm text-green-600"></span>
+                <span className="ml-2 text-sm text-green-600">⚡</span>
               )}
             </h3>
             <p className="text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto">
@@ -497,7 +493,7 @@ function getModalContent(key: string) {
           >
             READ MORE 
             {imagesPreloaded && (
-              <span className="ml-1 text-xs"></span>
+              <span className="ml-1 text-xs">⚡</span>
             )}
             <ArrowRight className="w-4 h-4" />
           </a>
@@ -542,13 +538,6 @@ function getModalContent(key: string) {
 
       {/* Container */}
       <div className="container mx-auto relative z-10">
-        {imagesPreloaded && (
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
-            </div>
-          </div>
-        )}
-        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {/* Render cards in the specified order */}
           {clinicOrder.map(key => renderClinicCard(key))}
@@ -558,11 +547,6 @@ function getModalContent(key: string) {
       {/* Modal */}
       {modalContent && (
         <Modal onClose={closeModal}>
-          {imagesPreloaded && (
-            <div className="absolute top-4 left-4 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">
-             
-            </div>
-          )}
           {getModalContent(modalContent)}
         </Modal>
       )}
