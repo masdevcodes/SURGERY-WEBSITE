@@ -3,61 +3,127 @@
 import { useState } from "react";
 import Image from "next/image";
 
-// Data for Unit 1 Team - easier to manage
+// Data for Unit 1 Team - now using names only (like providers.tsx)
 const unit1Data = {
   incharge: {
     name: "Dr. Ashwani Kumar",
     title: "Prof & Head of Surgery Department",
-    img: "/images/unit1/ashwini.png",
   },
   associateProfessors: [
-    { name: "Dr. Jaswinder Singh", img: "/images/unit1/jaswinder.png" },
-    { name: "Dr. Dinesh Kumar Passi", img: "/images/unit1/dineshkumar.png" },
+    { name: "Dr. Jaswinder Singh" },
+    { name: "Dr. Dinesh Kumar Passi" },
   ],
   seniorResidents: [
-    { name: "Dr. Parth Dhamija", img: "/images/unit1/parth.png" },
-    { name: "Dr. Talib Khan", img: "/images/unit1/thalib.png" },
+    { name: "Dr. Parth Dhamija" },
+    { name: "Dr. Talib Khan" },
   ],
   juniorResidents: [
-    { name: "Dr. Dinesh", img: "/images/unit1/dinesh.png" },
-    { name: "Dr. Navneeth Shankar", img: "/images/unit1/navneeth.png" },
-    { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.png" },
-    { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.png" },
-    { name: "Dr. Soumya A", img: "/images/unit1/soumya.png" },
-    { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.webp" },
-    { name: "Dr. Yogyatha", img: "/images/unit1/yog.png" },
-    { name: "Dr. Priyanka", img: "/images/unit1/pri.png" },
-    { name: "Dr. Sooraj", img: "/images/unit1/sur.png" },
+    { name: "Dr. Dinesh" },
+    { name: "Dr. Navneeth Shankar" },
+    { name: "Dr. Vineeth Sunaria" },
+    { name: "Dr. Aseem Anand" },
+    { name: "Dr. Soumya A" },
+    { name: "Dr. Naveen Mangla" },
+    { name: "Dr. Yogyatha" },
+    { name: "Dr. Priyanka" },
+    { name: "Dr. Sooraj" },
   ],
 };
 
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Function to automatically collect all image paths from the data
-  const getAllImagePaths = () => {
-    const paths = [];
-    paths.push(unit1Data.incharge.img);
-    unit1Data.associateProfessors.forEach((p) => paths.push(p.img));
-    unit1Data.seniorResidents.forEach((r) => paths.push(r.img));
-    unit1Data.juniorResidents.forEach((jr) => paths.push(jr.img));
-    return [...new Set(paths)]; // Use Set to avoid duplicates
+  // Dynamic image path function (same as providers.tsx)
+  const getImagePath = (name: string) => {
+    const cleanName = name.replace('Dr. ', '').toLowerCase();
+    
+    // Map specific names to image paths
+    if (cleanName.includes('dinesh')) return '/images/dinesh.png';
+    if (cleanName.includes('navneeth') || cleanName.includes('shankar')) return '/images/navneeth.png';
+    if (cleanName.includes('vineeth') || cleanName.includes('sunaria')) return '/images/vineeth.png';
+    if (cleanName.includes('aseem') || cleanName.includes('anand')) return '/images/aseem.png';
+    if (cleanName.includes('soumya')) return '/images/soumya.png';
+    if (cleanName.includes('naveen') || cleanName.includes('mangla')) return '/images/naveen.png';
+    if (cleanName.includes('yogyatha') || cleanName.includes('yog')) return '/images/yog.png';
+    if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/pri.png';
+    if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/sur.png';
+    
+    // Special mapping for unit1 specific doctors
+    if (cleanName.includes('ashwani') || cleanName.includes('kumar')) return '/images/unit1/ashwini.png';
+    if (cleanName.includes('jaswinder')) return '/images/unit1/jaswinder.png';
+    if (cleanName.includes('parth')) return '/images/unit1/parth.png';
+    if (cleanName.includes('talib')) return '/images/unit1/thalib.png';
+    
+    // Use full name for image path to avoid conflicts
+    const fullName = cleanName.replace(/\s+/g, '_');
+    return `/images/doctors/${fullName}.webp`;
   };
 
-  const allModalImages = getAllImagePaths();
+  // Function to collect all doctor names for preloading
+  const getAllDoctorNames = () => {
+    const allNames: string[] = [];
+    
+    // Add incharge
+    allNames.push(unit1Data.incharge.name);
+    
+    // Add associate professors
+    unit1Data.associateProfessors.forEach(prof => allNames.push(prof.name));
+    
+    // Add senior residents
+    unit1Data.seniorResidents.forEach(sr => allNames.push(sr.name));
+    
+    // Add junior residents
+    unit1Data.juniorResidents.forEach(jr => allNames.push(jr.name));
+    
+    return [...new Set(allNames)]; // Remove duplicates
+  };
+
+  // Function to render lists with images (similar to providers.tsx)
+  const renderListWithImages = (items: { name: string }[], centerIfFew = false) => {
+    if (items.length === 0) return null;
+    
+    // Determine grid columns based on number of items
+    let gridClass = 'grid grid-cols-1 gap-6 md:gap-8 mt-4';
+    if (items.length === 2) {
+      gridClass = 'grid grid-cols-2 gap-6 md:gap-8 mt-4';
+    } else if (items.length >= 3) {
+      gridClass = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mt-4';
+    }
+    
+    return (
+      <div className={`${gridClass} ${centerIfFew ? 'justify-center' : ''}`}>
+        {items.map((item, idx) => (
+          <div key={idx} className="flex flex-col items-center">
+            <div className="w-28 h-28 rounded-full overflow-hidden shadow-md mb-3 group">
+              <Image
+                src={getImagePath(item.name)}
+                alt={item.name}
+                width={112}
+                height={112}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+            <p className="font-medium text-blue-950 text-sm text-center">{item.name}</p>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const allDoctorNames = getAllDoctorNames();
 
   return (
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
-      {/* HIDDEN PRELOAD IMAGES */}
+      {/* HIDDEN PRELOAD IMAGES - Now using dynamic paths */}
       <div className="hidden">
-        {allModalImages.map((src, index) => (
+        {allDoctorNames.map((doctorName, index) => (
           <Image
             key={`preload-${index}`}
-            src={src}
+            src={getImagePath(doctorName)}
             alt="Preload"
             width={200}
             height={200}
-            priority // Set all modal images to high priority for faster loading
+            priority
           />
         ))}
       </div>
@@ -74,7 +140,7 @@ export function MedicalSpecialties() {
 
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Side */}
+          {/* Left Side - unchanged */}
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex items-center gap-4 mb-6">
@@ -88,6 +154,7 @@ export function MedicalSpecialties() {
                 <span className="text-teal-600"> Head of Surgery</span>
               </h2>
             </div>
+            
             {/* Quote Icon */}
             <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center">
               <svg
@@ -98,10 +165,12 @@ export function MedicalSpecialties() {
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" />
               </svg>
             </div>
+            
             {/* Testimony Text */}
             <blockquote className="text-lg leading-relaxed text-justify text-gray-700 italic">
               "As the Head of the Department of Surgery, I am proud of the commitment and dedication shown by our team in providing the highest standard of surgical care. Our department combines advanced clinical expertise with compassion, ensuring that every patient receives personalized treatment tailored to their needs. We place a strong emphasis on continuous learning, innovation, and research to keep pace with the latest developments in the field. It is our mission to not only treat patients but also to guide and support them through every step of their surgical journey. I am confident that with our skilled doctors, modern facilities, and patient-centered approach, we will continue to deliver excellence in surgical care."
             </blockquote>
+            
             {/* Doctor Info + Button */}
             <div className="pt-6 border-t border-gray-200 flex items-center justify-between">
               <div className="flex items-center gap-4">
@@ -127,7 +196,8 @@ export function MedicalSpecialties() {
               </button>
             </div>
           </div>
-          {/* Right Side */}
+          
+          {/* Right Side - unchanged */}
           <div className="relative">
             <div className="relative w-full h-[750px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
@@ -141,7 +211,8 @@ export function MedicalSpecialties() {
           </div>
         </div>
       </div>
-      {/* Popup Modal */}
+      
+      {/* Popup Modal - Updated to use dynamic image paths */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -170,56 +241,44 @@ export function MedicalSpecialties() {
                   <div className="flex justify-center">
                     <div className="flex flex-col items-center">
                       <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
-                        <Image src={unit1Data.incharge.img} alt={unit1Data.incharge.name} width={160} height={160} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
+                        <Image 
+                          src={getImagePath(unit1Data.incharge.name)} 
+                          alt={unit1Data.incharge.name} 
+                          width={160} 
+                          height={160} 
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
                       </div>
                       <p className="font-bold text-blue-950 text-lg">{unit1Data.incharge.name}</p>
                       <p className="text-gray-600">{unit1Data.incharge.title}</p>
                     </div>
                   </div>
                 </div>
+                
                 {/* Associate Professors */}
-                <div>
-                  <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Associate Professors</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center">
-                    {unit1Data.associateProfessors.map((prof) => (
-                      <div key={prof.name} className="flex flex-col items-center">
-                        <div className="w-36 h-36 rounded-xl overflow-hidden shadow-md mb-4 group">
-                          <Image src={prof.img} alt={prof.name} width={144} height={144} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
-                        </div>
-                        <p className="font-bold text-blue-950 text-center">{prof.name}</p>
-                      </div>
-                    ))}
+                {unit1Data.associateProfessors.length > 0 && (
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Associate Professors</h4>
+                    {renderListWithImages(unit1Data.associateProfessors, true)}
                   </div>
-                </div>
+                )}
+                
                 {/* Senior Residents */}
-                <div>
-                  <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Senior Residents</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center">
-                    {unit1Data.seniorResidents.map((sr) => (
-                      <div key={sr.name} className="flex flex-col items-center">
-                        <div className="w-32 h-32 rounded-xl overflow-hidden shadow-md mb-4 group">
-                           <Image src={sr.img} alt={sr.name} width={128} height={128} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
-                        </div>
-                        <p className="font-medium text-blue-950 text-center">{sr.name}</p>
-                      </div>
-                    ))}
+                {unit1Data.seniorResidents.length > 0 && (
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Senior Residents</h4>
+                    {renderListWithImages(unit1Data.seniorResidents, true)}
                   </div>
-                </div>
+                )}
+                
                 {/* Junior Residents */}
-                <div>
-                  <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Junior Residents</h4>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 justify-items-center">
-                    {unit1Data.juniorResidents.map((jr) => (
-                      <div key={jr.name} className="flex flex-col items-center">
-                        <div className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group">
-                           <Image src={jr.img} alt={jr.name} width={112} height={112} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
-                        </div>
-                        <p className="font-medium text-blue-950 text-sm text-center">{jr.name}</p>
-                      </div>
-                    ))}
+                {unit1Data.juniorResidents.length > 0 && (
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Junior Residents</h4>
+                    {renderListWithImages(unit1Data.juniorResidents, true)}
                   </div>
-                </div>
-              </div> 
+                )}
+              </div>
             </div>
           </div>
         </div>
