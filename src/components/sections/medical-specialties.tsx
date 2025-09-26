@@ -12,7 +12,7 @@ const unit1Data = {
   },
   associateProfessors: [
     { name: "Dr. Jaswinder Singh", img: "/images/unit1/jaswinder.png" },
-    { name: "Dr. Dinesh Kumar Passi", img: "/images/unit1/dinesh_kumar.webp" },
+    { name: "Dr. Dinesh Kumar Passi", img: "/images/unit1/dineshkumar.png" },
   ],
   seniorResidents: [
     { name: "Dr. Parth Dhamija", img: "/images/unit1/parth.png" },
@@ -34,29 +34,42 @@ const unit1Data = {
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Dynamic image path function ONLY for modal (same as providers.tsx)
+  // Dynamic image path function ONLY for modal with prioritized exact matching
   const getImagePath = (name: string) => {
     const cleanName = name.replace('Dr. ', '').toLowerCase();
     
-    // Map specific names to image paths
-    if (cleanName.includes('dinesh')) return '/images/unit1/dinesh.png';
-    if (cleanName.includes('navneeth') || cleanName.includes('shankar')) return '/images/unit1/navneeth.png';
-    if (cleanName.includes('vineeth') || cleanName.includes('sunaria')) return '/images/unit1/vineeth.png';
-    if (cleanName.includes('aseem') || cleanName.includes('anand')) return '/images/unit1/aseem.png';
+    // Map specific names to image paths - ORDER MATTERS (most specific first)
+    if (cleanName === 'ashwani kumar') return '/images/unit1/ashwini.webp';
+    if (cleanName === 'jaswinder singh') return '/images/unit1/jaswinder.png';
+    if (cleanName === 'dinesh kumar passi') return '/images/unit1/dineshkumar.png';
+    if (cleanName === 'parth dhamija') return '/images/unit1/parth.png';
+    if (cleanName === 'talib khan') return '/images/unit1/thalib.png';
+    if (cleanName === 'navneeth shankar') return '/images/unit1/navneeth.png';
+    if (cleanName === 'vineeth sunaria') return '/images/unit1/vineeth.png';
+    if (cleanName === 'aseem anand') return '/images/unit1/aseem.png';
+    if (cleanName === 'soumya a') return '/images/unit1/soumya.png';
+    if (cleanName === 'naveen mangla') return '/images/unit1/naveen.webp';
+    if (cleanName === 'yogyatha') return '/images/unit1/yog.png';
+    if (cleanName === 'priyanka') return '/images/unit1/pri.png';
+    if (cleanName === 'sooraj') return '/images/unit1/sur.png';
+    
+    // Exact matches for individual first names (after checking full names)
+    if (cleanName === 'dinesh') return '/images/unit1/dinesh.png';
+    
+    // Partial matches as fallback for flexibility
     if (cleanName.includes('soumya')) return '/images/unit1/soumya.png';
     if (cleanName.includes('naveen') || cleanName.includes('mangla')) return '/images/unit1/naveen.webp';
     if (cleanName.includes('yogyatha') || cleanName.includes('yog')) return '/images/unit1/yog.png';
     if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/unit1/pri.png';
-    if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/unit1/sur.webp';
+    if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/unit1/sur.png';
     
-    // Special mapping for unit1 specific doctors
-    if (cleanName.includes('ashwani') || cleanName.includes('kumar')) return '/images/unit1/ashwini.png';
-    if (cleanName.includes('dinesh') || cleanName.includes('kumar') '/images/unit1/dinesh_kumar_passi.webp';
-    if (cleanName.includes('jaswinder')) return '/images/unit1/jaswinder.webp';
-    if (cleanName.includes('parth')) return '/images/unit1/parth.webp';
-    if (cleanName.includes('talib')) return '/images/unit1/thalib.webp';
+    // Special mapping for any remaining cases
+    if (cleanName.includes('ashwani') || cleanName.includes('kumar')) return '/images/unit1/ashwini.webp';
+    if (cleanName.includes('jaswinder')) return '/images/unit1/jaswinder.png';
+    if (cleanName.includes('parth')) return '/images/unit1/parth.png';
+    if (cleanName.includes('talib')) return '/images/unit1/thalib.png';
     
-    // Use full name for image path to avoid conflicts
+    // Final fallback - use full name for image path
     const fullName = cleanName.replace(/\s+/g, '_');
     return `/images/doctors/${fullName}.webp`;
   };
