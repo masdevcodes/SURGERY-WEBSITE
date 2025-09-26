@@ -47,7 +47,7 @@ export function MedicalSpecialties() {
     if (cleanName.includes('naveen') || cleanName.includes('mangla')) return '/images/unit1/naveen.webp';
     if (cleanName.includes('yogyatha') || cleanName.includes('yog')) return '/images/unit1/yog.png';
     if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/unit1/pri.png';
-    if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/unit1/sur.wenp';
+    if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/unit1/sur.webp';
     
     // Special mapping for unit1 specific doctors
     if (cleanName.includes('ashwani') || cleanName.includes('kumar')) return '/images/unit1/ashwini.png';
