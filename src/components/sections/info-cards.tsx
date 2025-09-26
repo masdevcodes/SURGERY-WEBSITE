@@ -532,7 +532,7 @@ export function InfoCards() {
 
         {/* Container */}
         <div className="container mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr_1.5fr] gap-8 items-stretch">
             {/* Render cards in the specified order */}
             {clinicOrder.map(key => renderClinicCard(key))}
           </div>
