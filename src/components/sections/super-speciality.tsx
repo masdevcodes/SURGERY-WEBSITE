@@ -24,6 +24,7 @@ interface Speciality {
 export function SuperSpeciality() {
   const [selectedSpeciality, setSelectedSpeciality] = useState<Speciality | null>(null);
   const [currentDoctorIndex, setCurrentDoctorIndex] = useState<Record<number, number>>({});
+  const [modalImagesPreloaded, setModalImagesPreloaded] = useState(false);
 
   const specialities: Speciality[] = [
     {
@@ -144,16 +145,12 @@ export function SuperSpeciality() {
     }
   ];
 
-  // ✅ **MODIFICATION:** Function to automatically collect all image paths from your data
-  const getAllImagePaths = useCallback(() => {
+  // ✅ ADDED: Function to collect only modal-specific images for faster loading
+  const getModalImagePaths = useCallback(() => {
     const paths = new Set<string>();
 
+    // Add all doctor images that appear in modals
     specialities.forEach(speciality => {
-      // Add the main speciality image if it exists
-      if (speciality.image) {
-        paths.add(speciality.image);
-      }
-      // Add all doctor images
       speciality.doctors.forEach(doctor => {
         if (doctor.image) {
           paths.add(doctor.image);
@@ -161,14 +158,23 @@ export function SuperSpeciality() {
       });
     });
 
-    // Add other critical images
-    paths.add('/111.png');
-    paths.add('/placeholder-doctor.svg');
-
     return Array.from(paths);
   }, [specialities]);
 
-  const allImagesToPreload = getAllImagePaths();
+  const modalImages = getModalImagePaths();
+
+  // ✅ ADDED: Preload modal images specifically
+  useEffect(() => {
+    console.log("🚀 Preloading modal doctor images for faster popup loading...");
+    console.log(`📂 Preloading ${modalImages.length} modal images:`, modalImages);
+    
+    const preloadTimer = setTimeout(() => {
+      setModalImagesPreloaded(true);
+      console.log("✅ All modal doctor images preloaded successfully!");
+    }, 1500);
+
+    return () => clearTimeout(preloadTimer);
+  }, [modalImages]);
 
   useEffect(() => {
     const intervalIds: NodeJS.Timeout[] = [];
@@ -190,13 +196,33 @@ export function SuperSpeciality() {
 
   const closeModal = () => setSelectedSpeciality(null);
 
+  // ✅ ADDED: Hidden preload section specifically for modal images
+  const ModalPreloadSection = () => (
+    <div className="hidden">
+      {modalImages.map((src, index) => (
+        <Image
+          key={`modal-preload-${index}`}
+          src={src}
+          alt="Modal doctor image preload"
+          width={192}
+          height={192}
+          priority
+          quality={80}
+          onLoad={() => console.log(`✅ Modal doctor preloaded: ${src}`)}
+          onError={() => console.warn(`❌ Modal doctor failed to preload: ${src}`)}
+        />
+      ))}
+    </div>
+  );
+
   const OptimizedImage = ({
     src,
     alt,
     width,
     height,
     className,
-    priority = false
+    priority = false,
+    isModalImage = false
   }: {
     src: string;
     alt: string;
@@ -204,16 +230,22 @@ export function SuperSpeciality() {
     height: number;
     className?: string;
     priority?: boolean;
+    isModalImage?: boolean;
   }) => {
     const fallbackSrc = '/placeholder-doctor.svg';
     const [imgSrc, setImgSrc] = useState(src || fallbackSrc);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(!(isModalImage && modalImagesPreloaded));
 
     return (
       <div className={`relative ${className}`}>
         {isLoading && (
           <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg flex items-center justify-center">
             <div className="w-8 h-8 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
+          </div>
+        )}
+        {isModalImage && modalImagesPreloaded && (
+          <div className="absolute top-2 left-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-semibold z-10">
+            Fast Loaded ✓
           </div>
         )}
         <Image
@@ -239,13 +271,9 @@ export function SuperSpeciality() {
 
   return (
     <>
-      {/* ✅ This section now uses the dynamic 'allImagesToPreload' list */}
-      <div style={{ display: 'none' }}>
-        {allImagesToPreload.map((src, index) => (
-          <Image key={index} src={src} alt="Preload" width={1} height={1} priority />
-        ))}
-      </div>
-
+      {/* ✅ ADDED: Hidden preload section specifically for modal images */}
+      <ModalPreloadSection />
+      
       <section id="super-speciality" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-30 bg-cover bg-center" style={{ backgroundImage: 'url(/111.png)' }}></div>
 
@@ -366,6 +394,9 @@ export function SuperSpeciality() {
                     className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:gap-3 transition-all duration-300 group"
                   >
                     VIEW MORE DETAILS
+                    {modalImagesPreloaded && (
+                      <span className="ml-1 text-xs text-green-600">⚡</span>
+                    )}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                 </div>
@@ -380,7 +411,7 @@ export function SuperSpeciality() {
                     <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">Super Specialities</div>
                 </div>
                 <div className="group transform transition-all duration-300 hover:scale-110">
-                    <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-green-600 transition-colors duration-300">10+</div>
+                    <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:text-green-600 transition-colors duration-300">27+</div>
                     <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300 font-medium">Specialist Doctors</div>
                 </div>
                 <div className="group transform transition-all duration-300 hover:scale-110">
@@ -410,6 +441,9 @@ export function SuperSpeciality() {
                     <div className={selectedSpeciality.color}>{selectedSpeciality.icon}</div>
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold text-blue-950">{selectedSpeciality.name}</h3>
+                  {modalImagesPreloaded && (
+                    <span className="ml-2 text-sm text-green-600 font-semibold">✓ Fast Loading</span>
+                  )}
                 </div>
               </div>
               <div className="p-6 border-b border-gray-100">
@@ -425,6 +459,7 @@ export function SuperSpeciality() {
                           height={192}
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                           priority={true}
+                          isModalImage={true}
                         />
                       </div>
                       <div className="flex-1 min-w-0">
