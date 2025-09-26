@@ -112,6 +112,7 @@ export function InfoCards() {
   const [stomaImageIndex, setStomaImageIndex] = useState(0);
   const [breastImageIndex, setBreastImageIndex] = useState(0);
   const [sliderImageIndex, setSliderImageIndex] = useState(0);
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
 
   // Sample image arrays - replace with your actual image paths
   const stomaImages = [
@@ -134,24 +135,18 @@ export function InfoCards() {
     '/images/infocard/opd/opd4.jpg',
   ];
 
+  // All images for preloading (including modal banner images)
+  const allImages = [
+    ...stomaImages,
+    ...breastImages,
+    ...sliderImages,
+    '/images/infocard/sto2.webp', // Modal banner for stoma
+    '/images/infocard/bre1.webp', // Modal banner for breast
+    '/111.png', // Background image
+  ];
+
   // Define the desired order of clinics
   const clinicOrder = ['breast','stoma','slider']; // Change this array to reorder
-
-  // Collect all modal images for preloading
-  const getAllModalImages = () => {
-    const allImages: string[] = [];
-    
-    // Add modal banner images
-    allImages.push('/images/infocard/sto2.webp'); // Stoma clinic modal banner
-    allImages.push('/images/infocard/bre1.webp'); // Breast clinic modal banner
-    
-    // Add all card images for comprehensive preloading
-    allImages.push(...stomaImages);
-    allImages.push(...breastImages);
-    allImages.push(...sliderImages);
-    
-    return [...new Set(allImages)]; // Remove duplicates
-  };
 
   function openModal(key: string) {
     setModalContent(key);
@@ -192,37 +187,17 @@ export function InfoCards() {
     };
   }, [stomaImages.length, breastImages.length, sliderImages.length]);
 
-  // Intersection Observer for preloading modal images
+  // Track when images are loaded
   useEffect(() => {
-    // Preload all modal images immediately when component mounts
-    const imagesToPreload = getAllModalImages();
-    imagesToPreload.forEach(imageSrc => {
-      const preImg = new window.Image();
-      preImg.src = imageSrc;
-    });
-
-    const preloadImages = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => { 
-      entries.forEach(entry => { 
-        if (entry.isIntersecting) { 
-          const imgs = document.querySelectorAll(".modal-img"); 
-          imgs.forEach(img => { 
-            const preImg = new window.Image(); 
-            preImg.src = (img as HTMLImageElement).dataset.src || ''; 
-          }); 
-          observer.disconnect(); // preload only once 
-        } 
-      }); 
-    }; 
+    console.log("🚀 InfoCards Component mounted - Images are being preloaded...");
     
-    const observer = new IntersectionObserver(preloadImages, { threshold: 0.5 }); 
-    const gallerySection = document.querySelector("#info");
-    if (gallerySection) {
-      observer.observe(gallerySection); 
-    }
+    // Set a timeout to confirm preloading completion
+    const timer = setTimeout(() => {
+      setImagesPreloaded(true);
+      console.log("✅ All InfoCards images should be preloaded now");
+    }, 3000);
 
-    return () => {
-      observer.disconnect();
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   // Function to manually change slider image
@@ -237,6 +212,7 @@ export function InfoCards() {
       );
     }
   };
+
 // ✅ Reusable modal with optimized image loading
 const Modal = ({
   children,
@@ -271,7 +247,7 @@ function getModalContent(key: string) {
     case 'stoma':
       return (
         <div className="flex flex-col justify-center items-center text-center">
-          {/* Optimized Banner Image for Stoma Clinic */}
+          {/* Banner Image for Stoma Clinic */}
           <div className="w-full mb-6">
             <Image
               src="/images/infocard/sto2.webp"
@@ -279,14 +255,18 @@ function getModalContent(key: string) {
               width={1200}
               height={400}
               className="rounded-lg object-cover w-full h-64"
-              priority // Preload important image
-              quality={75} // Reduce quality for faster loading
-              placeholder="blur" // Add blur placeholder
+              quality={75}
+              placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMkO0L2Q//9k="
             />
           </div>
 
-          <h2 className="text-3xl font-bold mb-6">Stoma Clinic Details</h2>
+          <h2 className="text-3xl font-bold mb-6">
+            Stoma Clinic Details
+            {imagesPreloaded && (
+              <span className="ml-2 text-sm text-green-600">⚡ Fast Loading</span>
+            )}
+          </h2>
           <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
             The Stoma Clinic at GMC Patiala functions as a dedicated service
             within the Department of General Surgery, designed to address the
@@ -319,7 +299,7 @@ function getModalContent(key: string) {
     case 'breast':
       return (
         <div className="flex flex-col justify-center items-center text-center">
-          {/* Optimized Banner Image for Breast Clinic */}
+          {/* Banner Image for Breast Clinic */}
           <div className="w-full mb-6">
             <Image
               src="/images/infocard/bre1.webp"
@@ -327,14 +307,18 @@ function getModalContent(key: string) {
               width={1200}
               height={400}
               className="rounded-lg object-cover w-full h-64"
-              priority // Preload important image
-              quality={75} // Reduce quality for faster loading
-              placeholder="blur" // Add blur placeholder
+              quality={75}
+              placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMkO0L2Q//9k="
             />
           </div>
 
-          <h2 className="text-3xl font-bold mb-6">Breast Clinic Details</h2>
+          <h2 className="text-3xl font-bold mb-6">
+            Breast Clinic Details
+            {imagesPreloaded && (
+              <span className="ml-2 text-sm text-green-600">⚡ Fast Loading</span>
+            )}
+          </h2>
           <p className="text-zinc-700 leading-relaxed max-w-4xl text-justify">
             The Breast Clinic at GMC Patiala, under the Department of General
             Surgery, is a dedicated service aimed at providing comprehensive
@@ -426,9 +410,6 @@ function getModalContent(key: string) {
                 </div>
               </div>
               
-              {/* Navigation Arrows */}
-              
-              
               {/* Image Indicators */}
               <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
                 {clinic.images.map((_, index) => (
@@ -497,7 +478,11 @@ function getModalContent(key: string) {
             }}
             className="font-bold text-teal-500 flex items-center gap-2 justify-center hover:text-teal-600 transition-colors duration-300"
           >
-            READ MORE <ArrowRight className="w-4 h-4" />
+            READ MORE
+            {imagesPreloaded && (
+              <span className="ml-1 text-xs">⚡</span>
+            )}
+            <ArrowRight className="w-4 h-4" />
           </a>
         </div>
       </div>
@@ -506,10 +491,20 @@ function getModalContent(key: string) {
 
   return (
     <>
-      {/* Preload all modal images for faster loading */}
-      <div style={{ display: 'none' }}>
-        <Image src="/images/infocard/sto2.webp" alt="Preload" width={1} height={1} priority />
-        <Image src="/images/infocard/bre1.webp" alt="Preload" width={1} height={1} priority />
+      {/* 🔥 HIDDEN PRELOAD IMAGES - These load immediately when component mounts */}
+      <div className="hidden">
+        {allImages.map((src, index) => (
+          <Image
+            key={`preload-${index}`}
+            src={src}
+            alt="Preload"
+            width={200}
+            height={200}
+            priority={index < 8} // Priority for first 8 images
+            onLoad={() => console.log(`✅ Preloaded: ${src}`)}
+            onError={() => console.warn(`❌ Failed to preload: ${src}`)}
+          />
+        ))}
       </div>
       
       <section
