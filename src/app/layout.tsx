@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Toaster } from "@/components/ui/toaster";
-import GlobalImagePreloader from '@/components/GlobalImagePreloader';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -26,10 +25,9 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&family=Inter:wght@400;700&family=IBM+Plex+Serif:wght@400&family=Roboto:wght@400&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <GlobalImagePreloader />
         {children}
         <Toaster />
       </body>
     </html>
   );
-}
+} 
