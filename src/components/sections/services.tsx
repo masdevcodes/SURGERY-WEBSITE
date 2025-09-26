@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 
 // Optimized Image Component with Loading State
+// Optimized Image Component with Preload Awareness
 function OptimizedImage({ 
   src, 
   alt, 
@@ -25,7 +26,8 @@ function OptimizedImage({
   quality = 75, 
   sizes = "",
   priority = false,
-  onLoad
+  onLoad,
+  isPreloaded = false
 }: { 
   src: string; 
   alt: string; 
@@ -35,9 +37,17 @@ function OptimizedImage({
   sizes?: string;
   priority?: boolean;
   onLoad?: () => void;
+  isPreloaded?: boolean;
 }) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(isPreloaded);
   const [hasError, setHasError] = useState(false);
+
+  // If image is preloaded, show immediately
+  useEffect(() => {
+    if (isPreloaded) {
+      setIsLoaded(true);
+    }
+  }, [isPreloaded]);
 
   const handleLoad = () => {
     setIsLoaded(true);
@@ -51,7 +61,7 @@ function OptimizedImage({
 
   return (
     <div className={`relative ${fill ? 'w-full h-full' : ''}`}>
-      {!isLoaded && !hasError && (
+      {!isLoaded && !hasError && !isPreloaded && (
         <div className={`absolute inset-0 flex items-center justify-center bg-gray-100 ${className}`}>
           <div className="w-8 h-8 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
         </div>
@@ -60,13 +70,13 @@ function OptimizedImage({
         src={hasError ? '/images/placeholder.jpg' : src}
         alt={alt}
         fill={fill}
-        className={`${className} transition-opacity duration-500 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
+        className={`${className} transition-opacity duration-300 ${
+          isLoaded || isPreloaded ? 'opacity-100' : 'opacity-0'
         }`}
         quality={quality}
         sizes={sizes}
-        priority={priority}
-        loading={priority ? "eager" : "lazy"}
+        priority={priority || isPreloaded}
+        loading={priority || isPreloaded ? "eager" : "lazy"}
         onLoad={handleLoad}
         onError={handleError}
       />
@@ -230,6 +240,34 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
     },
   ];
 
+  // Collect all service modal images for preloading
+  const getAllServiceModalImages = () => {
+    const allImages: string[] = [];
+    services.forEach(service => {
+      // Add banner images from each service (used in both main cards and modals)
+      allImages.push(service.banner);
+    });
+    return [...new Set(allImages)]; // Remove duplicates
+  };
+
+  // Collect all service banner images for preloading
+  const getAllServiceImages = () => {
+    const allImages: string[] = [];
+    
+    // Get all modal images
+    allImages.push(...getAllServiceModalImages());
+    
+    // Add carousel images
+    allImages.push('/images/super/service11.webp');
+    allImages.push('/images/super/service12.webp');
+    allImages.push('/images/super/service13.webp');
+    // Add background image
+    allImages.push('/111.png');
+    // Add placeholder image
+    allImages.push('/images/placeholder.jpg');
+    return [...new Set(allImages)];
+  };
+
   const [selectedService, setSelectedService] = useState<any>(null);
   const [showAllModal, setShowAllModal] = useState(false);
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
@@ -242,23 +280,12 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
 
   // Preload all images when component mounts
   useEffect(() => {
-    const allImageUrls = [
-      ...carouselImages,
-      ...services.map(service => service.banner),
-      '/images/super/ser1.webp',
-      '/images/super/thyroid.webp',
-      '/images/super/adrene.webp',
-      '/images/super/lah.webp',
-      '/images/super/veins.webp',
-      '/111.png'
-    ];
-
-    const uniqueUrls = Array.from(new Set(allImageUrls));
+    const allImageUrls = getAllServiceImages();
 
     const preloadImages = async () => {
-      const loadPromises = uniqueUrls.map((url) => {
+      const loadPromises = allImageUrls.map((url) => {
         return new Promise((resolve, reject) => {
-          const img = new Image();
+          const img = new window.Image();
           img.src = url;
           img.onload = () => {
             setLoadedImages(prev => new Set(prev).add(url));
@@ -270,13 +297,39 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
 
       try {
         await Promise.all(loadPromises);
-        console.log('All images preloaded successfully');
+        console.log('All service images preloaded successfully');
       } catch (error) {
-        console.warn('Some images failed to preload:', error);
+        console.warn('Some service images failed to preload:', error);
       }
     };
 
     preloadImages();
+  }, []);
+
+  // Intersection Observer for preloading modal images
+  useEffect(() => {
+    const preloadImages = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => { 
+      entries.forEach(entry => { 
+        if (entry.isIntersecting) { 
+          const imgs = document.querySelectorAll(".modal-img"); 
+          imgs.forEach(img => { 
+            const preImg = new window.Image(); 
+            preImg.src = (img as HTMLImageElement).dataset.src || ''; 
+          }); 
+          observer.disconnect(); // preload only once 
+        } 
+      }); 
+    }; 
+    
+    const observer = new IntersectionObserver(preloadImages, { threshold: 0.5 }); 
+    const gallerySection = document.querySelector("#services");
+    if (gallerySection) {
+      observer.observe(gallerySection); 
+    }
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   // Update right side height on resize and after initial render
@@ -322,6 +375,7 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
           quality={60}
           sizes="100vw"
           priority
+          isPreloaded={loadedImages.has('/111.png')}
           onLoad={() => handleImageLoad('/111.png')}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-transparent to-teal-950/20"></div>
@@ -343,6 +397,7 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
                 quality={75}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                 priority
+                isPreloaded={loadedImages.has(carouselImages[currentImageIndex])}
                 onLoad={() => handleImageLoad(carouselImages[currentImageIndex])}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -423,7 +478,8 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
                   className="object-cover rounded-t-lg"
                   quality={70}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
-                  priority={loadedImages.has(selectedService.banner)}
+                  priority={true}
+                  isPreloaded={loadedImages.has(selectedService.banner)}
                   onLoad={() => handleImageLoad(selectedService.banner)}
                 />
                 <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
@@ -469,13 +525,13 @@ This achievement highlights the Department of Surgery's expertise in advanced mi
                     <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4">
                       <OptimizedImage
                         src={service.banner}
-                        alt={service.title}
+                        alt={`${service.title} Banner`}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="object-cover rounded-lg"
                         quality={65}
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        priority={loadedImages.has(service.banner)}
-                        loading={loadedImages.has(service.banner) ? "eager" : "lazy"}
+                        priority={true}
+                        isPreloaded={loadedImages.has(service.banner)}
                         onLoad={() => handleImageLoad(service.banner)}
                       />
                     </div>
