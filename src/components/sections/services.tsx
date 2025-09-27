@@ -1,569 +1,251 @@
-'use client';
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import {
-  ArrowRight,
-  Heart,
-  Eye,
-  Bone,
-  Brain,
-  Activity,
-  PersonStanding,
-  PlusCircle,
-  X,
-  ChevronDown
-} from 'lucide-react';
+"use client";
 
-// Simplified Image Component
-function OptimizedImage({ 
-  src, 
-  alt, 
-  fill = false, 
-  className = "", 
-  quality = 75, 
-  sizes = "",
-  priority = false,
-  onLoad
-}: { 
-  src: string; 
-  alt: string; 
-  fill?: boolean; 
-  className?: string; 
-  quality?: number; 
-  sizes?: string;
-  priority?: boolean;
-  onLoad?: () => void;
-}) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
+import { useState } from "react";
+import Image from "next/image";
 
-  const handleLoad = () => {
-    setIsLoaded(true);
-    onLoad?.();
+// Data for Unit 1 Team - keeping direct paths for main section
+const unit1Data = {
+  incharge: {
+    name: "Dr. Ashwani Kumar",
+    title: "Prof & Head of Surgery Department",
+    img: "/images/unit1/ashwini.webp",
+  },
+  associateProfessors: [
+    { name: "Dr. Jaswinder Singh", img: "/images/unit1/jaswinder.png" },
+    { name: "Dr. Dinesh Kumar Passi", img: "/images/unit1/dinesh_kumar.webp" },
+  ],
+  seniorResidents: [
+    { name: "Dr. Parth Dhamija", img: "/images/unit1/parth.png" },
+    { name: "Dr. Talib Khan", img: "/images/unit1/thalib.png" },
+  ],
+  juniorResidents: [
+    { name: "Dr. Dinesh", img: "/images/unit1/dinesh.png" },
+    { name: "Dr. Navneeth Shankar", img: "/images/unit1/navneeth.png" },
+    { name: "Dr. Vineeth Sunaria", img: "/images/unit1/vineeth.png" },
+    { name: "Dr. Aseem Anand", img: "/images/unit1/aseem.png" },
+    { name: "Dr. Soumya A", img: "/images/unit1/soumya.png" },
+    { name: "Dr. Naveen Mangla", img: "/images/unit1/naveen.webp" },
+    { name: "Dr. Yogyatha", img: "/images/unit1/yog.png" },
+    { name: "Dr. Priyanka", img: "/images/unit1/pri.png" },
+    { name: "Dr. Sooraj", img: "/images/unit1/sur.png" },
+  ],
+};
+
+export function MedicalSpecialties() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Simplified image path function using direct paths from data
+  const getImagePath = (name: string) => {
+    // Check all doctor arrays for matching name and return their direct image path
+    const allDoctors = [
+      unit1Data.incharge,
+      ...unit1Data.associateProfessors,
+      ...unit1Data.seniorResidents,
+      ...unit1Data.juniorResidents
+    ];
+    
+    const doctor = allDoctors.find(d => d.name === name);
+    return doctor?.img || '/images/doctors/placeholder.webp';
   };
 
-  const handleError = () => {
-    setHasError(true);
-    setIsLoaded(true);
-  };
-
-  return (
-    <div className={`relative ${fill ? 'w-full h-full' : ''}`}>
-      {!isLoaded && !hasError && (
-        <div className={`absolute inset-0 flex items-center justify-center bg-gray-100 ${className}`}>
-          <div className="w-8 h-8 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
-        </div>
-      )}
-      <Image
-        src={hasError ? '/images/placeholder.jpg' : src}
-        alt={alt}
-        fill={fill}
-        className={`${className} transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-        quality={quality}
-        sizes={sizes}
-        priority={priority}
-        loading={priority ? "eager" : "lazy"}
-        onLoad={handleLoad}
-        onError={handleError}
-      />
-    </div>
-  );
-}
-
-function QuickLoadImage({ src, alt, quality = 60 }: { 
-  src: string; 
-  alt: string;
-  quality?: number;
-}) {
-  const [hasError, setHasError] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  return (
-    <div className="relative w-full h-64 overflow-hidden">
-      {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-          <div className="w-8 h-8 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
-        </div>
-      )}
-      <Image
-        src={hasError ? '/images/placeholder.jpg' : src}
-        alt={alt}
-        fill
-        className="object-cover transition-opacity duration-300"
-        quality={quality} // Reduced quality for faster loading
-        onLoad={() => setIsLoaded(true)}
-        onError={() => {
-          setHasError(true);
-          setIsLoaded(true);
-        }}
-      />
-    </div>
-  );
-}
-
-function ServiceCard({ service, index, onSelect, imagesPreloaded }: { 
-  service: any; 
-  index: number;
-  onSelect: (service: any) => void;
-  imagesPreloaded: boolean;
-}) {
-  return (
-    <div
-      className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex items-start gap-4 cursor-pointer"
-      onClick={() => onSelect(service)}
-    >
-      <div className="w-16 h-16 bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-        <div className={service.color}>{service.icon}</div>
-      </div>
-
-      <div className="flex-1 min-w-0">
-        <h3 className="text-lg font-bold text-blue-950 mb-2 group-hover:text-teal-600 transition-colors duration-300 line-clamp-2">
-          {service.title}
-        </h3>
-        <p className="text-sm text-gray-600 leading-relaxed mb-3">
-          {service.description}
-        </p>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onSelect(service);
-          }}
-          className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:text-teal-600 transition-all duration-300 group"
-        >
-          <span className="relative">
-            READ MORE
-            {imagesPreloaded && (
-              <span className="ml-1 text-xs"></span>
-            )}
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
-          </span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-300" />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-export function Services() {
-  const services = [
-    {
-      icon: <PersonStanding className="w-8 h-8" />,
-      title: 'Laparoscopic Cholecystectomy With CBD Exploration In A Patient With Situs Inversus Totalis',
-      description: '',
-      color: 'text-teal-500',
-      banner: '/images/super/ser1.jpg',
-      popupContent: (
-        <div>
-          <h3 className="font-bold text-2xl mb-4">Laparoscopic Cholecystectomy With CBD Exploration In A Patient With Situs Inversus Totalis</h3>
-          <p className="text-gray-700 leading-relaxed text-justify">
-            Historic Surgical Milestone at GMC Patiala
-
-            The Department of General Surgery at Government Medical College and Rajindra Hospital, Patiala, has achieved a remarkable feat by successfully performing Laparoscopic Cholecystectomy with Common Bile Duct (CBD) Exploration in a patient diagnosed with Situs Inversus Totalis a rare congenital condition where all internal organs are arranged in a mirror-image position.
-
-            This landmark surgery, conducted for the first time in Punjab, posed significant challenges due to the reversed anatomy, requiring precise preoperative planning, modified port placement, and advanced laparoscopic expertise. Despite the complexity, the procedure was carried out smoothly, with excellent patient recovery.
-
-            Speaking about this achievement, Prof. Dr. Ashwani Kumar, Head of the Department of General Surgery and lead surgeon for the case, said:
-            "Performing this rare and technically demanding surgery for the first time in Punjab is a matter of immense pride for our department and institution. The mirror-image anatomy of situs inversus presented unique challenges, but with meticulous planning and teamwork, we were able to achieve an excellent outcome. This success reflects our commitment to innovation and excellence in surgical care."
-
-            This milestone marks a proud moment for GMC Patiala, establishing it as a pioneer in advanced minimally invasive surgery and setting new standards of excellence in the state.
-          </p>
-        </div>
-      ),
-    },
-    {
-      icon: <Eye className="w-8 h-8" />,
-      title: 'Endoscopic Thyroid Surgery via Axilla',
-      description: '',
-      color: 'text-teal-500',
-      banner: '/images/super/thyroid.jpg',
-      popupContent: (
-        <div>
-          <h3 className="font-bold text-2xl mb-4">Endoscopic Thyroid Surgery via Axilla</h3>
-          <p className="text-gray-700 leading-relaxed text-justify">
-            The Department of General Surgery at Government Medical College and Rajindra Hospital, Patiala, recently conducted a Continuing Medical Education (CME) session showcasing Endoscopic Thyroid Surgery via the Axilla — a minimally invasive procedure that allows thyroid removal through an incision in the armpit, leaving the neck scar-free.
-
-            The live demonstration highlighted the advanced endoscopic techniques, precise dissection, and cosmetic advantages of this approach. Participants observed the meticulous steps of the surgery, emphasizing patient safety, reduced postoperative discomfort, and excellent aesthetic outcomes.
-
-            Speaking during the CME, Prof. Dr. Ashwani Kumar, Head of the Department of General Surgery, said:
-            "This session provided a unique opportunity for surgeons and trainees to witness cutting-edge minimally invasive thyroid surgery. Techniques like the axillary approach represent the future of patient-friendly surgical care, combining safety with superior cosmetic results."
-
-            The event reinforced GMC Patiala's commitment to surgical innovation, education, and excellence in patient care, offering hands-on learning to medical professionals across the region.
-          </p>
-        </div>
-      ),
-    },
-    {
-      icon: <Bone className="w-8 h-8" />,
-      title: 'Laparoscopic Adrenelectomy',
-      description: '',
-      color: 'text-teal-500',
-      banner: '/images/super/adrene.jpg',
-      popupContent: (
-        <div>
-          <h3 className="font-bold text-2xl mb-4">Laparoscopic Adrenelectomy</h3>
-          <p className="text-gray-700 leading-relaxed text-justify">
-            The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, under the leadership of Dr. Ashwani Kumar, Head of Department, successfully performed a Laparoscopic Adrenalectomy in the elective OT, with collaborative support from the Department of Medicine.
-
-            This minimally invasive procedure involved the precise removal of the adrenal gland, providing significant benefits such as reduced postoperative pain, shorter hospital stay, faster recovery, and minimal scarring. The surgery showcased meticulous preoperative planning, advanced laparoscopic expertise, and a strong focus on patient safety.
-
-            Dr. Ashwani Kumar commented:
-            "Laparoscopic adrenalectomy is a significant step forward in endocrine surgery, allowing safe and effective management of adrenal tumors with minimal discomfort to the patient. Our team, in close coordination with the Medicine department, is proud to perform this procedure successfully, reinforcing our commitment to excellence in surgical care."
-
-            This achievement highlights the Department of Surgery's expertise in advanced minimally invasive procedures and strengthens GMC Patiala's position as a leading center for surgical innovation.
-          </p>
-        </div>
-      ),
-    },
-    {
-      icon: <Brain className="w-8 h-8" />,
-      title: 'Laparoscopic Hysterectomy',
-      description: '',
-      color: 'text-teal-500',
-      banner: '/images/super/lah.jpg',
-      popupContent: (
-        <div>
-          <h3 className="font-bold text-2xl mb-4">Laparoscopic Hysterectomy</h3>
-          <p className="text-gray-700 leading-relaxed text-justify">
-            The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, led by Dr. Ashwani Kumar, Head of Department, successfully carried out a Laparoscopic Hysterectomy.
-
-            This minimally invasive procedure, performed using advanced laparoscopic techniques, enables the safe removal of the uterus with smaller incisions, reduced postoperative pain, faster recovery, and minimal scarring. The surgery highlighted meticulous planning, precision, and a strong emphasis on patient safety.
-
-            Dr. Ashwani Kumar said:
-            "Laparoscopic hysterectomy is a significant step forward in gynecological surgery. It allows for effective management of uterine conditions while ensuring patient comfort and quicker recovery. Our team takes pride in performing this procedure successfully, reflecting our commitment to excellence in surgical care."
-
-            This milestone showcases the Department of Surgery's expertise in minimally invasive procedures and reinforces GMC Patiala's position as a center of surgical innovation and patient-centered care.
-          </p>
-        </div>
-      ),
-    },
-    {
-      icon: <Activity className="w-8 h-8" />,
-      title: 'Radio Frequency Ablation In Varicose Veins',
-      description: '',
-      color: 'text-teal-500',
-      banner: '/images/super/veins.jpg',
-      popupContent: (
-        <div>
-          <h3 className="font-bold text-2xl mb-4">Radio Frequency Ablation In Varicose Veins</h3>
-          <p className="text-gray-700 leading-relaxed text-justify">
-            The Department of Surgery at Government Medical College and Rajindra Hospital, Patiala, under the leadership of Dr. Ashwani Kumar, Head of Department and Unit In-Charge, successfully performed Radio Frequency Ablation (RFA) for Varicose Veins.
-
-            This minimally invasive procedure involves using radiofrequency energy to close diseased veins, providing an effective alternative to conventional vein surgery. The technique offers benefits such as minimal pain, faster recovery, reduced hospital stay, and excellent cosmetic results. The surgery demonstrated meticulous planning, precise execution, and a strong focus on patient safety.
-
-            Dr. Ashwani Kumar stated:
-            "Radio Frequency Ablation is a significant advancement in the management of varicose veins. It allows patients to recover quickly while minimizing discomfort and scarring. Our team is proud to offer this state-of-the-art procedure at GMC Patiala, reflecting our commitment to modern, patient-centered surgical care."
-
-            This achievement highlights the Department of Surgery's expertise in advanced minimally invasive procedures and reinforces GMC Patiala's position as a center of excellence in innovative surgical treatments.
-          </p>
-        </div>
-      ),
-    },
-  ];
-
-  const [selectedService, setSelectedService] = useState<any>(null);
-  const [showAllModal, setShowAllModal] = useState(false);
-  const [imagesPreloaded, setImagesPreloaded] = useState(false);
-  const rightSideRef = useRef<HTMLDivElement>(null);
-  const [rightSideHeight, setRightSideHeight] = useState(0);
-
-  // Left-side carousel images
-  const carouselImages = ['/images/super/service11.webp', '/images/super/service12.webp', '/images/super/service13.webp'];
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // 🔥 ALL IMAGES THAT NEED TO BE PRELOADED WHEN WEBSITE LOADS
-  const allImages = [
-    // Service banner images (for modals) - PRIORITY
-    '/images/super/ser1.jpg',
-    '/images/super/thyroid.jpg', 
-    '/images/super/adrene.jpg',
-    '/images/super/lah.jpg',
-    '/images/super/veins.jpg',
-    // Carousel images - PRIORITY
-    '/images/super/service11.webp', 
-    '/images/super/service12.webp', 
-    '/images/super/service13.webp',
-    // Background images
-    '/111.webp',
-    '/images/placeholder.jpg'
-  ];
-
-  // 🚀 PRELOAD IMAGES IMMEDIATELY WHEN COMPONENT MOUNTS (WEBSITE LOADS)
-  useEffect(() => {
-    console.log("🌐 Website loaded - Starting Services image preload...");
-    console.log(`📂 Preloading ${allImages.length} images...`);
-
-    // Track preloading completion
-    const timer = setTimeout(() => {
-      setImagesPreloaded(true);
-      console.log("✅ All Services images preloaded successfully!");
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Update right side height
-  useEffect(() => {
-    const updateHeight = () => {
-      if (rightSideRef.current) {
-        setRightSideHeight(rightSideRef.current.offsetHeight);
-      }
-    };
-
-    const timer = setTimeout(updateHeight, 100);
-    window.addEventListener('resize', updateHeight);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('resize', updateHeight);
-    };
-  }, []);
-
-  // Auto-change carousel images
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [carouselImages.length]);
-
-  const closeModal = () => setSelectedService(null);
-  const closeShowAllModal = () => setShowAllModal(false);
-
-  // NEW: Function to handle service selection from "Show All" modal
-  const handleServiceSelectFromAllModal = (service: any) => {
-    setSelectedService(service);
-    // Don't close the showAllModal - keep it open in the background
-  };
-
-  return (
-    <>
-      {/* 🔥 CRITICAL: HIDDEN PRELOAD IMAGES - LOADS IMMEDIATELY WHEN WEBSITE LOADS */}
-      <div className="hidden" style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
-        {allImages.map((src, index) => (
-          <Image
-            key={`services-preload-${index}`}
-            src={src}
-            alt="Preload Services Image"
-            width={300}
-            height={300}
-            priority={true}
-            quality={75}
-            onLoad={() => console.log(`✅ Services - Preloaded: ${src}`)}
-            onError={() => console.warn(`❌ Services - Failed to preload: ${src}`)}
-          />
+  // Function to render modal lists with optimized images
+  const renderModalListWithImages = (items: { name: string; img: string }[], centerIfFew = false) => {
+    if (items.length === 0) return null;
+    
+    // Determine grid columns based on number of items
+    let gridClass = 'grid grid-cols-1 gap-6 md:gap-8 mt-4';
+    if (items.length === 2) {
+      gridClass = 'grid grid-cols-2 gap-6 md:gap-8 mt-4';
+    } else if (items.length >= 3) {
+      gridClass = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mt-4';
+    }
+    
+    return (
+      <div className={`${gridClass} ${centerIfFew ? 'justify-center' : ''}`}>
+        {items.map((item, idx) => (
+          <div key={idx} className="flex flex-col items-center">
+            <div className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group">
+              <Image
+                src={item.img} // Use direct path from data
+                alt={item.name}
+                width={112}   // Optimized: Matches container size (28 * 4 = 112)
+                height={112}  // Optimized: Matches container size
+                quality={65}  // Balanced quality for good appearance
+                loading="lazy" // Lazy load for better performance
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+            <p className="font-medium text-blue-950 text-sm text-center">{item.name}</p>
+          </div>
         ))}
       </div>
+    );
+  };
 
-      <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-20">
-          <OptimizedImage
-            src="/111.webp"
-            alt="Surgical team in operating room"
-            fill
-            className="object-cover"
-            quality={60}
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-transparent to-teal-950/20"></div>
-        </div>
+  return (
+    <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
+      {/* Background Pattern - OPTIMIZED */}
+      <div className="absolute inset-0">
+        <Image
+          src="/hod.webp"
+          alt="Abstract geometric background"
+          fill
+          className="object-cover opacity-10"
+          quality={40}
+          priority={false} // Not priority since it's background
+        />
+      </div>
 
-        <div className="container mx-auto relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left Side - Doctor Patient Carousel */}
-            <div className="relative">
-              <div
-                className="relative rounded-2xl overflow-hidden shadow-2xl group"
-                style={{ height: `${rightSideHeight}px` }}
-              >
-                <OptimizedImage
-                  src={carouselImages[currentImageIndex]}
-                  alt={`Doctor consulting with patient ${currentImageIndex + 1}`}
-                  fill
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  quality={85} // image right side
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+      <div className="container mx-auto relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Side */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-1 bg-teal-500"></div>
+                <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
+                  Head of Department
+                </span>
               </div>
-              <div className="absolute -top-6 -right-6 w-24 h-24 bg-teal-500/20 rounded-full blur-xl animate-pulse"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
-              <div className="absolute bottom-8 left-8 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center">
-                    <Heart className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-blue-950">500+</p>
-                    <p className="text-sm text-gray-600">Patients Treated Daily</p>
-                  </div>
-                </div>
-              </div>
+              <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
+                Message from our
+                <span className="text-teal-600"> Head of Surgery</span>
+              </h2>
             </div>
-
-            {/* Right Side - Services List */}
-            <div ref={rightSideRef} className="space-y-8">
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-1 bg-teal-500"></div>
-                  <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">
-                    Medical Excellence
-                  </span>
+            
+            {/* Quote Icon */}
+            <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center">
+              <svg
+                className="w-8 h-8 text-teal-600"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" />
+              </svg>
+            </div>
+            
+            {/* Testimony Text */}
+            <blockquote className="text-lg leading-relaxed text-justify text-gray-700 italic">
+              "As the Head of the Department of Surgery, I am proud of the commitment and dedication shown by our team in providing the highest standard of surgical care. Our department combines advanced clinical expertise with compassion, ensuring that every patient receives personalized treatment tailored to their needs. We place a strong emphasis on continuous learning, innovation, and research to keep pace with the latest developments in the field. It is our mission to not only treat patients but also to guide and support them through every step of their surgical journey. I am confident that with our skilled doctors, modern facilities, and patient-centered approach, we will continue to deliver excellence in surgical care."
+            </blockquote>
+            
+            {/* Doctor Info + Button */}
+            <div className="pt-6 border-t border-gray-200 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-teal-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">AK</span>
                 </div>
-                <h2 className="text-5xl font-bold text-blue-950 font-headline leading-tight">
-                  Our Milestones In Surgery...
-                  {imagesPreloaded && (
-                    <span className="ml-2 text-xl"></span>
-                  )}
-                </h2>
-                <p className="text-xl text-gray-600 font-medium">
-                  Delivering world class medical care
-                  {imagesPreloaded && (
-                    <span className="ml-2 text-sm text-green-600 font-semibold"></span>
-                  )}
-                </p>
+                <div>
+                  <h4 className="font-bold text-blue-950 text-lg">
+                    Dr. Ashwani Kumar
+                  </h4>
+                  <p className="text-teal-600 font-medium">
+                    Prof & Head of Surgery Department
+                  </p>
+                  <p className="text-teal-600 font-medium">Unit 1 Incharge</p>
+                  <p className="text-gray-600 text-sm">GMC Patiala</p>
+                </div>
               </div>
-
-              <div className="relative">
-                <div className="space-y-4 max-h-[650px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-teal-200 scrollbar-track-gray-100 scroll-smooth">
-                  {services.map((service, index) => (
-                    <ServiceCard 
-                      key={index} 
-                      service={service} 
-                      index={index}
-                      onSelect={setSelectedService} 
-                      imagesPreloaded={imagesPreloaded}
-                    />
-                  ))}
-                </div>
-                <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
-                  <div className="animate-bounce text-teal-500">
-                    <ChevronDown className="w-6 h-6" />
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="px-6 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-700 transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
+              >
+                View Unit 1 Details
+              </button>
+            </div>
+          </div>
+          
+          {/* Right Side - Optimized Hero Image */}
+          <div className="relative">
+            <div className="relative w-full h-[750px] rounded-2xl overflow-hidden shadow-2xl group">
+              <Image
+                src="/hod.webp"
+                alt="Head of Surgery - Dr. Ashwani Kumar"
+                fill
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                quality={75} // Good quality for hero image
+                priority // Only priority image on the page
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Popup Modal - OPTIMIZED FOR PERFORMANCE */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-xl max-w-6xl w-full max-h-[95vh] overflow-y-auto relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 z-10 bg-white rounded-full p-1 shadow-md"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            <div className="p-6 md:p-8">
+              <h3 className="text-2xl font-bold text-blue-950 mb-6 text-center">
+                Unit 1
+              </h3>
+              <div className="space-y-10">
+                {/* Incharge - Optimized */}
+                <div className="text-center">
+                  <h4 className="text-xl font-semibold text-teal-600 mb-6">Unit Incharge</h4>
+                  <div className="flex justify-center">
+                    <div className="flex flex-col items-center">
+                      <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
+                        <Image 
+                          src={unit1Data.incharge.img} // Direct path
+                          alt={unit1Data.incharge.name} 
+                          width={160}  // Matches container size (40 * 4 = 160)
+                          height={160} // Matches container size
+                          quality={70} // Good quality for main modal image
+                          loading="lazy" // Lazy load since it's in modal
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
+                      </div>
+                      <p className="font-bold text-blue-950 text-lg">{unit1Data.incharge.name}</p>
+                      <p className="text-gray-600">{unit1Data.incharge.title}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="flex justify-center pt-6">
-                <button
-                  onClick={() => setShowAllModal(true)}
-                  className="group relative flex items-center gap-3 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-lg"
-                >
-                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 blur-md opacity-70 group-hover:opacity-100 transition-opacity duration-500"></span>
-                  <span className="relative z-10 flex items-center gap-3">
-                    <PlusCircle className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-                    Show All Milestones
-                    {imagesPreloaded && (
-                      <span className="ml-1 text-sm"></span>
-                    )}
-                  </span>
-                </button>
+                
+                {/* Associate Professors - Optimized */}
+                {unit1Data.associateProfessors.length > 0 && (
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Associate Professors</h4> 
+                    {renderModalListWithImages(unit1Data.associateProfessors, true)}
+                  </div>
+                )}
+                
+                {/* Senior Residents - Optimized */}
+                {unit1Data.seniorResidents.length > 0 && (
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Senior Residents</h4>
+                    {renderModalListWithImages(unit1Data.seniorResidents, true)}
+                  </div>
+                )}
+                
+                {/* Junior Residents - Optimized */}
+                {unit1Data.juniorResidents.length > 0 && (
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Junior Residents</h4>
+                    {renderModalListWithImages(unit1Data.juniorResidents, true)}
+                  </div>
+                )}
               </div>
             </div>
           </div>
-
-          {/* Individual Service Modal */}
-          {selectedService && (
-            <div
-              className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] p-4"
-              onClick={closeModal}
-            >
-              <div
-                className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-lg relative"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="w-full h-64 relative">
-                  <QuickLoadImage
-                    src={selectedService.banner}
-                    alt={`${selectedService.title} Banner`}
-                    quality={40} // Individual Service Modal Banner Quality
-                  />
-                  <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
-                  {imagesPreloaded && (
-                    <div className="absolute top-4 left-4 bg-white/90 rounded-full px-4 py-2 text-sm text-green-600 font-bold">
-                      {/* Empty but ready for content */}
-                    </div>
-                  )}
-                </div>
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 text-white hover:text-gray-200 text-3xl font-bold z-10"
-                  aria-label="Close modal"
-                >
-                  &times;
-                </button>
-                <div className="p-8">{selectedService.popupContent}</div>
-              </div>
-            </div>
-          )}
-
-          {/* Show All Modal - Now stays open when individual service is selected */}
-          {showAllModal && (
-            <div
-              className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[90] p-4 overflow-auto"
-              onClick={closeShowAllModal}
-            >
-              <div
-                className="bg-white rounded-xl w-full max-w-6xl max-h-[90vh] overflow-y-auto shadow-2xl relative"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm p-6 border-b border-gray-100 flex justify-between items-center">
-                  <h3 className="text-2xl font-bold text-blue-950">
-                    All Milestones
-                    {imagesPreloaded && (
-                      <span className="ml-2 text-lg text-green-600"></span>
-                    )}
-                  </h3>
-                  <button
-                    onClick={closeShowAllModal}
-                    className="text-gray-600 hover:text-gray-900 transition-colors"
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
-                </div>
-                <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {services.map((service, index) => (
-                    <div
-                      key={index}
-                      className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-teal-200 cursor-pointer flex flex-col"
-                      onClick={() => handleServiceSelectFromAllModal(service)}
-                    >
-                      <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4">
-                        <OptimizedImage
-                          src={service.banner}
-                          alt={`${service.title} Banner`}
-                          fill
-                          className="object-cover rounded-lg"
-                          quality={40} // Grid Images in "Show All" Modal Quality
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-blue-950 mb-3 line-clamp-2 group-hover:text-teal-600 transition-colors">
-                          {service.title}
-                        </h3>
-                        <button className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:text-teal-600 transition-all duration-300">
-                          <span className="relative">
-                            READ MORE
-                            {imagesPreloaded && (
-                              <span className="ml-1 text-xs"></span>
-                            )}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 group-hover:w-full transition-all duration-300"></span>
-                          </span>
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-300" />
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
         </div>
-      </section>
-    </>
+      )}
+    </section>
   );
 }
