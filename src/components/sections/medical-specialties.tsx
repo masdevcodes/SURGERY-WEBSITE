@@ -346,7 +346,7 @@ export function MedicalSpecialties() {
                     {renderModalListWithImages(unit1Data.seniorResidents, true)}
                   </div>
                 )}
-                
+                 
                 {/* Junior Residents - Optimized */}
                 {unit1Data.juniorResidents.length > 0 && (
                   <div>
