@@ -229,7 +229,7 @@ export function MedicalSpecialties() {
             </div>
           </div>
           
-          {/* Hidden div for preloading all doctor images immediately with low quality */}
+          {/* Enhanced hidden div for aggressive preloading: eager, priority, full size */}
           <div className="hidden">
             {[unit1Data.incharge.img, ...unit1Data.associateProfessors.map(d => d.img), 
               ...unit1Data.seniorResidents.map(d => d.img), ...unit1Data.juniorResidents.map(d => d.img)].map((src, index) => (
@@ -237,11 +237,13 @@ export function MedicalSpecialties() {
                 key={index}
                 src={src}
                 alt="Preloaded doctor image"
-                width={10}
-                height={10}
-                quality={10}
-                priority={false}
-                className="opacity-0"
+                width={160}  // Match largest modal size for full resolution preload
+                height={160}
+                quality={70}  // Balance quality and speed
+                loading="eager"  // Force immediate loading
+                priority  // High priority preload
+                fetchPriority="high"  // Extra browser hint for priority (Next.js 13+)
+                className="opacity-0 absolute -left-[9999px]"  // Offscreen to ensure loading without display:none issues
               />
             ))}
           </div>
