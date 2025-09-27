@@ -4,54 +4,32 @@ import Image from 'next/image';
 import {
   ArrowRight,
   Heart,
-  Stethoscope,
   Eye,
   Bone,
   Brain,
   Activity,
-  Scissors,
   PersonStanding,
   PlusCircle,
   X,
   ChevronDown
 } from 'lucide-react';
-import { useCallback } from 'react';
-
-// ✅ ADDED: Function to collect all image paths for preloading
-const getAllServiceImages = (services: any[], carouselImages: string[]) => {
-  const allImages = new Set<string>();
-  
-  // Add all service banner images
-  services.forEach(service => {
-    if (service.banner) allImages.add(service.banner);
-  });
-  
-  // Add carousel images
-  carouselImages.forEach(img => allImages.add(img));
-  
-  // Add background and placeholder images
-  allImages.add('/111.webp');
-  allImages.add('/images/placeholder.jpg');
-  
-  return Array.from(allImages);
-};
 
 // Simplified Image Component
-function OptimizedImage({
-  src,
-  alt,
-  fill = false,
-  className = "",
-  quality = 50,
+function OptimizedImage({ 
+  src, 
+  alt, 
+  fill = false, 
+  className = "", 
+  quality = 75, 
   sizes = "",
   priority = false,
   onLoad
-}: {
-  src: string;
-  alt: string;
-  fill?: boolean;
-  className?: string;
-  quality?: number;
+}: { 
+  src: string; 
+  alt: string; 
+  fill?: boolean; 
+  className?: string; 
+  quality?: number; 
   sizes?: string;
   priority?: boolean;
   onLoad?: () => void;
@@ -94,28 +72,39 @@ function OptimizedImage({
   );
 }
 
-function QuickLoadImage({ src, alt }: {
-  src: string;
+function QuickLoadImage({ src, alt, quality = 60 }: { 
+  src: string; 
   alt: string;
+  quality?: number;
 }) {
   const [hasError, setHasError] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <div className="relative w-full h-64 overflow-hidden">
+      {!isLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          <div className="w-8 h-8 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
+        </div>
+      )}
       <Image
         src={hasError ? '/images/placeholder.jpg' : src}
         alt={alt}
         fill
-        className="object-cover"
-        quality={65}
-        onError={() => setHasError(true)}
+        className="object-cover transition-opacity duration-300"
+        quality={quality} // Reduced quality for faster loading
+        onLoad={() => setIsLoaded(true)}
+        onError={() => {
+          setHasError(true);
+          setIsLoaded(true);
+        }}
       />
     </div>
   );
 }
 
-function ServiceCard({ service, index, onSelect, imagesPreloaded }: {
-  service: any;
+function ServiceCard({ service, index, onSelect, imagesPreloaded }: { 
+  service: any; 
   index: number;
   onSelect: (service: any) => void;
   imagesPreloaded: boolean;
@@ -279,24 +268,40 @@ export function Services() {
   const rightSideRef = useRef<HTMLDivElement>(null);
   const [rightSideHeight, setRightSideHeight] = useState(0);
 
+  // Left-side carousel images
   const carouselImages = ['/images/super/service11.webp', '/images/super/service12.webp', '/images/super/service13.webp'];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // ✅ ADDED: Get all images for preloading
-  const allImages = getAllServiceImages(services, carouselImages);
+  // 🔥 ALL IMAGES THAT NEED TO BE PRELOADED WHEN WEBSITE LOADS
+  const allImages = [
+    // Service banner images (for modals) - PRIORITY
+    '/images/super/ser1.jpg',
+    '/images/super/thyroid.jpg', 
+    '/images/super/adrene.jpg',
+    '/images/super/lah.jpg',
+    '/images/super/veins.jpg',
+    // Carousel images - PRIORITY
+    '/images/super/service11.webp', 
+    '/images/super/service12.webp', 
+    '/images/super/service13.webp',
+    // Background images
+    '/111.webp',
+    '/images/placeholder.jpg'
+  ];
 
-  // ✅ ADDED: Preload images on component mount
+  // 🚀 PRELOAD IMAGES IMMEDIATELY WHEN COMPONENT MOUNTS (WEBSITE LOADS)
   useEffect(() => {
-    console.log("🚀 Preloading service images...");
-    console.log(`📂 Preloading ${allImages.length} images:`, allImages);
-    
-    const preloadTimer = setTimeout(() => {
-      setImagesPreloaded(true);
-      console.log("✅ All service images preloaded successfully!");
-    }, 2000);
+    console.log("🌐 Website loaded - Starting Services image preload...");
+    console.log(`📂 Preloading ${allImages.length} images...`);
 
-    return () => clearTimeout(preloadTimer);
-  }, [allImages]);
+    // Track preloading completion
+    const timer = setTimeout(() => {
+      setImagesPreloaded(true);
+      console.log("✅ All Services images preloaded successfully!");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Update right side height
   useEffect(() => {
@@ -326,20 +331,27 @@ export function Services() {
   const closeModal = () => setSelectedService(null);
   const closeShowAllModal = () => setShowAllModal(false);
 
+  // NEW: Function to handle service selection from "Show All" modal
+  const handleServiceSelectFromAllModal = (service: any) => {
+    setSelectedService(service);
+    // Don't close the showAllModal - keep it open in the background
+  };
+
   return (
     <>
-      {/* ✅ ADDED: Hidden preload images section */}
-      <div className="hidden">
+      {/* 🔥 CRITICAL: HIDDEN PRELOAD IMAGES - LOADS IMMEDIATELY WHEN WEBSITE LOADS */}
+      <div className="hidden" style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
         {allImages.map((src, index) => (
           <Image
-            key={`service-preload-${index}`}
+            key={`services-preload-${index}`}
             src={src}
-            alt="Service image preload"
+            alt="Preload Services Image"
             width={300}
             height={300}
-            priority
-            onLoad={() => console.log(`✅ Preloaded: ${src}`)}
-            onError={() => console.warn(`❌ Failed to preload: ${src}`)}
+            priority={true}
+            quality={75}
+            onLoad={() => console.log(`✅ Services - Preloaded: ${src}`)}
+            onError={() => console.warn(`❌ Services - Failed to preload: ${src}`)}
           />
         ))}
       </div>
@@ -352,7 +364,7 @@ export function Services() {
             alt="Surgical team in operating room"
             fill
             className="object-cover"
-            quality={75}
+            quality={60}
             sizes="100vw"
             priority
           />
@@ -372,7 +384,7 @@ export function Services() {
                   alt={`Doctor consulting with patient ${currentImageIndex + 1}`}
                   fill
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  quality={85}
+                  quality={85} // image right side
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                   priority
                 />
@@ -419,11 +431,11 @@ export function Services() {
               <div className="relative">
                 <div className="space-y-4 max-h-[650px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-teal-200 scrollbar-track-gray-100 scroll-smooth">
                   {services.map((service, index) => (
-                    <ServiceCard
-                      key={index}
-                      service={service}
+                    <ServiceCard 
+                      key={index} 
+                      service={service} 
                       index={index}
-                      onSelect={setSelectedService}
+                      onSelect={setSelectedService} 
                       imagesPreloaded={imagesPreloaded}
                     />
                   ))}
@@ -453,7 +465,7 @@ export function Services() {
             </div>
           </div>
 
-          {/* Modal Popup */}
+          {/* Individual Service Modal */}
           {selectedService && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] p-4"
@@ -467,11 +479,12 @@ export function Services() {
                   <QuickLoadImage
                     src={selectedService.banner}
                     alt={`${selectedService.title} Banner`}
+                    quality={40} // Individual Service Modal Banner Quality
                   />
                   <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
                   {imagesPreloaded && (
                     <div className="absolute top-4 left-4 bg-white/90 rounded-full px-4 py-2 text-sm text-green-600 font-bold">
-                      
+                      {/* Empty but ready for content */}
                     </div>
                   )}
                 </div>
@@ -487,10 +500,10 @@ export function Services() {
             </div>
           )}
 
-          {/* Show All Modal */}
+          {/* Show All Modal - Now stays open when individual service is selected */}
           {showAllModal && (
             <div
-              className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[50] p-4 overflow-auto"
+              className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[90] p-4 overflow-auto"
               onClick={closeShowAllModal}
             >
               <div
@@ -516,10 +529,7 @@ export function Services() {
                     <div
                       key={index}
                       className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-teal-200 cursor-pointer flex flex-col"
-                      onClick={() => {
-                        setSelectedService(service);
-                        setShowAllModal(false);
-                      }}
+                      onClick={() => handleServiceSelectFromAllModal(service)}
                     >
                       <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4">
                         <OptimizedImage
@@ -527,7 +537,7 @@ export function Services() {
                           alt={`${service.title} Banner`}
                           fill
                           className="object-cover rounded-lg"
-                          quality={10}
+                          quality={40} // Grid Images in "Show All" Modal Quality
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       </div>
