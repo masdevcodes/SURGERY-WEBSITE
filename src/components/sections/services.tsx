@@ -294,13 +294,36 @@ export function Services() {
     console.log("🌐 Website loaded - Starting Services image preload...");
     console.log(`📂 Preloading ${allImages.length} images...`);
 
-    // Track preloading completion
-    const timer = setTimeout(() => {
-      setImagesPreloaded(true);
-      console.log("✅ All Services images preloaded successfully!");
-    }, 3000);
+    // Actual image preloading implementation
+    const imagesLoaded = new Set<string>();
+    const totalImages = allImages.length;
 
-    return () => clearTimeout(timer);
+    const preloadImage = (src: string) => {
+        const img = new window.Image();
+        img.src = src;
+        img.onload = () => {
+          imagesLoaded.add(src);
+          console.log(`✅ Services - Preloaded: ${src}`);
+          if (imagesLoaded.size >= totalImages) {
+            setImagesPreloaded(true);
+            console.log("✅ All Services images preloaded successfully!");
+          }
+        };
+        img.onerror = () => {
+          console.warn(`❌ Services - Failed to preload: ${src}`);
+          imagesLoaded.add(src); // Count failures as "loaded" to prevent blocking
+          if (imagesLoaded.size >= totalImages) {
+            setImagesPreloaded(true);
+          }
+        };
+    };
+
+    // Staggered loading to prevent blocking the main thread
+    allImages.forEach((src, index) => {
+      setTimeout(() => preloadImage(src), index * 100);
+    });
+
+    return () => {};
   }, []);
 
   // Update right side height
@@ -339,17 +362,17 @@ export function Services() {
 
   return (
     <>
-      {/* 🔥 CRITICAL: HIDDEN PRELOAD IMAGES - LOADS IMMEDIATELY WHEN WEBSITE LOADS */}
+      {/* 🔥 IMPROVED CRITICAL: HIDDEN PRELOAD IMAGES - LOADS IMMEDIATELY WHEN WEBSITE LOADS */}
       <div className="hidden" style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
         {allImages.map((src, index) => (
           <Image
             key={`services-preload-${index}`}
             src={src}
             alt="Preload Services Image"
-            width={300}
-            height={300}
+            width={100} // Smaller size for faster preloading
+            height={100}
             priority={true}
-            quality={75}
+            quality={50} // Lower quality for faster preloading
             onLoad={() => console.log(`✅ Services - Preloaded: ${src}`)}
             onError={() => console.warn(`❌ Services - Failed to preload: ${src}`)}
           />
@@ -476,11 +499,18 @@ export function Services() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="w-full h-64 relative">
+                  <div className="w-full h-full">
+                  {!imagesPreloaded && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+                      <div className="w-12 h-12 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
+                    </div>
+                  )}
                   <QuickLoadImage
                     src={selectedService.banner}
                     alt={`${selectedService.title} Banner`}
-                    quality={40} // Individual Service Modal Banner Quality
+                    quality={35} // Lower quality for faster loading
                   />
+                </div>
                   <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
                   {imagesPreloaded && (
                     <div className="absolute top-4 left-4 bg-white/90 rounded-full px-4 py-2 text-sm text-green-600 font-bold">
@@ -532,19 +562,26 @@ export function Services() {
                       onClick={() => handleServiceSelectFromAllModal(service)}
                     >
                       <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4">
-                        <OptimizedImage
-                          src={service.banner}
-                          alt={`${service.title} Banner`}
-                          fill
-                          className="object-cover rounded-lg"
-                          quality={40} // Grid Images in "Show All" Modal Quality
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
+                        <div className="w-full h-full">
+                          {!imagesPreloaded && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10 rounded-lg">
+                              <div className="w-8 h-8 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
+                            </div>
+                          )}
+                          <OptimizedImage
+                            src={service.banner}
+                            alt={`${service.title} Banner`}
+                            fill
+                            className="object-cover rounded-lg"
+                            quality={35} // Lower quality for faster loading
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                        </div>
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-blue-950 mb-3 line-clamp-2 group-hover:text-teal-600 transition-colors">
                           {service.title}
-                        </h3> 
+                        </h3>
                         <button className="inline-flex items-center gap-2 text-teal-500 font-semibold text-sm hover:text-teal-600 transition-all duration-300">
                           <span className="relative">
                             READ MORE
@@ -566,4 +603,4 @@ export function Services() {
       </section>
     </>
   );
-}
+} 
