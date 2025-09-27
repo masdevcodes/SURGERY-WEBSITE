@@ -642,7 +642,7 @@ export const Events: React.FC = () => {
                     <ChevronRight className="w-6 h-6" />
                   </button>
                 </>
-              )}
+              )} 
               
               {/* Image Counter */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
