@@ -425,7 +425,7 @@ export function Events() {
                 onClick={modalScrollNext}
                 disabled={modalNextBtnDisabled}
                 aria-label="Next image"
-              >
+              > 
                 <ChevronRight className="w-6 h-6" />
               </button>
               
