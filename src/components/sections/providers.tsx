@@ -135,7 +135,7 @@ export function Providers() {
       image: '/images/provider3.jpg',
       details: {
         incharge: 'Dr. D.J.S Wallia',
-        associateProfessors: ['Dr. X', 'Dr. Y'],
+        associateProfessors: [],
         assistantProfessors: ['Dr. M', 'Dr. N'],
         seniorResidents: ['Dr. O', 'Dr. P', 'Dr. Q'],
         juniorResidents: [
