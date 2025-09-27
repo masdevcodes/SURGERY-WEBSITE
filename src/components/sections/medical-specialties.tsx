@@ -225,7 +225,7 @@ export function MedicalSpecialties() {
                     {renderModalListWithImages(unit1Data.associateProfessors, true)}
                   </div>
                 )}
-                
+                 
                 {/* Senior Residents - Optimized */}
                 {unit1Data.seniorResidents.length > 0 && (
                   <div>
