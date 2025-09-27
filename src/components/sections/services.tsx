@@ -294,55 +294,42 @@ export function Services() {
     '/images/placeholder.jpg'
   ];
 
-  // 🚀 IMPROVED PRELOADING STRATEGY
+  // 🚀 OPTIMIZED PARALLEL PRELOADING STRATEGY
   useEffect(() => {
-    console.log("🌐 Website loaded - Starting Services image preload...");
-    console.log(`📂 Preloading ${allImages.length} images with optimized strategy...`);
+    console.log(`Starting parallel preloading of ${allImages.length} images...`);
 
-    // Use requestAnimationFrame for better performance
-    const imagesLoaded = new Set<string>();
+    let loadedCount = 0;
     const totalImages = allImages.length;
-    let preloadIndex = 0;
 
-    // Modern preloading with prioritization and performance optimization
-    const preloadNextImage = () => {
-      if (preloadIndex >= totalImages) {
-        setImagesPreloaded(true);
-        console.log("✅ All Services images preloaded successfully!");
-        return;
-      }
-
-      const src = allImages[preloadIndex];
+    const preloadImage = (src: string) => {
       const img = new window.Image();
       img.src = src;
       img.loading = 'eager';
       img.decoding = 'async';
-      
+
       img.onload = () => {
-        imagesLoaded.add(src);
-        console.log(`✅ Services - Preloaded: ${src}`);
-        preloadIndex++;
-        // Continue preloading in the next frame to avoid blocking
-        requestAnimationFrame(preloadNextImage);
-      };
-      
-      img.onerror = () => {
-        console.warn(`❌ Services - Failed to preload: ${src}`);
-        // Count failures as "loaded" to prevent blocking
-        imagesLoaded.add(src);
-        preloadIndex++;
-        requestAnimationFrame(preloadNextImage);
+        loadedCount++;
+        console.log(`✅ Preloaded (${loadedCount}/${totalImages}): ${src}`);
+        if (loadedCount === totalImages) {
+          setImagesPreloaded(true);
+          console.log("✅ All images preloaded successfully!");
+        }
       };
 
-      preloadIndex++;
-      // Stagger slightly to prevent overwhelming network
-      setTimeout(() => requestAnimationFrame(preloadNextImage), 50);
+      img.onerror = () => {
+        loadedCount++;
+        console.warn(`❌ Failed to preload: ${src}`);
+        if (loadedCount === totalImages) {
+          setImagesPreloaded(true);
+          console.log("✅ Preloading completed (with some errors)!");
+        }
+      };
     };
 
-    // Start preloading immediately
-    requestAnimationFrame(preloadNextImage);
-
-    return () => {};
+    // Preload all in parallel within requestAnimationFrame
+    requestAnimationFrame(() => {
+      allImages.forEach(preloadImage);
+    });
   }, []);
 
   // Update right side height
@@ -381,9 +368,35 @@ export function Services() {
 
   return (
     <>
-      {/* 🔥 IMPROVED CRITICAL: PRELOADER - OPTIMIZED FOR PERFORMANCE */}
-      {/* Removed redundant hidden image preloader that was duplicating the useEffect preloading */}
-      {/* Using only the useEffect with requestAnimationFrame for better performance */}
+      {/* Enhanced hidden div for aggressive Next.js preloading: eager, priority, matching modal sizes */}
+      <div className="hidden">
+        {services.map((service, index) => (
+          <Image
+            key={index}
+            src={service.banner}
+            alt={`Preloaded banner for ${service.title}`}
+            width={800}  // Approximate modal banner width for full res preload
+            height={400}
+            quality={70}
+            loading="eager"
+            priority
+            className="opacity-0 absolute -left-[9999px]"  // Offscreen to load without display issues
+          />
+        ))}
+        {carouselImages.map((src, index) => (
+          <Image
+            key={index}
+            src={src}
+            alt={`Preloaded carousel image ${index + 1}`}
+            width={600}
+            height={400}
+            quality={85}
+            loading="eager"
+            priority
+            className="opacity-0 absolute -left-[9999px]"
+          />
+        ))}
+      </div>
 
       <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Background Pattern */}
