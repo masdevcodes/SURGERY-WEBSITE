@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { useState, useEffect } from "react";
+import NextImage from "next/image";
 
 // Data for Unit 1 Team - keeping direct paths for main section
 const unit1Data = {
@@ -33,6 +33,44 @@ const unit1Data = {
 
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // Add a preload state to track image loading status
+  const [modalImagesPreloaded, setModalImagesPreloaded] = useState(false);
+
+  // Function to preload all modal images
+  useEffect(() => {
+    const preloadModalImages = () => {
+      // Get all doctor images from unit1Data
+      const allDoctorImages = [
+        unit1Data.incharge.img,
+        ...unit1Data.associateProfessors.map(d => d.img),
+        ...unit1Data.seniorResidents.map(d => d.img),
+        ...unit1Data.juniorResidents.map(d => d.img)
+      ];
+      
+      console.log("Preloading modal images...");
+      
+      // Create image objects to load images in background
+      const imagePromises = allDoctorImages.map(src => {
+        return new Promise((resolve, reject) => {
+          const img = new window.Image();
+          img.src = src;
+          img.onload = () => resolve(src);
+          img.onerror = () => reject(src);
+        });
+      });
+      
+      // Mark images as preloaded when done
+      Promise.allSettled(imagePromises).then(() => {
+        console.log("Modal images preloaded");
+        setModalImagesPreloaded(true);
+      });
+    };
+    
+    // Start preloading after a short delay to prioritize initial page load
+    const timer = setTimeout(preloadModalImages, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   // Simplified image path function using direct paths from data
   const getImagePath = (name: string) => {
@@ -65,12 +103,12 @@ export function MedicalSpecialties() {
         {items.map((item, idx) => (
           <div key={idx} className="flex flex-col items-center">
             <div className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group">
-              <Image
+              <NextImage
                 src={item.img} // Use direct path from data
                 alt={item.name}
                 width={112}   // Optimized: Matches container size (28 * 4 = 112)
                 height={112}  // Optimized: Matches container size
-                quality={60}  // Balanced quality for good appearance
+                quality={60}  // Slightly reduced quality for faster loading
                 loading="lazy" // Lazy load for better performance
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
@@ -86,14 +124,14 @@ export function MedicalSpecialties() {
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
       {/* Background Pattern - OPTIMIZED */}
       <div className="absolute inset-0">
-        <Image
-          src="/hod.webp"
-          alt="Abstract geometric background"
-          fill
-          className="object-cover opacity-10"
-          quality={50}
-          priority={false} // Not priority since it's background
-        />
+        <NextImage
+                src="/hod.webp"
+                alt="Abstract geometric background"
+                fill
+                className="object-cover opacity-10"
+                quality={40}
+                priority={false} // Not priority since it's background
+              />
       </div>
 
       <div className="container mx-auto relative">
@@ -158,7 +196,7 @@ export function MedicalSpecialties() {
           {/* Right Side - Optimized Hero Image */}
           <div className="relative">
             <div className="relative w-full h-[750px] rounded-2xl overflow-hidden shadow-2xl group">
-              <Image
+              <NextImage
                 src="/hod.webp"
                 alt="Head of Surgery - Dr. Ashwani Kumar"
                 fill
@@ -191,6 +229,16 @@ export function MedicalSpecialties() {
               </svg>
             </button>
             
+            {/* Add loading indicator */}
+            {!modalImagesPreloaded && (
+              <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-20">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 border-4 border-teal-200 border-t-teal-600 rounded-full animate-spin mb-4"></div>
+                  <p className="text-teal-600 font-medium">Loading doctor profiles...</p>
+                </div>
+              </div>
+            )}
+            
             <div className="p-6 md:p-8">
               <h3 className="text-2xl font-bold text-blue-950 mb-6 text-center">
                 Unit 1
@@ -202,7 +250,7 @@ export function MedicalSpecialties() {
                   <div className="flex justify-center">
                     <div className="flex flex-col items-center">
                       <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
-                        <Image 
+                        <NextImage 
                           src={unit1Data.incharge.img} // Direct path
                           alt={unit1Data.incharge.name} 
                           width={160}  // Matches container size (40 * 4 = 160)
@@ -225,7 +273,7 @@ export function MedicalSpecialties() {
                     {renderModalListWithImages(unit1Data.associateProfessors, true)}
                   </div>
                 )}
-                 
+                
                 {/* Senior Residents - Optimized */}
                 {unit1Data.seniorResidents.length > 0 && (
                   <div>
