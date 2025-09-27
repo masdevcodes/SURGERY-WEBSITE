@@ -33,46 +33,19 @@ const unit1Data = {
 
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [imageQuality, setImageQuality] = useState(75); // Default quality: 75%
 
-  // Dynamic image path function ONLY for modal with prioritized exact matching
+  // Simplified image path function using direct paths from data
   const getImagePath = (name: string) => {
-    const cleanName = name.replace('Dr. ', '').toLowerCase();
+    // Check all doctor arrays for matching name and return their direct image path
+    const allDoctors = [
+      unit1Data.incharge,
+      ...unit1Data.associateProfessors,
+      ...unit1Data.seniorResidents,
+      ...unit1Data.juniorResidents
+    ];
     
-    // Map specific names to image paths - ORDER MATTERS (most specific first)
-    if (cleanName === 'ashwani kumar') return '/images/unit1/ashwini.webp';
-    if (cleanName === 'jaswinder singh') return '/images/unit1/jaswinder.png';
-    if (cleanName === 'dinesh kumar passi') return '/images/unit1/dinesh_kumar.png';
-    if (cleanName === 'parth dhamija') return '/images/unit1/parth.png';
-    if (cleanName === 'talib khan') return '/images/unit1/thalib.png';
-    if (cleanName === 'navneeth shankar') return '/images/unit1/navneeth.png';
-    if (cleanName === 'vineeth sunaria') return '/images/unit1/vineeth.png';
-    if (cleanName === 'aseem anand') return '/images/unit1/aseem.png';
-    if (cleanName === 'soumya a') return '/images/unit1/soumya.png';
-    if (cleanName === 'naveen mangla') return '/images/unit1/naveen.webp';
-    if (cleanName === 'yogyatha') return '/images/unit1/yog.png';
-    if (cleanName === 'priyanka') return '/images/unit1/pri.png';
-    if (cleanName === 'sooraj') return '/images/unit1/sur.png';
-    
-    // Exact matches for individual first names (after checking full names)
-    if (cleanName === 'dinesh') return '/images/unit1/dinesh.png';
-    
-    // Partial matches as fallback for flexibility
-    if (cleanName.includes('soumya')) return '/images/unit1/soumya.png';
-    if (cleanName.includes('naveen') || cleanName.includes('mangla')) return '/images/unit1/naveen.webp';
-    if (cleanName.includes('yogyatha') || cleanName.includes('yog')) return '/images/unit1/yog.png';
-    if (cleanName.includes('priyanka') || cleanName.includes('pri')) return '/images/unit1/pri.png';
-    if (cleanName.includes('sooraj') || cleanName.includes('sur')) return '/images/unit1/sur.png';
-    
-    // Special mapping for any remaining cases
-    if (cleanName.includes('ashwani') || cleanName.includes('kumar')) return '/images/unit1/ashwini.webp';
-    if (cleanName.includes('jaswinder')) return '/images/unit1/jaswinder.png';
-    if (cleanName.includes('parth')) return '/images/unit1/parth.png';
-    if (cleanName.includes('talib')) return '/images/unit1/thalib.png';
-    
-    // Final fallback - use full name for image path
-    const fullName = cleanName.replace(/\s+/g, '_');
-    return `/images/doctors/${fullName}.webp`;
+    const doctor = allDoctors.find(d => d.name === name);
+    return doctor?.img || '/images/doctors/placeholder.webp'; // Fallback
   };
 
   // Function to collect all doctor names for modal preloading
@@ -251,9 +224,6 @@ export function MedicalSpecialties() {
               </svg>
             </button>
             
-            {/* Image Quality Control - ONLY AFFECTS MODAL IMAGES */}
-            
-
             <div className="p-6 md:p-8">
               <h3 className="text-2xl font-bold text-blue-950 mb-6 text-center">
                 Unit 1
@@ -311,26 +281,6 @@ export function MedicalSpecialties() {
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          height: 16px;
-          width: 16px;
-          border-radius: 50%;
-          background: #0d9488;
-          cursor: pointer;
-        }
-        
-        .slider::-moz-range-thumb {
-          height: 16px;
-          width: 16px;
-          border-radius: 50%;
-          background: #0d9488;
-          cursor: pointer;
-          border: none;
-        }
-      `}</style>
     </section>
   );
 }
