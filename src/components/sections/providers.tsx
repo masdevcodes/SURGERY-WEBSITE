@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';  // Updated: Added useEffect to the import
 
 interface Provider {
   id: number;
@@ -25,6 +25,7 @@ interface Provider {
 export function Providers() {
   const [selectedProvider, setSelectedProvider] = useState<Provider | null>(null);
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const [imagesPreloaded, setImagesPreloaded] = useState(false); // New state to track preloading completion
 
   // Collect all doctor names for preloading
   const getAllDoctorNames = () => {
@@ -135,8 +136,8 @@ export function Providers() {
       image: '/images/provider3.jpg',
       details: {
         incharge: 'Dr. D.J.S Wallia',
-        associateProfessors: [],
-        assistantProfessors: ['Dr. Anand Singla'],
+        associateProfessors: ['Dr. X', 'Dr. Y'],
+        assistantProfessors: ['Dr. M', 'Dr. N'],
         seniorResidents: ['Dr. O', 'Dr. P', 'Dr. Q'],
         juniorResidents: [
           { name: 'Dr. R', year: 1 },
@@ -286,9 +287,43 @@ export function Providers() {
     );
   };
 
+  // New: Collect all banner image paths for preloading
+  const allBannerImages = providers.map(provider => provider.image);
+
+  // New: Optimized parallel preloading for banner images
+  useEffect(() => {
+    let loadedCount = 0;
+    const totalImages = allBannerImages.length;
+
+    const preloadImage = (src: string) => {
+      return new Promise<void>((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => resolve();
+        img.onerror = () => reject();
+      });
+    };
+
+    const preloadAll = async () => {
+      const preloadPromises = allBannerImages.map(src => preloadImage(src));
+      try {
+        await Promise.all(preloadPromises);
+      } catch (error) {
+        console.warn('Some banner images failed to preload:', error);
+      } finally {
+        setImagesPreloaded(true);
+      }
+    };
+
+    // Run preloading immediately on mount
+    requestAnimationFrame(() => {
+      preloadAll();
+    });
+  }, []); // Empty dependency array to run once on mount
+
   return (
     <>
-      {/* Preload modal images for faster loading */}
+      {/* Existing: Preload modal images for faster loading */}
       <div className="hidden">
         {getAllDoctorNames().map((doctorName, index) => (
           <Image
@@ -298,6 +333,22 @@ export function Providers() {
             width={112}
             height={112}
             priority
+          />
+        ))}
+      </div>
+
+      {/* New: Hidden preloader for banner images (complements the useEffect) */}
+      <div className="hidden">
+        {allBannerImages.map((src, index) => (
+          <Image
+            key={index}
+            src={src}
+            alt="Banner Preload"
+            width={0}
+            height={0}
+            sizes="100vw"
+            priority={index < 3} // Priority for first 3
+            loading={index < 3 ? 'eager' : 'lazy'}
           />
         ))}
       </div>
@@ -317,7 +368,7 @@ export function Providers() {
         <p className="text-xl text-gray-600 mb-12">Meet our experienced Medical Professionals</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {providers.map((provider) => {
+          {providers.map((provider, index) => {  // Added index for prioritization
             const colorInfo = colorMap[provider.color] || colorMap.blue;
             
             return (
@@ -332,8 +383,10 @@ export function Providers() {
                     alt={provider.name}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    quality={70}
+                    quality={85}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={index < 3}  // New: High priority for first 3 cards
+                    loading={index < 3 ? 'eager' : 'lazy'}  // New: Eager for first 3, lazy for others
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
@@ -398,7 +451,6 @@ export function Providers() {
                   alt={selectedProvider.details.incharge}
                   width={128}
                   height={128}
-                  quality={60}
                   className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
