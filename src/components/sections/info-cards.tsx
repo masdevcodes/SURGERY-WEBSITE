@@ -131,8 +131,9 @@ export function InfoCards() {
   const sliderImages = [
     '/images/infocard/opd/opd1.jpg',
     '/images/infocard/opd/opd2.jpg',
+     '/images/infocard/opd/opd4.jpg',
     '/images/infocard/opd/opd3.jpg',
-    '/images/infocard/opd/opd4.jpg',
+   
   ];
 
   // ✅ ADDED: Specific modal images that need fast loading
