@@ -42,7 +42,7 @@ function OptimizedImage({
   alt,
   fill = false,
   className = "",
-  quality = 90,
+  quality = 50,
   sizes = "",
   priority = false,
   onLoad
@@ -107,7 +107,7 @@ function QuickLoadImage({ src, alt }: {
         alt={alt}
         fill
         className="object-cover"
-        quality={80}
+        quality={65}
         onError={() => setHasError(true)}
       />
     </div>
@@ -352,7 +352,7 @@ export function Services() {
             alt="Surgical team in operating room"
             fill
             className="object-cover"
-            quality={60}
+            quality={75}
             sizes="100vw"
             priority
           />
@@ -372,7 +372,7 @@ export function Services() {
                   alt={`Doctor consulting with patient ${currentImageIndex + 1}`}
                   fill
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  quality={75}
+                  quality={85}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                   priority
                 />
@@ -527,7 +527,7 @@ export function Services() {
                           alt={`${service.title} Banner`}
                           fill
                           className="object-cover rounded-lg"
-                          quality={65}
+                          quality={40}
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       </div>
