@@ -527,7 +527,7 @@ export function Services() {
                           alt={`${service.title} Banner`}
                           fill
                           className="object-cover rounded-lg"
-                          quality={40}
+                          quality={10}
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       </div>
