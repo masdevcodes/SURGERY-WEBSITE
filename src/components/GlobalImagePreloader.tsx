@@ -32,6 +32,13 @@ function GlobalImagePreloader() {
     '/images/unit1/yog.png',
     '/images/unit1/pri.png',
     '/images/unit1/sur.png',
+
+    // event images 
+        "/images/event/spark/sp4.webp",
+        "/images/event/spark/sp1.webp",
+        "/images/event/spark/sp.webp",
+        "/images/event/spark/sp2.webp",
+        "/images/event/spark/sp3.webp",
     
     // Add other modal images as needed
   ];
