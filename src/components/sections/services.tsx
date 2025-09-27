@@ -42,7 +42,7 @@ function OptimizedImage({
   alt,
   fill = false,
   className = "",
-  quality = 75,
+  quality = 90,
   sizes = "",
   priority = false,
   onLoad
