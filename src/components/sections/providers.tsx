@@ -398,6 +398,7 @@ export function Providers() {
                   alt={selectedProvider.details.incharge}
                   width={128}
                   height={128}
+                  quality={70}
                   className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
