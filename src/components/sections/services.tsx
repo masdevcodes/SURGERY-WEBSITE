@@ -74,10 +74,11 @@ function OptimizedImage({
 }
 
 // Optimized QuickLoadImage component with better loading strategy
-function QuickLoadImage({ src, alt, quality = 70 }: { 
+function QuickLoadImage({ src, alt, quality = 70, priority = true }: { 
   src: string; 
   alt: string;
   quality?: number;
+  priority?: boolean;
 }) {
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -96,6 +97,7 @@ function QuickLoadImage({ src, alt, quality = 70 }: {
         className="object-cover transition-all duration-500 ease-out"
         quality={quality}
         loading="eager"
+        priority={priority}  // Added for high fetch priority
         onLoad={() => setIsLoaded(true)}
         onError={() => {
           setHasError(true);
