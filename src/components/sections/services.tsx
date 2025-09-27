@@ -14,13 +14,16 @@ import {
   ChevronDown
 } from 'lucide-react';
 
-// Simplified Image Component
+// Define a fallback image path that we know exists
+const FALLBACK_IMAGE = '/images/super/service11.webp';
+
+// Enhanced Image Component with better optimization
 function OptimizedImage({ 
   src, 
   alt, 
   fill = false, 
   className = "", 
-  quality = 75, 
+  quality = 80, // Slightly higher quality for better visual experience
   sizes = "",
   priority = false,
   onLoad
@@ -48,19 +51,17 @@ function OptimizedImage({
   };
 
   return (
-    <div className={`relative ${fill ? 'w-full h-full' : ''}`}>
+    <div className={`relative ${fill ? 'w-full h-full' : ''} overflow-hidden`}>
       {!isLoaded && !hasError && (
         <div className={`absolute inset-0 flex items-center justify-center bg-gray-100 ${className}`}>
           <div className="w-8 h-8 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
         </div>
       )}
       <Image
-        src={hasError ? '/images/placeholder.jpg' : src}
+        src={hasError ? FALLBACK_IMAGE : src}
         alt={alt}
         fill={fill}
-        className={`${className} transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`${className} transition-all duration-300 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
         quality={quality}
         sizes={sizes}
         priority={priority}
@@ -72,7 +73,8 @@ function OptimizedImage({
   );
 }
 
-function QuickLoadImage({ src, alt, quality = 60 }: { 
+// Optimized QuickLoadImage component with better loading strategy
+function QuickLoadImage({ src, alt, quality = 70 }: { 
   src: string; 
   alt: string;
   quality?: number;
@@ -81,18 +83,19 @@ function QuickLoadImage({ src, alt, quality = 60 }: {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className="relative w-full h-64 overflow-hidden">
+    <div className="relative w-full h-64 overflow-hidden rounded-lg">
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-          <div className="w-8 h-8 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
+          <div className="w-10 h-10 border-4 border-teal-200 border-t-teal-500 rounded-full animate-spin"></div>
         </div>
       )}
       <Image
-        src={hasError ? '/images/placeholder.jpg' : src}
+        src={hasError ? FALLBACK_IMAGE : src}
         alt={alt}
         fill
-        className="object-cover transition-opacity duration-300"
-        quality={quality} // Reduced quality for faster loading
+        className="object-cover transition-all duration-500 ease-out"
+        quality={quality}
+        loading="eager"
         onLoad={() => setIsLoaded(true)}
         onError={() => {
           setHasError(true);
@@ -289,39 +292,53 @@ export function Services() {
     '/images/placeholder.jpg'
   ];
 
-  // 🚀 PRELOAD IMAGES IMMEDIATELY WHEN COMPONENT MOUNTS (WEBSITE LOADS)
+  // 🚀 IMPROVED PRELOADING STRATEGY
   useEffect(() => {
     console.log("🌐 Website loaded - Starting Services image preload...");
-    console.log(`📂 Preloading ${allImages.length} images...`);
+    console.log(`📂 Preloading ${allImages.length} images with optimized strategy...`);
 
-    // Actual image preloading implementation
+    // Use requestAnimationFrame for better performance
     const imagesLoaded = new Set<string>();
     const totalImages = allImages.length;
+    let preloadIndex = 0;
 
-    const preloadImage = (src: string) => {
-        const img = new window.Image();
-        img.src = src;
-        img.onload = () => {
-          imagesLoaded.add(src);
-          console.log(`✅ Services - Preloaded: ${src}`);
-          if (imagesLoaded.size >= totalImages) {
-            setImagesPreloaded(true);
-            console.log("✅ All Services images preloaded successfully!");
-          }
-        };
-        img.onerror = () => {
-          console.warn(`❌ Services - Failed to preload: ${src}`);
-          imagesLoaded.add(src); // Count failures as "loaded" to prevent blocking
-          if (imagesLoaded.size >= totalImages) {
-            setImagesPreloaded(true);
-          }
-        };
+    // Modern preloading with prioritization and performance optimization
+    const preloadNextImage = () => {
+      if (preloadIndex >= totalImages) {
+        setImagesPreloaded(true);
+        console.log("✅ All Services images preloaded successfully!");
+        return;
+      }
+
+      const src = allImages[preloadIndex];
+      const img = new window.Image();
+      img.src = src;
+      img.loading = 'eager';
+      img.decoding = 'async';
+      
+      img.onload = () => {
+        imagesLoaded.add(src);
+        console.log(`✅ Services - Preloaded: ${src}`);
+        preloadIndex++;
+        // Continue preloading in the next frame to avoid blocking
+        requestAnimationFrame(preloadNextImage);
+      };
+      
+      img.onerror = () => {
+        console.warn(`❌ Services - Failed to preload: ${src}`);
+        // Count failures as "loaded" to prevent blocking
+        imagesLoaded.add(src);
+        preloadIndex++;
+        requestAnimationFrame(preloadNextImage);
+      };
+
+      preloadIndex++;
+      // Stagger slightly to prevent overwhelming network
+      setTimeout(() => requestAnimationFrame(preloadNextImage), 50);
     };
 
-    // Staggered loading to prevent blocking the main thread
-    allImages.forEach((src, index) => {
-      setTimeout(() => preloadImage(src), index * 100);
-    });
+    // Start preloading immediately
+    requestAnimationFrame(preloadNextImage);
 
     return () => {};
   }, []);
@@ -362,22 +379,9 @@ export function Services() {
 
   return (
     <>
-      {/* 🔥 IMPROVED CRITICAL: HIDDEN PRELOAD IMAGES - LOADS IMMEDIATELY WHEN WEBSITE LOADS */}
-      <div className="hidden" style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
-        {allImages.map((src, index) => (
-          <Image
-            key={`services-preload-${index}`}
-            src={src}
-            alt="Preload Services Image"
-            width={100} // Smaller size for faster preloading
-            height={100}
-            priority={true}
-            quality={50} // Lower quality for faster preloading
-            onLoad={() => console.log(`✅ Services - Preloaded: ${src}`)}
-            onError={() => console.warn(`❌ Services - Failed to preload: ${src}`)}
-          />
-        ))}
-      </div>
+      {/* 🔥 IMPROVED CRITICAL: PRELOADER - OPTIMIZED FOR PERFORMANCE */}
+      {/* Removed redundant hidden image preloader that was duplicating the useEffect preloading */}
+      {/* Using only the useEffect with requestAnimationFrame for better performance */}
 
       <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Background Pattern */}
@@ -508,7 +512,7 @@ export function Services() {
                   <QuickLoadImage
                     src={selectedService.banner}
                     alt={`${selectedService.title} Banner`}
-                    quality={35} // Lower quality for faster loading
+                    quality={65} // Balanced quality for good visuals and fast loading
                   />
                 </div>
                   <div className="absolute inset-0 bg-black/20 rounded-t-lg"></div>
@@ -573,8 +577,9 @@ export function Services() {
                             alt={`${service.title} Banner`}
                             fill
                             className="object-cover rounded-lg"
-                            quality={35} // Lower quality for faster loading
+                            quality={60} // Better quality while maintaining good performance
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            priority={true} // Prioritize images in the "Show All" modal
                           />
                         </div>
                       </div>
@@ -600,7 +605,7 @@ export function Services() {
             </div>
           )}
         </div>
-      </section> 
+      </section>
     </>
   );
 }
