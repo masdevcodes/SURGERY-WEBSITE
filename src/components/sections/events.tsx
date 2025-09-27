@@ -36,7 +36,7 @@ const OptimizedEventImage: React.FC<OptimizedImageProps> = ({
   alt, 
   fill = false, 
   className = "", 
-  quality = 70, // Better quality while still optimized
+  quality = 60, // Better quality while still optimized
   sizes = "",
   loading = "lazy",
   priority = false,
@@ -272,7 +272,7 @@ export const Events: React.FC = () => {
     {
       id: 3,
       title: "SELSI 2020 ",
-      date: "February , 2020",
+      date: "February 01, 2020",
       images: [
         "/images/event/selsi/selci1.webp",
         "/images/event/selsi/selci2.webp",
@@ -518,7 +518,7 @@ export const Events: React.FC = () => {
                         alt={event.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        quality={70} // Slightly higher quality for better visual experience
+                        quality={60} // Slightly higher quality for better visual experience
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         loading={index < 4 ? "eager" : "lazy"} // Load first 4 cards immediately
                         priority={index < 2} // High priority for first 2 cards in viewport
@@ -610,7 +610,7 @@ export const Events: React.FC = () => {
                       <div key={index} className="flex-[0_0_100%] min-w-0 relative">
                         <OptimizedEventImage
                           src={img}
-                          quality={80} // Better quality for modal images
+                          quality={60} // Better quality for modal images
                           alt={`${selectedEvent.title} - Image ${index + 1}`}
                           fill
                           className="object-contain"
