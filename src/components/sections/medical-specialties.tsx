@@ -33,6 +33,7 @@ const unit1Data = {
 
 export function MedicalSpecialties() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [imageQuality, setImageQuality] = useState(75); // Default quality: 75%
 
   // Dynamic image path function ONLY for modal with prioritized exact matching
   const getImagePath = (name: string) => {
@@ -93,7 +94,7 @@ export function MedicalSpecialties() {
     return [...new Set(allNames)]; // Remove duplicates
   };
 
-  // Function to render modal lists with dynamic images
+  // Function to render modal lists with dynamic images and reduced quality
   const renderModalListWithImages = (items: { name: string; img: string }[], centerIfFew = false) => {
     if (items.length === 0) return null;
     
@@ -115,6 +116,7 @@ export function MedicalSpecialties() {
                 alt={item.name}
                 width={112}
                 height={112}
+                quality={55} // ✅ REDUCED QUALITY: Modal team member images
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
             </div>
@@ -138,18 +140,20 @@ export function MedicalSpecialties() {
             alt="Preload"
             width={200}
             height={200}
+            quality={55} // ✅ REDUCED QUALITY: Preloaded modal images
             priority
           />
         ))}
       </div>
 
-      {/* Background Pattern */}
+      {/* Background Pattern - NO QUALITY REDUCTION (main section background) */}
       <div className="absolute inset-0">
         <Image
           src="/hod.webp"
           alt="Abstract geometric background"
           fill
           className="object-cover opacity-10"
+          // ❌ NO quality reduction - Main section background image
         />
       </div>
 
@@ -212,7 +216,7 @@ export function MedicalSpecialties() {
             </div>
           </div>
           
-          {/* Right Side - UNCHANGED (using direct paths) */}
+          {/* Right Side - UNCHANGED (using direct paths) - NO QUALITY REDUCTION */}
           <div className="relative">
             <div className="relative w-full h-[750px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
@@ -220,6 +224,7 @@ export function MedicalSpecialties() {
                 alt="Head of Surgery - Dr. Ashwani Kumar"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                // ❌ NO quality reduction - Main section hero image
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
@@ -227,7 +232,7 @@ export function MedicalSpecialties() {
         </div>
       </div>
       
-      {/* Popup Modal - USING DYNAMIC PATHS */}
+      {/* Popup Modal - USING DYNAMIC PATHS WITH REDUCED QUALITY */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -245,12 +250,16 @@ export function MedicalSpecialties() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+            
+            {/* Image Quality Control - ONLY AFFECTS MODAL IMAGES */}
+            
+
             <div className="p-6 md:p-8">
               <h3 className="text-2xl font-bold text-blue-950 mb-6 text-center">
                 Unit 1
               </h3>
               <div className="space-y-10">
-                {/* Incharge - Using dynamic path */}
+                {/* Incharge - Using dynamic path with reduced quality */}
                 <div className="text-center">
                   <h4 className="text-xl font-semibold text-teal-600 mb-6">Unit Incharge</h4>
                   <div className="flex justify-center">
@@ -261,6 +270,7 @@ export function MedicalSpecialties() {
                           alt={unit1Data.incharge.name} 
                           width={160} 
                           height={160} 
+                          quality={55} // ✅ REDUCED QUALITY: Modal incharge image
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                         />
                       </div>
@@ -270,27 +280,30 @@ export function MedicalSpecialties() {
                   </div>
                 </div>
                 
-                {/* Associate Professors - Using dynamic paths */}
+                {/* Associate Professors - Using dynamic paths with reduced quality */}
                 {unit1Data.associateProfessors.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Associate Professors</h4> 
                     {renderModalListWithImages(unit1Data.associateProfessors, true)}
+                    {/* ✅ REDUCED QUALITY: All associate professor images in modal */}
                   </div>
                 )}
                 
-                {/* Senior Residents - Using dynamic paths */}
+                {/* Senior Residents - Using dynamic paths with reduced quality */}
                 {unit1Data.seniorResidents.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Senior Residents</h4>
                     {renderModalListWithImages(unit1Data.seniorResidents, true)}
+                    {/* ✅ REDUCED QUALITY: All senior resident images in modal */}
                   </div>
                 )}
                 
-                {/* Junior Residents - Using dynamic paths */}
+                {/* Junior Residents - Using dynamic paths with reduced quality */}
                 {unit1Data.juniorResidents.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Junior Residents</h4>
                     {renderModalListWithImages(unit1Data.juniorResidents, true)}
+                    {/* ✅ REDUCED QUALITY: All junior resident images in modal */}
                   </div>
                 )}
               </div>
@@ -298,6 +311,26 @@ export function MedicalSpecialties() {
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        .slider::-webkit-slider-thumb {
+          appearance: none;
+          height: 16px;
+          width: 16px;
+          border-radius: 50%;
+          background: #0d9488;
+          cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+          height: 16px;
+          width: 16px;
+          border-radius: 50%;
+          background: #0d9488;
+          cursor: pointer;
+          border: none;
+        }
+      `}</style>
     </section>
   );
 }
