@@ -91,7 +91,7 @@ export function MedicalSpecialties() {
           alt="Abstract geometric background"
           fill
           className="object-cover opacity-10"
-          quality={40}
+          quality={50}
           priority={false} // Not priority since it's background
         />
       </div>
