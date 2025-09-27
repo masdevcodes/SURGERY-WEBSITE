@@ -54,7 +54,7 @@ export function SuperSpeciality() {
       description: 'Advanced neurosurgical procedures for brain, spine, and peripheral nervous system disorders.',
       detailedDescription: 'The Department of Neurosurgery at Government Medical College & Rajindra Hospital, Patiala is dedicated to delivering advanced surgical care for disorders of the brain, spinal cord, peripheral nerves, and skull. Our experts handle a wide spectrum of neurosurgical conditions — including head and spinal trauma, congenital anomalies, brain tumors, hydrocephalus, spinal disorders, neurovascular conditions, and critical neurological emergencies. Equipped with modern operation theatres and diagnostic imaging support, the department combines precise surgical skills with compassionate, patient-centered care.',
       color: 'text-purple-600',
-      image: '',
+      image: '/images/neuro-surgery.webp',
       services: [
         'Brain tumor surgery',
         'Spinal surgery',
@@ -63,7 +63,7 @@ export function SuperSpeciality() {
         'Stereotactic procedures'
       ],
       doctors: [
-        { name: 'Dr. Harish Kumar', designation: 'Associate Professors', image: '/images/ss/harish_kumar.webp' },
+        { name: 'Dr. Harish Kumar', designation: 'Associate Professors', image: '' },
       ]
     },
     {
@@ -451,12 +451,12 @@ export function SuperSpeciality() {
                 <div className={`grid gap-8 ${selectedSpeciality.doctors.length === 1 ? 'grid-cols-1 justify-items-center' : 'grid-cols-1 md:grid-cols-2'}`}>
                   {selectedSpeciality.doctors.map((doctor, index) => (
                     <div key={index} className={`flex flex-col items-center text-center ${selectedSpeciality.doctors.length === 1 ? 'max-w-sm' : ''}`}>
-                      <div className="relative w-48 h-48 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg mb-4 group">
+                      <div className="relative w-64 h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg mb-4 group"> 
                         <OptimizedImage
                           src={doctor.image || selectedSpeciality.image || '/placeholder-doctor.svg'}
                           alt={doctor.name}
-                          width={192}
-                          height={192}
+                          width={256}
+                          height={256}
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                           priority={true}
                           isModalImage={true}
@@ -475,7 +475,7 @@ export function SuperSpeciality() {
                   <p className="text-sm text-gray-700 italic">{selectedSpeciality.description}</p>
                 </div>
                 <div className="mb-6">
-                  <h4 className="text-xl font-bold text-blue-950 mb-4">About {selectedSpeciality.name}</h4> 
+                  <h4 className="text-xl font-bold text-blue-950 mb-4">About {selectedSpeciality.name}</h4>
                   <p className="text-gray-700 leading-relaxed text-justify">{selectedSpeciality.detailedDescription}</p>
                 </div>
                 <div>
