@@ -171,14 +171,16 @@ export function Events() {
     },
     {
       id: 3,
-      title: "Health Awareness Camp",
-      date: "January 20, 2024",
+      title: "SELSI 2020 ",
+      date: "February , 2020",
       images: [
-        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        "/images/event/selsi/selci1.webp",
+        "/images/event/selsi/selci2.webp",
+        "/images/event/selsi/selci3.webp",
+        "/images/event/selsi/selci4.webp",
+        "/images/event/selsi/selci5.webp",
+        "/images/event/selsi/selci6.webp",
+        "/images/event/selsi/selci7.webp",
       ],
     },
     {
