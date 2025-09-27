@@ -70,7 +70,7 @@ export function MedicalSpecialties() {
                 alt={item.name}
                 width={112}   // Optimized: Matches container size (28 * 4 = 112)
                 height={112}  // Optimized: Matches container size
-                quality={65}  // Balanced quality for good appearance
+                quality={60}  // Balanced quality for good appearance
                 loading="lazy" // Lazy load for better performance
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
