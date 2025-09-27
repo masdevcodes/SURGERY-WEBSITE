@@ -317,7 +317,7 @@ export function Events() {
                         alt={event.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        quality={90}
+                        quality={60}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         loading="lazy"
                       />
@@ -398,6 +398,7 @@ export function Events() {
                     <div key={index} className="flex-[0_0_100%] min-w-0 relative">
                       <Image
                         src={img}
+                        quality={50}
                         alt={`${selectedEvent.title} - Image ${index + 1}`}
                         fill
                         className="object-contain"
