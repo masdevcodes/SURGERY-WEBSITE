@@ -38,7 +38,7 @@ export function MedicalSpecialties() {
   // Track loading status of individual images for better UX
   const [loadingImages, setLoadingImages] = useState<Record<string, boolean>>({});
 
-  // Function to preload all modal images with simplified approach
+  // Optimized preloading with parallel loading and accurate tracking
   useEffect(() => {
     // Get all doctor images from unit1Data
     const allDoctorImages = [
@@ -47,66 +47,53 @@ export function MedicalSpecialties() {
       ...unit1Data.seniorResidents.map(d => d.img),
       ...unit1Data.juniorResidents.map(d => d.img)
     ];
-    
-    console.log("Starting preloading of modal images...");
-    
+  
+    console.log(`Starting preloading of ${allDoctorImages.length} modal images...`);
+  
     // Initialize loading state for all images
     const initialLoadingState: Record<string, boolean> = {};
     allDoctorImages.forEach(src => {
       initialLoadingState[src] = true;
     });
     setLoadingImages(initialLoadingState);
-    
-    // Simplified preloading with better error handling
+  
     let loadedCount = 0;
-    
+    const totalImages = allDoctorImages.length;
+  
     const preloadImage = (src: string) => {
       const img = new window.Image();
-      
-      img.onload = () => {
-        console.log(`Successfully preloaded: ${src}`);
-        setLoadingImages(prev => ({ ...prev, [src]: false }));
-        checkAllLoaded();
-      };
-      
-      img.onerror = () => {
-        console.warn(`Failed to preload image: ${src}`);
-        // Don't mark as loaded if error, allow fallback to handle it
-        setLoadingImages(prev => ({ ...prev, [src]: false }));
-        checkAllLoaded();
-      };
-      
       img.src = src;
+      img.loading = 'eager';
+      img.decoding = 'async';
+  
+      img.onload = () => {
+        loadedCount++;
+        console.log(`✅ Preloaded (${loadedCount}/${totalImages}): ${src}`);
+        setLoadingImages(prev => ({ ...prev, [src]: false }));
+        if (loadedCount === totalImages) {
+          setModalImagesPreloaded(true);
+          console.log("✅ All modal images preloaded successfully!");
+        }
+      };
+  
+      img.onerror = () => {
+        loadedCount++;
+        console.warn(`❌ Failed to preload: ${src}`);
+        setLoadingImages(prev => ({ ...prev, [src]: false }));
+        if (loadedCount === totalImages) {
+          setModalImagesPreloaded(true);
+          console.log("✅ Preloading completed (with some errors)!");
+        }
+      };
     };
-    
-    const checkAllLoaded = () => {
-      loadedCount++;
-      if (loadedCount === allDoctorImages.length) {
-        console.log("All modal images processed");
-        setModalImagesPreloaded(true);
-      }
-    };
-    
-    // Preload all images simultaneously
-    allDoctorImages.forEach(img => preloadImage(img));
-    
+  
+    // Preload all simultaneously within requestAnimationFrame
+    requestAnimationFrame(() => {
+      allDoctorImages.forEach(preloadImage);
+    });
   }, []);
 
-  // Simplified image path function using direct paths from data
-  const getImagePath = (name: string) => {
-    // Check all doctor arrays for matching name and return their direct image path
-    const allDoctors = [
-      unit1Data.incharge,
-      ...unit1Data.associateProfessors,
-      ...unit1Data.seniorResidents,
-      ...unit1Data.juniorResidents
-    ];
-    
-    const doctor = allDoctors.find(d => d.name === name);
-    return doctor?.img || '/images/doctors/akhil_remesh.webp'; // Use existing doctor image as fallback
-  };
-
-  // Function to render modal lists with optimized images
+  // Update to renderModalListWithImages (add priority to Image)
   const renderModalListWithImages = (items: { name: string; img: string }[], centerIfFew = false) => {
     if (items.length === 0) return null;
     
@@ -130,16 +117,16 @@ export function MedicalSpecialties() {
                 </div>
               )}
               <Image
-                src={item.img} // Use direct path from data
+                src={item.img}
                 alt={item.name}
-                width={112}   // Optimized: Matches container size (28 * 4 = 112)
-                height={112}  // Optimized: Matches container size
-                quality={60}  // Slightly increased quality since WebP is more efficient
-                loading="eager" // Eager loading since we're in the modal
+                width={112}
+                height={112}
+                quality={60}
+                loading="eager"
+                priority  // Added: High priority for instant cache pull
                 className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 ${loadingImages[item.img] ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
                 onError={(e) => {
                   console.error(`Failed to load image: ${item.img}`, e);
-                  // Fallback to an existing doctor image since placeholder doesn't exist
                   const imgElement = e.currentTarget as HTMLImageElement;
                   if (imgElement) {
                     imgElement.src = '/images/doctors/akhil_remesh.webp';
