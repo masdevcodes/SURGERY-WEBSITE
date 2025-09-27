@@ -8,7 +8,7 @@ const unit1Data = {
   incharge: {
     name: "Dr. Ashwani Kumar",
     title: "Prof & Head of Surgery Department",
-    img: "/images/unit1/ashwini.webp", // Direct path for main section
+    img: "/images/unit1/ashwini.webp",
   },
   associateProfessors: [
     { name: "Dr. Jaswinder Singh", img: "/images/unit1/jaswinder.png" },
@@ -45,29 +45,10 @@ export function MedicalSpecialties() {
     ];
     
     const doctor = allDoctors.find(d => d.name === name);
-    return doctor?.img || '/images/doctors/placeholder.webp'; // Fallback
+    return doctor?.img || '/images/doctors/placeholder.webp';
   };
 
-  // Function to collect all doctor names for modal preloading
-  const getAllDoctorNamesForModal = () => {
-    const allNames: string[] = [];
-    
-    // Add incharge
-    allNames.push(unit1Data.incharge.name);
-    
-    // Add associate professors
-    unit1Data.associateProfessors.forEach(prof => allNames.push(prof.name));
-    
-    // Add senior residents
-    unit1Data.seniorResidents.forEach(sr => allNames.push(sr.name));
-    
-    // Add junior residents
-    unit1Data.juniorResidents.forEach(jr => allNames.push(jr.name));
-    
-    return [...new Set(allNames)]; // Remove duplicates
-  };
-
-  // Function to render modal lists with dynamic images and reduced quality
+  // Function to render modal lists with optimized images
   const renderModalListWithImages = (items: { name: string; img: string }[], centerIfFew = false) => {
     if (items.length === 0) return null;
     
@@ -85,11 +66,12 @@ export function MedicalSpecialties() {
           <div key={idx} className="flex flex-col items-center">
             <div className="w-28 h-28 rounded-xl overflow-hidden shadow-md mb-3 group">
               <Image
-                src={getImagePath(item.name)} // Using dynamic path for modal
+                src={item.img} // Use direct path from data
                 alt={item.name}
-                width={112}
-                height={112}
-                quality={55} // ✅ REDUCED QUALITY: Modal team member images
+                width={112}   // Optimized: Matches container size (28 * 4 = 112)
+                height={112}  // Optimized: Matches container size
+                quality={65}  // Balanced quality for good appearance
+                loading="lazy" // Lazy load for better performance
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
             </div>
@@ -100,39 +82,23 @@ export function MedicalSpecialties() {
     );
   };
 
-  const allModalDoctorNames = getAllDoctorNamesForModal();
-
   return (
     <section id="head-of-surgery" className="py-24 bg-white relative overflow-hidden">
-      {/* HIDDEN PRELOAD IMAGES - Only for modal, using dynamic paths */}
-      <div className="hidden">
-        {allModalDoctorNames.map((doctorName, index) => (
-          <Image
-            key={`modal-preload-${index}`}
-            src={getImagePath(doctorName)}
-            alt="Preload"
-            width={200}
-            height={200}
-            quality={55} // ✅ REDUCED QUALITY: Preloaded modal images
-            priority
-          />
-        ))}
-      </div>
-
-      {/* Background Pattern - NO QUALITY REDUCTION (main section background) */}
+      {/* Background Pattern - OPTIMIZED */}
       <div className="absolute inset-0">
         <Image
           src="/hod.webp"
           alt="Abstract geometric background"
           fill
           className="object-cover opacity-10"
-          // ❌ NO quality reduction - Main section background image
+          quality={40}
+          priority={false} // Not priority since it's background
         />
       </div>
 
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Side - UNCHANGED (using direct paths) */}
+          {/* Left Side */}
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex items-center gap-4 mb-6">
@@ -189,15 +155,16 @@ export function MedicalSpecialties() {
             </div>
           </div>
           
-          {/* Right Side - UNCHANGED (using direct paths) - NO QUALITY REDUCTION */}
+          {/* Right Side - Optimized Hero Image */}
           <div className="relative">
             <div className="relative w-full h-[750px] rounded-2xl overflow-hidden shadow-2xl group">
               <Image
-                src="/hod.webp" // Direct path
+                src="/hod.webp"
                 alt="Head of Surgery - Dr. Ashwani Kumar"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                // ❌ NO quality reduction - Main section hero image
+                quality={75} // Good quality for hero image
+                priority // Only priority image on the page
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
@@ -205,7 +172,7 @@ export function MedicalSpecialties() {
         </div>
       </div>
       
-      {/* Popup Modal - USING DYNAMIC PATHS WITH REDUCED QUALITY */}
+      {/* Popup Modal - OPTIMIZED FOR PERFORMANCE */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -229,18 +196,19 @@ export function MedicalSpecialties() {
                 Unit 1
               </h3>
               <div className="space-y-10">
-                {/* Incharge - Using dynamic path with reduced quality */}
+                {/* Incharge - Optimized */}
                 <div className="text-center">
                   <h4 className="text-xl font-semibold text-teal-600 mb-6">Unit Incharge</h4>
                   <div className="flex justify-center">
                     <div className="flex flex-col items-center">
                       <div className="w-40 h-40 rounded-xl overflow-hidden shadow-md mb-4 group">
                         <Image 
-                          src={getImagePath(unit1Data.incharge.name)} // Dynamic path
+                          src={unit1Data.incharge.img} // Direct path
                           alt={unit1Data.incharge.name} 
-                          width={160} 
-                          height={160} 
-                          quality={55} // ✅ REDUCED QUALITY: Modal incharge image
+                          width={160}  // Matches container size (40 * 4 = 160)
+                          height={160} // Matches container size
+                          quality={70} // Good quality for main modal image
+                          loading="lazy" // Lazy load since it's in modal
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                         />
                       </div>
@@ -250,30 +218,27 @@ export function MedicalSpecialties() {
                   </div>
                 </div>
                 
-                {/* Associate Professors - Using dynamic paths with reduced quality */}
+                {/* Associate Professors - Optimized */}
                 {unit1Data.associateProfessors.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Associate Professors</h4> 
                     {renderModalListWithImages(unit1Data.associateProfessors, true)}
-                    {/* ✅ REDUCED QUALITY: All associate professor images in modal */}
                   </div>
                 )}
                 
-                {/* Senior Residents - Using dynamic paths with reduced quality */}
+                {/* Senior Residents - Optimized */}
                 {unit1Data.seniorResidents.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Senior Residents</h4>
                     {renderModalListWithImages(unit1Data.seniorResidents, true)}
-                    {/* ✅ REDUCED QUALITY: All senior resident images in modal */}
                   </div>
                 )}
                 
-                {/* Junior Residents - Using dynamic paths with reduced quality */}
+                {/* Junior Residents - Optimized */}
                 {unit1Data.juniorResidents.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-teal-600 mb-6 text-center">Junior Residents</h4>
                     {renderModalListWithImages(unit1Data.juniorResidents, true)}
-                    {/* ✅ REDUCED QUALITY: All junior resident images in modal */}
                   </div>
                 )}
               </div>
